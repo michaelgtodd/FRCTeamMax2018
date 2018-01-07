@@ -84,7 +84,7 @@ void MaxTask::ExecInit(std::string taskname, uint32_t task_period)
 
 void MaxTask::Launch()
 {
-	//running_thread = std::thread(&MaxTask::ThreadProcess, this);
+	running_thread = std::thread(&MaxTask::ThreadProcess, this);
 }
 
 void MaxTask::ThreadProcess()
