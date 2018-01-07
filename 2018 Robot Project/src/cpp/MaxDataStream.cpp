@@ -7,6 +7,51 @@
 
 namespace MaxLog
 {
+	void MaxCautionManager::RegisterCaution(std::string caution)
+	{
+		bool cautionDuplicate = false;
+		for (std::vector<std::string>::iterator i = CautionList.begin();
+			i != CautionList.end();
+			i++)
+		{
+			cautionDuplicate = caution == (*i);
+		}
+		if (!cautionDuplicate)
+		{
+			CautionList.push_back(caution);
+		}
+	}
+
+	void MaxCautionManager::ClearCautions()
+	{
+		CautionList.clear();
+	}
+
+	void MaxCautionManager::Run()
+	{
+		for (std::vector<std::string>::iterator i = CautionList.begin();
+			i != CautionList.end();
+			i++)
+		{
+			MaxLog::TransmitString("/caution", (*i));
+		}
+	}
+
+	void MaxCautionManager::Disable()
+	{
+		Run();
+	}
+
+	void MaxCautionManager::ControllerUpdate(MaxControls controls)
+	{
+
+	}
+
+	void MaxCautionManager::Init()
+	{
+
+	}
+
 	UdpTransmitSocket transmitSocket(IpEndpointName(BROADCASTADDRESS, BROADCASTPORT));
 	char buffer[OUTPUT_BUFFER_SIZE];
 

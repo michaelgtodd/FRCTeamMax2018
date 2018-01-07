@@ -1,6 +1,7 @@
 #include "Robot.h"
 #include "MaxTask.h"
 #include "SampleTask.h"
+#include "MaxDataStream.h"
 
 void Robot::RobotInit() 
 {
@@ -10,6 +11,7 @@ void Robot::RobotInit()
 	taskschedule.AddTask(new SampleTask, "Task2", 1);
 	taskschedule.AddTask(new SampleTask, "Task3", 100);
 	taskschedule.AddTask(new SampleTask, "Task4", 100);
+	taskschedule.AddTask(new MaxLog::MaxCautionManager(), "Caution Manager", 1);
 
 	taskschedule.LaunchTasks();
 }

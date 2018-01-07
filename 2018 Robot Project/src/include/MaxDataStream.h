@@ -1,8 +1,23 @@
 #pragma once
 #include <string>
+#include "MaxTask.h"
+#include <vector>
 
 namespace MaxLog
 {
+	class MaxCautionManager : public MaxTask
+	{
+	public:
+		void RegisterCaution(std::string caution);
+		void ClearCautions();
+		void Run();
+		void Disable();
+		void ControllerUpdate(MaxControls controls);
+	private:
+		void Init();
+		std::vector<std::string> CautionList;
+	};
+
 	void LogPass(std::string error_message);
 	void LogInfo(std::string error_message);
 	void LogError(std::string error_message);
