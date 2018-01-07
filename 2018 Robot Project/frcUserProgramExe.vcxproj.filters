@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <ItemGroup Label="Filters">
+    <Filter Include="Source Files">
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Header Files\osc">
+      <UniqueIdentifier>{ebcbb9fe-e62b-44f7-9f57-245b501b5b02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ip">
+      <UniqueIdentifier>{c6a44a48-8293-4f50-8088-c92892e5ad45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ip">
+      <UniqueIdentifier>{c1801efe-aa99-4850-a5c8-249095bed048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\osc">
+      <UniqueIdentifier>{d8aaf258-1146-4120-967d-ab9b8e0365a0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup Label="Sources">
+    <ClCompile Include="build.gradle">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Robot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\MaxTask.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ip\IpEndpointName.cpp">
+      <Filter>Source Files\ip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\osc\OscOutboundPacketStream.cpp">
+      <Filter>Source Files\osc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\osc\OscPrintReceivedElements.cpp">
+      <Filter>Source Files\osc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\osc\OscReceivedElements.cpp">
+      <Filter>Source Files\osc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\osc\OscTypes.cpp">
+      <Filter>Source Files\osc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ip\NetworkingUtils.cpp">
+      <Filter>Source Files\ip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ip\UdpSocket.cpp">
+      <Filter>Source Files\ip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\MaxDataStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SampleTask.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\include\Robot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\MaxTask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\MaxControls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\ip\IpEndpointName.h">
+      <Filter>Header Files\ip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\ip\NetworkingUtils.h">
+      <Filter>Header Files\ip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\ip\PacketListener.h">
+      <Filter>Header Files\ip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\ip\TimerListener.h">
+      <Filter>Header Files\ip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\ip\UdpSocket.h">
+      <Filter>Header Files\ip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\osc\MessageMappingOscPacketListener.h">
+      <Filter>Header Files\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\osc\OscException.h">
+      <Filter>Header Files\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\osc\OscHostEndianness.h">
+      <Filter>Header Files\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\osc\OscOutboundPacketStream.h">
+      <Filter>Header Files\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\osc\OscPacketListener.h">
+      <Filter>Header Files\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\osc\OscPrintReceivedElements.h">
+      <Filter>Header Files\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\osc\OscReceivedElements.h">
+      <Filter>Header Files\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\osc\OscTypes.h">
+      <Filter>Header Files\osc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\MaxDataStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\MaxDefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\SampleTask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

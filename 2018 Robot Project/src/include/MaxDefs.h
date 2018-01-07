@@ -1,0 +1,4 @@
+#pragma once
+
+#define BROADCASTADDRESS "10.10.71.255"
+#define BROADCASTPORT 5800

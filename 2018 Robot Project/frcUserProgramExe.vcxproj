@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="15.0">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="debug|Win32">
+      <Configuration>debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <Keyword>MakeFileProj</Keyword>
+    <ProjectGUID>{344AB844-85B9-3D96-91F1-18D37B55E254}</ProjectGUID>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <OutDir>.vs\frcUserProgramExe\$(Configuration)</OutDir>
+    <IntDir>.vs\frcUserProgramExe\$(Configuration)</IntDir>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="NMakeConfiguration" Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
+    <NMakeBuildCommandLine>gradlew.bat :installFrcUserProgramExecutable</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>gradlew.bat :clean</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>gradlew.bat :clean :installFrcUserProgramExecutable</NMakeReBuildCommandLine>
+    <NMakePreprocessorDefinitions>
+    </NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>src\cpp;src\include;build\tmp\expandedArchives\wpilibc-2018.1.1-headers.zip_0ba004690f48207547fbbd2a6f212388;build\tmp\expandedArchives\hal-2018.1.1-headers.zip_4b49b4176ae22cb58a5421914aabf320;build\tmp\expandedArchives\wpiutil-cpp-3.0.0-headers.zip_71db4973bf73247f06ec3fdb86e1126b;build\tmp\expandedArchives\ntcore-cpp-4.0.0-headers.zip_517391151665b6a51f10f788c06ee62d;build\tmp\expandedArchives\cscore-cpp-1.1.0-headers.zip_7179d2a404841338b55673d83c119071;build\tmp\expandedArchives\opencv-cpp-3.2.0-headers.zip_1b8591564854592a4aff6bd224b2b0a3;build\tmp\expandedArchives\ni-libraries-2018.1.1-headers.zip_6aedc4b55a982775a7b6e16df1020d5b;build\tmp\expandedArchives\CTRE-phoenix-cpp-5.1.2.1-headers.zip_fff3d22e160106b698f6c35d0b2e8153;build\tmp\expandedArchives\navx-cpp-3.0.342-headers.zip_ded0b7831bcd4688d480db0d93158974</NMakeIncludeSearchPath>
+    <NMakeOutput>build\install\frcUserProgram\lib\frcUserProgram</NMakeOutput>
+  </PropertyGroup>
+  <ItemGroup Label="Sources">
+    <ClCompile Include="build.gradle" />
+    <ClCompile Include="src\cpp\ip\IpEndpointName.cpp" />
+    <ClCompile Include="src\cpp\ip\NetworkingUtils.cpp" />
+    <ClCompile Include="src\cpp\ip\UdpSocket.cpp" />
+    <ClCompile Include="src\cpp\MaxDataStream.cpp" />
+    <ClCompile Include="src\cpp\MaxTask.cpp" />
+    <ClCompile Include="src\cpp\osc\OscOutboundPacketStream.cpp" />
+    <ClCompile Include="src\cpp\osc\OscPrintReceivedElements.cpp" />
+    <ClCompile Include="src\cpp\osc\OscReceivedElements.cpp" />
+    <ClCompile Include="src\cpp\osc\OscTypes.cpp" />
+    <ClCompile Include="src\cpp\Robot.cpp" />
+    <ClCompile Include="src\cpp\SampleTask.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\include\ip\IpEndpointName.h" />
+    <ClInclude Include="src\include\ip\NetworkingUtils.h" />
+    <ClInclude Include="src\include\ip\PacketListener.h" />
+    <ClInclude Include="src\include\ip\TimerListener.h" />
+    <ClInclude Include="src\include\ip\UdpSocket.h" />
+    <ClInclude Include="src\include\MaxControls.h" />
+    <ClInclude Include="src\include\MaxDataStream.h" />
+    <ClInclude Include="src\include\MaxDefs.h" />
+    <ClInclude Include="src\include\MaxTask.h" />
+    <ClInclude Include="src\include\osc\MessageMappingOscPacketListener.h" />
+    <ClInclude Include="src\include\osc\OscException.h" />
+    <ClInclude Include="src\include\osc\OscHostEndianness.h" />
+    <ClInclude Include="src\include\osc\OscOutboundPacketStream.h" />
+    <ClInclude Include="src\include\osc\OscPacketListener.h" />
+    <ClInclude Include="src\include\osc\OscPrintReceivedElements.h" />
+    <ClInclude Include="src\include\osc\OscReceivedElements.h" />
+    <ClInclude Include="src\include\osc\OscTypes.h" />
+    <ClInclude Include="src\include\Robot.h" />
+    <ClInclude Include="src\include\SampleTask.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>
