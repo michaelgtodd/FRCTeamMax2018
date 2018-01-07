@@ -10,6 +10,11 @@ void SampleTask::Disable()
 
 }
 
+void SampleTask::Autonomous()
+{
+
+}
+
 void SampleTask::ControllerUpdate(MaxControls controls)
 {
 

@@ -42,6 +42,11 @@ namespace MaxLog
 		Run();
 	}
 
+	void MaxCautionManager::Autonomous()
+	{
+		Run();
+	}
+
 	void MaxCautionManager::ControllerUpdate(MaxControls controls)
 	{
 

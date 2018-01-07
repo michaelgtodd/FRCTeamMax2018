@@ -24,6 +24,11 @@ void MaxTaskStatisticsTask::Disable()
 	Run();
 }
 
+void MaxTaskStatisticsTask::Autonomous()
+{
+	Run();
+}
+
 void MaxTaskStatisticsTask::ControllerUpdate(MaxControls controls)
 {
 

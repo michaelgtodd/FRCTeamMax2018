@@ -12,6 +12,7 @@ namespace MaxLog
 		void ClearCautions();
 		void Run();
 		void Disable();
+		void Autonomous();
 		void ControllerUpdate(MaxControls controls);
 	private:
 		void Init();

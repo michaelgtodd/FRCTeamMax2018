@@ -10,6 +10,7 @@ public:
 	void virtual Run() = 0;
 	void virtual Disable() = 0;
 	void virtual ControllerUpdate(MaxControls controls) = 0;
+	void virtual Autonomous() = 0;
 
 	std::string GetTaskName();
 	uint32_t GetTaskPeriod();
@@ -47,6 +48,7 @@ public:
 	MaxTaskStatisticsTask(std::vector<MaxTask*> TaskList);
 	void Run();
 	void Disable();
+	void Autonomous();
 	void ControllerUpdate(MaxControls controls);
 private:
 	void Init();
