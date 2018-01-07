@@ -3,6 +3,8 @@
 
 namespace MaxLog
 {
+	void LogPass(std::string error_message);
+	void LogInfo(std::string error_message);
 	void LogError(std::string error_message);
 
 	void TransmitInt(std::string label, int value);

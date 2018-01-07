@@ -42,6 +42,7 @@ void MaxTaskSchedule::AddTask(MaxTask* task, std::string taskname, uint32_t peri
 
 void MaxTaskSchedule::LaunchTasks()
 {
+	MaxLog::LogInfo("Starting tasks");
 	for (std::vector<MaxTask*>::iterator i = TaskList.begin();
 		i != TaskList.end();
 		i++)
@@ -84,6 +85,7 @@ void MaxTask::ExecInit(std::string taskname, uint32_t task_period)
 
 void MaxTask::Launch()
 {
+	MaxLog::LogInfo("Launching: " + taskname_);
 	running_thread = std::thread(&MaxTask::ThreadProcess, this);
 }
 

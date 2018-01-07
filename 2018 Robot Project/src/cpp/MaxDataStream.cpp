@@ -10,6 +10,24 @@ namespace MaxLog
 	UdpTransmitSocket transmitSocket(IpEndpointName(BROADCASTADDRESS, BROADCASTPORT));
 	char buffer[OUTPUT_BUFFER_SIZE];
 
+	void LogPass(std::string error_message)
+	{
+		osc::OutboundPacketStream p(buffer, OUTPUT_BUFFER_SIZE);
+
+		p << osc::BeginMessage("/pass") << error_message.c_str() << osc::EndMessage;
+
+		transmitSocket.Send(p.Data(), p.Size());
+	}
+
+	void LogInfo(std::string error_message)
+	{
+		osc::OutboundPacketStream p(buffer, OUTPUT_BUFFER_SIZE);
+
+		p << osc::BeginMessage("/info") << error_message.c_str() << osc::EndMessage;
+
+		transmitSocket.Send(p.Data(), p.Size());
+	}
+
 	void LogError(std::string error_message)
 	{
 		osc::OutboundPacketStream p(buffer, OUTPUT_BUFFER_SIZE);
