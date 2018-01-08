@@ -194,9 +194,12 @@ public:
        
         if (connect(socket_, (struct sockaddr *)&connectedAddr_, sizeof(connectedAddr_)) < 0) {
             throw std::runtime_error("unable to connect udp socket\n");
+			isConnected_ = false;
         }
-
-		isConnected_ = true;
+		else
+		{
+			isConnected_ = true;
+		}
 	}
 
 	void Send( const char *data, std::size_t size )

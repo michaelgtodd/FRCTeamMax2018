@@ -1,6 +1,7 @@
 #include "MaxTask.h"
 #include "WPILib.h"
 #include "MaxDataStream.h"
+#include <math.h>
 
 MaxTaskStatisticsTask::MaxTaskStatisticsTask(std::vector<MaxTask*> TaskList)
 {
@@ -17,6 +18,9 @@ void MaxTaskStatisticsTask::Run()
 		MaxLog::TransmitInt(baselabel + "/period", (*i)->GetAverageTaskPeriod());
 		MaxLog::TransmitInt(baselabel + "/duration", (*i)->GetAverageTaskDuration());
 	}
+	std::string baselabel = "/taskstats/Task_Stats_Task";
+	MaxLog::TransmitInt(baselabel + "/period", GetAverageTaskPeriod());
+	MaxLog::TransmitInt(baselabel + "/duration", GetAverageTaskDuration());
 }
 
 void MaxTaskStatisticsTask::Disable()
@@ -72,12 +76,12 @@ uint32_t MaxTask::GetTaskPeriod()
 
 uint32_t MaxTask::GetAverageTaskPeriod()
 {
-	return (uint32_t)average_task_period;
+	return (uint32_t)ceil(average_task_period);
 }
 
 uint32_t MaxTask::GetAverageTaskDuration()
 {
-	return (uint32_t)average_task_duration;
+	return (uint32_t)ceil(average_task_duration);
 }
 
 void MaxTask::ExecInit(std::string taskname, uint32_t task_period)
@@ -105,17 +109,28 @@ void MaxTask::ThreadProcess()
 		double loopEnd = Timer::GetFPGATimestamp();
 		double loopDuration = loopEnd - loopStart;
 		uint32_t loopExecutionTimeMS = (uint32_t)(loopDuration * 1000);
-
-		average_task_duration =
-			((average_task_duration * 50) - average_task_duration + loopDuration) / 50;
-
+		if (task_period_ > 1)
+		{
+			average_task_duration =
+				((average_task_duration * task_period_) - average_task_duration + loopExecutionTimeMS) / task_period_;
+		}
+		else
+		{
+			average_task_duration = loopExecutionTimeMS;
+		}
 		double current_loop_difference = (loopEnd - last_loop_end) * 1000;
 		last_loop_end = loopEnd;
 
-		average_task_differential =
-			((average_task_differential * 50) - average_task_differential + current_loop_difference) / 50;
-
-		average_task_period = (uint32_t)(1000 * 1000 / average_task_differential);
+		if (task_period_ > 1)
+		{
+			average_task_differential =
+				((average_task_differential * task_period_) - average_task_differential + current_loop_difference) / task_period_;
+		}
+		else
+		{
+			average_task_differential = current_loop_difference;
+		}
+		average_task_period = (1000 / average_task_differential);
 
 		bool threadadvance = false;
 		do {

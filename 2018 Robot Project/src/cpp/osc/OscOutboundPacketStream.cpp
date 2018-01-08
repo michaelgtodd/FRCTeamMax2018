@@ -36,12 +36,12 @@
 */
 #include "osc/OscOutboundPacketStream.h"
 
-#if defined(__WIN32__) || defined(WIN32) || defined(_WIN32)
-#include <malloc.h> // for alloca
-#else
+//#if defined(__WIN32__) || defined(WIN32) || defined(_WIN32)
+//#include <malloc.h> // for alloca
+//#else
 //#include <alloca.h> // alloca on Linux (also OSX)
 #include <stdlib.h> // alloca on OSX and FreeBSD (and Linux?)
-#endif
+//#endif
 
 #include <cassert>
 #include <cstring> // memcpy, memmove, strcpy, strlen

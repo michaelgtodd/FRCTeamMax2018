@@ -1,4 +1,5 @@
 #include "SampleTask.h"
+#include <iostream>
 
 void SampleTask::Run()
 {

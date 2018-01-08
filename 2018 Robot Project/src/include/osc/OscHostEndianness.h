@@ -47,7 +47,7 @@
 
     $ g++ -DOSC_HOST_LITTLE_ENDIAN ...
 */
-#define OSC_HOST_BIG_ENDIAN
+#define OSC_HOST_LITTLE_ENDIAN
 #if defined(OSC_HOST_LITTLE_ENDIAN) || defined(OSC_HOST_BIG_ENDIAN)
 
 // endianness defined on the command line. nothing to do here.
