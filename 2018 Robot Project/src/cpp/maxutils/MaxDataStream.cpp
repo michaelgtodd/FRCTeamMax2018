@@ -1,7 +1,7 @@
-#include "MaxDataStream.h"
+#include "maxutils/MaxDataStream.h"
 #include "osc/OscOutboundPacketStream.h"
 #include "ip/UdpSocket.h"
-#include "MaxDefs.h"
+#include "maxutils/MaxDefs.h"
 #include <iostream>
 #include <cerrno>
 

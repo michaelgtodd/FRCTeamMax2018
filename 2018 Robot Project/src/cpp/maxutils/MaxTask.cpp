@@ -1,6 +1,6 @@
-#include "MaxTask.h"
+#include "maxutils/MaxTask.h"
 #include "WPILib.h"
-#include "MaxDataStream.h"
+#include "maxutils/MaxDataStream.h"
 #include <math.h>
 
 MaxTaskStatisticsTask::MaxTaskStatisticsTask(std::vector<MaxTask*> TaskList)

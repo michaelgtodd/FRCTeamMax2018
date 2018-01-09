@@ -1,5 +1,5 @@
 #pragma once
-#include "MaxTask.h"
+#include "maxutils/MaxTask.h"
 
 class SampleTask : public MaxTask
 {

@@ -1,7 +1,7 @@
 #include "Robot.h"
-#include "MaxTask.h"
+#include "maxutils/MaxTask.h"
 #include "SampleTask.h"
-#include "MaxDataStream.h"
+#include "maxutils/MaxDataStream.h"
 
 void Robot::RobotInit() 
 {
