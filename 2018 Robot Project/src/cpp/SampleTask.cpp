@@ -18,13 +18,9 @@ void SampleTask::Autonomous()
 
 }
 
-void SampleTask::ControllerUpdate(MaxControl controls)
+void SampleTask::ControllerUpdate(MaxControl * controls)
 {
-	//MaxLog::LogInfo("here");
-	//MaxControl * test = &controls;
-	//RobotControl * controls_ = dynamic_cast<RobotControl *>(test);
-	//std::string test2 = "test? :" + std::to_string(controls_->i);
-	//MaxLog::LogInfo(test2);
+	RobotControl * controls_ = (RobotControl *)(controls);
 }
 
 void SampleTask::Init()

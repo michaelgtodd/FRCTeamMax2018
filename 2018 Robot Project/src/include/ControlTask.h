@@ -13,7 +13,7 @@ public:
 	ControlTask(MaxTaskSchedule * taskschedule);
 	void Run();
 	void Disable();
-	void ControllerUpdate(MaxControl controls);
+	void ControllerUpdate(MaxControl * controls);
 	void Autonomous();
 private:
 	void Init();

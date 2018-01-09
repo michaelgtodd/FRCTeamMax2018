@@ -49,7 +49,7 @@ namespace MaxLog
 		Run();
 	}
 
-	void MaxCautionManager::ControllerUpdate(MaxControl controls)
+	void MaxCautionManager::ControllerUpdate(MaxControl * controls)
 	{
 
 	}

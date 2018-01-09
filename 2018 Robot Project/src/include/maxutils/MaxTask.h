@@ -10,7 +10,7 @@ class MaxTask
 public:
 	void virtual Run() = 0;
 	void virtual Disable() = 0;
-	void virtual ControllerUpdate(MaxControl controls) = 0;
+	void virtual ControllerUpdate(MaxControl * controls) = 0;
 	void virtual Autonomous() = 0;
 
 	std::string GetTaskName();
@@ -39,7 +39,7 @@ class MaxTaskSchedule
 public:
 	void AddTask(MaxTask* task, std::string taskname, uint32_t period);
 	void LaunchTasks();
-	void DispatchControl(MaxControl ControlUpdate);
+	void DispatchControl(MaxControl * ControlUpdate);
 private:
 	std::vector<MaxTask*> TaskList;
 };
@@ -51,7 +51,7 @@ public:
 	void Run();
 	void Disable();
 	void Autonomous();
-	void ControllerUpdate(MaxControl controls);
+	void ControllerUpdate(MaxControl * controls);
 private:
 	void Init();
 	std::vector<MaxTask*> TaskList_;

@@ -13,7 +13,7 @@ namespace MaxLog
 		void Run();
 		void Disable();
 		void Autonomous();
-		void ControllerUpdate(MaxControl controls);
+		void ControllerUpdate(MaxControl * controls);
 	private:
 		void Init();
 		std::vector<std::string> CautionList;
