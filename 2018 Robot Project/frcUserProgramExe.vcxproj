@@ -32,11 +32,12 @@
   </PropertyGroup>
   <ItemGroup Label="Sources">
     <ClCompile Include="build.gradle" />
+    <ClCompile Include="src\cpp\ControlTask.cpp" />
     <ClCompile Include="src\cpp\ip\IpEndpointName.cpp" />
     <ClCompile Include="src\cpp\ip\NetworkingUtils.cpp" />
     <ClCompile Include="src\cpp\ip\UdpSocket.cpp" />
-    <ClCompile Include="src\cpp\MaxDataStream.cpp" />
-    <ClCompile Include="src\cpp\MaxTask.cpp" />
+    <ClCompile Include="src\cpp\maxutils\MaxDataStream.cpp" />
+    <ClCompile Include="src\cpp\maxutils\MaxTask.cpp" />
     <ClCompile Include="src\cpp\osc\OscOutboundPacketStream.cpp" />
     <ClCompile Include="src\cpp\osc\OscPrintReceivedElements.cpp" />
     <ClCompile Include="src\cpp\osc\OscReceivedElements.cpp" />
@@ -45,15 +46,17 @@
     <ClCompile Include="src\cpp\SampleTask.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\include\Controls.h" />
+    <ClInclude Include="src\include\ControlTask.h" />
     <ClInclude Include="src\include\ip\IpEndpointName.h" />
     <ClInclude Include="src\include\ip\NetworkingUtils.h" />
     <ClInclude Include="src\include\ip\PacketListener.h" />
     <ClInclude Include="src\include\ip\TimerListener.h" />
     <ClInclude Include="src\include\ip\UdpSocket.h" />
-    <ClInclude Include="src\include\MaxControls.h" />
-    <ClInclude Include="src\include\MaxDataStream.h" />
-    <ClInclude Include="src\include\MaxDefs.h" />
-    <ClInclude Include="src\include\MaxTask.h" />
+    <ClInclude Include="src\include\maxutils\MaxControls.h" />
+    <ClInclude Include="src\include\maxutils\MaxDataStream.h" />
+    <ClInclude Include="src\include\maxutils\MaxDefs.h" />
+    <ClInclude Include="src\include\maxutils\MaxTask.h" />
     <ClInclude Include="src\include\osc\MessageMappingOscPacketListener.h" />
     <ClInclude Include="src\include\osc\OscException.h" />
     <ClInclude Include="src\include\osc\OscHostEndianness.h" />

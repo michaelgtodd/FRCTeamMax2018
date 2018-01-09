@@ -22,15 +22,18 @@
     <Filter Include="Source Files\osc">
       <UniqueIdentifier>{d8aaf258-1146-4120-967d-ab9b8e0365a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\maxutils">
+      <UniqueIdentifier>{755381a5-ba96-4355-905e-33cac5f15dd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\maxutils">
+      <UniqueIdentifier>{392a40b5-b39f-4633-9d27-de053a72a543}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup Label="Sources">
     <ClCompile Include="build.gradle">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\Robot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\MaxTask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\ip\IpEndpointName.cpp">
@@ -54,21 +57,21 @@
     <ClCompile Include="src\cpp\ip\UdpSocket.cpp">
       <Filter>Source Files\ip</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\MaxDataStream.cpp">
+    <ClCompile Include="src\cpp\SampleTask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\SampleTask.cpp">
+    <ClCompile Include="src\cpp\maxutils\MaxDataStream.cpp">
+      <Filter>Source Files\maxutils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\maxutils\MaxTask.cpp">
+      <Filter>Source Files\maxutils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ControlTask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\Robot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\include\MaxTask.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\include\MaxControls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\include\ip\IpEndpointName.h">
@@ -110,13 +113,25 @@
     <ClInclude Include="src\include\osc\OscTypes.h">
       <Filter>Header Files\osc</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\MaxDataStream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\include\MaxDefs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\include\SampleTask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Controls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\maxutils\MaxDataStream.h">
+      <Filter>Header Files\maxutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\maxutils\MaxDefs.h">
+      <Filter>Header Files\maxutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\maxutils\MaxTask.h">
+      <Filter>Header Files\maxutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\maxutils\MaxControls.h">
+      <Filter>Header Files\maxutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\ControlTask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
