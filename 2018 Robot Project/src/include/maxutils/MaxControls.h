@@ -1,6 +1,7 @@
 #pragma once
 
-class MaxControls
+class MaxControl 
 {
-
+private:
+	virtual void f() {}
 };

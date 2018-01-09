@@ -33,7 +33,7 @@ void MaxTaskStatisticsTask::Autonomous()
 	Run();
 }
 
-void MaxTaskStatisticsTask::ControllerUpdate(MaxControls controls)
+void MaxTaskStatisticsTask::ControllerUpdate(MaxControl controls)
 {
 
 }
@@ -62,6 +62,16 @@ void MaxTaskSchedule::LaunchTasks()
 	MaxTask * stats_task = new MaxTaskStatisticsTask(TaskList);
 	stats_task->ExecInit("StatsTask", 1);
 	stats_task->Launch();
+}
+
+void MaxTaskSchedule::DispatchControl(MaxControl ControlUpdate)
+{
+	for (std::vector<MaxTask*>::iterator i = TaskList.begin();
+		i != TaskList.end();
+		i++)
+	{
+		(*i)->ControllerUpdate(ControlUpdate);
+	}
 }
 
 std::string MaxTask::GetTaskName()

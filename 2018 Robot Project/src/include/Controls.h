@@ -1,6 +1,1 @@
 #pragma once
-
-class MaxControls
-{
-
-};
