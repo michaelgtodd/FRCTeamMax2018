@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2018_Main_Dashboard"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="MainWindow" Height="400" Width="500">
+    <Window.Resources>
         
+    </Window.Resources>
+    <Grid>
+        <local:Control_System>
+            
+        </local:Control_System>
     </Grid>
 </Window>

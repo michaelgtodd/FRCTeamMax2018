@@ -16,16 +16,13 @@ using System.Windows.Shapes;
 namespace _2018_Main_Dashboard
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Control_System.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Control_System : UserControl
     {
-        public MainWindow()
+        public Control_System()
         {
             InitializeComponent();
         }
-
-        
-        
     }
 }
