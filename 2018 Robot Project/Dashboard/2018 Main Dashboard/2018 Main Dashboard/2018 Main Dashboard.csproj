@@ -59,7 +59,6 @@
     <Compile Include="SharpOSC\OscBundle.cs" />
     <Compile Include="SharpOSC\OscMessage.cs" />
     <Compile Include="SharpOSC\OscPacket.cs" />
-    <Compile Include="SharpOSC\Properties\AssemblyInfo.cs" />
     <Compile Include="SharpOSC\RGBA.cs" />
     <Compile Include="SharpOSC\Symbol.cs" />
     <Compile Include="SharpOSC\Timetag.cs" />
