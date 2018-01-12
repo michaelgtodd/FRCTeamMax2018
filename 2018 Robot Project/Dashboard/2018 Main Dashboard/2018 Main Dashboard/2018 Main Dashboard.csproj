@@ -54,6 +54,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SharpOSC\Extensions.cs" />
+    <Compile Include="SharpOSC\Midi.cs" />
+    <Compile Include="SharpOSC\OscBundle.cs" />
+    <Compile Include="SharpOSC\OscMessage.cs" />
+    <Compile Include="SharpOSC\OscPacket.cs" />
+    <Compile Include="SharpOSC\Properties\AssemblyInfo.cs" />
+    <Compile Include="SharpOSC\RGBA.cs" />
+    <Compile Include="SharpOSC\Symbol.cs" />
+    <Compile Include="SharpOSC\Timetag.cs" />
+    <Compile Include="SharpOSC\UDPListener.cs" />
+    <Compile Include="SharpOSC\UDPSender.cs" />
+    <Compile Include="SharpOSC\Utils.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
