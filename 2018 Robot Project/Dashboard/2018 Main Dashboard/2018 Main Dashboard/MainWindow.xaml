@@ -10,8 +10,7 @@
         
     </Window.Resources>
     <Grid>
-        <local:Control_System Margin="0, 0, 500, 340"/>
+        <local:Control_System Margin="0, 0, 500, 240"/>
         <local:AlertBox Margin="500,0,0,340"/>
-
     </Grid>
 </Window>
