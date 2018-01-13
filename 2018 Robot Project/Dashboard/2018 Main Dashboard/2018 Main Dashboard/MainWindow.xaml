@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2018_Main_Dashboard"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="500">
+        Title="MainWindow" Width="800" Height="640">
     <Window.Resources>
         
     </Window.Resources>
     <Grid>
-        <local:Control_System>
-            
-        </local:Control_System>
+        <local:Control_System Margin="0, 0, 500, 340"/>
+        <local:AlertBox Margin="500,0,0,340"/>
+
     </Grid>
 </Window>
