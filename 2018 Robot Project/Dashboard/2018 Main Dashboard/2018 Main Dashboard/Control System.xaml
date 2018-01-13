@@ -7,13 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Background="Black">
-        <ComboBox Margin="5,5,219,253" FontSize="25">
-            <ComboBoxItem Name="_1">
-                Joystick
+        <ComboBox Margin="10,55,214,203" FontSize="25" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged" Name="Controller_Combobox">
+            <ComboBoxItem Name="Joystick">
+                
+               Joystick
             </ComboBoxItem>
-            <ComboBoxItem Name="_2">
+            <ComboBoxItem Name="Xbox_Controller">
                 Xbox Controller
             </ComboBoxItem>
         </ComboBox>
+        <Image Margin="10,165,236,110" Source="Max1071.jpg" Stretch="Fill" Name="Controller_Image"/>
+        
+        <Label Margin="10,5,210,315" Foreground="white" FontSize="22" FontWeight="Bold">Controller Selection</Label>
     </Grid>
 </UserControl>

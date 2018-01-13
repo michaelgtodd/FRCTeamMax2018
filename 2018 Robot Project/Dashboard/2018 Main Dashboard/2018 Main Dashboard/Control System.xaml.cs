@@ -24,5 +24,10 @@ namespace _2018_Main_Dashboard
         {
             InitializeComponent();
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string Selected_Controller = Controller_Combobox.Text;
+        }
     }
 }

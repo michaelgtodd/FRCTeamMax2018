@@ -111,5 +111,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Max1071.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Joystick.jpg" />
+    <Resource Include="Xbox Controller.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
