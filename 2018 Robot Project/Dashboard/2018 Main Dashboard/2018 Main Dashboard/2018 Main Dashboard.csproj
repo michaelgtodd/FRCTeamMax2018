@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AlertBox.xaml.cs">
+      <DependentUpon>AlertBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control System.xaml.cs">
       <DependentUpon>Control System.xaml</DependentUpon>
     </Compile>
@@ -68,6 +71,10 @@
     <Compile Include="SharpOSC\UDPListener.cs" />
     <Compile Include="SharpOSC\UDPSender.cs" />
     <Compile Include="SharpOSC\Utils.cs" />
+    <Page Include="AlertBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control System.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
