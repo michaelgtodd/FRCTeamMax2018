@@ -5,19 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_2018_Main_Dashboard"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="300">
     <Grid Background="Black">
         <ComboBox Margin="10,55,214,203" FontSize="25" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged" Name="Controller_Combobox">
             <ComboBoxItem Name="Joystick">
-                
-               Joystick
+                Joystick
             </ComboBoxItem>
             <ComboBoxItem Name="Xbox_Controller">
-                Xbox Controller
+                Xbox_Controller
             </ComboBoxItem>
         </ComboBox>
-        <Image Margin="10,165,236,110" Source="Max1071.jpg" Stretch="Fill" Name="Controller_Image"/>
+        <Image Margin="10,190,200,30" Source="Max1071.jpg" Stretch="Fill" Name="Controller_Image"/>
         
-        <Label Margin="10,5,210,315" Foreground="white" FontSize="22" FontWeight="Bold">Controller Selection</Label>
+        <Label Margin="10,0,259,315" Foreground="white" FontSize="22" FontWeight="Bold">Controller Selection</Label>
     </Grid>
 </UserControl>

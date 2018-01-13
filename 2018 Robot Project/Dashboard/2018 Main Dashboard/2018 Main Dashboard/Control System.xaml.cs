@@ -27,7 +27,22 @@ namespace _2018_Main_Dashboard
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string Selected_Controller = Controller_Combobox.Text;
+            ComboBoxItem Selected_Controller = (ComboBoxItem)e.AddedItems[0];
+            if (Selected_Controller.Name == "Joystick")
+            {
+                try
+                {
+                    Controller_Image.Source = new BitmapImage(new Uri("Joystick.jpg", UriKind.Relative));
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine("Yo, there was exception. Sucks to be you.");
+                }
+            }
+            else if (Selected_Controller.Name == "Xbox_Controller")
+            {
+                Controller_Image.Source = new BitmapImage(new Uri("Xbox Controller.jpg", UriKind.Relative));
+            }
         }
     }
 }
