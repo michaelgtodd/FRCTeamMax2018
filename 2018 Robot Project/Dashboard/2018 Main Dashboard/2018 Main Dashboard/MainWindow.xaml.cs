@@ -25,6 +25,11 @@ namespace _2018_Main_Dashboard
     {
         public static void HandleOscPacket(OscMessage message)
         {
+            if(message == null)
+            {
+                return;
+            }
+
             if(message.Address.Equals("/info"))
             {
                 Console.WriteLine("Received an info packet!");
