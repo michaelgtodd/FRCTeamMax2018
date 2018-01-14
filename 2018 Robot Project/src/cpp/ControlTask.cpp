@@ -9,7 +9,6 @@ ControlTask::ControlTask(MaxTaskSchedule * taskschedule)
 
 void ControlTask::Run()
 {
-	RobotControl controls;
 	taskschedule_->DispatchControl(&controls);
 }
 
@@ -35,5 +34,5 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 
 void ControlTask::Init()
 {
-
+	controls.ActiveJoystick = new Joystick(1);
 }

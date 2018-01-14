@@ -57,6 +57,9 @@
     <Compile Include="AlertBox.xaml.cs">
       <DependentUpon>AlertBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AxisBar.xaml.cs">
+      <DependentUpon>AxisBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control System.xaml.cs">
       <DependentUpon>Control System.xaml</DependentUpon>
     </Compile>
@@ -72,6 +75,10 @@
     <Compile Include="SharpOSC\UDPSender.cs" />
     <Compile Include="SharpOSC\Utils.cs" />
     <Page Include="AlertBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AxisBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

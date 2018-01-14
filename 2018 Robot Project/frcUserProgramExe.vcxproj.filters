@@ -69,6 +69,9 @@
     <ClCompile Include="src\cpp\ControlTask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\DashboardTask.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\Robot.h">
@@ -132,6 +135,9 @@
       <Filter>Header Files\maxutils</Filter>
     </ClInclude>
     <ClInclude Include="src\include\ControlTask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\DashboardTask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
