@@ -60,6 +60,9 @@
     <Compile Include="Control System.xaml.cs">
       <DependentUpon>Control System.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ErrorsWindow.xaml.cs">
+      <DependentUpon>ErrorsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SharpOSC\Extensions.cs" />
     <Compile Include="SharpOSC\Midi.cs" />
     <Compile Include="SharpOSC\OscBundle.cs" />
@@ -76,6 +79,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control System.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ErrorsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:_2018_Main_Dashboard"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        
     </Application.Resources>
 </Application>

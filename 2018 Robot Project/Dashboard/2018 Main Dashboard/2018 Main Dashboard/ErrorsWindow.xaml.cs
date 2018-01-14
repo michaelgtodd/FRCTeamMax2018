@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace _2018_Main_Dashboard
 {
     /// <summary>
-    /// Interaction logic for AlertBox.xaml
+    /// Interaction logic for ErrorsWindow.xaml
     /// </summary>
-    public partial class AlertBox : UserControl
+    public partial class ErrorsWindow : Window
     {
-        public AlertBox()
+        public ErrorsWindow()
         {
             InitializeComponent();
-        }
-
-        private void Swap_Button_Click(object sender, RoutedEventArgs e)
-        {
-            ErrorsWindow ew = new ErrorsWindow();
-            ew.Show();
         }
     }
 }
