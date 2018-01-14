@@ -28,6 +28,11 @@ void ControlTask::Autonomous()
 
 }
 
+void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
+{
+	MaxLog::LogInfo("Hey, got a packet");
+}
+
 void ControlTask::Init()
 {
 

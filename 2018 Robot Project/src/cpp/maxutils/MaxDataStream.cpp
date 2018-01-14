@@ -1,9 +1,13 @@
 #include "maxutils/MaxDataStream.h"
-#include "osc/OscOutboundPacketStream.h"
-#include "ip/UdpSocket.h"
 #include "maxutils/MaxDefs.h"
+#include "Robot.h"
 #include <iostream>
 #include <cerrno>
+
+#include "osc/OscOutboundPacketStream.h"
+#include "osc/OscPacketListener.h"
+#include "osc/OscReceivedElements.h"
+#include "ip/UdpSocket.h"
 
 #define OUTPUT_BUFFER_SIZE 1024
 
@@ -59,13 +63,54 @@ namespace MaxLog
 
 	}
 
-	UdpTransmitSocket transmitSocket(IpEndpointName(BROADCASTADDRESS, BROADCASTPORT));
+	class MaxPacketListener : public osc::OscPacketListener {
+	protected:
 
-	void OscTransmit(osc::OutboundPacketStream stream)
+		virtual void ProcessMessage(const osc::ReceivedMessage& m,
+			const IpEndpointName& remoteEndpoint)
+		{
+			(void)remoteEndpoint;
+
+			try {
+				Robot::GetControllerTask()->ProcessOscData(m);
+			}
+			catch (osc::Exception& e) {
+				LogError("Failed to parse OSC message");
+			}
+		}
+	};
+
+	std::vector<UdpTransmitSocket *> transmitSockets;
+
+	void RunListener()
 	{
+		MaxPacketListener listener;
+		UdpListeningReceiveSocket s(
+			IpEndpointName(IpEndpointName::ANY_ADDRESS, BROADCASTPORT),
+			&listener);
 
+		s.RunUntilSigInt();
 	}
 
+	void InitializeMaxLog()
+	{
+		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.5", BROADCASTPORT)));
+		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.9", BROADCASTPORT)));
+		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.15", BROADCASTPORT)));
+
+		new std::thread(&RunListener);
+	}
+
+	void transmit(osc::OutboundPacketStream p)
+	{
+		for (std::vector<UdpTransmitSocket *>::iterator i = transmitSockets.begin();
+			i < transmitSockets.end();
+			i++)
+		{
+			(*i)->Send(p.Data(), p.Size());
+		}
+	}
+	
 	void LogPass(std::string error_message)
 	{
 		char buffer[OUTPUT_BUFFER_SIZE];
@@ -74,7 +119,7 @@ namespace MaxLog
 
 		p << osc::BeginMessage("/pass") << error_message.c_str() << osc::EndMessage;
 
-		transmitSocket.Send(p.Data(), p.Size());
+		transmit(p);
 	}
 
 	void LogInfo(std::string error_message)
@@ -85,7 +130,7 @@ namespace MaxLog
 
 		p << osc::BeginMessage("/info") << error_message.c_str() << osc::EndMessage;
 
-		transmitSocket.Send(p.Data(), p.Size());
+		transmit(p);
 	}
 
 	void LogError(std::string error_message)
@@ -96,7 +141,7 @@ namespace MaxLog
 
 		p << osc::BeginMessage("/error") << error_message.c_str() << osc::EndMessage;
 
-		transmitSocket.Send(p.Data(), p.Size());
+		transmit(p);
 	}
 
 	void TransmitInt(std::string label, int value) 
@@ -107,7 +152,7 @@ namespace MaxLog
 
 		p << osc::BeginMessage(label.c_str()) << value << osc::EndMessage;
 
-		transmitSocket.Send(p.Data(), p.Size());
+		transmit(p);
 	}
 
 	void TransmitString(std::string label, std::string value)
@@ -118,7 +163,7 @@ namespace MaxLog
 
 		p << osc::BeginMessage(label.c_str()) << value.c_str() << osc::EndMessage;
 
-		transmitSocket.Send(p.Data(), p.Size());
+		transmit(p);
 	}
 
 	void TransmitDouble(std::string label, double value)
@@ -129,7 +174,7 @@ namespace MaxLog
 
 		p << osc::BeginMessage(label.c_str()) << value << osc::EndMessage;
 
-		transmitSocket.Send(p.Data(), p.Size());
+		transmit(p);
 	}
 
 	void TransmitBool(std::string label, bool value)
@@ -140,6 +185,6 @@ namespace MaxLog
 
 		p << osc::BeginMessage(label.c_str()) << value << osc::EndMessage;
 
-		transmitSocket.Send(p.Data(), p.Size());
+		transmit(p);
 	}
 }

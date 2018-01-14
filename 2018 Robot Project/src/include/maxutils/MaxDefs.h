@@ -1,4 +1,3 @@
 #pragma once
 
-#define BROADCASTADDRESS "10.10.71.25"
 #define BROADCASTPORT 5801

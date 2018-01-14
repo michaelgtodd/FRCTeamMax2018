@@ -1,6 +1,10 @@
 #pragma once
 #include "maxutils/MaxTask.h"
 
+#include "osc/OscReceivedElements.h"
+#include "osc/OscPacketListener.h"
+#include "ip/UdpSocket.h"
+
 class RobotControl : public MaxControl
 {
 public:
@@ -15,6 +19,7 @@ public:
 	void Disable();
 	void ControllerUpdate(MaxControl * controls);
 	void Autonomous();
+	void ProcessOscData(osc::ReceivedMessage messages);
 private:
 	void Init();
 	MaxTaskSchedule * taskschedule_;

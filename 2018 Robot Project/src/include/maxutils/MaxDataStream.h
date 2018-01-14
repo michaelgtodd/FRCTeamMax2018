@@ -18,6 +18,7 @@ namespace MaxLog
 		void Init();
 		std::vector<std::string> CautionList;
 	};
+	void InitializeMaxLog();
 	void LogPass(std::string error_message);
 	void LogInfo(std::string error_message);
 	void LogError(std::string error_message);
