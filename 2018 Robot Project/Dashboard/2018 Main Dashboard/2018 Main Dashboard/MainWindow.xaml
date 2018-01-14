@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Width="800" Height="640">
     <Window.Resources>
-        
+        <!--hello world-->
     </Window.Resources>
     <Grid>
         <local:Control_System Margin="0, 0, 500, 240"/>
