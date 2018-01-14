@@ -33,7 +33,7 @@ namespace _2018_Main_Dashboard
 
         public static void OscThreadRunner()
         {
-            var listener = new UDPListener(55555);
+            var listener = new UDPListener(5801);
             OscMessage messageReceived = null;
             while (messageReceived == null)
             {
