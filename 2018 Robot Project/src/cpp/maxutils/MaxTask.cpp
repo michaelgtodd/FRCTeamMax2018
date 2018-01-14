@@ -4,6 +4,7 @@
 #include "maxutils/MaxDataStream.h"
 #include <math.h>
 #include <iostream>
+#include "Robot.h"
 
 MaxTaskStatisticsTask::MaxTaskStatisticsTask(std::vector<MaxTask*> TaskList)
 {
@@ -53,19 +54,34 @@ void MaxTaskSchedule::AddTask(MaxTask* task, std::string taskname, uint32_t peri
 
 void MaxTaskSchedule::LaunchTasks()
 {
+	int priority = 99;
+
+	sched_param sch;
+	sch.sched_priority = priority;
+
+	if (pthread_setschedparam(pthread_self(), SCHED_FIFO, &sch) != 0)
+	{
+		std::cout << "Failed to set task: " << "DS_Task" << " priority: " << priority << " Error: " << " " << strerror(errno) << std::endl;
+		MaxLog::LogError("Failed to set task: DS_Task priority: " + std::to_string(priority) + " Error: " + strerror(errno));
+	}
+	else {
+		std::cout << "Set priority for task: " << "DS_Task" << " priority: " << priority << std::endl;
+		MaxLog::LogInfo("Set priority for task: DS_Task priority: " + std::to_string(priority));
+	}
+
 	MaxLog::LogInfo("Starting tasks");
-	int priority = 12;
+	priority = 80;
 	for (std::vector<MaxTask*>::iterator i = TaskList.begin();
 		i != TaskList.end();
 		i++)
 	{
 		(*i)->Launch(priority);
-		priority++;
+		priority--;
 	}
 
 	MaxTask * stats_task = new MaxTaskStatisticsTask(TaskList);
 	stats_task->ExecInit("StatsTask", 1);
-	stats_task->Launch(11);
+	stats_task->Launch(98);
 }
 
 void MaxTaskSchedule::DispatchControl(MaxControl * ControlUpdate)
@@ -101,7 +117,9 @@ uint32_t MaxTask::GetAverageTaskDuration()
 void MaxTask::ExecInit(std::string taskname, uint32_t task_period)
 {
 	taskname_ = taskname;
-	task_period_ = task_period;
+	uint32_t capped_period = std::min(task_period, (uint32_t) 200);
+	capped_period = std::max((uint32_t) 1, capped_period);
+	task_period_ = capped_period;
 
 	Init();
 }
@@ -116,12 +134,12 @@ void MaxTask::Launch(int priority)
 
 	if (pthread_setschedparam(running_thread.native_handle(), SCHED_FIFO, &sch) != 0)
 	{
-		std::cout << "Failed to set task priority: " << priority << " Error: " << " " << strerror(errno) << std::endl;
-		MaxLog::LogError("Failed to set task priority: " + std::to_string(priority) + " Error: " + strerror(errno));
+		std::cout << "Failed to set task: " << taskname_ << " priority: " << priority << " Error: " << " " << strerror(errno) << std::endl;
+		MaxLog::LogError("Failed to set task: " + taskname_ + " priority: " + std::to_string(priority) + " Error: " + strerror(errno));
 	}
 	else {
-		std::cout << "Set priority for task: " << priority << std::endl;
-		MaxLog::LogInfo("Set priority for task: " + std::to_string(priority));
+		std::cout << "Set priority for task: " << taskname_ << " priority: " << priority << std::endl;
+		MaxLog::LogInfo("Set priority for task: " + taskname_ + " priority: " + std::to_string(priority));
 	}
 }
 
@@ -159,14 +177,22 @@ void MaxTask::ThreadProcess()
 		}
 		average_task_period = (1000 / average_task_differential);
 
-		bool threadadvance = false;
+		bool slept = false;
 		do {
 			double currentTime = Timer::GetFPGATimestamp();
 			uint32_t loopElapsedTimeMS = (uint32_t)((currentTime - loopStart) * 1000);
 			if (loopElapsedTimeMS < (1000 / task_period_))
-				std::this_thread::sleep_for(std::chrono::milliseconds(1000 / task_period_));
+			{
+				slept = true;
+				uint32_t minsleep = std::min(((uint32_t)1000 / task_period_) - loopElapsedTimeMS, (uint32_t) 5);
+				std::this_thread::sleep_for(std::chrono::milliseconds(minsleep));
+			}
 			else
+			{
+				if(!slept)
+					std::this_thread::sleep_for(std::chrono::milliseconds(5));
 				break;
+			}
 		} while (true);
 	}
 }

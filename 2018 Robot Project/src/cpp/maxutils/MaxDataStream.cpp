@@ -106,19 +106,19 @@ namespace MaxLog
 
 		std::thread * oscReceiveThread =  new std::thread(&RunListener);
 
-		int priority = 10;
+		int priority = 97;
 
 		sched_param sch;
 		sch.sched_priority = priority;
 
 		if (pthread_setschedparam(oscReceiveThread->native_handle(), SCHED_FIFO, &sch) != 0)
 		{
-			std::cout << "Failed to set task priority: " << priority << " Error: " << " " << strerror(errno) << std::endl;
-			MaxLog::LogError("Failed to set task priority: " + std::to_string(priority) + " Error: " + strerror(errno));
+			std::cout << "Failed to set task: " << "OSCReceive priority: " << priority << " Error: " << " " << strerror(errno) << std::endl;
+			MaxLog::LogError("Failed to set task: OSCReceive priority: " + std::to_string(priority) + " Error: " + strerror(errno));
 		}
 		else {
-			std::cout << "Set priority for task: " << priority << std::endl;
-			MaxLog::LogInfo("Set priority for task: " + std::to_string(priority));
+			std::cout << "Set priority for task: " << "OSCReceive priority: " << priority << std::endl;
+			MaxLog::LogInfo("Set priority for task: OSCReceive priority: " + std::to_string(priority));
 		}
 	}
 
