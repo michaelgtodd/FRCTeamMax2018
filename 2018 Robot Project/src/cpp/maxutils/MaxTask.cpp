@@ -1,7 +1,9 @@
 #include "maxutils/MaxTask.h"
 #include "WPILib.h"
+#include "pthread.h"
 #include "maxutils/MaxDataStream.h"
 #include <math.h>
+#include <iostream>
 
 MaxTaskStatisticsTask::MaxTaskStatisticsTask(std::vector<MaxTask*> TaskList)
 {
@@ -52,16 +54,18 @@ void MaxTaskSchedule::AddTask(MaxTask* task, std::string taskname, uint32_t peri
 void MaxTaskSchedule::LaunchTasks()
 {
 	MaxLog::LogInfo("Starting tasks");
+	int priority = 12;
 	for (std::vector<MaxTask*>::iterator i = TaskList.begin();
 		i != TaskList.end();
 		i++)
 	{
-		(*i)->Launch();
+		(*i)->Launch(priority);
+		priority++;
 	}
 
 	MaxTask * stats_task = new MaxTaskStatisticsTask(TaskList);
 	stats_task->ExecInit("StatsTask", 1);
-	stats_task->Launch();
+	stats_task->Launch(11);
 }
 
 void MaxTaskSchedule::DispatchControl(MaxControl * ControlUpdate)
@@ -102,10 +106,23 @@ void MaxTask::ExecInit(std::string taskname, uint32_t task_period)
 	Init();
 }
 
-void MaxTask::Launch()
+void MaxTask::Launch(int priority)
 {
 	MaxLog::LogInfo("Launching: " + taskname_);
 	running_thread = std::thread(&MaxTask::ThreadProcess, this);
+
+	sched_param sch;
+	sch.sched_priority = priority;
+
+	if (pthread_setschedparam(running_thread.native_handle(), SCHED_FIFO, &sch) != 0)
+	{
+		std::cout << "Failed to set task priority: " << priority << " Error: " << " " << strerror(errno) << std::endl;
+		MaxLog::LogError("Failed to set task priority: " + std::to_string(priority) + " Error: " + strerror(errno));
+	}
+	else {
+		std::cout << "Set priority for task: " << priority << std::endl;
+		MaxLog::LogInfo("Set priority for task: " + std::to_string(priority));
+	}
 }
 
 void MaxTask::ThreadProcess()

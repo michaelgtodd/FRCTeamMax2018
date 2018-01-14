@@ -19,7 +19,7 @@ public:
 	uint32_t GetAverageTaskDuration();
 
 	void ExecInit(std::string taskname, uint32_t task_period);
-	void Launch();
+	void Launch(int priority);
 private:
 	void virtual Init() = 0;
 	void ThreadProcess();

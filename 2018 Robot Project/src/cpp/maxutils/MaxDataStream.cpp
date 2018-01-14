@@ -3,6 +3,7 @@
 #include "Robot.h"
 #include <iostream>
 #include <cerrno>
+#include "pthread.h"
 
 #include "osc/OscOutboundPacketStream.h"
 #include "osc/OscPacketListener.h"
@@ -96,9 +97,29 @@ namespace MaxLog
 	{
 		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.5", BROADCASTPORT)));
 		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.9", BROADCASTPORT)));
+		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.10", BROADCASTPORT)));
+		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.11", BROADCASTPORT)));
+		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.12", BROADCASTPORT)));
+		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.13", BROADCASTPORT)));
+		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.14", BROADCASTPORT)));
 		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.15", BROADCASTPORT)));
 
-		new std::thread(&RunListener);
+		std::thread * oscReceiveThread =  new std::thread(&RunListener);
+
+		int priority = 10;
+
+		sched_param sch;
+		sch.sched_priority = priority;
+
+		if (pthread_setschedparam(oscReceiveThread->native_handle(), SCHED_FIFO, &sch) != 0)
+		{
+			std::cout << "Failed to set task priority: " << priority << " Error: " << " " << strerror(errno) << std::endl;
+			MaxLog::LogError("Failed to set task priority: " + std::to_string(priority) + " Error: " + strerror(errno));
+		}
+		else {
+			std::cout << "Set priority for task: " << priority << std::endl;
+			MaxLog::LogInfo("Set priority for task: " + std::to_string(priority));
+		}
 	}
 
 	void transmit(osc::OutboundPacketStream p)
