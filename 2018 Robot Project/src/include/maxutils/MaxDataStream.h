@@ -25,6 +25,6 @@ namespace MaxLog
 
 	void TransmitInt(std::string label, int value);
 	void TransmitString(std::string label, std::string value);
-	void TransmitDouble(std::string label, std::string value);
-	void TransmitBool(std::string label, std::string value);
+	void TransmitDouble(std::string label, double value);
+	void TransmitBool(std::string label, bool value);
 }

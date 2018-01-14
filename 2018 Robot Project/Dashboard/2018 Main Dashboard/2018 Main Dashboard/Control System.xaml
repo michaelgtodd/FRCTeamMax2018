@@ -21,7 +21,8 @@
                 Xbox_Controller
             </ComboBoxItem>
         </ComboBox>
-        <Image Source="Joystick.jpg" Stretch="Fill" Name="Controller_Image" Grid.Row="3" Width="200" Height="150"/>
-        <Label Foreground="white" FontSize="22" FontWeight="Bold" Width="300" Height="50" Grid.Row="0">Controller Selection</Label>
+        <Image Source="Joystick.jpg" Stretch="Fill" Name="Controller_Image" Grid.Row="2" Width="150" Margin="77,0,73,158"/>
+        <Label Foreground="white" FontSize="22" FontWeight="Bold" Height="50" Grid.Row="0" Margin="33,0,35,0">Controller Selection</Label>
+        <Rectangle Name="A" Fill="Gray" Margin="0,147,0,10" Grid.Row="2"></Rectangle>
     </Grid>
 </UserControl>

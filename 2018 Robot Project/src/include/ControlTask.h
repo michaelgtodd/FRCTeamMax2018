@@ -1,14 +1,14 @@
 #pragma once
 #include "maxutils/MaxTask.h"
-
 #include "osc/OscReceivedElements.h"
 #include "osc/OscPacketListener.h"
 #include "ip/UdpSocket.h"
+#include "WPILib.h"
 
 class RobotControl : public MaxControl
 {
 public:
-	int i = 7;
+	Joystick * ActiveJoystick;
 };
 
 class ControlTask : public MaxTask
@@ -23,4 +23,5 @@ public:
 private:
 	void Init();
 	MaxTaskSchedule * taskschedule_;
+	RobotControl controls;
 };

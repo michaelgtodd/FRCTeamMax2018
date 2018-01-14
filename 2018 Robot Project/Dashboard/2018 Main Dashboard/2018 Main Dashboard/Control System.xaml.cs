@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpOSC;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,11 @@ namespace _2018_Main_Dashboard
             {
                 Controller_Image.Source = new BitmapImage(new Uri("Xbox Controller.jpg", UriKind.Relative));
             }
+
+        }
+        private void ReceiveControllerData()
+        {
+           
         }
     }
 }
