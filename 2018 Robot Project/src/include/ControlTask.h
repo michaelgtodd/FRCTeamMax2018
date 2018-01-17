@@ -8,7 +8,7 @@
 class RobotControl : public MaxControl
 {
 public:
-	Joystick * ActiveJoystick;
+	Joystick * ActiveJoystick = new Joystick(0);
 };
 
 class ControlTask : public MaxTask

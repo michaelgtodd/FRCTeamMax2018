@@ -11,7 +11,7 @@
     </Window.Resources>
     <Viewbox>
         <Grid>
-            <local:Control_System Margin="0, 0, 500, 240"/>
+            <local:Control_System x:Name="ControlWidget" Margin="0, 0, 500, 240"/>
             <local:AlertBox Margin="446,0,0,225"/>
         </Grid>
     </Viewbox>

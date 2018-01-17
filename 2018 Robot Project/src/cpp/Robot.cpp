@@ -1,6 +1,7 @@
 #include "Robot.h"
 #include "maxutils/MaxTask.h"
 #include "maxutils/MaxDataStream.h"
+#include "DashboardTask.h"
 
 ControlTask * ControllerTask;
 
@@ -23,6 +24,7 @@ void Robot::RobotInit()
 	taskschedule->AddTask(new SampleTask, "Task2", 1);
 	taskschedule->AddTask(new SampleTask, "Task3", 100);
 	taskschedule->AddTask(new SampleTask, "Task4", 100);
+	taskschedule->AddTask(new DashboardTask, "Dash_Task", 10);
 	taskschedule->AddTask(new MaxLog::MaxCautionManager(), "Caution_Manager", 1);
 
 	taskschedule->LaunchTasks();

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,8 @@ namespace _2018_Main_Dashboard
     /// </summary>
     public partial class Control_System : UserControl
     {
+        internal double xAxis;
+
         public Control_System()
         {
             InitializeComponent();
@@ -44,11 +47,24 @@ namespace _2018_Main_Dashboard
             {
                 Controller_Image.Source = new BitmapImage(new Uri("Xbox Controller.jpg", UriKind.Relative));
             }
-
         }
-        private void ReceiveControllerData()
+
+        public void UpdateControllerData(JoystickAxis AxisType, double AxisValue)
         {
-           
+            switch (AxisType)
+            {
+                case (JoystickAxis.XAxis):
+                    X.Text = AxisValue.ToString();
+                    break;
+                case (JoystickAxis.YAxis):
+                    Y.Text = AxisValue.ToString();
+                    break;
+                case (JoystickAxis.ZAxis):
+                    Z.Text = AxisValue.ToString();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
