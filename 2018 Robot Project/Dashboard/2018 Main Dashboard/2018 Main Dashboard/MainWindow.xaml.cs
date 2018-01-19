@@ -78,7 +78,10 @@ namespace _2018_Main_Dashboard
                 DispatcherPriority.Background,
                 new Action(() => ControlWidget.UpdateControllerData(JoystickAxis.ZAxis, (double)message.Arguments[0])));
             }
+            if (message.Address.Equals("/Error/Test"))
+            {
 
+            }
         }
 
         public MainWindow()
