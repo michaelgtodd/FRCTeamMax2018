@@ -9,6 +9,7 @@ void DashboardTask::Run()
 	MaxLog::TransmitDouble("/Joystick/1/YAxis", Control->ActiveJoystick->GetY());
 	MaxLog::TransmitDouble("/Joystick/1/ZAxis", Control->ActiveJoystick->GetZ());
 	MaxLog::TransmitString("/Error/Test", "this is a test");
+	MaxLog::TransmitString("/Error/Test", "tom is dumb");
 }
 
 void DashboardTask::Disable()

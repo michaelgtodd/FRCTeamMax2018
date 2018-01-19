@@ -80,7 +80,9 @@ namespace _2018_Main_Dashboard
             }
             if (message.Address.Equals("/Error/Test"))
             {
-
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => AlertWidget.UpdateError((string)message.Arguments[0])));
             }
         }
 
