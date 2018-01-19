@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2018_Main_Dashboard"
         mc:Ignorable="d"
-        Title="ErrorsWindow" Height="750" Width="1000" Background="Black">
+        Title="Error Window" Height="750" Width="1000" Background="Black">
     <Viewbox>
         <Grid>
             <TextBlock Background="Black" Foreground="Red" FontSize="20" MinHeight="750" MinWidth='1000' Margin="0,0,0,0" TextAlignment="Center"> 

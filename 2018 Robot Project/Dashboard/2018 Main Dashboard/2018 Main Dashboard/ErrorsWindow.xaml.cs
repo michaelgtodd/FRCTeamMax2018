@@ -19,9 +19,17 @@ namespace _2018_Main_Dashboard
     /// </summary>
     public partial class ErrorsWindow : Window
     {
+
         public ErrorsWindow()
+
+
         {
             InitializeComponent();
         }
+
+        
+
+
+
     }
 }

@@ -8,14 +8,40 @@
              d:DesignHeight="400" d:DesignWidth="300">
     <Viewbox>
         <Grid Background="LightSlateGray">
-            <TextBlock TextAlignment="Center" Background="Black" Margin="0,0,0,76" Foreground="#20C20E">
-         <LineBreak/><LineBreak/>     
-         Caution 1 <LineBreak/><LineBreak/>
-         Caution 2 <LineBreak/><LineBreak/>
-         Caution 3 <LineBreak/><LineBreak/>
-         Caution 4 <LineBreak/><LineBreak/>
-
+            <TextBlock Name="Block1"  TextAlignment="Center" Background="Black" Margin="0,0,0,378" Foreground="#20C20E">
+         Caution 1
             </TextBlock>
+            <TextBlock Name="Block2" TextAlignment="Center" Background="Black" Margin="0,22,0,356" Foreground="#20C20E">   
+         Caution 2
+            </TextBlock>
+            <TextBlock Name="Block3" TextAlignment="Center" Background="Black" Margin="0,44,0,334" Foreground="#20C20E">
+         Caution 3
+            </TextBlock>
+            <TextBlock Name="Block4" TextAlignment="Center" Background="Black" Margin="0,66,0,312" Foreground="#20C20E">
+         Caution 4
+            </TextBlock>
+            <TextBlock Name="Block5" TextAlignment="Center" Background="Black" Margin="0,88,0,290" Foreground="#20C20E">
+         Caution 5
+            </TextBlock>
+            <TextBlock Name="Block6" TextAlignment="Center" Background="Black" Margin="0,110,0,268" Foreground="#20C20E">
+         Caution 6
+            </TextBlock>
+            <TextBlock Name="Block7" TextAlignment="Center" Background="Black" Margin="0,132,0,246" Foreground="#20C20E">
+         Caution 7
+            </TextBlock>
+            <TextBlock Name="Block8" TextAlignment="Center" Background="Black" Margin="0,154,0,224" Foreground="#20C20E">
+         Caution 8
+            </TextBlock>
+            <TextBlock Name="Block9" TextAlignment="Center" Background="Black" Margin="0,176,0,202" Foreground="#20C20E">
+         Caution 9
+            </TextBlock>
+            <TextBlock Name="BlockFill" TextAlignment="Center" Background="Black" Margin="0,198,0,76" Foreground="#20C20E">
+         
+            </TextBlock>
+
+
+
+
             <Button Name="Swap" Height="50" Width="50" Margin="75,338,175,13" ToolTip="Swap Between Caution/Error" Click="Swap_Button_Click"  >
                 <TextBlock> Swap </TextBlock></Button>
             <Button Name="Refresh" Height="50" Width="50" Margin="175,338,75,13" ToolTip="Clear Caution/Error">
