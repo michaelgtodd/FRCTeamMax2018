@@ -27,7 +27,10 @@ namespace _2018_Main_Dashboard
 
         public void MakeThingMove(double XAxis, double YAxis)
         {
-
+            double XAxisPosition = XAxis * 25 + 25;
+            double YAxisPosition = YAxis * 25 + 25;
+            Thickness AxisPositionMargin = new Thickness(XAxisPosition-12, YAxisPosition-12, 0, 0);
+            Ellipse1.Margin = AxisPositionMargin;
         }
     }
 }

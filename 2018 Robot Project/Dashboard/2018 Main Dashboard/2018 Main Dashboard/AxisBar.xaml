@@ -7,8 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="50">
     <Grid Name="AxisBarGrid" Background="Gray"  Height="50" Width="50">
-        <Ellipse Name="Ellipse1" Height="2" Width="2" Fill="black">
-            
-        </Ellipse>
+        <Ellipse Name="Ellipse1" Height="2" Width="2" Fill="Black" Margin="24, 24"/>
     </Grid>
 </UserControl>
