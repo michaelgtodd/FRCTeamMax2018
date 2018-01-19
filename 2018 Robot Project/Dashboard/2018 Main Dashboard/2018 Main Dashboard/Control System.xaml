@@ -27,5 +27,6 @@
         <TextBlock Name="X" Grid.Row="3" Background="Green" Margin="0,0,200,0" Text="XAxis" TextAlignment="Center"/>
         <TextBlock Name="Y" Grid.Row="3" Background="Yellow" Margin="100,0,100,0" Text="YAxis" TextAlignment="Center"/>
         <TextBlock Name="Z" Grid.Row="3" Background="Red" Margin="200,0,0,0" Text="ZAxis" TextAlignment="Center"/>
+        <local:AxisBar x:Name="JoystickAxisGrid" Grid.Row="3" Margin="100, 0, 100, 0"/>
     </Grid>
 </UserControl>

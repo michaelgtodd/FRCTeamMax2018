@@ -24,5 +24,10 @@ namespace _2018_Main_Dashboard
         {
             InitializeComponent();
         }
+
+        public void MakeThingMove(double XAxis, double YAxis)
+        {
+
+        }
     }
 }

@@ -22,7 +22,10 @@ namespace _2018_Main_Dashboard
     /// </summary>
     public partial class Control_System : UserControl
     {
-        internal double xAxis;
+        private double XAxis;
+        private double YAxis;
+        private double ZAxis;
+
 
         public Control_System()
         {
@@ -50,21 +53,25 @@ namespace _2018_Main_Dashboard
         }
 
         public void UpdateControllerData(JoystickAxis AxisType, double AxisValue)
-        {
+        {            
             switch (AxisType)
             {
                 case (JoystickAxis.XAxis):
-                    X.Text = AxisValue.ToString();
+                    XAxis = AxisValue;
                     break;
                 case (JoystickAxis.YAxis):
-                    Y.Text = AxisValue.ToString();
+                    YAxis = AxisValue;
                     break;
                 case (JoystickAxis.ZAxis):
-                    Z.Text = AxisValue.ToString();
+                    ZAxis = AxisValue;
                     break;
                 default:
                     break;
             }
+            JoystickAxisGrid.MakeThingMove(XAxis, YAxis);
+            Z.Text = ZAxis.ToString();
+            X.Text = XAxis.ToString();
+            Y.Text = YAxis.ToString();
         }
     }
 }

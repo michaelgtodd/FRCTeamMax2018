@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_2018_Main_Dashboard"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="100">
-    <Grid>
-        <Rectangle Fill="#1aff1a">
+             d:DesignHeight="50" d:DesignWidth="50">
+    <Grid Name="AxisBarGrid" Background="Gray"  Height="50" Width="50">
+        <Ellipse Name="Ellipse1" Height="2" Width="2" Fill="black">
             
-        </Rectangle>    
+        </Ellipse>
     </Grid>
 </UserControl>
