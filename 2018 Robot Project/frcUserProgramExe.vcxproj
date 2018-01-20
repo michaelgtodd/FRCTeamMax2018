@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup Label="Sources">
     <ClCompile Include="build.gradle" />
+    <ClCompile Include="DrivingTask.cpp" />
     <ClCompile Include="src\cpp\ControlTask.cpp" />
     <ClCompile Include="src\cpp\DashboardTask.cpp" />
     <ClCompile Include="src\cpp\ip\IpEndpointName.cpp" />
@@ -47,6 +48,7 @@
     <ClCompile Include="src\cpp\SampleTask.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DrivingTask.h" />
     <ClInclude Include="src\include\Controls.h" />
     <ClInclude Include="src\include\ControlTask.h" />
     <ClInclude Include="src\include\DashboardTask.h" />
