@@ -1,12 +1,14 @@
-﻿<UserControl x:Class="_2018_Main_Dashboard.AxisBar"
+﻿<UserControl x:Class="_2018_Main_Dashboard.ZAxisBar"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_2018_Main_Dashboard"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="50">
-    <Grid Name="AxisBarGrid" Background="Gray"  Height="50" Width="50">
-        <Ellipse Name="Ellipse1" Height="2" Width="2" Fill="Black" Margin="24, 24"/>
+             d:DesignHeight="10" d:DesignWidth="50">
+    <Grid>
+        <Rectangle Name="ZAxisIndicator" Width="50" Height="10" Fill="Green" HorizontalAlignment="Left">
+            
+        </Rectangle>
     </Grid>
 </UserControl>

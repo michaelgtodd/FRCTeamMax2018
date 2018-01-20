@@ -16,21 +16,18 @@ using System.Windows.Shapes;
 namespace _2018_Main_Dashboard
 {
     /// <summary>
-    /// Interaction logic for AxisBar.xaml
+    /// Interaction logic for ZAxisBar.xaml
     /// </summary>
-    public partial class AxisBar : UserControl
+    public partial class ZAxisBar : UserControl
     {
-        public AxisBar()
+        public ZAxisBar()
         {
             InitializeComponent();
         }
-
-        public void MakeThingMove(double XAxis, double YAxis)
+        public void ChangeZAxisWidth(double ZAxis)
         {
-            double XAxisPosition = XAxis * 25 + 25;
-            double YAxisPosition = YAxis * 25 + 25;
-            Thickness AxisPositionMargin = new Thickness(XAxisPosition-12, YAxisPosition-12, 0, 0);
-            Ellipse1.Margin = AxisPositionMargin;
+            double ZAxisWidth = ZAxis * 25 + 25;
+            ZAxisIndicator.Width = ZAxisWidth;
         }
     }
 }

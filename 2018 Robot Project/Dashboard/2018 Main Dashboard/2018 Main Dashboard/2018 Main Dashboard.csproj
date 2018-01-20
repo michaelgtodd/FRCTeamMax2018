@@ -60,8 +60,8 @@
     <Compile Include="AlertBox.xaml.cs">
       <DependentUpon>AlertBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AxisBar.xaml.cs">
-      <DependentUpon>AxisBar.xaml</DependentUpon>
+    <Compile Include="AxisGrid.xaml.cs">
+      <DependentUpon>AxisGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control System.xaml.cs">
       <DependentUpon>Control System.xaml</DependentUpon>
@@ -80,11 +80,14 @@
     <Compile Include="SharpOSC\UDPListener.cs" />
     <Compile Include="SharpOSC\UDPSender.cs" />
     <Compile Include="SharpOSC\Utils.cs" />
+    <Compile Include="ZAxisBar.xaml.cs">
+      <DependentUpon>ZAxisBar.xaml</DependentUpon>
+    </Compile>
     <Page Include="AlertBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AxisBar.xaml">
+    <Page Include="AxisGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,6 +111,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ZAxisBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -23,10 +23,10 @@
         </ComboBox>
         <Image Source="Joystick.jpg" Stretch="Fill" Name="Controller_Image" Grid.Row="2" Width="150" Margin="77,0,73,158"/>
         <Label Foreground="white" FontSize="22" FontWeight="Bold" Height="50" Grid.Row="0" Margin="33,0,35,0">Controller Selection</Label>
-        <Rectangle Name="A" Fill="Gray" Margin="0,145,0,12" Grid.Row="2"></Rectangle>
         <TextBlock Name="X" Grid.Row="3" Background="Green" Margin="0,0,200,0" Text="XAxis" TextAlignment="Center"/>
         <TextBlock Name="Y" Grid.Row="3" Background="Yellow" Margin="100,0,100,0" Text="YAxis" TextAlignment="Center"/>
         <TextBlock Name="Z" Grid.Row="3" Background="Red" Margin="200,0,0,0" Text="ZAxis" TextAlignment="Center"/>
-        <local:AxisBar x:Name="JoystickAxisGrid" Grid.Row="3" Margin="100, 0, 100, 0"/>
+        <local:AxisGrid x:Name="JoystickAxisGrid" Grid.Row="2" Margin="100,177,100,23"/>
+        <local:ZAxisBar x:Name="JoystickZAxisBar" Grid.Row="2" Margin="125,112,-125,-96" Grid.RowSpan="2"/>
     </Grid>
 </UserControl>

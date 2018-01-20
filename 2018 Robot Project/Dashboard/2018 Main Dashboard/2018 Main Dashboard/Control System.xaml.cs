@@ -69,6 +69,7 @@ namespace _2018_Main_Dashboard
                     break;
             }
             JoystickAxisGrid.MakeThingMove(XAxis, YAxis);
+            JoystickZAxisBar.ChangeZAxisWidth(ZAxis);
             Z.Text = ZAxis.ToString();
             X.Text = XAxis.ToString();
             Y.Text = YAxis.ToString();
