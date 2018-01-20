@@ -13,5 +13,10 @@ public:
 private:
 	void Init();
 	RobotControl * ControlInput;
-	void ConfigureCurrentLimit(TalonSRX * talon);
+	TalonSRX * LeftMotor1;
+	TalonSRX * LeftMotor2;
+	TalonSRX * LeftMotor3;
+	TalonSRX * RightMotor1;
+	TalonSRX * RightMotor2;
+	TalonSRX * RightMotor3;
 };
