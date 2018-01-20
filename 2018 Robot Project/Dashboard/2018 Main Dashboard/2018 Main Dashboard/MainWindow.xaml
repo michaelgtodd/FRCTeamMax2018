@@ -5,14 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2018_Main_Dashboard"
         mc:Ignorable="d"
-        Title="MainWindow" Width="800" Height="640">
+        Title="MainWindow" Width="1366" Height="768" WindowState="Maximized" >
     <Window.Resources>
         <!--hello world-->
     </Window.Resources>
-    <Viewbox>
-        <Grid>
-            <local:Control_System x:Name="ControlWidget" Margin="0, 0, 500, 240"/>
-            <local:AlertBox x:Name="AlertWidget" Margin="446,0,0,225"/>
-        </Grid>
-    </Viewbox>
+    <Border Background="#20C20E">
+        <Viewbox>
+            <Grid Width="1300" Height="700">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                   
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <local:Control_System x:Name="ControlWidget" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="3" />
+                <local:AlertBox x:Name="AlertWidget" Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="3"/>
+                <local:AutoSwitchControl x:Name="AutoSwitch" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"/>
+            </Grid>
+        </Viewbox>
+    </Border>
 </Window>

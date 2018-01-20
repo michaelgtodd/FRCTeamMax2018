@@ -5,12 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2018_Main_Dashboard"
         mc:Ignorable="d"
-        Title="Error Window" Height="750" Width="1000" Background="Black">
+        Title="Error Window" Height="400" Width="600" Background="Black">
     <Viewbox>
         <Grid>
-            <TextBlock Background="Black" Foreground="Red" FontSize="20" MinHeight="750" MinWidth='1000' Margin="0,0,0,0" TextAlignment="Center"> 
-                <LineBreak/>
-                testing
+            <TextBlock Name="Block1"  TextAlignment="Center" Background="Black" Margin="0,0,0,378" Foreground="#FF0000">
+         Error 1
+            </TextBlock>
+            <TextBlock Name="Block2" TextAlignment="Center" Background="Black" Margin="0,22,0,356" Foreground="#FF0000">   
+         Error 2
+            </TextBlock>
+            <TextBlock Name="Block3" TextAlignment="Center" Background="Black" Margin="0,44,0,334" Foreground="#FF0000">
+         Error 3
+            </TextBlock>
+            <TextBlock Name="Block4" TextAlignment="Center" Background="Black" Margin="0,66,0,312" Foreground="#FF0000">
+         Error 4
+            </TextBlock>
+            <TextBlock Name="Block5" TextAlignment="Center" Background="Black" Margin="0,88,0,290" Foreground="#FF0000">
+         Error 5
+            </TextBlock>
+            <TextBlock Name="Block6" TextAlignment="Center" Background="Black" Margin="0,110,0,268" Foreground="#FF0000">
+         Error 6
+            </TextBlock>
+            <TextBlock Name="Block7" TextAlignment="Center" Background="Black" Margin="0,132,0,246" Foreground="#FF0000">
+         Error 7
+            </TextBlock>
+            <TextBlock Name="Block8" TextAlignment="Center" Background="Black" Margin="0,154,0,224" Foreground="#FF0000">
+         Error 8
+            </TextBlock>
+            <TextBlock Name="Block9" TextAlignment="Center" Background="Black" Margin="0,176,0,202" Foreground="#FF0000">
+         Error 9
+            </TextBlock>
+            <TextBlock Name="Block10" TextAlignment="Center" Background="Black" Margin="0,198,0,180" Foreground="#FF0000">
+         Error 10
+            </TextBlock>
+            <TextBlock Name="Block11" TextAlignment="Center" Background="Black" Margin="0,220,0,158" Foreground="#FF0000">
+         Error 11
+            </TextBlock>
+            <TextBlock Name="Block12" TextAlignment="Center" Background="Black" Margin="0,242,0,136" Foreground="#FF0000">
+         Error 12
+            </TextBlock>
+            <TextBlock Name="Block13" TextAlignment="Center" Background="Black" Margin="0,264,0,114" Foreground="#FF0000">
+         Error 13
+            </TextBlock>
+            <TextBlock Name="Block14" TextAlignment="Center" Background="Black" Margin="0,286,0,96" Foreground="#FF0000">
+         Error 14
+            </TextBlock>
+            <TextBlock Name="Block15" TextAlignment="Center" Background="Black" Margin="0,308,0,74" Foreground="#FF0000">
+         Error 15
+            </TextBlock>
+            <TextBlock Name="Block16" TextAlignment="Center" Background="Black" Margin="0,330,0,52" Foreground="#FF0000">
+         Error 16
+            </TextBlock>
+            <TextBlock Name="Block17" TextAlignment="Center" Background="Black" Margin="0,352,0,30" Foreground="#FF0000">
+         Error 17
+            </TextBlock>
+            <TextBlock Name="Block18" TextAlignment="Center" Background="Black" Margin="0,374,0,8" Foreground="#FF0000">
+         Error 18
             </TextBlock>
         </Grid>
         

@@ -35,12 +35,24 @@
             <TextBlock Name="Block9" TextAlignment="Center" Background="Black" Margin="0,176,0,202" Foreground="#20C20E">
          Caution 9
             </TextBlock>
-            <TextBlock Name="BlockFill" TextAlignment="Center" Background="Black" Margin="0,198,0,76" Foreground="#20C20E">
+            <TextBlock Name="Block10" TextAlignment="Center" Background="Black" Margin="0,198,0,180" Foreground="#20C20E">
+         Caution 10
+            </TextBlock>
+            <TextBlock Name="Block11" TextAlignment="Center" Background="Black" Margin="0,220,0,158" Foreground="#20C20E">
+         Caution 11
+            </TextBlock>
+            <TextBlock Name="Block12" TextAlignment="Center" Background="Black" Margin="0,242,0,136" Foreground="#20C20E">
+         Caution 12
+            </TextBlock>
+            <TextBlock Name="Block13" TextAlignment="Center" Background="Black" Margin="0,264,0,114" Foreground="#20C20E">
+         Caution 13
+            </TextBlock>
+            <TextBlock Name="Block14" TextAlignment="Center" Background="Black" Margin="0,286,0,96" Foreground="#20C20E">
+         Caution 14
+            </TextBlock>
+            <TextBlock Name="BlockFill" TextAlignment="Center" Background="Black" Margin="0,304,0,76" Foreground="#20C20E">
          
             </TextBlock>
-
-
-
 
             <Button Name="Swap" Height="50" Width="50" Margin="75,338,175,13" ToolTip="Swap Between Caution/Error" Click="Swap_Button_Click"  >
                 <TextBlock> Swap </TextBlock></Button>
