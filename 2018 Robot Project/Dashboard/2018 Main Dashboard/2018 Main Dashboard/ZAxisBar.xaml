@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:_2018_Main_Dashboard"
              mc:Ignorable="d" 
              d:DesignHeight="10" d:DesignWidth="50">
-    <Grid>
-        <Rectangle Name="ZAxisIndicator" Width="50" Height="10" Fill="Green" HorizontalAlignment="Left">
+    <Grid Background="Wheat" Width="50" Height="10">
+        <Rectangle Name="ZAxisIndicator" Width="50" Height="10" Fill="Green" HorizontalAlignment="Left" VerticalAlignment="Top">
             
         </Rectangle>
     </Grid>
