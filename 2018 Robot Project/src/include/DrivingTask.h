@@ -1,6 +1,7 @@
 #pragma once
 #include "maxutils/MaxTask.h"
 #include "ControlTask.h"
+#include "ctre/Phoenix.h"
 
 class DrivingTask : public MaxTask
 {
