@@ -13,4 +13,5 @@ public:
 private:
 	void Init();
 	RobotControl * ControlInput;
+	void ConfigureCurrentLimit(TalonSRX * talon);
 };
