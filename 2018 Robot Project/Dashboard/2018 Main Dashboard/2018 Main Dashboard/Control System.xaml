@@ -28,5 +28,8 @@
         <TextBlock Name="Z" Grid.Row="3" Background="Red" Margin="200,0,0,0" Text="ZAxis" TextAlignment="Center"/>
         <local:AxisGrid x:Name="JoystickAxisGrid" Grid.Row="2" Margin="100,177,100,23"/>
         <local:ZAxisBar x:Name="JoystickZAxisBar" Grid.Row="2" Margin="125,250,125,23"/>
+        <Rectangle Name="Button1" Fill="Black" Width="10" Height="10" Margin="205,197,85,77" Grid.Row="2" Stroke="Green">
+            
+        </Rectangle>
     </Grid>
 </UserControl>
