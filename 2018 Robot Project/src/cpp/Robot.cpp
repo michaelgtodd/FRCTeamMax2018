@@ -1,7 +1,6 @@
 #include "Robot.h"
 #include "maxutils/MaxTask.h"
 #include "maxutils/MaxDataStream.h"
-#include "DashboardTask.h"
 
 ControlTask * ControllerTask;
 
@@ -20,6 +19,7 @@ void Robot::RobotInit()
 	
 	// Task names cannot contain spaces at this time
 	taskschedule->AddTask(ControllerTask, "ControlTask", 100);
+	taskschedule->AddTask(new DrivingTask, "DrivingTask", 100);
 	taskschedule->AddTask(new SampleTask, "Task1", 10);
 	taskschedule->AddTask(new SampleTask, "Task2", 1);
 	taskschedule->AddTask(new SampleTask, "Task3", 100);

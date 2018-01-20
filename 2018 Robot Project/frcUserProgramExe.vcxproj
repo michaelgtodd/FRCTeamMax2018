@@ -34,6 +34,7 @@
     <ClCompile Include="build.gradle" />
     <ClCompile Include="src\cpp\ControlTask.cpp" />
     <ClCompile Include="src\cpp\DashboardTask.cpp" />
+    <ClCompile Include="src\cpp\DrivingTask.cpp" />
     <ClCompile Include="src\cpp\ip\IpEndpointName.cpp" />
     <ClCompile Include="src\cpp\ip\NetworkingUtils.cpp" />
     <ClCompile Include="src\cpp\ip\UdpSocket.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="src\include\Controls.h" />
     <ClInclude Include="src\include\ControlTask.h" />
     <ClInclude Include="src\include\DashboardTask.h" />
+    <ClInclude Include="src\include\DrivingTask.h" />
     <ClInclude Include="src\include\ip\IpEndpointName.h" />
     <ClInclude Include="src\include\ip\NetworkingUtils.h" />
     <ClInclude Include="src\include\ip\PacketListener.h" />
