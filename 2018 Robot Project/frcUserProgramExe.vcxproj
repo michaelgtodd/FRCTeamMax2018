@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrivingTask.h" />
-    <ClInclude Include="src\include\Controls.h" />
     <ClInclude Include="src\include\ControlTask.h" />
     <ClInclude Include="src\include\DashboardTask.h" />
     <ClInclude Include="src\include\DrivingTask.h" />
