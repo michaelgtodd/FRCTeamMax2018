@@ -45,12 +45,19 @@ namespace _2018_Main_Dashboard
             OscMessage messageReceived = null;
             while (true)
             {
-                messageReceived = (OscMessage)listener.Receive();
-                if (messageReceived != null)
+                try
                 {
-                    HandleOscPacket(messageReceived);
+                    messageReceived = (OscMessage)listener.Receive();
+                    if (messageReceived != null)
+                    {
+                        HandleOscPacket(messageReceived);
+                    }
+                    Thread.Sleep(1);
                 }
-                Thread.Sleep(1);
+                catch
+                {
+                    Console.WriteLine("Unhandled Exception");
+                }
             }
         }
 
@@ -83,6 +90,186 @@ namespace _2018_Main_Dashboard
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
                 new Action(() => AlertWidget.UpdateError((string)message.Arguments[0])));
+            }
+            if (message.Address.Equals("/Joystick/1/B1"))
+            {
+                bool ButtonPressed;
+                if ((int)message.Arguments[0] == 1)
+                {
+                    ButtonPressed = true;
+                }
+                else
+                {
+                    ButtonPressed = false;
+                }
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => ControlWidget.UpdateButtonData(1, ButtonPressed)));
+            }
+            if (message.Address.Equals("/Joystick/1/B2"))
+            {
+                bool ButtonPressed;
+                if ((int)message.Arguments[0] == 1)
+                {
+                    ButtonPressed = true;
+                }
+                else
+                {
+                    ButtonPressed = false;
+                }
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => ControlWidget.UpdateButtonData(2, ButtonPressed)));
+            }
+            if (message.Address.Equals("/Joystick/1/B3"))
+            {
+                bool ButtonPressed;
+                if ((int)message.Arguments[0] == 1)
+                {
+                    ButtonPressed = true;
+                }
+                else
+                {
+                    ButtonPressed = false;
+                }
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => ControlWidget.UpdateButtonData(3, ButtonPressed)));
+            }
+            if (message.Address.Equals("/Joystick/1/B4"))
+            {
+                bool ButtonPressed;
+                if ((int)message.Arguments[0] == 1)
+                {
+                    ButtonPressed = true;
+                }
+                else
+                {
+                    ButtonPressed = false;
+                }
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => ControlWidget.UpdateButtonData(4, ButtonPressed)));
+            }
+            if (message.Address.Equals("/Joystick/1/B5"))
+            {
+                bool ButtonPressed;
+                if ((int)message.Arguments[0] == 1)
+                {
+                    ButtonPressed = true;
+                }
+                else
+                {
+                    ButtonPressed = false;
+                }
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => ControlWidget.UpdateButtonData(5, ButtonPressed)));
+            }
+            if (message.Address.Equals("/Joystick/1/B6"))
+            {
+                bool ButtonPressed;
+                if ((int)message.Arguments[0] == 1)
+                {
+                    ButtonPressed = true;
+                }
+                else
+                {
+                    ButtonPressed = false;
+                }
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => ControlWidget.UpdateButtonData(6, ButtonPressed)));
+            }
+            if (message.Address.Equals("/Joystick/1/B7"))
+            {
+                bool ButtonPressed;
+                if ((int)message.Arguments[0] == 1)
+                {
+                    ButtonPressed = true;
+                }
+                else
+                {
+                    ButtonPressed = false;
+                }
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => ControlWidget.UpdateButtonData(7, ButtonPressed)));
+            }
+            if (message.Address.Equals("/Joystick/1/B8"))
+            {
+                bool ButtonPressed;
+                if ((int)message.Arguments[0] == 1)
+                {
+                    ButtonPressed = true;
+                }
+                else
+                {
+                    ButtonPressed = false;
+                }
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => ControlWidget.UpdateButtonData(8, ButtonPressed)));
+            }
+            if (message.Address.Equals("/Joystick/1/B9"))
+            {
+                bool ButtonPressed;
+                if ((int)message.Arguments[0] == 1)
+                {
+                    ButtonPressed = true;
+                }
+                else
+                {
+                    ButtonPressed = false;
+                }
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => ControlWidget.UpdateButtonData(9, ButtonPressed)));
+            }
+            if (message.Address.Equals("/Joystick/1/B10"))
+            {
+                bool ButtonPressed;
+                if ((int)message.Arguments[0] == 1)
+                {
+                    ButtonPressed = true;
+                }
+                else
+                {
+                    ButtonPressed = false;
+                }
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => ControlWidget.UpdateButtonData(10, ButtonPressed)));
+            }
+            if (message.Address.Equals("/Joystick/1/B11"))
+            {
+                bool ButtonPressed;
+                if ((int)message.Arguments[0] == 1)
+                {
+                    ButtonPressed = true;
+                }
+                else
+                {
+                    ButtonPressed = false;
+                }
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => ControlWidget.UpdateButtonData(11, ButtonPressed)));
+            }
+            if (message.Address.Equals("/Joystick/1/B12"))
+            {
+                bool ButtonPressed;
+                if ((int)message.Arguments[0] == 1)
+                {
+                    ButtonPressed = true;
+                }
+                else
+                {
+                    ButtonPressed = false;
+                }
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => ControlWidget.UpdateButtonData(12, ButtonPressed)));
             }
         }
 
