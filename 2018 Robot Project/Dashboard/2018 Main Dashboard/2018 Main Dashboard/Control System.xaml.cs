@@ -25,7 +25,7 @@ namespace _2018_Main_Dashboard
         private double XAxis;
         private double YAxis;
         private double ZAxis;
-
+        public string CurrentControllerLocal = "Joystick";
 
         public Control_System()
         {
@@ -45,13 +45,14 @@ namespace _2018_Main_Dashboard
                 {
                     Console.WriteLine("Yo, there was exception. Sucks to be you.");
                 }
+                CurrentControllerLocal = "Joystick";
             }
             else if (Selected_Controller.Name == "Xbox_Controller")
             {
                 Controller_Image.Source = new BitmapImage(new Uri("Xbox Controller.jpg", UriKind.Relative));
+                CurrentControllerLocal = "Xbox_Controller";
             }
         }
-
         public void UpdateControllerData(JoystickAxis AxisType, double AxisValue)
         {            
             switch (AxisType)
