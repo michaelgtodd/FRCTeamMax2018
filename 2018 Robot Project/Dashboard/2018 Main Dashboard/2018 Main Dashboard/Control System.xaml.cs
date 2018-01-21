@@ -74,5 +74,59 @@ namespace _2018_Main_Dashboard
             X.Text = XAxis.ToString();
             Y.Text = YAxis.ToString();
         }
+
+        public void UpdateButtonData(int ButtonNum, bool ButtonPressed)
+        {
+            Brush NewColor;
+            if (ButtonPressed)
+            {
+                NewColor = Brushes.Green;
+            }
+            else
+            {
+                NewColor = Brushes.Black;
+            }
+            switch (ButtonNum)
+            {
+                case (1):
+                    Button1.Fill = NewColor;
+                    break;
+                case (2):
+                    Button2.Fill = NewColor;
+                    break;
+                case (3):
+                    Button3.Fill = NewColor;
+                    break;
+                case (4):
+                    Button4.Fill = NewColor;
+                    break;
+                case (5):
+                    Button5.Fill = NewColor;
+                    break;
+                case (6):
+                    Button6.Fill = NewColor;
+                    break;
+                case (7):
+                    Button7.Fill = NewColor;
+                    break;
+                case (8):
+                    Button8.Fill = NewColor;
+                    break;
+                case (9):
+                    Button9.Fill = NewColor;
+                    break;
+                case (10):
+                    Button10.Fill = NewColor;
+                    break;
+                case (11):
+                    Button11.Fill = NewColor;
+                    break;
+                case (12):
+                    Button12.Fill = NewColor;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
