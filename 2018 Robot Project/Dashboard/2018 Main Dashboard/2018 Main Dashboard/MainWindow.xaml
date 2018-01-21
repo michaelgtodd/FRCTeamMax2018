@@ -9,7 +9,7 @@
     <Window.Resources>
         <!--hello world-->
     </Window.Resources>
-    <Border Background="#20C20E">
+    <Border Background="LightSlateGray">
         <Viewbox>
             <Grid Width="1300" Height="700">
                 <Grid.ColumnDefinitions>
