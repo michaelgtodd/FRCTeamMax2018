@@ -60,6 +60,9 @@
     <Compile Include="AlertBox.xaml.cs">
       <DependentUpon>AlertBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AutoSwitchControl.xaml.cs">
+      <DependentUpon>AutoSwitchControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AxisGrid.xaml.cs">
       <DependentUpon>AxisGrid.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,10 @@
       <DependentUpon>ZAxisBar.xaml</DependentUpon>
     </Compile>
     <Page Include="AlertBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AutoSwitchControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
