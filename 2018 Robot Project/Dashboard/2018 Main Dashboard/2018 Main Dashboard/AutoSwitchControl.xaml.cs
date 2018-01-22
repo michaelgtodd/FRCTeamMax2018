@@ -20,9 +20,48 @@ namespace _2018_Main_Dashboard
     /// </summary>
     public partial class AutoSwitchControl : UserControl
     {
+        public string position;
+        public string goal;
         public AutoSwitchControl()
         {
             InitializeComponent();
         }
+
+        private void Position_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem Position_Selected = (ComboBoxItem)e.AddedItems[0];
+            if (Position_Selected.Name == "AutoPositionLeft")
+            {
+                position = "Left";
+                /// Double Quotes = " this is inside "
+                /// Why is "" his is inside ""
+                /// ' is apparently a quote
+            }
+            else if (Position_Selected.Name == "AutoPositionMid")
+            {
+                position = "Mid";
+            }
+            else if (Position_Selected.Name == "AutoPositionRight")
+            {
+                position = "Right";
+            }
+        }
+        private void Goal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem Goal_Selected = (ComboBoxItem)e.AddedItems[0];
+            if (Goal_Selected.Name == "AutoScale")
+            {
+                goal = "Scale";
+            }
+            else if (Goal_Selected.Name == "AutoSwitch")
+            {
+                goal = "Switch";
+            }
+            else if (Goal_Selected.Name == "AutoBoth")
+            {
+                goal = "Both";
+            }
+        }
+
     }
 }

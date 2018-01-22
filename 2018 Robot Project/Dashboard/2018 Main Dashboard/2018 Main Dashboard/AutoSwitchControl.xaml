@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="200">
     <Grid Background="LightSlateGray">
-        <ComboBox FontSize="15" SelectedIndex="0"  Name="AutoCombobox"  Width="75" Height="25" Margin="10,7,115,68">
+        <ComboBox FontSize="15" SelectedIndex="0"  Name="AutoCombobox"  Width="75" Height="25" Margin="10,7,115,68" SelectionChanged="Goal_SelectionChanged">
             <ComboBoxItem Name="AutoPostitonLeft">
                 Left
             </ComboBoxItem>
@@ -18,7 +18,7 @@
                 Right
             </ComboBoxItem>
         </ComboBox>
-        <ComboBox FontSize="15" SelectedIndex="0"  Name="AutoComboboxversion"  Width="75" Height="25" Margin="115,7,10,68">
+        <ComboBox FontSize="15" SelectedIndex="0"  Name="AutoComboboxversion"  Width="75" Height="25" Margin="115,7,10,68" SelectionChanged="Goal_SelectionChanged">
             <ComboBoxItem Name="AutoScale">
                 Scale
             </ComboBoxItem>

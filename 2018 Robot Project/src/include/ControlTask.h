@@ -5,10 +5,25 @@
 #include "ip/UdpSocket.h"
 #include "WPILib.h"
 
+enum ControlType
+{
+	JoystickType = 0,
+	XboxType = 1
+};
+
+enum ControlMode
+{
+	Tank = 0,
+	Arcade = 1
+};
+
 class RobotControl : public MaxControl
 {
 public:
-	Joystick * ActiveJoystick = new Joystick(0);
+	RobotControl();
+	double SpeedLeft;
+	double SpeedRight;
+	double SpeedLift;
 };
 
 class ControlTask : public MaxTask
@@ -23,5 +38,9 @@ public:
 private:
 	void Init();
 	MaxTaskSchedule * taskschedule_;
-	RobotControl controls;
+	RobotControl * controls;
+	double AxisPrimaryX;
+	double AxisPrimaryY;
+	double AxisSecondaryX;
+	double AxisSecondaryY;
 };
