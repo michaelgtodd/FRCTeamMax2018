@@ -22,11 +22,6 @@ namespace _2018_Main_Dashboard
     public class DashboardData
     {
         public string CurrentController { get; set; }
-
-        public void SendDashBoardData()
-        {
-            
-        }
     }
 
     public enum JoystickAxis
@@ -48,7 +43,7 @@ namespace _2018_Main_Dashboard
         public static double ZAxis;
         DashboardData CurrentDashboardData = new DashboardData();
 
-        public void OscThreadRunner()
+        public void OscReceiveRunner()
         {
             var listener = new UDPListener(5801);
             OscMessage messageReceived = null;
@@ -70,14 +65,14 @@ namespace _2018_Main_Dashboard
             }
         }
 
-        public void SendCurrentData()
+        public void OscSendRunner()
         {
-            while (true)
-            {
-                CurrentDashboardData.CurrentController = ControlWidget.CurrentControllerLocal;
-                CurrentDashboardData.SendDashBoardData();
-                Thread.Sleep(100);
-            }
+            UDPSender Sender = new SharpOSC.UDPSender("10.10.71.2", 5801);
+            OscBundle ToSend = new SharpOSC.OscBundle(Utils.DateTimeToTimetag(DateTime.Now));
+            OscMessage ControllerMessage = new OscMessage("/Dashboard/ControllerMessage/", CurrentDashboardData.CurrentController);
+            ToSend.Messages.Add(ControllerMessage);
+            Sender.Send(ToSend);
+            Thread.Sleep(1);
         }
 
         public void HandleOscPacket(OscMessage message)
@@ -208,19 +203,32 @@ namespace _2018_Main_Dashboard
             }
         }
 
+        public void DashboardDataRunner()
+        {
+            Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => CurrentDashboardData.CurrentController = ControlWidget.Controller_Combobox.Text));
+            Thread.Sleep(1);
+        }
+
         public MainWindow()
         {
             InitializeComponent();
 
-            System.Threading.Thread oscThread =
+            System.Threading.Thread OscReceive =
                 new System.Threading.Thread
-                    (new System.Threading.ThreadStart(OscThreadRunner));
-            oscThread.Start();
+                    (new System.Threading.ThreadStart(OscReceiveRunner));
+            OscReceive.Start();
 
-            System.Threading.Thread dashData =
+            System.Threading.Thread OscSend =
                 new System.Threading.Thread
-                    (new System.Threading.ThreadStart(SendCurrentData));
-            dashData.Start();
+                    (new System.Threading.ThreadStart(OscSendRunner));
+            OscSend.Start();
+
+            System.Threading.Thread UpdateDashboardData =
+                new System.Threading.Thread
+                    (new System.Threading.ThreadStart(DashboardDataRunner));
+            UpdateDashboardData.Start();
         }
     }
 }
