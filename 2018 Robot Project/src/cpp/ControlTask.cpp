@@ -40,11 +40,17 @@ void ControlTask::Run()
 	}
 	else if (DriveMode == Arcade && controls->ControllerType == JoystickType)
 	{
-
+		Joystick * MainJoystick = new Joystick(1);
+		controls->SpeedLeft = MainJoystick->GetRawAxis(1) + MainJoystick->GetRawAxis(2);
+		controls->SpeedRight = MainJoystick->GetRawAxis(1) - MainJoystick->GetRawAxis(2);
+		delete (MainJoystick);
 	}
 	else if (DriveMode == Arcade && controls->ControllerType == XboxType)
 	{
-
+		Joystick * Xbox = new Joystick(1);
+		controls->SpeedLeft = Xbox->GetRawAxis(1) + Xbox->GetRawAxis(2);
+		controls->SpeedRight = Xbox->GetRawAxis(1) - Xbox->GetRawAxis(2);
+		delete (Xbox);
 	}
 	taskschedule_->DispatchControl(controls);
 }
