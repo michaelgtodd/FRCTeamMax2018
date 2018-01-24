@@ -73,6 +73,7 @@ void ControlTask::Autonomous()
 void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 {
 	MaxLog::LogInfo("Hey, got a packet");
+
 	if (strcmp(messages.AddressPattern(), "/Dashboard/ControllerType") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -91,7 +92,11 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 			controls->ControllerType = ControlType::JoystickType;
 		}
 	}
-	
+
+	if (strcmp(messages.AddressPattern(), "") == 0)
+	{
+
+	}
 }
 
 void ControlTask::Init()
