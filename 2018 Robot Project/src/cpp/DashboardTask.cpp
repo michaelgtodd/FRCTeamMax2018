@@ -2,26 +2,25 @@
 #include <iostream>
 #include "maxutils/MaxDataStream.h"
 
+#define JOYSTICK_COUNT 4
 
 void DashboardTask::Run()
 {
-	MaxLog::TransmitDouble("/Joystick/1/XAxis", 0);
-	MaxLog::TransmitDouble("/Joystick/1/YAxis", 0);
-	MaxLog::TransmitDouble("/Joystick/1/ZAxis", 0);
-	MaxLog::TransmitString("/Error/Test", "this is a test");
-	MaxLog::TransmitString("/Error/Test", "tom is dumb");
-	MaxLog::TransmitInt("/Joystick/1/B1", (int)Control->ActiveJoystick->GetRawButton(1));
-	MaxLog::TransmitInt("/Joystick/1/B2", (int)Control->ActiveJoystick->GetRawButton(2));
-	MaxLog::TransmitInt("/Joystick/1/B3", (int)Control->ActiveJoystick->GetRawButton(3));
-	MaxLog::TransmitInt("/Joystick/1/B4", (int)Control->ActiveJoystick->GetRawButton(4));
-	MaxLog::TransmitInt("/Joystick/1/B5", (int)Control->ActiveJoystick->GetRawButton(5));
-	MaxLog::TransmitInt("/Joystick/1/B6", (int)Control->ActiveJoystick->GetRawButton(6));
-	MaxLog::TransmitInt("/Joystick/1/B7", (int)Control->ActiveJoystick->GetRawButton(7));
-	MaxLog::TransmitInt("/Joystick/1/B8", (int)Control->ActiveJoystick->GetRawButton(8));
-	MaxLog::TransmitInt("/Joystick/1/B9", (int)Control->ActiveJoystick->GetRawButton(9));
-	MaxLog::TransmitInt("/Joystick/1/B10", (int)Control->ActiveJoystick->GetRawButton(10));
-	MaxLog::TransmitInt("/Joystick/1/B11", (int)Control->ActiveJoystick->GetRawButton(11));
-	MaxLog::TransmitInt("/Joystick/1/B12", (int)Control->ActiveJoystick->GetRawButton(12));
+	for (int i = 0; i < JOYSTICK_COUNT; i++) 
+	{
+		Joystick * ActiveJoystick = new Joystick(i);
+		for (int j = 0; j < ActiveJoystick->GetAxisCount(); j++)
+		{
+			std::string TransmitPath = "/Joystick/" + std::to_string(i) + "/Axis/" + std::to_string(j);
+			MaxLog::TransmitDouble(TransmitPath, ActiveJoystick->GetRawAxis(j));
+		}
+		for (int k = 0; k <ActiveJoystick->GetButtonCount(); k++)
+		{
+			std::string TransmitPath = "/Joystick/" + std::to_string(i) + "/Button/" + std::to_string(k);
+			MaxLog::TransmitInt(TransmitPath, ActiveJoystick->GetRawButton(k));
+		}
+		delete (ActiveJoystick);
+	}
 }
 
 void DashboardTask::Disable()
