@@ -72,6 +72,9 @@
     <Compile Include="ErrorsWindow.xaml.cs">
       <DependentUpon>ErrorsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="JoystickWidget.xaml.cs">
+      <DependentUpon>JoystickWidget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SharpOSC\Extensions.cs" />
     <Compile Include="SharpOSC\Midi.cs" />
     <Compile Include="SharpOSC\OscBundle.cs" />
@@ -83,6 +86,9 @@
     <Compile Include="SharpOSC\UDPListener.cs" />
     <Compile Include="SharpOSC\UDPSender.cs" />
     <Compile Include="SharpOSC\Utils.cs" />
+    <Compile Include="XboxControllerWidget.xaml.cs">
+      <DependentUpon>XboxControllerWidget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ZAxisBar.xaml.cs">
       <DependentUpon>ZAxisBar.xaml</DependentUpon>
     </Compile>
@@ -106,6 +112,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="JoystickWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,6 +128,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="XboxControllerWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ZAxisBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

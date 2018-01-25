@@ -5,6 +5,7 @@
 
 void DashboardTask::Run()
 {
+	Joystick * JoystickActive = new Joystick(0);
 	MaxLog::TransmitDouble("/Joystick/1/XAxis", 0);
 	MaxLog::TransmitDouble("/Joystick/1/YAxis", 0);
 	MaxLog::TransmitDouble("/Joystick/1/ZAxis", 0);

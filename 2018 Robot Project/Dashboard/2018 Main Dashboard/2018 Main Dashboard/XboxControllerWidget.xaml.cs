@@ -1,9 +1,7 @@
-﻿using SharpOSC;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,19 +16,14 @@ using System.Windows.Shapes;
 namespace _2018_Main_Dashboard
 {
     /// <summary>
-    /// Interaction logic for Control_System.xaml
+    /// Interaction logic for XboxControllerWidget.xaml
     /// </summary>
-    public partial class Control_System : UserControl
+    public partial class XboxControllerWidget : UserControl
     {
-
-        public Control_System()
+        public XboxControllerWidget()
         {
             InitializeComponent();
         }
 
-        private void ControllerSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-     
-        }
     }
 }

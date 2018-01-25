@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ComboBox FontSize="25" SelectedIndex="0" SelectionChanged="ComboBox_SelectionChanged" Name="Controller_Combobox" Width="300" Height="50" Grid.Row="1">
+        <ComboBox FontSize="25" SelectedIndex="0" SelectionChanged="ControllerSelectionChanged" Name="ControllerCombobox" Width="300" Height="50" Grid.Row="1">
             <ComboBoxItem Name="Joystick">
                 Joystick
             </ComboBoxItem>
@@ -21,37 +21,7 @@
                 Xbox_Controller
             </ComboBoxItem>
         </ComboBox>
-        <Image Source="Joystick.jpg" Stretch="Fill" Name="Controller_Image" Grid.Row="2" Width="150" Margin="77,0,73,158"/>
         <Label Foreground="white" FontSize="22" FontWeight="Bold" Height="50" Grid.Row="0" Margin="33,0,35,0">Controller Selection</Label>
-        <TextBlock Name="X" Grid.Row="3" Background="Green" Margin="0,0,200,0" Text="XAxis" TextAlignment="Center"/>
-        <TextBlock Name="Y" Grid.Row="3" Background="Yellow" Margin="100,0,100,0" Text="YAxis" TextAlignment="Center"/>
-        <TextBlock Name="Z" Grid.Row="3" Background="Red" Margin="200,0,0,0" Text="ZAxis" TextAlignment="Center"/>
-        <local:AxisGrid x:Name="JoystickAxisGrid" Grid.Row="2" Margin="100,177,100,23"/>
-        <local:ZAxisBar x:Name="JoystickZAxisBar" Grid.Row="2" Margin="125,250,125,23"/>
-        <Rectangle Name="Button1" Fill="Black" Width="10" Height="10" Margin="205,197,85,77" Grid.Row="2" Stroke="Green">
-        </Rectangle>
-        <Rectangle Name="Button2" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="273,240,17,34">
-        </Rectangle>
-        <Rectangle Name="Button3" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="273,218,17,56">
-        </Rectangle>
-        <Rectangle Name="Button4" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="273,197,17,77">
-        </Rectangle>
-        <Rectangle Name="Button5" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="250,240,40,34">
-        </Rectangle>
-        <Rectangle Name="Button6" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="250,218,40,56">
-        </Rectangle>
-        <Rectangle Name="Button7" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="250,197,40,77">
-        </Rectangle>
-        <Rectangle Name="Button8" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="228,240,62,34">
-        </Rectangle>
-        <Rectangle Name="Button9" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="205,240,85,34">
-        </Rectangle>
-        <Rectangle Name="Button10" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="228,218,62,56">
-        </Rectangle>
-        <Rectangle Name="Button11" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" RenderTransformOrigin="11.167,6.5" Margin="205,218,85,56">
-        </Rectangle>
-        <Rectangle Name="Button12" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="228,197,62,77">
-        </Rectangle>
-
+      <local:JoystickWidget x:Name="JoystickWidget" Margin="0,99,0,0" Grid.RowSpan="3"/>
     </Grid>
 </UserControl>

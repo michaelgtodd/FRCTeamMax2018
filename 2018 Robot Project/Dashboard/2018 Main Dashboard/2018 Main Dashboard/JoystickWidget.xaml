@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="_2018_Main_Dashboard.JoystickWidget"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_2018_Main_Dashboard"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Background="Black">
+
+        <Grid Background="Wheat" Width="50" Height="10">
+            <Rectangle Name="ZAxisIndicator" Width="50" Height="10" Fill="Green" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+            </Rectangle>
+        </Grid>
+        <Rectangle Name="Button1" Fill="Black" Width="10" Height="10" Margin="205,197,85,77" Grid.Row="2" Stroke="Green">
+        </Rectangle>
+        <Rectangle Name="Button2" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="228,205,62,85"/>
+        <Rectangle Name="Button3" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="250,205,40,85"/>
+        <Rectangle Name="Button4" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="273,197,17,77">
+        </Rectangle>
+        <Rectangle Name="Button5" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="205,226,85,64"/>
+        <Rectangle Name="Button6" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="228,226,62,64"/>
+        <Rectangle Name="Button7" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="250,226,40,64"/>
+        <Rectangle Name="Button8" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="273,226,17,64"/>
+        <Rectangle Name="Button9" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="205,240,85,34">
+        </Rectangle>
+        <Rectangle Name="Button10" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="228,248,62,42"/>
+        <Rectangle Name="Button11" Fill="Black" Width="10" Height="10" Stroke="Green" RenderTransformOrigin="11.167,6.5" Margin="250,248,40,42"/>
+        <Rectangle Name="Button12" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="273,248,17,42"/>
+        <local:AxisGrid x:Name="JoystickAxisGrid" Grid.Row="2" Margin="100,177,100,23"/>
+        <local:ZAxisBar x:Name="JoystickZAxisBar" Grid.Row="2" Margin="125,250,125,23"/>
+        <TextBlock Name="X" Background="Green" Margin="0,280,200,0" Text="XAxis" TextAlignment="Center"/>
+        <TextBlock Name="Y" Background="Yellow" Margin="100,280,100,0" Text="YAxis" TextAlignment="Center"/>
+        <TextBlock Name="Z" Background="Red" Margin="200,280,0,0" Text="ZAxis" TextAlignment="Center"/>
+        <Label Foreground="White" Margin="200,196,82,79" RenderTransformOrigin="0.5,0.5">1
+        </Label>
+        <Label Foreground="White" Margin="223,196,59,68">2</Label>
+        <Label Foreground="White" Margin="246,197,28,71" RenderTransformOrigin="0.5,0.5">3
+        </Label>
+        <Label  Foreground="White" Margin="270,196,10,78">4</Label>
+        <Label  Foreground="White" Margin="200,217,62,57">5</Label>
+        <Label  Foreground="White" Margin="223,217,49,57">6</Label>
+        <Label  Foreground="White" Margin="246,217,16,58">7</Label>
+        <Label  Foreground="White" Margin="270,217,10,52">8</Label>
+        <Label  Foreground="White" Margin="200,239,77,37">9</Label>
+        <Label  Foreground="White" Margin="221,239,52,35">10</Label>
+        <Label  Foreground="White" Margin="244,239,29,35">11</Label>
+        <Label  Foreground="White" Margin="266,239,11,35">12</Label>
+    </Grid>
+
+</UserControl>

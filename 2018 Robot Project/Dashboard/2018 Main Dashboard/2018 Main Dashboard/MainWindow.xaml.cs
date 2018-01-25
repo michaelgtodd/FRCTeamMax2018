@@ -24,6 +24,13 @@ namespace _2018_Main_Dashboard
         public string CurrentController { get; set; }
     }
 
+    public class ControllerData
+    {
+        public double XAxis { get; set; }
+        public double YAxis { get; set; }
+        public double ZAxis { get; set; }
+    }
+
     public enum JoystickAxis
     {
         XAxis,
@@ -42,6 +49,7 @@ namespace _2018_Main_Dashboard
         public static double YAxis;
         public static double ZAxis;
         DashboardData CurrentDashboardData = new DashboardData();
+        ControllerData CurrentControllerData = new ControllerData();
 
         public void OscReceiveRunner()
         {
@@ -83,21 +91,15 @@ namespace _2018_Main_Dashboard
             }
             if (message.Address.Equals("/Joystick/1/XAxis"))
             {
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateControllerData(JoystickAxis.XAxis, (double)message.Arguments[0])));
+                CurrentControllerData.XAxis = (double) message.Arguments[0];
             }
             if (message.Address.Equals("/Joystick/1/YAxis"))
             {
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateControllerData(JoystickAxis.YAxis, (double)message.Arguments[0])));
+                CurrentControllerData.YAxis = (double)message.Arguments[0];
             }
             if (message.Address.Equals("/Joystick/1/ZAxis"))
             {
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateControllerData(JoystickAxis.ZAxis, (double)message.Arguments[0])));
+                CurrentControllerData.ZAxis = (double)message.Arguments[0];
             }
             if (message.Address.Equals("/Error/Test"))
             {
@@ -111,7 +113,7 @@ namespace _2018_Main_Dashboard
                     ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateButtonData(1, ButtonPressed)));
+                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(1, ButtonPressed)));
             }
             if (message.Address.Equals("/Joystick/1/B2"))
             {
@@ -119,7 +121,7 @@ namespace _2018_Main_Dashboard
                 ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateButtonData(2, ButtonPressed)));
+                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(2, ButtonPressed)));
             }
             if (message.Address.Equals("/Joystick/1/B3"))
             {
@@ -127,7 +129,7 @@ namespace _2018_Main_Dashboard
                 ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateButtonData(3, ButtonPressed)));
+                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(3, ButtonPressed)));
             }
             if (message.Address.Equals("/Joystick/1/B4"))
             {
@@ -135,7 +137,7 @@ namespace _2018_Main_Dashboard
                 ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateButtonData(4, ButtonPressed)));
+                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(4, ButtonPressed)));
             }
             if (message.Address.Equals("/Joystick/1/B5"))
             {
@@ -143,7 +145,7 @@ namespace _2018_Main_Dashboard
                 ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateButtonData(5, ButtonPressed)));
+                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(5, ButtonPressed)));
             }
             if (message.Address.Equals("/Joystick/1/B6"))
             {
@@ -151,7 +153,7 @@ namespace _2018_Main_Dashboard
                 ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateButtonData(6, ButtonPressed)));
+                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(6, ButtonPressed)));
             }
             if (message.Address.Equals("/Joystick/1/B7"))
             {
@@ -159,7 +161,7 @@ namespace _2018_Main_Dashboard
                 ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateButtonData(7, ButtonPressed)));
+                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(7, ButtonPressed)));
             }
             if (message.Address.Equals("/Joystick/1/B8"))
             {
@@ -167,7 +169,7 @@ namespace _2018_Main_Dashboard
                 ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateButtonData(8, ButtonPressed)));
+                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(8, ButtonPressed)));
             }
             if (message.Address.Equals("/Joystick/1/B9"))
             {
@@ -175,7 +177,7 @@ namespace _2018_Main_Dashboard
                 ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateButtonData(9, ButtonPressed)));
+                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(9, ButtonPressed)));
             }
             if (message.Address.Equals("/Joystick/1/B10"))
             {
@@ -183,7 +185,7 @@ namespace _2018_Main_Dashboard
                 ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateButtonData(10, ButtonPressed)));
+                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(10, ButtonPressed)));
             }
             if (message.Address.Equals("/Joystick/1/B11"))
             {
@@ -191,7 +193,7 @@ namespace _2018_Main_Dashboard
                 ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateButtonData(11, ButtonPressed)));
+                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(11, ButtonPressed)));
             }
             if (message.Address.Equals("/Joystick/1/B12"))
             {
@@ -199,16 +201,30 @@ namespace _2018_Main_Dashboard
                 ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.UpdateButtonData(12, ButtonPressed)));
+                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(12, ButtonPressed)));
             }
         }
 
         public void DashboardDataRunner()
         {
-            Application.Current.Dispatcher.BeginInvoke(
+            while (true)
+            {
+                Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.CurrentController = ControlWidget.Controller_Combobox.Text));
-            Thread.Sleep(1);
+                new Action(() => CurrentDashboardData.CurrentController = ControlWidget.ControllerCombobox.Text));
+                Thread.Sleep(1);
+            }
+        }
+
+        public void JoystickRunner()
+        {
+            while (true)
+            {
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => ControlWidget.JoystickWidget.UpdateJoystickWidget(CurrentControllerData)));
+                Thread.Sleep(1);
+            }
         }
 
         public MainWindow()
@@ -229,6 +245,11 @@ namespace _2018_Main_Dashboard
                 new System.Threading.Thread
                     (new System.Threading.ThreadStart(DashboardDataRunner));
             UpdateDashboardData.Start();
+
+            System.Threading.Thread UpdateJS =
+    new System.Threading.Thread
+        (new System.Threading.ThreadStart(JoystickRunner));
+            UpdateJS.Start();
         }
     }
 }
