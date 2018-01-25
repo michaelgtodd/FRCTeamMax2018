@@ -20,9 +20,9 @@ ControlTask::ControlTask(MaxTaskSchedule * taskschedule)
 
 void ControlTask::Run()
 {
-	ControlType InputMode = JoystickType;
+	
 	ControlMode DriveMode = Tank;
-	if (DriveMode == Tank && InputMode == JoystickType)
+	if (DriveMode == Tank && controls->ControllerType == JoystickType)
 	{
 			Joystick * Left = new Joystick(1);
 			Joystick * Right = new Joystick(2);
@@ -31,20 +31,26 @@ void ControlTask::Run()
 			delete (Left);
 			delete (Right);
 	}
-	else if (DriveMode == Tank && InputMode == XboxType)
+	else if (DriveMode == Tank && controls->ControllerType == XboxType)
 	{
 		Joystick * Xbox = new Joystick(1);
 		controls->SpeedLeft = Xbox->GetRawAxis(1);
 		controls->SpeedRight = Xbox->GetRawAxis(5);
 		delete (Xbox);
 	}
-	else if (DriveMode == Arcade && InputMode == JoystickType)
+	else if (DriveMode == Arcade && controls->ControllerType == JoystickType)
 	{
-
+		Joystick * MainJoystick = new Joystick(1);
+		controls->SpeedLeft = MainJoystick->GetRawAxis(1) + MainJoystick->GetRawAxis(2);
+		controls->SpeedRight = MainJoystick->GetRawAxis(1) - MainJoystick->GetRawAxis(2);
+		delete (MainJoystick);
 	}
-	else if (DriveMode == Arcade && InputMode == XboxType)
+	else if (DriveMode == Arcade && controls->ControllerType == XboxType)
 	{
-
+		Joystick * Xbox = new Joystick(1);
+		controls->SpeedLeft = Xbox->GetRawAxis(1) + Xbox->GetRawAxis(2);
+		controls->SpeedRight = Xbox->GetRawAxis(1) - Xbox->GetRawAxis(2);
+		delete (Xbox);
 	}
 	taskschedule_->DispatchControl(controls);
 }
@@ -67,6 +73,30 @@ void ControlTask::Autonomous()
 void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 {
 	MaxLog::LogInfo("Hey, got a packet");
+
+	if (strcmp(messages.AddressPattern(), "/Dashboard/ControllerType") == 0)
+	{
+		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
+		const char * CharControllerType;
+		args >> CharControllerType >> osc::EndMessage;
+		if (strcmp(CharControllerType, "Joystick"))
+		{
+			controls->ControllerType = ControlType::JoystickType;
+		}
+		else if (strcmp(CharControllerType, "Xbox_Controller"))
+		{
+			controls->ControllerType = ControlType::XboxType;
+		}
+		else
+		{
+			controls->ControllerType = ControlType::JoystickType;
+		}
+	}
+
+	if (strcmp(messages.AddressPattern(), "") == 0)
+	{
+
+	}
 }
 
 void ControlTask::Init()

@@ -4,6 +4,7 @@
 #include "osc/OscPacketListener.h"
 #include "ip/UdpSocket.h"
 #include "WPILib.h"
+#include <string.h>
 
 enum ControlType
 {
@@ -21,6 +22,7 @@ class RobotControl : public MaxControl
 {
 public:
 	RobotControl();
+	ControlType ControllerType;
 	double SpeedLeft;
 	double SpeedRight;
 	double SpeedLift;

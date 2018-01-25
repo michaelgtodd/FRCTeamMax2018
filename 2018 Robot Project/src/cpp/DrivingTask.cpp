@@ -5,12 +5,19 @@
 
 void DrivingTask::Run()
 {	
-		LeftMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
-		LeftMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
-		LeftMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
-		RightMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
-		RightMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
-		RightMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
+	// Make sure power to Talons doesn't go above 100%
+	ControlInput->SpeedLeft = ControlInput->SpeedLeft >= 0.99 ? 0.99 : ControlInput->SpeedLeft;
+	ControlInput->SpeedLeft = ControlInput->SpeedLeft <= -0.99 ? -0.99 : ControlInput->SpeedLeft;
+	ControlInput->SpeedRight = ControlInput->SpeedRight >= 0.99 ? 0.99 : ControlInput->SpeedRight;
+	ControlInput->SpeedRight = ControlInput->SpeedRight <= -0.99 ? -0.99 : ControlInput->SpeedRight;
+	
+	// Set Talon power
+	LeftMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
+	LeftMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
+	LeftMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
+	RightMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
+	RightMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
+	RightMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
 }
 
 void DrivingTask::Disable()
