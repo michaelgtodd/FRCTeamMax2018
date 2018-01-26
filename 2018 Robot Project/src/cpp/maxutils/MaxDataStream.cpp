@@ -34,6 +34,11 @@ namespace MaxLog
 		CautionList.clear();
 	}
 
+	void MaxCautionManager::Always()
+	{
+
+	}
+
 	void MaxCautionManager::Run()
 	{
 		for (std::vector<std::string>::iterator i = CautionList.begin();

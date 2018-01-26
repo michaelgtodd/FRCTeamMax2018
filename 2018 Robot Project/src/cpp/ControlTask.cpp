@@ -20,6 +20,11 @@ ControlTask::ControlTask(MaxTaskSchedule * taskschedule)
 
 void ControlTask::Run()
 {
+
+}
+
+void ControlTask::Always()
+{
 	
 	ControlMode DriveMode = Tank;
 	if (DriveMode == Tank && controls->ControllerType == JoystickType)

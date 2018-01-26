@@ -13,6 +13,11 @@ void SampleTask::Disable()
 
 }
 
+void SampleTask::Always()
+{
+
+}
+
 void SampleTask::Autonomous()
 {
 

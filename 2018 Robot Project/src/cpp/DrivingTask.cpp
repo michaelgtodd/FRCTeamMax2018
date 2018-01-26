@@ -3,6 +3,11 @@
 #include "maxutils/MaxDataStream.h"
 
 
+void DrivingTask::Always()
+{
+
+}
+
 void DrivingTask::Run()
 {	
 	// Make sure power to Talons doesn't go above 100%
@@ -22,12 +27,17 @@ void DrivingTask::Run()
 
 void DrivingTask::Disable()
 {
-
+	LeftMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
+	LeftMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
+	LeftMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
+	RightMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
+	RightMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
+	RightMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
 }
 
 void DrivingTask::Autonomous()
 {
-
+	Disable();
 }
 
 void DrivingTask::ControllerUpdate(MaxControl * controls)

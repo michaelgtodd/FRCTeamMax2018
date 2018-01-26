@@ -75,9 +75,6 @@
     <ClCompile Include="src\cpp\DrivingTask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DrivingTask.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\Robot.h">
@@ -144,9 +141,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\include\DrivingTask.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DrivingTask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

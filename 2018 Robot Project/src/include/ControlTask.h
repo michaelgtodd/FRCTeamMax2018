@@ -32,6 +32,7 @@ class ControlTask : public MaxTask
 {
 public:
 	ControlTask(MaxTaskSchedule * taskschedule);
+	void Always();
 	void Run();
 	void Disable();
 	void ControllerUpdate(MaxControl * controls);

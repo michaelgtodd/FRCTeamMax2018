@@ -5,6 +5,7 @@
 class DashboardTask : public MaxTask
 {
 public:
+	void Always();
 	void Run();
 	void Disable();
 	void Autonomous();
