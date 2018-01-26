@@ -17,7 +17,7 @@ void DashboardTask::Run()
 		for (int k = 0; k <ActiveJoystick->GetButtonCount(); k++)
 		{
 			std::string TransmitPath = "/Joystick/" + std::to_string(i) + "/Button/" + std::to_string(k);
-			MaxLog::TransmitInt(TransmitPath, ActiveJoystick->GetRawButton(k));
+			MaxLog::TransmitInt(TransmitPath, ActiveJoystick->GetRawButton(k + 1));
 		}
 		delete (ActiveJoystick);
 	}
