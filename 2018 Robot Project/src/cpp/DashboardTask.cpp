@@ -4,7 +4,7 @@
 
 #define JOYSTICK_COUNT 4
 
-void DashboardTask::Run()
+void DashboardTask::Always()
 {
 	for (int i = 0; i < JOYSTICK_COUNT; i++) 
 	{
@@ -21,6 +21,11 @@ void DashboardTask::Run()
 		}
 		delete (ActiveJoystick);
 	}
+}
+
+void DashboardTask::Run()
+{
+
 }
 
 void DashboardTask::Disable()

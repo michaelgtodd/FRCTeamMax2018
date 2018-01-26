@@ -5,35 +5,45 @@
 #include <math.h>
 #include <iostream>
 #include "Robot.h"
+#include "RobotState.h"
 
 MaxTaskStatisticsTask::MaxTaskStatisticsTask(std::vector<MaxTask*> TaskList)
 {
 	TaskList_ = TaskList;
 }
 
-void MaxTaskStatisticsTask::Run()
+void MaxTaskStatisticsTask::Always()
 {
+	int j = 1;
 	for (std::vector<MaxTask*>::iterator i = TaskList_.begin();
 		i != TaskList_.end();
 		i++)
 	{
-		std::string baselabel = "/taskstats/" + (*i)->GetTaskName();
+		std::string baselabel = "/taskstats/" + std::to_string(j);
+		MaxLog::TransmitString(baselabel + "/name", (*i)->GetTaskName());
 		MaxLog::TransmitInt(baselabel + "/period", (*i)->GetAverageTaskPeriod());
 		MaxLog::TransmitInt(baselabel + "/duration", (*i)->GetAverageTaskDuration());
+		j++;
 	}
-	std::string baselabel = "/taskstats/Task_Stats_Task";
+	std::string baselabel = "/taskstats/" + std::to_string(j);
+	MaxLog::TransmitString(baselabel + "/name", "TaskStatsTask");
 	MaxLog::TransmitInt(baselabel + "/period", GetAverageTaskPeriod());
 	MaxLog::TransmitInt(baselabel + "/duration", GetAverageTaskDuration());
 }
 
+void MaxTaskStatisticsTask::Run()
+{
+
+}
+
 void MaxTaskStatisticsTask::Disable()
 {
-	Run();
+
 }
 
 void MaxTaskStatisticsTask::Autonomous()
 {
-	Run();
+
 }
 
 void MaxTaskStatisticsTask::ControllerUpdate(MaxControl * controls)
@@ -149,7 +159,20 @@ void MaxTask::ThreadProcess()
 	{
 		double loopStart = Timer::GetFPGATimestamp();
 
-		Run();
+		
+		if (RobotState::IsOperatorControl())
+		{
+			Run();
+		}
+		else if (RobotState::IsAutonomous())
+		{
+			Autonomous();
+		}
+		else
+		{
+			Disable();
+		}
+		Always();
 
 		double loopEnd = Timer::GetFPGATimestamp();
 		double loopDuration = loopEnd - loopStart;

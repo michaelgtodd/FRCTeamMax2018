@@ -10,6 +10,7 @@ class MaxTask
 public:
 	void virtual Run() = 0;
 	void virtual Disable() = 0;
+	void virtual Always() = 0;
 	void virtual ControllerUpdate(MaxControl * controls) = 0;
 	void virtual Autonomous() = 0;
 
@@ -48,6 +49,7 @@ class MaxTaskStatisticsTask : public MaxTask
 {
 public:
 	MaxTaskStatisticsTask(std::vector<MaxTask*> TaskList);
+	void Always();
 	void Run();
 	void Disable();
 	void Autonomous();

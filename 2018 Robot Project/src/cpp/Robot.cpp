@@ -1,33 +1,27 @@
 #include "Robot.h"
 #include "maxutils/MaxTask.h"
 #include "maxutils/MaxDataStream.h"
-
-ControlTask * ControllerTask;
-
-ControlTask * Robot::GetControllerTask()
-{
-	return ControllerTask;
-}
+#include "maxutils/MaxAutonomous.h"
+#include "SampleAutonomous.h"
 
 void Robot::RobotInit() 
 {
 	MaxLog::InitializeMaxLog();
 
-	MaxTaskSchedule * taskschedule = new MaxTaskSchedule();
+	MaxAutonomousManagerInstance.RegisterAutonomous(new SampleAutonomous);
 
-	ControllerTask = new ControlTask(taskschedule);
-	
 	// Task names cannot contain spaces at this time
-	taskschedule->AddTask(ControllerTask, "ControlTask", 100);
-	taskschedule->AddTask(new DrivingTask, "DrivingTask", 100);
-	taskschedule->AddTask(new SampleTask, "Task1", 10);
-	taskschedule->AddTask(new SampleTask, "Task2", 1);
-	taskschedule->AddTask(new SampleTask, "Task3", 100);
-	taskschedule->AddTask(new SampleTask, "Task4", 100);
-	taskschedule->AddTask(new DashboardTask, "Dash_Task", 20);
-	taskschedule->AddTask(new MaxLog::MaxCautionManager(), "Caution_Manager", 1);
+	taskschedule.AddTask((MaxTask*)&ControlTaskInstance, "ControlTask", 100);
+	taskschedule.AddTask((MaxTask*)&MaxAutonomousManagerInstance, "AutoManager", 100);
+	taskschedule.AddTask(new DrivingTask, "DrivingTask", 100);
+	taskschedule.AddTask(new SampleTask, "Task1", 10);
+	taskschedule.AddTask(new SampleTask, "Task2", 1);
+	taskschedule.AddTask(new SampleTask, "Task3", 100);
+	taskschedule.AddTask(new SampleTask, "Task4", 100);
+	taskschedule.AddTask(new DashboardTask, "Dash_Task", 20);
+	taskschedule.AddTask(new MaxLog::MaxCautionManager(), "Caution_Manager", 1);
 
-	taskschedule->LaunchTasks();
+	taskschedule.LaunchTasks();
 }
 
 void Robot::Autonomous() { }

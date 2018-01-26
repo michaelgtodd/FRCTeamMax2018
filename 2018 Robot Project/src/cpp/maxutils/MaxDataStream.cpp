@@ -36,6 +36,11 @@ namespace MaxLog
 
 	void MaxCautionManager::Run()
 	{
+
+	}
+
+	void MaxCautionManager::Always()
+	{
 		for (std::vector<std::string>::iterator i = CautionList.begin();
 			i != CautionList.end();
 			i++)
@@ -73,7 +78,7 @@ namespace MaxLog
 			(void)remoteEndpoint;
 
 			try {
-				Robot::GetControllerTask()->ProcessOscData(m);
+				ControlTaskInstance.ProcessOscData(m);
 			}
 			catch (osc::Exception& e) {
 				LogError("Failed to parse OSC message");

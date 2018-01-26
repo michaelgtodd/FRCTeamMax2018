@@ -10,6 +10,7 @@ namespace MaxLog
 	public:
 		void RegisterCaution(std::string caution);
 		void ClearCautions();
+		void Always();
 		void Run();
 		void Disable();
 		void Autonomous();

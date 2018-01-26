@@ -75,7 +75,10 @@
     <ClCompile Include="src\cpp\DrivingTask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DrivingTask.cpp">
+    <ClCompile Include="src\cpp\maxutils\MaxAutonomous.cpp">
+      <Filter>Source Files\maxutils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\SampleAutonomous.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,7 +149,10 @@
     <ClInclude Include="src\include\DrivingTask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DrivingTask.h">
+    <ClInclude Include="src\include\maxutils\MaxAutonomous.h">
+      <Filter>Header Files\maxutils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\SampleAutonomous.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
