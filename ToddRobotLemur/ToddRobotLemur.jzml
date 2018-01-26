@@ -10,7 +10,7 @@
 <VARIABLE name="speed=1" send="0" osc_target="0" osc_trigger="1" osc_message="/Fader/speed" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
-<WINDOW class="JAZZINTERFACE" text="2-Power" x="0" y="0" width="1280" height="756" id="2" state="1" group="0" font="tahoma,11,0" >
+<WINDOW class="JAZZINTERFACE" text="2-Power" x="0" y="0" width="1280" height="756" id="2" state="0" group="0" font="tahoma,11,0" >
 <WINDOW class="Leds" text="Leds" x="262" y="217" width="258" height="206" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" bargraph="0" color="865343,1596013" column="1" label="0" multicolor="0" row="1">
 <VARIABLE name="value=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Leds/value" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Leds/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
@@ -249,7 +249,7 @@
 </WINDOW>
 </WINDOW>
 </WINDOW>
-<WINDOW class="JAZZINTERFACE" text="4-Console" x="0" y="0" width="1280" height="756" id="1" state="0" group="0" font="tahoma,11,0" >
+<WINDOW class="JAZZINTERFACE" text="4-Console" x="0" y="0" width="1280" height="756" id="1" state="1" group="0" font="tahoma,11,0" >
 <WINDOW class="Text" text="Text" x="12" y="7" width="1259" height="240" state="81" group="0" font="tahoma,14,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" content="">
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Text/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
@@ -264,4 +264,42 @@
 setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/1/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task2Name(OSC_ARGS)" script="decl Object = findchild(Task2,'TaskName');
 setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/2/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task3Name(OSC_ARGS)" script="decl Object = findchild(Task3,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/3/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task4Name(OSC_ARGS)" script="decl Object = findchild(Task4,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/4/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task5Name(OSC_ARGS)" script="decl Object = findchild(Task5,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/5/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task6Name(OSC_ARGS)" script="decl Object = findchild(Task6,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/6/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task7Name(OSC_ARGS)" script="decl Object = findchild(Task7,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/7/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task8Name(OSC_ARGS)" script="decl Object = findchild(Task8,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/8/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task9Name(OSC_ARGS)" script="decl Object = findchild(Task9,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/9/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task10Name(OSC_ARGS)" script="decl Object = findchild(Task10,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/10/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task11Name(OSC_ARGS)" script="decl Object = findchild(Task11,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/11/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task12Name(OSC_ARGS)" script="decl Object = findchild(Task12,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/12/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task13Name(OSC_ARGS)" script="decl Object = findchild(Task13,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/13/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task14Name(OSC_ARGS)" script="decl Object = findchild(Task14,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/14/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task15Name(OSC_ARGS)" script="decl Object = findchild(Task15,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/15/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task16Name(OSC_ARGS)" script="decl Object = findchild(Task16,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/16/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task17Name(OSC_ARGS)" script="decl Object = findchild(Task17,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/17/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task18Name(OSC_ARGS)" script="decl Object = findchild(Task18,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/18/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task19Name(OSC_ARGS)" script="decl Object = findchild(Task19,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/19/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task20Name(OSC_ARGS)" script="decl Object = findchild(Task20,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/20/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+<SCRIPT name="Task21Name(OSC_ARGS)" script="decl Object = findchild(Task21,'TaskName');
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/21/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 </JZML>
