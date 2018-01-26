@@ -78,7 +78,7 @@ namespace MaxLog
 			(void)remoteEndpoint;
 
 			try {
-				Robot::GetControllerTask()->ProcessOscData(m);
+				ControlTaskInstance.ProcessOscData(m);
 			}
 			catch (osc::Exception& e) {
 				LogError("Failed to parse OSC message");

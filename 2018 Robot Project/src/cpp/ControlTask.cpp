@@ -2,6 +2,9 @@
 #include "maxutils/MaxDataStream.h"
 #include "maxutils/MaxControls.h"
 
+MaxTaskSchedule taskschedule;
+ControlTask ControlTaskInstance(&taskschedule);
+
 RobotControl::RobotControl()
 {
 	SpeedLeft = 0;
@@ -75,9 +78,13 @@ void ControlTask::Autonomous()
 
 }
 
+void ControlTask::UpdateAutonomousData(AutonomousControl)
+{
+	
+}
+
 void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 {
-	MaxLog::LogInfo("Hey, got a packet");
 
 	if (strcmp(messages.AddressPattern(), "/Dashboard/ControllerType") == 0)
 	{
@@ -97,15 +104,9 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 			controls->ControllerType = ControlType::JoystickType;
 		}
 	}
-
-	if (strcmp(messages.AddressPattern(), "") == 0)
-	{
-
-	}
 }
 
 void ControlTask::Init()
 {
 	controls = new RobotControl();
-
 }

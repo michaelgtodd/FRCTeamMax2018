@@ -8,7 +8,6 @@
 class Robot : public frc::SampleRobot 
 {
 public:
-	static ControlTask * GetControllerTask();
 	void RobotInit();
 	void Autonomous();
 	void OperatorControl();

@@ -28,6 +28,10 @@ public:
 	double SpeedLift;
 };
 
+class AutonomousControl
+{
+};
+
 class ControlTask : public MaxTask
 {
 public:
@@ -38,6 +42,7 @@ public:
 	void ControllerUpdate(MaxControl * controls);
 	void Autonomous();
 	void ProcessOscData(osc::ReceivedMessage messages);
+	void UpdateAutonomousData(AutonomousControl);
 private:
 	void Init();
 	MaxTaskSchedule * taskschedule_;
@@ -47,3 +52,6 @@ private:
 	double AxisSecondaryX;
 	double AxisSecondaryY;
 };
+
+extern ControlTask ControlTaskInstance;
+extern MaxTaskSchedule taskschedule;
