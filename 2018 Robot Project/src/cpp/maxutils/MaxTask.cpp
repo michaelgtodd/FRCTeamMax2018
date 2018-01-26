@@ -14,19 +14,21 @@ MaxTaskStatisticsTask::MaxTaskStatisticsTask(std::vector<MaxTask*> TaskList)
 
 void MaxTaskStatisticsTask::Always()
 {
-	int j = 0;
+	int j = 1;
 	for (std::vector<MaxTask*>::iterator i = TaskList_.begin();
 		i != TaskList_.end();
 		i++)
 	{
 		std::string baselabel = "/taskstats/" + std::to_string(j);
-		MaxLog::TransmitString(baselabel + "/name", (*i)->GetTaskName());
-		MaxLog::TransmitInt(baselabel + "/period", (*i)->GetAverageTaskPeriod());
-		MaxLog::TransmitInt(baselabel + "/duration", (*i)->GetAverageTaskDuration());
+		MaxLog::TransmitString(baselabel + "name", (*i)->GetTaskName());
+		MaxLog::TransmitInt(baselabel + "period", (*i)->GetAverageTaskPeriod());
+		MaxLog::TransmitInt(baselabel + "duration", (*i)->GetAverageTaskDuration());
+		j++;
 	}
-	std::string baselabel = "/taskstats/Task_Stats_Task";
-	MaxLog::TransmitInt(baselabel + "/period", GetAverageTaskPeriod());
-	MaxLog::TransmitInt(baselabel + "/duration", GetAverageTaskDuration());
+	std::string baselabel = "/taskstats/" + std::to_string(j);
+	MaxLog::TransmitString(baselabel + "name", "TaskStatsTask");
+	MaxLog::TransmitInt(baselabel + "period", GetAverageTaskPeriod());
+	MaxLog::TransmitInt(baselabel + "duration", GetAverageTaskDuration());
 }
 
 void MaxTaskStatisticsTask::Run()
