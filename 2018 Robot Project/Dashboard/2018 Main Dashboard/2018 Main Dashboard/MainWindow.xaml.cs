@@ -23,6 +23,8 @@ namespace _2018_Main_Dashboard
     {
         public string CurrentController { get; set; }
         public string CurrentDriveMode { get; set; }
+        public string AutoPosition { get; set; }
+        public string AutoGoal { get; set; }
     }
 
     public class ControllerData
@@ -83,6 +85,10 @@ namespace _2018_Main_Dashboard
             ToSend.Messages.Add(ControllerMessage);
             OscMessage DriveModeMessage = new OscMessage("/Dashboard/DriveModeMessage/", CurrentDashboardData.CurrentDriveMode);
             ToSend.Messages.Add(DriveModeMessage);
+            OscMessage AutoPositionMessage = new OscMessage("/Dashboard/AutoPositionMessage/", CurrentDashboardData.AutoPosition);
+            ToSend.Messages.Add(AutoPositionMessage);
+            OscMessage AutoGoalMessage = new OscMessage("/Dashboard/AutoGoalMessage/", CurrentDashboardData.AutoGoal);
+            ToSend.Messages.Add(AutoGoalMessage);
             Sender.Send(ToSend);
             Thread.Sleep(1);
         }
@@ -138,8 +144,14 @@ namespace _2018_Main_Dashboard
                 DispatcherPriority.Background,
                 new Action(() => CurrentDashboardData.CurrentController = JoystickWidget.ControllerCombobox.Text));
                 Application.Current.Dispatcher.BeginInvoke(
-               DispatcherPriority.Background,
-               new Action(() => CurrentDashboardData.CurrentDriveMode = (JoystickWidget.TankCheckbox.IsChecked == true) ? "Tank" : "Arcade"));
+                DispatcherPriority.Background,
+                new Action(() => CurrentDashboardData.CurrentDriveMode = (JoystickWidget.TankCheckbox.IsChecked == true) ? "Tank" : "Arcade"));
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => CurrentDashboardData.AutoGoal = AutoSwitch.goal));
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => CurrentDashboardData.AutoPosition = AutoSwitch.position));
                 Thread.Sleep(1);
             }
         }
