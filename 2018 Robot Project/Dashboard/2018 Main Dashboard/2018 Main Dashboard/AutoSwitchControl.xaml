@@ -29,10 +29,10 @@
                 Both
             </ComboBoxItem>
         </ComboBox>
-        <TextBlock Name="Position" Margin="-27,32,102,5" TextAlignment="Center">
+        <TextBlock Name="PositionText" Margin="-27,32,102,5" TextAlignment="Center">
             Position
         </TextBlock>
-        <TextBlock Name="Goal" Margin="64,32,0,5" TextAlignment="Center">
+        <TextBlock Name="GoalText" Margin="64,32,0,5" TextAlignment="Center">
             Goal
         </TextBlock>
     </Grid>

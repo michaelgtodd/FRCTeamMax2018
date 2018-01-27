@@ -148,10 +148,10 @@ namespace _2018_Main_Dashboard
                 new Action(() => CurrentDashboardData.CurrentDriveMode = (JoystickWidget.TankCheckbox.IsChecked == true) ? "Tank" : "Arcade"));
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.AutoGoal = AutoSwitch.goal));
+                new Action(() => CurrentDashboardData.AutoGoal = AutoSwitch.Goal));
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.AutoPosition = AutoSwitch.position));
+                new Action(() => CurrentDashboardData.AutoPosition = AutoSwitch.Position));
                 Thread.Sleep(1);
             }
         }
