@@ -20,4 +20,10 @@ private:
 	TalonSRX * RightMotor1;
 	TalonSRX * RightMotor2;
 	TalonSRX * RightMotor3;
+	TalonSRX * GrabArmL;
+	TalonSRX * GrabArmR;
+	TalonSRX * GrabWheelL;
+	TalonSRX * GrabWheelR;
+	TalonSRX * LiftMotorL;
+	TalonSRX * LiftMotorR;
 };
