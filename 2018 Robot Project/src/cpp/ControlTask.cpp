@@ -137,15 +137,15 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		args >> CharDriveModeMessage >> osc::EndMessage;
 		if (strcmp(CharDriveModeMessage, "Arcade"))
 		{
-			Controls->ControllerMode = ControlMode::Arcade;
+			Controls->ControllerMode = ControlLayout::Arcade;
 		}
 		else if (strcmp(CharDriveModeMessage, "Tank"))
 		{
-			Controls->ControllerMode = ControlMode::Tank;
+			Controls->ControllerMode = ControlLayout::Tank;
 		}
 		else
 		{
-			Controls->ControllerMode = ControlMode::Arcade;
+			Controls->ControllerMode = ControlLayout::Arcade;
 		}
 		delete (CharDriveModeMessage);
 	}
