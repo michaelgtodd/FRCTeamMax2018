@@ -136,10 +136,10 @@ namespace _2018_Main_Dashboard
             {
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.CurrentController = ControlWidget.ControllerCombobox.Text));
+                new Action(() => CurrentDashboardData.CurrentController = JoystickWidget.ControllerCombobox.Text));
                 Application.Current.Dispatcher.BeginInvoke(
                DispatcherPriority.Background,
-               new Action(() => CurrentDashboardData.CurrentDriveMode = (ControlWidget.JoystickWidget.TankCheckbox.IsChecked == true) ? "Tank" : "Arcade"));
+               new Action(() => CurrentDashboardData.CurrentDriveMode = (JoystickWidget.TankCheckbox.IsChecked == true) ? "Tank" : "Arcade"));
                 Thread.Sleep(1);
             }
         }
@@ -150,7 +150,7 @@ namespace _2018_Main_Dashboard
             {
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateJoystickWidget(ControllerData0)));
+                new Action(() => JoystickWidget.UpdateJoystickWidget(ControllerData0)));
                 Thread.Sleep(1);
             }
         }
