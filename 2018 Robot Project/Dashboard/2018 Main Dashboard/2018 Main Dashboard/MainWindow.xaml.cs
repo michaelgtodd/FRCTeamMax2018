@@ -22,6 +22,7 @@ namespace _2018_Main_Dashboard
     public class DashboardData
     {
         public string CurrentController { get; set; }
+        public string CurrentDriveMode { get; set; }
     }
 
     public class ControllerData
@@ -80,6 +81,8 @@ namespace _2018_Main_Dashboard
             OscBundle ToSend = new SharpOSC.OscBundle(Utils.DateTimeToTimetag(DateTime.Now));
             OscMessage ControllerMessage = new OscMessage("/Dashboard/ControllerMessage/", CurrentDashboardData.CurrentController);
             ToSend.Messages.Add(ControllerMessage);
+            OscMessage DriveModeMessage = new OscMessage("/Dashboard/DriveModeMessage/", CurrentDashboardData.CurrentDriveMode);
+            ToSend.Messages.Add(DriveModeMessage);
             Sender.Send(ToSend);
             Thread.Sleep(1);
         }
@@ -133,7 +136,10 @@ namespace _2018_Main_Dashboard
             {
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.CurrentController = ControlWidget.ControllerCombobox.Text));
+                new Action(() => CurrentDashboardData.CurrentController = JoystickWidget.ControllerCombobox.Text));
+                Application.Current.Dispatcher.BeginInvoke(
+               DispatcherPriority.Background,
+               new Action(() => CurrentDashboardData.CurrentDriveMode = (JoystickWidget.TankCheckbox.IsChecked == true) ? "Tank" : "Arcade"));
                 Thread.Sleep(1);
             }
         }
@@ -144,7 +150,7 @@ namespace _2018_Main_Dashboard
             {
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateJoystickWidget(ControllerData0)));
+                new Action(() => JoystickWidget.UpdateJoystickWidget(ControllerData0)));
                 Thread.Sleep(1);
             }
         }

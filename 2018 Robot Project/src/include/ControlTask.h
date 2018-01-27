@@ -23,9 +23,13 @@ class RobotControl : public MaxControl
 public:
 	RobotControl();
 	ControlType ControllerType;
+	ControlMode ControllerMode;
 	double SpeedLeft;
 	double SpeedRight;
 	double SpeedLift;
+	double SpeedArmLeft;
+	double SpeedArmRight;
+	double SpeedGrabWheel;
 };
 
 class AutonomousControl
@@ -46,7 +50,7 @@ public:
 private:
 	void Init();
 	MaxTaskSchedule * taskschedule_;
-	RobotControl * controls;
+	RobotControl * Controls;
 	double AxisPrimaryX;
 	double AxisPrimaryY;
 	double AxisSecondaryX;

@@ -3,7 +3,7 @@
 #include "ControlTask.h"
 #include "ctre/Phoenix.h"
 
-class DrivingTask : public MaxTask
+class LiftingTask : public MaxTask
 {
 public:
 	void Always();
@@ -14,10 +14,10 @@ public:
 private:
 	void Init();
 	RobotControl * ControlInput;
-	TalonSRX * LeftMotor1;
-	TalonSRX * LeftMotor2;
-	TalonSRX * LeftMotor3;
-	TalonSRX * RightMotor1;
-	TalonSRX * RightMotor2;
-	TalonSRX * RightMotor3;
+	TalonSRX * GrabArmL;
+	TalonSRX * GrabArmR;
+	TalonSRX * GrabWheelL;
+	TalonSRX * GrabWheelR;
+	TalonSRX * LiftMotorL;
+	TalonSRX * LiftMotorR;
 };
