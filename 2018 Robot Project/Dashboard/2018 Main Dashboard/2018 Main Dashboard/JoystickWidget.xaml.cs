@@ -20,84 +20,44 @@ namespace _2018_Main_Dashboard
     /// </summary>
     public partial class JoystickWidget : UserControl
     {
-
+        List<Rectangle> ButtonList;
         public JoystickWidget()
         {
             InitializeComponent();
+            ButtonList = new List<Rectangle>
+            {
+                Button1, Button2, Button3, Button4, Button5, Button6, Button7, Button8, Button9, Button10, Button11, Button12
+            };
         }
 
-        public double XAxis { get; private set; }
-        public double YAxis { get; private set; }
-        public double ZAxis { get; private set; }
-
-        public void UpdateButtonData(int ButtonNum, bool ButtonPressed)
+        public void UpdateButtonData(ControllerData DataForButtons)
         {
-            Brush NewColor;
-            if (ButtonPressed)
+            for (int i = 0; i < 12; i++)
             {
-                NewColor = Brushes.Green;
+                if (DataForButtons.ButtonList[i])
+                {
+                    ButtonList[i].Fill = Brushes.Green;
+                }
+                else
+                {
+                    ButtonList[i].Fill = Brushes.Black;
+                }
             }
-            else
-            {
-                NewColor = Brushes.Black;
-            }
-            switch (ButtonNum)
-            {
-                case (1):
-                    Button1.Fill = NewColor;
-                    break;
-                case (2):
-                    Button2.Fill = NewColor;
-                    break;
-                case (3):
-                    Button3.Fill = NewColor;
-                    break;
-                case (4):
-                    Button4.Fill = NewColor;
-                    break;
-                case (5):
-                    Button5.Fill = NewColor;
-                    break;
-                case (6):
-                    Button6.Fill = NewColor;
-                    break;
-                case (7):
-                    Button7.Fill = NewColor;
-                    break;
-                case (8):
-                    Button8.Fill = NewColor;
-                    break;
-                case (9):
-                    Button9.Fill = NewColor;
-                    break;
-                case (10):
-                    Button10.Fill = NewColor;
-                    break;
-                case (11):
-                    Button11.Fill = NewColor;
-                    break;
-                case (12):
-                    Button12.Fill = NewColor;
-                    break;
-                default:
-                    break;
-            }
-
         }
 
 
-        public void UpdateControllerData(double XAxis, double YAxis, double ZAxis)
+        public void UpdateControllerData(ControllerData DataForController)
         {
-            JoystickAxisGrid.MakeThingMove(XAxis, YAxis);
-            JoystickZAxisBar.ChangeZAxisWidth(ZAxis);
-            Z.Text = ZAxis.ToString();
-            X.Text = XAxis.ToString();
-            Y.Text = YAxis.ToString();
+            JoystickAxisGrid.MakeThingMove(DataForController.AxisList[0], DataForController.AxisList[1]);
+            JoystickZAxisBar.ChangeZAxisWidth(DataForController.AxisList[2]);
+            Z.Text = DataForController.AxisList[2].ToString();
+            X.Text = DataForController.AxisList[0].ToString();
+            Y.Text = DataForController.AxisList[1].ToString();
         }
        public void UpdateJoystickWidget(ControllerData Controller)
         {
-            UpdateControllerData(Controller.XAxis, Controller.YAxis, Controller.ZAxis);
-            //UpdateButtonData();
+            UpdateControllerData(Controller);
+            UpdateButtonData(Controller);
         }
     }
 }
