@@ -54,10 +54,58 @@ namespace _2018_Main_Dashboard
             X.Text = DataForController.AxisList[0].ToString();
             Y.Text = DataForController.AxisList[1].ToString();
         }
-       public void UpdateJoystickWidget(ControllerData Controller)
+        public void UpdateJoystickWidget(ControllerData Controller)
         {
             UpdateControllerData(Controller);
             UpdateButtonData(Controller);
+        }
+
+        private void TankCheckboxChecked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ArcadeCheckbox.IsChecked = false;
+            }
+            catch (NullReferenceException)
+            {
+
+            }
+        }
+
+        private void ArcadeCheckboxChecked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                TankCheckbox.IsChecked = false;
+            }
+            catch (NullReferenceException)
+            {
+
+            }
+        }
+
+        private void TankCheckboxUnchecked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ArcadeCheckbox.IsChecked = true;
+            }
+            catch (NullReferenceException)
+            {
+
+            }
+        }
+
+        private void ArcadeCheckboxUnchecked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                TankCheckbox.IsChecked = true;
+            }
+            catch (NullReferenceException)
+            {
+
+            }
         }
     }
 }
