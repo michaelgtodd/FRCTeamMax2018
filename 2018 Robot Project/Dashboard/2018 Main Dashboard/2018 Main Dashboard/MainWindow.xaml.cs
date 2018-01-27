@@ -26,18 +26,19 @@ namespace _2018_Main_Dashboard
 
     public class ControllerData
     {
-        public double XAxis { get; set; }
-        public double YAxis { get; set; }
-        public double ZAxis { get; set; }
-    }
-
-    public enum JoystickAxis
-    {
-        XAxis,
-        YAxis,
-        ZAxis,
-        Throttle,
-        Undefined
+        public List<double>AxisList { get; set; }
+        public List<bool>ButtonList { get; set; }
+        public ControllerData()
+        {
+            AxisList = new List<double>
+            {
+                0.0, 0.0, 0.0, 0.0, 0.0, 0.0
+            };
+            ButtonList = new List<bool>
+            {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };    
+        }
     }
 
     /// <summary>
@@ -45,11 +46,11 @@ namespace _2018_Main_Dashboard
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static double XAxis;
-        public static double YAxis;
-        public static double ZAxis;
         DashboardData CurrentDashboardData = new DashboardData();
-        ControllerData CurrentControllerData = new ControllerData();
+        ControllerData ControllerData0 = new ControllerData();
+        ControllerData ControllerData1 = new ControllerData();
+        ControllerData ControllerData2 = new ControllerData();
+        ControllerData ControllerData3 = new ControllerData();
 
         public void OscReceiveRunner()
         {
@@ -85,123 +86,44 @@ namespace _2018_Main_Dashboard
 
         public void HandleOscPacket(OscMessage message)
         {
-            if (message.Address.Equals("/info"))
-            {
-                Console.WriteLine("Received an info packet!");
-            }
-            if (message.Address.Equals("/Joystick/1/XAxis"))
-            {
-                CurrentControllerData.XAxis = (double) message.Arguments[0];
-            }
-            if (message.Address.Equals("/Joystick/1/YAxis"))
-            {
-                CurrentControllerData.YAxis = (double)message.Arguments[0];
-            }
-            if (message.Address.Equals("/Joystick/1/ZAxis"))
-            {
-                CurrentControllerData.ZAxis = (double)message.Arguments[0];
-            }
             if (message.Address.Equals("/Error/Test"))
             {
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
                 new Action(() => AlertWidget.UpdateError((string)message.Arguments[0])));
             }
-            if (message.Address.Equals("/Joystick/1/B1"))
+            if (message.Address.Contains("Joystick"))
             {
-                bool ButtonPressed;
-                    ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(1, ButtonPressed)));
+                string[] JoystickStringArray = message.Address.Split('/');
+                if(JoystickStringArray[2].Equals("0"))
+                {
+                    SetControllerData(ControllerData0, JoystickStringArray, message);
+                }
+                if (JoystickStringArray[2].Equals("1"))
+                {
+                    SetControllerData(ControllerData1, JoystickStringArray, message);
+                }
+                if (JoystickStringArray[2].Equals("2"))
+                {
+                    SetControllerData(ControllerData2, JoystickStringArray, message);
+                }
+                if (JoystickStringArray[2].Equals("3"))
+                {
+                    SetControllerData(ControllerData3, JoystickStringArray, message);
+                }
             }
-            if (message.Address.Equals("/Joystick/1/B2"))
+        }
+        public void SetControllerData(ControllerData CurrentControllerData, string[] StringArray, OscMessage Message)
+        {
+            if (StringArray[3] == "Axis")
             {
-                bool ButtonPressed;
-                ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(2, ButtonPressed)));
+                int AxisNumber = int.Parse(StringArray[4]);
+                CurrentControllerData.AxisList[AxisNumber] = (double)Message.Arguments[0];
             }
-            if (message.Address.Equals("/Joystick/1/B3"))
+            if (StringArray[3] == "Button")
             {
-                bool ButtonPressed;
-                ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(3, ButtonPressed)));
-            }
-            if (message.Address.Equals("/Joystick/1/B4"))
-            {
-                bool ButtonPressed;
-                ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(4, ButtonPressed)));
-            }
-            if (message.Address.Equals("/Joystick/1/B5"))
-            {
-                bool ButtonPressed;
-                ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(5, ButtonPressed)));
-            }
-            if (message.Address.Equals("/Joystick/1/B6"))
-            {
-                bool ButtonPressed;
-                ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(6, ButtonPressed)));
-            }
-            if (message.Address.Equals("/Joystick/1/B7"))
-            {
-                bool ButtonPressed;
-                ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(7, ButtonPressed)));
-            }
-            if (message.Address.Equals("/Joystick/1/B8"))
-            {
-                bool ButtonPressed;
-                ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(8, ButtonPressed)));
-            }
-            if (message.Address.Equals("/Joystick/1/B9"))
-            {
-                bool ButtonPressed;
-                ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(9, ButtonPressed)));
-            }
-            if (message.Address.Equals("/Joystick/1/B10"))
-            {
-                bool ButtonPressed;
-                ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(10, ButtonPressed)));
-            }
-            if (message.Address.Equals("/Joystick/1/B11"))
-            {
-                bool ButtonPressed;
-                ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(11, ButtonPressed)));
-            }
-            if (message.Address.Equals("/Joystick/1/B12"))
-            {
-                bool ButtonPressed;
-                ButtonPressed = (int)message.Arguments[0] == 1 ? true : false;
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateButtonData(12, ButtonPressed)));
+                int ButtonNumber = int.Parse(StringArray[4]);
+                CurrentControllerData.ButtonList[ButtonNumber] = (int)Message.Arguments[0] == 1 ? true : false;
             }
         }
 
@@ -222,7 +144,7 @@ namespace _2018_Main_Dashboard
             {
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => ControlWidget.JoystickWidget.UpdateJoystickWidget(CurrentControllerData)));
+                new Action(() => ControlWidget.JoystickWidget.UpdateJoystickWidget(ControllerData0)));
                 Thread.Sleep(1);
             }
         }
