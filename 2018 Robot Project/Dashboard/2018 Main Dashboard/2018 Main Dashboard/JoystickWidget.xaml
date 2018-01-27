@@ -7,60 +7,53 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="300">
     <Grid Background="Black">
-        <Rectangle Name="Button1" Fill="Black" Width="10" Height="10" Margin="205,197,85,77" Grid.Row="2" Stroke="Green">
-        </Rectangle>
-        <Rectangle Name="Button2" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="228,205,62,85"/>
-        <Rectangle Name="Button3" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="250,205,40,85"/>
-        <Rectangle Name="Button4" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="273,197,17,77">
-        </Rectangle>
-        <Rectangle Name="Button5" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="205,226,85,64"/>
-        <Rectangle Name="Button6" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="228,226,62,64"/>
-        <Rectangle Name="Button7" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="250,226,40,64"/>
-        <Rectangle Name="Button8" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="273,226,17,64"/>
-        <Rectangle Name="Button9" Fill="Black" Width="10" Height="10" Grid.Row="2" Stroke="Green" Margin="205,240,85,34">
-        </Rectangle>
-        <Rectangle Name="Button10" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="228,248,62,42"/>
-        <Rectangle Name="Button11" Fill="Black" Width="10" Height="10" Stroke="Green" RenderTransformOrigin="11.167,6.5" Margin="250,248,40,42"/>
-        <Rectangle Name="Button12" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="273,248,17,42"/>
-        <local:AxisGrid x:Name="JoystickAxisGrid" Margin="105,0,140,214" Height="56" VerticalAlignment="Bottom"/>
-        <local:ZAxisBar x:Name="JoystickZAxisBar" Margin="214,163,32,109"/>
-        <TextBlock Name="X" Background="Green" Margin="0,280,200,0" Text="XAxis" TextAlignment="Center"/>
-        <TextBlock Name="Y" Background="Yellow" Margin="100,280,100,0" Text="YAxis" TextAlignment="Center"/>
-        <TextBlock Name="Z" Background="Red" Margin="200,280,0,0" Text="ZAxis" TextAlignment="Center"/>
-        <Label Foreground="White" Margin="200,196,82,79" RenderTransformOrigin="0.5,0.5">1
+        <local:AxisGrid x:Name="JoystickAxisGrid" Margin="38,0,205,246" Height="56" VerticalAlignment="Bottom"/>
+        <local:ZAxisBar x:Name="JoystickZAxisBar" Margin="46,173,200,200"/>
+        <TextBlock Name="X" Background="Green" Margin="0,368,200,0" Text="XAxis" TextAlignment="Center"/>
+        <TextBlock Name="Y" Background="Yellow" Margin="100,368,100,0" Text="YAxis" TextAlignment="Center"/>
+        <TextBlock Name="Z" Background="Red" Margin="200,368,0,0" Text="ZAxis" TextAlignment="Center"/>
+        <Label Foreground="White" Margin="110,200,172,75" RenderTransformOrigin="0.5,0.5">1
         </Label>
-        <Label Foreground="White" Margin="223,196,59,68">2</Label>
-        <Label Foreground="White" Margin="246,197,28,71" RenderTransformOrigin="0.5,0.5">3
+        <Label Foreground="White" Margin="122,207,160,57">2</Label>
+        <Label Foreground="White" Margin="122,193,152,75" RenderTransformOrigin="0.5,0.5">3
         </Label>
-        <Label  Foreground="White" Margin="270,196,10,78">4</Label>
-        <Label  Foreground="White" Margin="200,217,62,57">5</Label>
-        <Label  Foreground="White" Margin="223,217,49,57">6</Label>
-        <Label  Foreground="White" Margin="246,217,16,58">7</Label>
-        <Label  Foreground="White" Margin="270,217,10,52">8</Label>
-        <Label  Foreground="White" Margin="200,239,77,37">9</Label>
-        <Label  Foreground="White" Margin="221,239,52,35">10</Label>
-        <Label  Foreground="White" Margin="244,239,29,35">11</Label>
-        <Label  Foreground="White" Margin="266,239,11,35">12</Label>
-        <CheckBox Name="TankCheckbox" Checked="TankCheckboxChecked" Unchecked="TankCheckboxUnchecked" IsChecked="True" Margin="65,30,219,256"></CheckBox>
-        <CheckBox Name="ArcadeCheckbox" Checked="ArcadeCheckboxChecked" Unchecked="ArcadeCheckboxUnchecked" Margin="15,30,255,255"></CheckBox>
-        <Label Foreground="White" Margin="54,0,200,268">Tank</Label>
-        <Label Foreground="White" Margin="0,0,255,275">Arcade</Label>
-        <TextBlock Foreground="White" TextAlignment="Center" Margin="75,0,103,275">Joystick X and Y</TextBlock>
-        <Label Foreground="White" Margin="197,133,11,137">Z Axis(Joystick)</Label>
-        <Grid Background="Gray" Margin="216,30,29,214" Height="50" Width="50">
+        <Label  Foreground="White" Margin="140,199,140,75">4</Label>
+        <Label  Foreground="White" Margin="110,199,152,75">5</Label>
+        <Label  Foreground="White" Margin="110,207,162,67">6</Label>
+        <Label  Foreground="White" Margin="138,207,124,68">7</Label>
+        <Label  Foreground="White" Margin="133,199,147,70">8</Label>
+        <Label  Foreground="White" Margin="100,196,178,80">9</Label>
+        <Label  Foreground="White" Margin="122,204,151,70">10</Label>
+        <StackPanel Margin="244,173,30,101">
+            <Border Background="Teal">
+        <Label VerticalAlignment="Center" Foreground="White">11</Label>
+            </Border>
+        </StackPanel>
+        <Border Background="Green" Margin="262,173,11,200" >
+            <Border Name="Button12" Margin="2 ,2, 2, 2" Background="Black">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">12</TextBlock>
+            </Border>
+        </Border>
+        <CheckBox Name="TankCheckbox" Checked="TankCheckboxChecked" Unchecked="TankCheckboxUnchecked" IsChecked="True" Margin="221,37,65,349"></CheckBox>
+        <CheckBox Name="ArcadeCheckbox" Checked="ArcadeCheckboxChecked" Unchecked="ArcadeCheckboxUnchecked" Margin="221,56,66,329"></CheckBox>
+        <Label Foreground="White" Margin="235,29,19,341">Tank</Label>
+        <Label Foreground="White" Margin="234,49,16,321">Arcade</Label>
+        <TextBlock Foreground="White" TextAlignment="Center" Margin="10,72,178,298">Joystick X and Y</TextBlock>
+        <Label Foreground="White" Margin="30,154,178,208">Z Axis(Joystick)</Label>
+        <Grid Name="XboxControllerGrid1" Background="Gray" Margin="38,239,212,111" Height="50" Width="50">
             <Ellipse Name="XboxElipse" Height="2" Width="2" Fill="Black" Margin="24, 24">
 
             </Ellipse>
         </Grid>
-        <ComboBox FontSize="25" SelectedIndex="0" Name="ControllerCombobox" Width="300" Height="50" Grid.Row="1">
+        <ComboBox FontSize="20" SelectedIndex="0" Name="ControllerCombobox" Margin="15,37,100,333">
             <ComboBoxItem Name="Joystick">
                 Joystick
             </ComboBoxItem>
-            <ComboBoxItem Name="Xbox_Controller">
-                Xbox_Controller
+            <ComboBoxItem Name="XboxController">
+                Xbox Controller
             </ComboBoxItem>
         </ComboBox>
-        <Label Foreground="white" FontSize="22" FontWeight="Bold" Height="50" Grid.Row="0" Margin="33,0,35,0">Controller Selection</Label>
+        <TextBlock Foreground="white" FontSize="22" FontWeight="Bold" Height="50" Grid.Row="0" Margin="0,0,0,350" TextAlignment="Center">Driver Controller Selection</TextBlock>
 
     </Grid>
 </UserControl>
