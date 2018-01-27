@@ -107,7 +107,7 @@ namespace MaxLog
 		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.12", BROADCASTPORT)));
 		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.13", BROADCASTPORT)));
 		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.14", BROADCASTPORT)));
-		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.15", BROADCASTPORT)));
+		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.15", BROADCASTPORT2)));
 
 		std::thread * oscReceiveThread =  new std::thread(&RunListener);
 
