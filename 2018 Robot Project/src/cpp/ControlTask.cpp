@@ -41,8 +41,10 @@ void ControlTask::Always()
 	else if (Controls->ControllerType == JoystickType)
 	{
 		Joystick * MainJoystick = new Joystick(0);
-		Controls->SpeedLift = MainJoystick->GetRawButton(4) - MainJoystick->GetRawButton(2);
+		Joystick * Switches = new Joystick(2);
+		//Controls->SpeedLift = MainJoystick->GetRawButton(4) - MainJoystick->GetRawButton(2);
 		delete (MainJoystick);
+		delete (Switches);
 	}
 
 	// Drive Motors

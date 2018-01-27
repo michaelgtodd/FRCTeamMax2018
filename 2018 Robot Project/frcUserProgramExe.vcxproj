@@ -38,6 +38,7 @@
     <ClCompile Include="src\cpp\ip\IpEndpointName.cpp" />
     <ClCompile Include="src\cpp\ip\NetworkingUtils.cpp" />
     <ClCompile Include="src\cpp\ip\UdpSocket.cpp" />
+    <ClCompile Include="src\cpp\LiftingTask.cpp" />
     <ClCompile Include="src\cpp\maxutils\MaxAutonomous.cpp" />
     <ClCompile Include="src\cpp\maxutils\MaxDataStream.cpp" />
     <ClCompile Include="src\cpp\maxutils\MaxTask.cpp" />
@@ -58,6 +59,7 @@
     <ClInclude Include="src\include\ip\PacketListener.h" />
     <ClInclude Include="src\include\ip\TimerListener.h" />
     <ClInclude Include="src\include\ip\UdpSocket.h" />
+    <ClInclude Include="src\include\LiftingTask.h" />
     <ClInclude Include="src\include\maxutils\MaxAutonomous.h" />
     <ClInclude Include="src\include\maxutils\MaxControls.h" />
     <ClInclude Include="src\include\maxutils\MaxDataStream.h" />
