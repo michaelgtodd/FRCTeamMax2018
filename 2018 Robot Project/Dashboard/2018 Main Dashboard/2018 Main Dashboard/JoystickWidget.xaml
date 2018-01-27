@@ -7,12 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Background="Black">
-
-        <Grid Background="Wheat" Width="50" Height="10">
-            <Rectangle Name="ZAxisIndicator" Width="50" Height="10" Fill="Green" HorizontalAlignment="Left" VerticalAlignment="Top">
-
-            </Rectangle>
-        </Grid>
         <Rectangle Name="Button1" Fill="Black" Width="10" Height="10" Margin="205,197,85,77" Grid.Row="2" Stroke="Green">
         </Rectangle>
         <Rectangle Name="Button2" Fill="Black" Width="10" Height="10" Stroke="Green" Margin="228,205,62,85"/>
@@ -47,6 +41,10 @@
         <Label  Foreground="White" Margin="221,239,52,35">10</Label>
         <Label  Foreground="White" Margin="244,239,29,35">11</Label>
         <Label  Foreground="White" Margin="266,239,11,35">12</Label>
+        <CheckBox Name="TankCheckbox" Checked="TankCheckboxChecked" Unchecked="TankCheckboxUnchecked" IsChecked="True" Margin="10,205,-10,-205"></CheckBox>
+        <CheckBox Name="ArcadeCheckbox" Checked="ArcadeCheckboxChecked" Unchecked="ArcadeCheckboxUnchecked" Margin="82,205,-82,-205"></CheckBox>
+        <Label Foreground="White" Margin="0,217,0,-217">Tank</Label>
+        <Label Foreground="White" Margin="63,215,-63,-215">Arcade</Label>
     </Grid>
 
 </UserControl>
