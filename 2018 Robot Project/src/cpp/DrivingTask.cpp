@@ -65,4 +65,10 @@ void DrivingTask::Init()
 	RightMotor1 = new TalonSRX(4);
 	RightMotor2 = new TalonSRX(5);
 	RightMotor3 = new TalonSRX(6);
+	GrabArmL = new TalonSRX(7);
+	GrabArmR = new TalonSRX(8);
+	GrabWheelL = new TalonSRX(9);
+	GrabWheelR = new TalonSRX(10);
+	LiftMotorL = new TalonSRX(11);
+	LiftMotorR = new TalonSRX(12);
 }
