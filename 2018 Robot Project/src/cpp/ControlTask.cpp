@@ -41,7 +41,24 @@ void ControlTask::Always()
 	{
 		Joystick * SwitchesLeft = new Joystick(2);
 		Joystick * SwitchesRight = new Joystick(3);
-		if (SwitchesLeft->GetRawAxis(0))
+		if (SwitchesLeft->GetRawAxis(1) >= 0.25)
+		{
+			Controls->SpeedLift = 1.25 * (SwitchesLeft->GetRawAxis(1) - 0.25);
+		}
+		else if (SwitchesLeft->GetRawAxis(1) <= -0.25)
+		{
+			Controls->SpeedLift = 1.25 * (SwitchesLeft->GetRawAxis(1) + 0.25);
+		}
+		if (SwitchesRight->GetRawAxis(1) >= 0.25)
+		{
+			Controls->SpeedLift = Controls->SpeedLift - 1.25 * (SwitchesRight->GetRawAxis(1) - 0.25);
+		}
+		else if (SwitchesRight->GetRawAxis(1) <= -0.25)
+		{
+			Controls->SpeedLift = Controls->SpeedLift - 1.25 * (SwitchesRight->GetRawAxis(1) + 0.25);
+		}
+		Controls->SpeedLift = Controls->SpeedLift >= 0.99 ? 0.99 : Controls->SpeedLift;
+		Controls->SpeedLift = Controls->SpeedLift <= -0.99 ? -0.99 : Controls->SpeedLift;
 		Controls->SpeedGrabWheelLeft = SwitchesLeft->GetRawButton(0) - SwitchesLeft->GetRawButton(1);
 		Controls->SpeedGrabWheelRight = SwitchesRight->GetRawButton(0) - SwitchesRight->GetRawButton(1);
 		Controls->SpeedArmLeft = SwitchesLeft->GetRawAxis(2);
