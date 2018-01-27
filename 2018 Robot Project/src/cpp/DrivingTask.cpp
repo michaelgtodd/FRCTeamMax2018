@@ -16,12 +16,6 @@ void DrivingTask::Run()
 	RightMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
 	RightMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
 	RightMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
-	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
-	LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
-	GrabArmL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedArmLeft);
-	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedArmRight);
-	GrabWheelL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedGrabWheel);
-	GrabWheelR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, -ControlInput->SpeedGrabWheel);
 }
 
 void DrivingTask::Disable()
@@ -32,12 +26,6 @@ void DrivingTask::Disable()
 	RightMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	RightMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	RightMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
-	GrabArmL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
-	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
-	GrabWheelL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
-	GrabWheelR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
-	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
-	LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 }
 
 void DrivingTask::Autonomous()
@@ -60,10 +48,4 @@ void DrivingTask::Init()
 	RightMotor1 = new TalonSRX(13);
 	RightMotor2 = new TalonSRX(14);
 	RightMotor3 = new TalonSRX(15);
-	GrabArmL = new TalonSRX(10);
-	GrabArmR = new TalonSRX(5);
-	GrabWheelL = new TalonSRX(11);
-	GrabWheelR = new TalonSRX(4);
-	LiftMotorL = new TalonSRX(12);
-	LiftMotorR = new TalonSRX(3);
 }
