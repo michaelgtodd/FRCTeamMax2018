@@ -12,7 +12,8 @@ RobotControl::RobotControl()
 	SpeedLift = 0;
 	SpeedArmLeft = 0;
 	SpeedArmRight = 0;
-	SpeedGrabWheel = 0;
+	SpeedGrabWheelLeft = 0;
+	SpeedGrabWheelRight = 0;
 }
 
 ControlTask::ControlTask(MaxTaskSchedule * taskschedule)
@@ -34,19 +35,23 @@ void ControlTask::Always()
 	//Lift and grab
 	if (Controls->ControllerType == XboxType)
 	{
-		Joystick * Xbox = new Joystick(0);
-		Controls->SpeedLift = Xbox->GetRawAxis(3) - Xbox->GetRawAxis(2);
-		delete (Xbox);
+
 	}
 	else if (Controls->ControllerType == JoystickType)
 	{
-		Joystick * MainJoystick = new Joystick(0);
-		Controls->SpeedLift = MainJoystick->GetRawButton(4) - MainJoystick->GetRawButton(2);
-		delete (MainJoystick);
+		Joystick * SwitchesLeft = new Joystick(2);
+		Joystick * SwitchesRight = new Joystick(3);
+		if (SwitchesLeft->GetRawAxis(0))
+		Controls->SpeedGrabWheelLeft = SwitchesLeft->GetRawButton(0) - SwitchesLeft->GetRawButton(1);
+		Controls->SpeedGrabWheelRight = SwitchesRight->GetRawButton(0) - SwitchesRight->GetRawButton(1);
+		Controls->SpeedArmLeft = SwitchesLeft->GetRawAxis(2);
+		Controls->SpeedArmRight = SwitchesRight->GetRawAxis(2);
+		delete (SwitchesLeft);
+		delete (SwitchesRight);
 	}
 
 	// Drive Motors
-	if (Controls->ControllerType == ControlMode::Tank && Controls->ControllerType == JoystickType)
+	if (Controls->ControllerType == ControlLayout::Tank && Controls->ControllerType == JoystickType)
 	{
 			Joystick * Left = new Joystick(0);
 			Joystick * Right = new Joystick(1);
@@ -55,14 +60,14 @@ void ControlTask::Always()
 			delete (Left);
 			delete (Right);
 	}
-	else if (Controls->ControllerType == ControlMode::Tank && Controls->ControllerType == XboxType)
+	else if (Controls->ControllerType == ControlLayout::Tank && Controls->ControllerType == XboxType)
 	{
 		Joystick * Xbox = new Joystick(0);
 		Controls->SpeedLeft = Xbox->GetRawAxis(1);
 		Controls->SpeedRight = Xbox->GetRawAxis(5);
 		delete (Xbox);
 	}
-	else if (Controls->ControllerType == ControlMode::Arcade && Controls->ControllerType == JoystickType)
+	else if (Controls->ControllerType == ControlLayout::Arcade && Controls->ControllerType == JoystickType)
 	{
 		Joystick * MainJoystick = new Joystick(0);
 		Controls->SpeedLeft = MainJoystick->GetRawAxis(1) + MainJoystick->GetRawAxis(2);
@@ -73,7 +78,7 @@ void ControlTask::Always()
 		Controls->SpeedRight = Controls->SpeedRight <= -0.99 ? -0.99 : Controls->SpeedRight;
 		delete (MainJoystick);
 	}
-	else if (Controls->ControllerType == ControlMode::Arcade && Controls->ControllerType == XboxType)
+	else if (Controls->ControllerType == ControlLayout::Arcade && Controls->ControllerType == XboxType)
 	{
 		Joystick * Xbox = new Joystick(0);
 		Controls->SpeedLeft = Xbox->GetRawAxis(1) + Xbox->GetRawAxis(2);
@@ -132,15 +137,15 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		args >> CharDriveModeMessage >> osc::EndMessage;
 		if (strcmp(CharDriveModeMessage, "Arcade"))
 		{
-			Controls->ControllerMode = ControlMode::Arcade;
+			Controls->ControllerMode = ControlLayout::Arcade;
 		}
 		else if (strcmp(CharDriveModeMessage, "Tank"))
 		{
-			Controls->ControllerMode = ControlMode::Tank;
+			Controls->ControllerMode = ControlLayout::Tank;
 		}
 		else
 		{
-			Controls->ControllerMode = ControlMode::Arcade;
+			Controls->ControllerMode = ControlLayout::Arcade;
 		}
 		delete (CharDriveModeMessage);
 	}
