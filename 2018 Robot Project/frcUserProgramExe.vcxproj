@@ -46,6 +46,7 @@
     <ClCompile Include="src\cpp\osc\OscPrintReceivedElements.cpp" />
     <ClCompile Include="src\cpp\osc\OscReceivedElements.cpp" />
     <ClCompile Include="src\cpp\osc\OscTypes.cpp" />
+    <ClCompile Include="src\cpp\PowerReportingTask.cpp" />
     <ClCompile Include="src\cpp\Robot.cpp" />
     <ClCompile Include="src\cpp\SampleAutonomous.cpp" />
     <ClCompile Include="src\cpp\SampleTask.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="src\include\osc\OscPrintReceivedElements.h" />
     <ClInclude Include="src\include\osc\OscReceivedElements.h" />
     <ClInclude Include="src\include\osc\OscTypes.h" />
+    <ClInclude Include="src\include\PowerReportingTask.h" />
     <ClInclude Include="src\include\Robot.h" />
     <ClInclude Include="src\include\SampleAutonomous.h" />
     <ClInclude Include="src\include\SampleTask.h" />

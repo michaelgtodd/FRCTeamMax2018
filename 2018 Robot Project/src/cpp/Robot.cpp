@@ -3,6 +3,7 @@
 #include "maxutils/MaxDataStream.h"
 #include "maxutils/MaxAutonomous.h"
 #include "SampleAutonomous.h"
+#include "PowerReportingTask.h"
 
 void Robot::RobotInit() 
 {
@@ -14,12 +15,10 @@ void Robot::RobotInit()
 	taskschedule.AddTask((MaxTask*)&ControlTaskInstance, "ControlTask", 100);
 	taskschedule.AddTask((MaxTask*)&MaxAutonomousManagerInstance, "AutoManager", 100);
 	taskschedule.AddTask(new DrivingTask, "DrivingTask", 100);
-	taskschedule.AddTask(new SampleTask, "Task1", 10);
-	taskschedule.AddTask(new SampleTask, "Task2", 1);
-	taskschedule.AddTask(new SampleTask, "Task3", 100);
-	taskschedule.AddTask(new SampleTask, "Task4", 100);
+	//taskschedule.AddTask(new SampleTask, "Task1", 10);
 	taskschedule.AddTask(new DashboardTask, "Dash_Task", 20);
 	taskschedule.AddTask(new MaxLog::MaxCautionManager(), "Caution_Manager", 1);
+	taskschedule.AddTask(new PowerReportingTask(), "PowerReporting", 20);
 
 	taskschedule.LaunchTasks();
 }
