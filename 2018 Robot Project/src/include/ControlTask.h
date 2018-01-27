@@ -12,7 +12,7 @@ enum ControlType
 	XboxType = 1
 };
 
-enum ControlMode
+enum ControlLayout
 {
 	Tank = 0,
 	Arcade = 1
@@ -23,13 +23,14 @@ class RobotControl : public MaxControl
 public:
 	RobotControl();
 	ControlType ControllerType;
-	ControlMode ControllerMode;
+	ControlLayout ControllerMode;
 	double SpeedLeft;
 	double SpeedRight;
 	double SpeedLift;
 	double SpeedArmLeft;
 	double SpeedArmRight;
-	double SpeedGrabWheel;
+	double SpeedGrabWheelLeft;
+	double SpeedGrabWheelRight;
 };
 
 class AutonomousControl
