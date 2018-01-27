@@ -10,15 +10,6 @@ void DrivingTask::Always()
 
 void DrivingTask::Run()
 {	
-	// Make sure power to Talons doesn't go above 100%
-	ControlInput->SpeedLeft = ControlInput->SpeedLeft >= 0.99 ? 0.99 : ControlInput->SpeedLeft;
-	ControlInput->SpeedLeft = ControlInput->SpeedLeft <= -0.99 ? -0.99 : ControlInput->SpeedLeft;
-	ControlInput->SpeedRight = ControlInput->SpeedRight >= 0.99 ? 0.99 : ControlInput->SpeedRight;
-	ControlInput->SpeedRight = ControlInput->SpeedRight <= -0.99 ? -0.99 : ControlInput->SpeedRight;
-	ControlInput->SpeedLift = ControlInput->SpeedLift >= 0.99 ? 0.99 : ControlInput->SpeedLift;
-	ControlInput->SpeedLift = ControlInput->SpeedLeft <= -0.99 ? -0.99 : ControlInput->SpeedLift;
-	
-	// Set Talon power
 	LeftMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
 	LeftMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
 	LeftMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
@@ -27,6 +18,10 @@ void DrivingTask::Run()
 	RightMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
 	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
 	LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
+	GrabArmL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedArmLeft);
+	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedArmRight);
+	GrabWheelL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedGrabWheel);
+	GrabWheelR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, -ControlInput->SpeedGrabWheel);
 }
 
 void DrivingTask::Disable()
@@ -59,16 +54,16 @@ void DrivingTask::Init()
 {
 	ControlInput = new RobotControl();
 
-	LeftMotor1 = new TalonSRX(1);
-	LeftMotor2 = new TalonSRX(2);
-	LeftMotor3 = new TalonSRX(3);
-	RightMotor1 = new TalonSRX(4);
-	RightMotor2 = new TalonSRX(5);
-	RightMotor3 = new TalonSRX(6);
-	GrabArmL = new TalonSRX(7);
-	GrabArmR = new TalonSRX(8);
-	GrabWheelL = new TalonSRX(9);
-	GrabWheelR = new TalonSRX(10);
-	LiftMotorL = new TalonSRX(11);
-	LiftMotorR = new TalonSRX(12);
+	LeftMotor1 = new TalonSRX(0);
+	LeftMotor2 = new TalonSRX(1);
+	LeftMotor3 = new TalonSRX(2);
+	RightMotor1 = new TalonSRX(13);
+	RightMotor2 = new TalonSRX(14);
+	RightMotor3 = new TalonSRX(15);
+	GrabArmL = new TalonSRX(10);
+	GrabArmR = new TalonSRX(5);
+	GrabWheelL = new TalonSRX(11);
+	GrabWheelR = new TalonSRX(4);
+	LiftMotorL = new TalonSRX(12);
+	LiftMotorR = new TalonSRX(3);
 }
