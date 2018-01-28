@@ -15,6 +15,7 @@ void Robot::RobotInit()
 	taskschedule.AddTask((MaxTask*)&ControlTaskInstance, "ControlTask", 100);
 	taskschedule.AddTask((MaxTask*)&MaxAutonomousManagerInstance, "AutoManager", 100);
 	taskschedule.AddTask(new DrivingTask, "DrivingTask", 100);
+	taskschedule.AddTask(new LiftingTask, "LiftingTask", 100);
 	//taskschedule.AddTask(new SampleTask, "Task1", 10);
 	taskschedule.AddTask(new DashboardTask, "Dash_Task", 20);
 	taskschedule.AddTask(new MaxLog::MaxCautionManager(), "Caution_Manager", 1);
