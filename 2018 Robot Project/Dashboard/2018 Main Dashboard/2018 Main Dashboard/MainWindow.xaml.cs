@@ -162,7 +162,7 @@ namespace _2018_Main_Dashboard
             {
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => JoystickWidget.UpdateJoystickWidget(ControllerData0)));
+                new Action(() => JoystickWidget.UpdateJoystickWidget(ControllerData0, ControllerData1)));
                 Thread.Sleep(1);
             }
         }
