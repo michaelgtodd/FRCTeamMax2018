@@ -48,4 +48,19 @@ void LiftingTask::Init()
 	GrabWheelR = new TalonSRX(4);
 	LiftMotorL = new TalonSRX(12);
 	LiftMotorR = new TalonSRX(3);
+
+	CurrentLimit(GrabArmL, 1);
+	CurrentLimit(GrabArmR, 1);
+	CurrentLimit(GrabWheelL, 20);
+	CurrentLimit(GrabWheelR, 20);
+	CurrentLimit(LiftMotorL, 20);
+	CurrentLimit(LiftMotorR, 20);
+}
+
+void LiftingTask::CurrentLimit(TalonSRX * talon, int amps)
+{
+	talon->ConfigContinuousCurrentLimit(amps, 0);
+	talon->ConfigPeakCurrentLimit(0, 0);
+	talon->ConfigPeakCurrentDuration(0, 0);
+	talon->EnableCurrentLimit(true);
 }

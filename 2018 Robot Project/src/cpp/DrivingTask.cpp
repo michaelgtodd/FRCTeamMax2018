@@ -48,4 +48,19 @@ void DrivingTask::Init()
 	RightMotor1 = new TalonSRX(13);
 	RightMotor2 = new TalonSRX(14);
 	RightMotor3 = new TalonSRX(15);
+
+	ConfigureCurrentLimit(LeftMotor1);
+	ConfigureCurrentLimit(LeftMotor2);
+	ConfigureCurrentLimit(LeftMotor3);
+	ConfigureCurrentLimit(RightMotor1);
+	ConfigureCurrentLimit(RightMotor2);
+	ConfigureCurrentLimit(RightMotor3);
+}
+
+void DrivingTask::ConfigureCurrentLimit(TalonSRX * talon)
+{
+	talon->ConfigContinuousCurrentLimit(35, 0);
+	talon->ConfigPeakCurrentLimit(0, 0);
+	talon->ConfigPeakCurrentDuration(0, 0);
+	talon->EnableCurrentLimit(true);
 }
