@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:_2018_Main_Dashboard"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="50">
-    <Grid Name="AxisGridGrid" Background="Gray"  Height="50" Width="50">
+    <Grid Name="AxisGridGrid" Background="Gray"  Height="50" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">
         <Ellipse Name="Ellipse1" Height="2" Width="2" Fill="Black" Margin="24, 24"/>
     </Grid>
 </UserControl>

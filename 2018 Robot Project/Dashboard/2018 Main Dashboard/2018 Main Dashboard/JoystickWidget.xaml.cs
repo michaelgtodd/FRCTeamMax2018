@@ -20,11 +20,11 @@ namespace _2018_Main_Dashboard
     /// </summary>
     public partial class JoystickWidget : UserControl
     {
-        List<Rectangle> ButtonList;
+        List<Border> ButtonList;
         public JoystickWidget()
         {
             InitializeComponent();
-            ButtonList = new List<Rectangle>
+            ButtonList = new List<Border>
             {
                 Button1, Button2, Button3, Button4, Button5, Button6, Button7, Button8, Button9, Button10, Button11, Button12
             };
@@ -36,11 +36,11 @@ namespace _2018_Main_Dashboard
             {
                 if (DataForButtons.ButtonList[i])
                 {
-                    ButtonList[i].Fill = Brushes.Green;
+                    ButtonList[i].Background = Brushes.Green;
                 }
                 else
                 {
-                    ButtonList[i].Fill = Brushes.Black;
+                    ButtonList[i].Background = Brushes.Black;
                 }
             }
         }
