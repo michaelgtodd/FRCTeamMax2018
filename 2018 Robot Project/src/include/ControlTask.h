@@ -31,6 +31,7 @@ public:
 	double SpeedArmRight;
 	double SpeedGrabWheelLeft;
 	double SpeedGrabWheelRight;
+	int SolenoidPos;
 };
 
 class AutonomousControl

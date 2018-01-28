@@ -13,6 +13,7 @@ public:
 	void ControllerUpdate(MaxControl * controls);
 private:
 	void Init();
+	void CurrentLimit(TalonSRX * talon, int amps);
 	RobotControl * ControlInput;
 	TalonSRX * GrabArmL;
 	TalonSRX * GrabArmR;

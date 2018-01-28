@@ -16,6 +16,20 @@ void DrivingTask::Run()
 	RightMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
 	RightMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
 	RightMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
+	switch (ControlInput->SolenoidPos)
+	{
+	case -1:
+		DriveShift->Set(frc::DoubleSolenoid::Value::kReverse);
+		break;
+	case 0:
+		DriveShift->Set(frc::DoubleSolenoid::Value::kOff);
+		break;
+	case 1:
+		DriveShift->Set(frc::DoubleSolenoid::Value::kForward);
+		break;
+	default:
+		break;
+	}
 }
 
 void DrivingTask::Disable()
@@ -48,4 +62,20 @@ void DrivingTask::Init()
 	RightMotor1 = new TalonSRX(13);
 	RightMotor2 = new TalonSRX(14);
 	RightMotor3 = new TalonSRX(15);
+	DriveShift = new frc::DoubleSolenoid { 1, 2 };
+
+	ConfigureCurrentLimit(LeftMotor1);
+	ConfigureCurrentLimit(LeftMotor2);
+	ConfigureCurrentLimit(LeftMotor3);
+	ConfigureCurrentLimit(RightMotor1);
+	ConfigureCurrentLimit(RightMotor2);
+	ConfigureCurrentLimit(RightMotor3);
+}
+
+void DrivingTask::ConfigureCurrentLimit(TalonSRX * talon)
+{
+	talon->ConfigContinuousCurrentLimit(35, 0);
+	talon->ConfigPeakCurrentLimit(0, 0);
+	talon->ConfigPeakCurrentDuration(0, 0);
+	talon->EnableCurrentLimit(true);
 }

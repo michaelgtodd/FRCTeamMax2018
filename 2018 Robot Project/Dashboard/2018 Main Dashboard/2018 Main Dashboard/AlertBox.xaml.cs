@@ -28,6 +28,12 @@ namespace _2018_Main_Dashboard
             ErrorList = new List<string>();
         }
 
+        private void Tasks_Button_Click(object sender, RoutedEventArgs e)
+        {
+            TasksMonitor ew = new TasksMonitor();
+            ew.Show();
+        }
+
         private void Swap_Button_Click(object sender, RoutedEventArgs e)
         {
             ErrorsWindow ew = new ErrorsWindow();
