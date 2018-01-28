@@ -83,6 +83,9 @@
     <Compile Include="SharpOSC\UDPListener.cs" />
     <Compile Include="SharpOSC\UDPSender.cs" />
     <Compile Include="SharpOSC\Utils.cs" />
+    <Compile Include="TasksMonitor.xaml.cs">
+      <DependentUpon>TasksMonitor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XboxControllerWidget.xaml.cs">
       <DependentUpon>XboxControllerWidget.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TasksMonitor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="XboxControllerWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

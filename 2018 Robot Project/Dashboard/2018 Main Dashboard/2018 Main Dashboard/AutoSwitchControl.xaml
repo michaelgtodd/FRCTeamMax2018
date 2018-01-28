@@ -20,20 +20,20 @@
         </ComboBox>
         <ComboBox FontSize="15" SelectedIndex="0"  Name="AutoComboboxversion"  Width="75" Height="25" Margin="115,7,10,68" SelectionChanged="Goal_SelectionChanged">
             <ComboBoxItem Name="AutoScale">
-                Scale
+                Good
             </ComboBoxItem>
             <ComboBoxItem Name="AutoSwitch">
-                Switch
+                Bad
             </ComboBoxItem>
             <ComboBoxItem Name="AutoBoth">
-                Both
+                Kyle
             </ComboBoxItem>
         </ComboBox>
         <TextBlock Name="PositionText" Margin="-27,32,102,5" TextAlignment="Center">
             Position
         </TextBlock>
-        <TextBlock Name="GoalText" Margin="64,32,0,5" TextAlignment="Center">
-            Goal
+        <TextBlock Name="GoalText" Margin="85,32,-21,5" TextAlignment="Center">
+            Team Ability
         </TextBlock>
     </Grid>
 </UserControl>

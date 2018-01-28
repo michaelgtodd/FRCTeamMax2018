@@ -56,8 +56,8 @@
 
             <Button Name="Swap" Height="50" Width="50" Margin="75,338,175,13" ToolTip="Swap Between Caution/Error" Click="Swap_Button_Click"  >
                 <TextBlock> Swap </TextBlock></Button>
-            <Button Name="Refresh" Height="50" Width="50" Margin="175,338,75,13" ToolTip="Clear Caution/Error">
-                <TextBlock> Refresh </TextBlock>
+            <Button Name="Tasks" Height="50" Width="50" Margin="175,338,75,13" ToolTip="Tasks Info" Click="Tasks_Button_Click">
+                <TextBlock> Tasks </TextBlock>
             </Button>
            
 
