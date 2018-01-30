@@ -78,4 +78,5 @@ void DrivingTask::ConfigureCurrentLimit(TalonSRX * talon)
 	talon->ConfigPeakCurrentLimit(0, 0);
 	talon->ConfigPeakCurrentDuration(0, 0);
 	talon->EnableCurrentLimit(true);
+	talon->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
 }
