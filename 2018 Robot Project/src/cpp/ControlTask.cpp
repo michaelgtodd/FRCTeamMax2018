@@ -14,6 +14,7 @@ RobotControl::RobotControl()
 	SpeedArmRight = 0;
 	SpeedGrabWheelLeft = 0;
 	SpeedGrabWheelRight = 0;
+	SolenoidPos = 0;
 }
 
 ControlTask::ControlTask(MaxTaskSchedule * taskschedule)
@@ -79,6 +80,7 @@ void ControlTask::Always()
 			Joystick * Right = new Joystick(1);
 			Controls->SpeedLeft = Left->GetRawAxis(1);
 			Controls->SpeedRight = Right->GetRawAxis(1);
+			Controls->SolenoidPos = ((Left->GetRawButton(0) + Right->GetRawButton(0)) >= 1) ? 1 : -1;
 			delete (Left);
 			delete (Right);
 	}
@@ -87,11 +89,13 @@ void ControlTask::Always()
 		Joystick * Xbox = new Joystick(0);
 		Controls->SpeedLeft = Xbox->GetRawAxis(1);
 		Controls->SpeedRight = Xbox->GetRawAxis(5);
+		Controls->SolenoidPos = (Xbox->GetRawButton(4) == 1) ? 1 : -1;
 		delete (Xbox);
 	}
 	else if (Controls->ControllerType == ControlLayout::Arcade && Controls->ControllerType == JoystickType)
 	{
 		Joystick * MainJoystick = new Joystick(0);
+		Controls->SolenoidPos = (MainJoystick->GetRawButton(0) == 1) ? 1 : -1;
 		Controls->SpeedLeft = MainJoystick->GetRawAxis(1) + MainJoystick->GetRawAxis(2);
 		Controls->SpeedRight = MainJoystick->GetRawAxis(1) - MainJoystick->GetRawAxis(2);
 		Controls->SpeedLeft = Controls->SpeedLeft >= 0.99 ? 0.99 : Controls->SpeedLeft;
@@ -105,6 +109,7 @@ void ControlTask::Always()
 		Joystick * Xbox = new Joystick(0);
 		Controls->SpeedLeft = Xbox->GetRawAxis(1) + Xbox->GetRawAxis(2);
 		Controls->SpeedRight = Xbox->GetRawAxis(1) - Xbox->GetRawAxis(2);
+		Controls->SolenoidPos = (Xbox->GetRawButton(4) == 1) ? 1 : -1;
 		delete (Xbox);
 	}
 	taskschedule_->DispatchControl(Controls);

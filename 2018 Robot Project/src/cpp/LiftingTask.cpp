@@ -63,4 +63,5 @@ void LiftingTask::CurrentLimit(TalonSRX * talon, int amps)
 	talon->ConfigPeakCurrentLimit(0, 0);
 	talon->ConfigPeakCurrentDuration(0, 0);
 	talon->EnableCurrentLimit(true);
+	talon->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
 }

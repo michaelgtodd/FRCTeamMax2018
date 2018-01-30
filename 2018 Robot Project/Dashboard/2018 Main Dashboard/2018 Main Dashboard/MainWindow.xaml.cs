@@ -133,7 +133,7 @@ namespace _2018_Main_Dashboard
             if (message.Address.Contains("Joystick"))
             {
                 string[] JoystickStringArray = message.Address.Split('/');
-                if(JoystickStringArray[2].Equals("0"))
+                if (JoystickStringArray[2].Equals("0"))
                 {
                     SetControllerData(ControllerData0, JoystickStringArray, message);
                 }
@@ -222,7 +222,10 @@ namespace _2018_Main_Dashboard
             {
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => JoystickWidget.UpdateJoystickWidget(ControllerData0)));
+                new Action(() => JoystickWidget.UpdateJoystickWidget(ControllerData0, ControllerData1)));
+                Application.Current.Dispatcher.BeginInvoke(
+              DispatcherPriority.Background,
+              new Action(() => SwitchesWidget.UpdateJoystickWidget(ControllerData2, ControllerData3)));
                 Thread.Sleep(1);
             }
         }
@@ -230,6 +233,9 @@ namespace _2018_Main_Dashboard
         public MainWindow()
         {
             InitializeComponent();
+            Application.Current.Dispatcher.BeginInvoke(
+               DispatcherPriority.Background,
+               new Action(() => SwitchesWidget.UpdateSwitchesName("Switches Controller Selection")));
 
             System.Threading.Thread OscReceive =
                 new System.Threading.Thread

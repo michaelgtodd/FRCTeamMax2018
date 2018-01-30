@@ -21,4 +21,5 @@ private:
 	TalonSRX * RightMotor1;
 	TalonSRX * RightMotor2;
 	TalonSRX * RightMotor3;
+	DoubleSolenoid * DriveShift;
 };

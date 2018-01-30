@@ -9,9 +9,6 @@
     <Grid Background="Black">
         <local:AxisGrid x:Name="JoystickAxisGrid" Margin="40,100,210,250"/>
         <local:ZAxisBar x:Name="JoystickZAxisBar" Margin="40,170,210,220"/>
-        <TextBlock Name="X" Background="Green" Margin="0,368,200,0" Text="XAxis" TextAlignment="Center"/>
-        <TextBlock Name="Y" Background="Yellow" Margin="100,368,100,0" Text="YAxis" TextAlignment="Center"/>
-        <TextBlock Name="Z" Background="Red" Margin="200,368,0,0" Text="ZAxis" TextAlignment="Center"/>
         <Grid Margin="100, 100, 40,220">
             <Border Background="Green" Margin="0,0,135,55" Height="25">
                 <Border Name="Button1" Margin="2 ,2, 2, 2" Background="Black">
@@ -74,13 +71,15 @@
                 </Border>
             </Border>
         </Grid>
-        <CheckBox Name="TankCheckbox" Checked="TankCheckboxChecked" Unchecked="TankCheckboxUnchecked" IsChecked="True" Margin="221,37,65,349"></CheckBox>
-        <CheckBox Name="ArcadeCheckbox" Checked="ArcadeCheckboxChecked" Unchecked="ArcadeCheckboxUnchecked" Margin="221,56,66,329"></CheckBox>
+        <CheckBox Name="TankCheckbox" Checked="TankCheckboxChecked" Unchecked="TankCheckboxUnchecked" IsChecked="False" Margin="221,37,65,349"></CheckBox>
+        <CheckBox Name="ArcadeCheckbox" Checked="ArcadeCheckboxChecked" Unchecked="ArcadeCheckboxUnchecked" IsChecked="True" Margin="221,56,66,329"></CheckBox>
         <Label Foreground="White" Margin="235,29,19,341">Tank</Label>
         <Label Foreground="White" Margin="234,49,16,321">Arcade</Label>
         <TextBlock Foreground="White" TextAlignment="Center" Margin="10,84,178,286">X/Y Axis</TextBlock>
         <TextBlock TextAlignment="Center"  Foreground="White" Margin="33,153,204,232">Z Axis</TextBlock>
-        <ComboBox FontSize="20" SelectedIndex="0" Name="ControllerCombobox" Margin="15,37,100,333">
+        <TextBlock Name="SecondaryXY" Foreground="White" TextAlignment="Center" Margin="9,183,179,187" Visibility="Hidden">Secondary X/Y</TextBlock>
+        <TextBlock Name="SecondaryZ" Foreground="White" TextAlignment="Center" Margin="10,252,178,118" Visibility="Hidden">Secondary Z</TextBlock>
+        <ComboBox FontSize="20" SelectedIndex="0" Name="ControllerCombobox" Margin="15,37,100,333" SelectionChanged="ControllerComboboxSelectionChanged">
             <ComboBoxItem Name="Joystick">
                 Joystick
             </ComboBoxItem>
@@ -88,7 +87,75 @@
                 Xbox Controller
             </ComboBoxItem>
         </ComboBox>
-        <TextBlock Foreground="white" FontSize="22" FontWeight="Bold" Grid.Row="0" Margin="0,0,0,368" TextAlignment="Center">Driver Controller Selection</TextBlock>
-        <TextBlock Foreground="White" TextAlignment="Center" Margin="148,84,88,296">Buttons</TextBlock>
+        <TextBlock Name="DriverControllerSelection" Foreground="white" FontSize="20" FontWeight="Bold" Grid.Row="0" Margin="0,0,0,368" TextAlignment="Center">Driver Controller Selection</TextBlock>
+        <TextBlock Name="Buttons" Foreground="White" TextAlignment="Center" Margin="148,84,88,296">Buttons</TextBlock>
+        <TextBlock Name="SecondaryButtons" Foreground="White" TextAlignment="Center" Margin="118,183,58,197" Visibility="Hidden"> Secondary Buttons</TextBlock>
+
+
+        <local:AxisGrid x:Name="SecondaryGrid" Margin="40,200,210,150" Visibility="Hidden"></local:AxisGrid>
+        <local:ZAxisBar x:Name="SecondaryAxisBar" Margin="-66,208,106,61" Visibility="Hidden"></local:ZAxisBar>
+        <Grid Name="SecondaryButtonGrid" Margin="100, 200, 40,120" Visibility="Hidden">
+            <Border Background="Green" Margin="0,0,135,55" Height="25">
+                <Border Name="SecondaryButton1" Margin="2 ,2, 2, 2" Background="Black">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">1</TextBlock>
+                </Border>
+            </Border>
+            <Border Background="Green" Margin="27,0,108,55" Height="25" >
+                <Border x:Name="SecondaryButton2" Margin="2 ,2, 2, 2" Background="Black">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"><Run Text="2"/></TextBlock>
+                </Border>
+            </Border>
+            <Border Background="Green" Margin="54,0,81,55" Height="25" >
+                <Border Name="SecondaryButton3" Margin="2 ,2, 2, 2" Background="Black">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">3</TextBlock>
+                </Border>
+            </Border>
+            <Border Background="Green" Margin="81,0,54,55" Height="25" >
+                <Border Name="SecondaryButton4" Margin="2 ,2, 2, 2" Background="Black">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">4</TextBlock>
+                </Border>
+            </Border>
+            <Border Background="Green" Margin="108,0,27,55" >
+                <Border Name="SecondaryButton5" Margin="2 ,2, 2, 2" Background="Black">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">5</TextBlock>
+                </Border>
+            </Border>
+            <Border Background="Green" Margin="135,0,0,55" Height="25" >
+                <Border Name="SecondaryButton6" Margin="2 ,2, 2, 2" Background="Black">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">6</TextBlock>
+                </Border>
+            </Border>
+            <Border Background="Green" Margin="0, 27, 135, 28" >
+                <Border Name="SecondaryButton7" Margin="2 ,2, 2, 2" Background="Black">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">7</TextBlock>
+                </Border>
+            </Border>
+            <Border Background="Green" Margin="27,27,108,28" >
+                <Border Name="SecondaryButton8" Margin="2 ,2, 2, 2" Background="Black">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">8</TextBlock>
+                </Border>
+            </Border>
+            <Border Background="Green" Margin="54,27,81,28" >
+                <Border Name="SecondaryButton9" Margin="2 ,2, 2, 2" Background="Black">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">9</TextBlock>
+                </Border>
+            </Border>
+            <Border Background="Green" Margin="81,27,54,28" >
+                <Border Name="SecondaryButton10" Margin="2 ,2, 2, 2" Background="Black">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">10</TextBlock>
+                </Border>
+            </Border>
+            <Border Background="Green" Margin="108,27,27,28" >
+                <Border Name="SecondaryButton11" Margin="2 ,2, 2, 2" Background="Black">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">11</TextBlock>
+                </Border>
+            </Border>
+            <Border Background="Green" Margin="135,27,0,28" >
+                <Border Name="SecondaryButton12" Margin="2 ,2, 2, 2" Background="Black">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">12</TextBlock>
+                </Border>
+            </Border>
+        </Grid>
+        
     </Grid>
 </UserControl>
