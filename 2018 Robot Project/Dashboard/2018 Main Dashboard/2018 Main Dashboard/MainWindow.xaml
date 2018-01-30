@@ -41,6 +41,7 @@
                 <local:JoystickWidget x:Name="JoystickWidget" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="3" />
                 <local:AlertBox x:Name="AlertWidget" Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="3"/>
                 <local:AutoSwitchControl x:Name="AutoSwitch" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"/>
+                <local:JoystickWidget x:Name="SwitchesWidget" Grid.Row="0" Grid.RowSpan="4" Grid.Column="10" Grid.ColumnSpan="3"/>
             </Grid>
         </Viewbox>
     </Border>

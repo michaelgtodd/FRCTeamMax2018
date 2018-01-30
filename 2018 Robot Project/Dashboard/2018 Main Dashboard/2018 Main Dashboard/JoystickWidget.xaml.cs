@@ -74,9 +74,6 @@ namespace _2018_Main_Dashboard
                 SecondaryGrid.MakeThingMove(DataForController0.AxisList[4], DataForController0.AxisList[5]);
                 SecondaryAxisBar.ChangeZAxisWidth(DataForController0.AxisList[3]);
             }
-            Z.Text = DataForController0.AxisList[2].ToString();
-            X.Text = DataForController0.AxisList[0].ToString();
-            Y.Text = DataForController0.AxisList[1].ToString();
         }
         public void UpdateJoystickWidget(ControllerData Controller0, ControllerData Controller1)
         {
@@ -172,7 +169,7 @@ namespace _2018_Main_Dashboard
 
         private void ControllerComboboxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
+           try
             {
                 ShowController();
             }
@@ -180,6 +177,11 @@ namespace _2018_Main_Dashboard
             {
 
             }
+        }
+
+        public void UpdateSwitchesName(string NewName)
+        {
+            DriverControllerSelection.Text = NewName;
         }
     }
 }

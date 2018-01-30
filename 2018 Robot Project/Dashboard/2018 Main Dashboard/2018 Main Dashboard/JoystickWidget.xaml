@@ -9,9 +9,6 @@
     <Grid Background="Black">
         <local:AxisGrid x:Name="JoystickAxisGrid" Margin="40,100,210,250"/>
         <local:ZAxisBar x:Name="JoystickZAxisBar" Margin="40,170,210,220"/>
-        <TextBlock Name="X" Background="Green" Margin="0,368,200,0" Text="XAxis" TextAlignment="Center"/>
-        <TextBlock Name="Y" Background="Yellow" Margin="100,368,100,0" Text="YAxis" TextAlignment="Center"/>
-        <TextBlock Name="Z" Background="Red" Margin="200,368,0,0" Text="ZAxis" TextAlignment="Center"/>
         <Grid Margin="100, 100, 40,220">
             <Border Background="Green" Margin="0,0,135,55" Height="25">
                 <Border Name="Button1" Margin="2 ,2, 2, 2" Background="Black">
@@ -90,8 +87,8 @@
                 Xbox Controller
             </ComboBoxItem>
         </ComboBox>
-        <TextBlock Foreground="white" FontSize="22" FontWeight="Bold" Grid.Row="0" Margin="0,0,0,368" TextAlignment="Center">Driver Controller Selection</TextBlock>
-        <TextBlock Foreground="White" TextAlignment="Center" Margin="148,84,88,296">Buttons</TextBlock>
+        <TextBlock Name="DriverControllerSelection" Foreground="white" FontSize="20" FontWeight="Bold" Grid.Row="0" Margin="0,0,0,368" TextAlignment="Center">Driver Controller Selection</TextBlock>
+        <TextBlock Name="Buttons" Foreground="White" TextAlignment="Center" Margin="148,84,88,296">Buttons</TextBlock>
         <TextBlock Name="SecondaryButtons" Foreground="White" TextAlignment="Center" Margin="118,183,58,197" Visibility="Hidden"> Secondary Buttons</TextBlock>
 
 
