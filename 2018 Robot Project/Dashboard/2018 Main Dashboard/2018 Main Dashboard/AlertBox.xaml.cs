@@ -31,6 +31,7 @@ namespace _2018_Main_Dashboard
         private void Tasks_Button_Click(object sender, RoutedEventArgs e)
         {
             TasksMonitor ew = new TasksMonitor();
+            ew.Name = "ActiveTaskMonitor";
             ew.Show();
         }
 

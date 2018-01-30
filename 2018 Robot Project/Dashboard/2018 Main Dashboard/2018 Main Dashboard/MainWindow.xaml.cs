@@ -26,7 +26,7 @@ namespace _2018_Main_Dashboard
         public string AutoPosition { get; set; }
         public string AutoGoal { get; set; }
     }
-
+       
     public class ControllerData
     {
         public List<double>AxisList { get; set; }
@@ -44,6 +44,33 @@ namespace _2018_Main_Dashboard
         }
     }
 
+
+    public class TaskData
+    {
+        public List<string> NameString { get; set; }
+        public List<string> DurString { get; set; }
+        public List<string> FreqString { get; set; }
+        public TaskData()
+        {
+            NameString = new List<string>
+            {
+                "", "", "", "", "", "", "", "", "","", "", ""
+            };
+
+            DurString = new List<string>
+            {
+                "", "", "", "", "", "", "", "", "","", "", ""
+            };
+            FreqString = new List<string>
+            {
+                "", "", "", "", "", "", "", "", "","", "", ""
+            };
+
+        }
+
+
+    }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -54,7 +81,9 @@ namespace _2018_Main_Dashboard
         ControllerData ControllerData1 = new ControllerData();
         ControllerData ControllerData2 = new ControllerData();
         ControllerData ControllerData3 = new ControllerData();
-
+        TaskData CurrentTaskData = new TaskData();
+        
+         
         public void OscReceiveRunner()
         {
             var listener = new UDPListener(5801);
@@ -121,6 +150,25 @@ namespace _2018_Main_Dashboard
                     SetControllerData(ControllerData3, JoystickStringArray, message);
                 }
             }
+            if (message.Address.Contains("TaskStats"))
+            {
+                string[] TaskStatsStringArray = message.Address.Split('/');
+                int TaskNumber = int.Parse(TaskStatsStringArray[2]) -1;
+                
+                if (TaskStatsStringArray[3]. Equals ("Name"))
+                {
+                    CurrentTaskData.NameString[TaskNumber] = (string)message.Arguments[0];
+                }
+                if (TaskStatsStringArray[3].Equals("Duration"))
+                {
+                    CurrentTaskData.DurString[TaskNumber] = (string)message.Arguments[0];
+                }
+                if (TaskStatsStringArray[3].Equals("Period"))
+                {
+                    CurrentTaskData.FreqString[TaskNumber] = (string)message.Arguments[0];
+                }
+
+            }
         }
         public void SetControllerData(ControllerData CurrentControllerData, string[] StringArray, OscMessage Message)
         {
@@ -156,6 +204,18 @@ namespace _2018_Main_Dashboard
             }
         }
 
+        public void TaskRunner()
+        {
+            //while (true)
+            //{
+            //    Application.Current.Dispatcher.BeginInvoke(
+            //    DispatcherPriority.Background,
+            //    new Action(() => AlertBox.ActiveTaskMonitor.(ControllerData0)));
+            //    Thread.Sleep(1);
+            //}
+
+        }
+        
         public void JoystickRunner()
         {
             while (true)
