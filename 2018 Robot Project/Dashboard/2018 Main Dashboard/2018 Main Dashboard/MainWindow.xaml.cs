@@ -206,13 +206,13 @@ namespace _2018_Main_Dashboard
 
         public void TaskRunner()
         {
-            //while (true)
-            //{
-            //    Application.Current.Dispatcher.BeginInvoke(
-            //    DispatcherPriority.Background,
-            //    new Action(() => AlertBox.ActiveTaskMonitor.(ControllerData0)));
-            //    Thread.Sleep(1);
-            //}
+            while (true)
+            {
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => AlertWidget.UpdateTaskData(CurrentTaskData)));
+                Thread.Sleep(1);
+            }
 
         }
         
