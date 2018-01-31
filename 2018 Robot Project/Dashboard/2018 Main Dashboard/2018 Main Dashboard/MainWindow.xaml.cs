@@ -26,11 +26,11 @@ namespace _2018_Main_Dashboard
         public string AutoPosition { get; set; }
         public string AutoGoal { get; set; }
     }
-       
+
     public class ControllerData
     {
-        public List<double>AxisList { get; set; }
-        public List<bool>ButtonList { get; set; }
+        public List<double> AxisList { get; set; }
+        public List<bool> ButtonList { get; set; }
         public ControllerData()
         {
             AxisList = new List<double>
@@ -40,7 +40,7 @@ namespace _2018_Main_Dashboard
             ButtonList = new List<bool>
             {
                 false, false, false, false, false, false, false, false, false, false, false, false
-            };    
+            };
         }
     }
 
@@ -82,8 +82,8 @@ namespace _2018_Main_Dashboard
         ControllerData ControllerData2 = new ControllerData();
         ControllerData ControllerData3 = new ControllerData();
         TaskData CurrentTaskData = new TaskData();
-        
-         
+
+
         public void OscReceiveRunner()
         {
             var listener = new UDPListener(5801);
@@ -153,9 +153,9 @@ namespace _2018_Main_Dashboard
             if (message.Address.Contains("TaskStats"))
             {
                 string[] TaskStatsStringArray = message.Address.Split('/');
-                int TaskNumber = int.Parse(TaskStatsStringArray[2]) -1;
-                
-                if (TaskStatsStringArray[3]. Equals ("Name"))
+                int TaskNumber = int.Parse(TaskStatsStringArray[2]) - 1;
+
+                if (TaskStatsStringArray[3].Equals("Name"))
                 {
                     CurrentTaskData.NameString[TaskNumber] = (string)message.Arguments[0];
                 }
@@ -215,7 +215,7 @@ namespace _2018_Main_Dashboard
             }
 
         }
-        
+
         public void JoystickRunner()
         {
             while (true)
@@ -253,9 +253,12 @@ namespace _2018_Main_Dashboard
             UpdateDashboardData.Start();
 
             System.Threading.Thread UpdateJS =
-    new System.Threading.Thread
-        (new System.Threading.ThreadStart(JoystickRunner));
+                new System.Threading.Thread(new System.Threading.ThreadStart(JoystickRunner));
             UpdateJS.Start();
+
+            System.Threading.Thread UpdateAlerts =
+                new System.Threading.Thread(new System.Threading.ThreadStart(TaskRunner));
+            UpdateAlerts.Start();
         }
     }
 }
