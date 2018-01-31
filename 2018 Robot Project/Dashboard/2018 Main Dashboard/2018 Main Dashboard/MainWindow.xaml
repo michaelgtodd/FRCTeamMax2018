@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2018_Main_Dashboard"
         mc:Ignorable="d"
-        Title="MainWindow" Width="1366" Height="768" WindowState="Maximized" >
+        Title="MainWindow" Width="1366" Height="527"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="Manual" Left="0" Top="0">
     <Window.Resources>
         <!--hello world-->
     </Window.Resources>
     <Border Background="LightSlateGray">
         <Viewbox>
-            <Grid Width="1300" Height="700">
+            <Grid Width="1300" Height="527">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
