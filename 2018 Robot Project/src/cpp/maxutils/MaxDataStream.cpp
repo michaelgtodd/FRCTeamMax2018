@@ -209,7 +209,9 @@ namespace MaxLog
 
 		transmit(p);
 
-		osc::OutboundPacketStream q(buffer, OUTPUT_BUFFER_SIZE);
+		char lbuffer[OUTPUT_BUFFER_SIZE];
+
+		osc::OutboundPacketStream q(lbuffer, OUTPUT_BUFFER_SIZE);
 
 		q << osc::BeginMessage(label.c_str()) << (float)value << osc::EndMessage;
 
