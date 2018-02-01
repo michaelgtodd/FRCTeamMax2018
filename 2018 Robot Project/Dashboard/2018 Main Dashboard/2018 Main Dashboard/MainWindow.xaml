@@ -13,40 +13,44 @@
         <!--hello world-->
     </Window.Resources>
     <Border Background="LightSlateGray">
-        <Viewbox>
-            <Grid Width="1300" Height="527">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                   
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                </Grid.RowDefinitions>
-                <local:JoystickWidget x:Name="JoystickWidget" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="3" />
-                <local:AlertBox x:Name="AlertWidget" Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="3"/>
-                <local:AutoSwitchControl x:Name="AutoSwitch" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"/>
-                <local:JoystickWidget x:Name="SwitchesWidget" Grid.Row="0" Grid.RowSpan="4" Grid.Column="10" Grid.ColumnSpan="3"/>
+
+        <Grid Width="1366" Height="527">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="66"/>
                 
-            </Grid>
-        </Viewbox>
+
+
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <local:JoystickWidget x:Name="JoystickWidget" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="3" />
+            <local:AlertBox x:Name="AlertWidget" Grid.Row="0" Grid.RowSpan="4" Grid.Column="10" Grid.ColumnSpan="4"/>
+            <local:AutoSwitchControl x:Name="AutoSwitch" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"/>
+            <local:JoystickWidget x:Name="SwitchesWidget" Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="3"/>
+
+        </Grid>
+
     </Border>
 </Window>
