@@ -87,6 +87,7 @@ namespace MaxLog
 	};
 
 	std::vector<UdpTransmitSocket *> transmitSockets;
+	UdpTransmitSocket * lemurSocket;
 
 	void RunListener()
 	{
@@ -108,6 +109,7 @@ namespace MaxLog
 		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.13", BROADCASTPORT)));
 		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.14", BROADCASTPORT)));
 		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.15", BROADCASTPORT2)));
+		lemurSocket = new UdpTransmitSocket(IpEndpointName("10.10.71.15", BROADCASTPORT2));
 
 		std::thread * oscReceiveThread =  new std::thread(&RunListener);
 
@@ -192,6 +194,11 @@ namespace MaxLog
 		transmit(p);
 	}
 
+	void TransmitLemur(osc::OutboundPacketStream p)
+	{
+		lemurSocket->Send(p.Data(), p.Size());
+	}
+
 	void TransmitDouble(std::string label, double value)
 	{
 		char buffer[OUTPUT_BUFFER_SIZE];
@@ -201,6 +208,13 @@ namespace MaxLog
 		p << osc::BeginMessage(label.c_str()) << value << osc::EndMessage;
 
 		transmit(p);
+
+		osc::OutboundPacketStream q(buffer, OUTPUT_BUFFER_SIZE);
+
+		q << osc::BeginMessage(label.c_str()) << (float)value << osc::EndMessage;
+
+		TransmitLemur(q);
+
 	}
 
 	void TransmitBool(std::string label, bool value)
