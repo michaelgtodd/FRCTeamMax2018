@@ -146,10 +146,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task1/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/1/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/1/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/1/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/1/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task2" x="20" y="125" width="328" height="98" id="1" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -157,10 +157,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task2/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/2/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/2/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/2/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/2/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task3" x="20" y="225" width="328" height="98" id="2" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -168,10 +168,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task3/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/3/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/3/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/3/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/3/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task4" x="20" y="325" width="328" height="98" id="3" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -179,10 +179,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task4/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/4/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/4/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/4/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/4/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task5" x="20" y="425" width="328" height="98" id="4" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -190,10 +190,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task5/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/5/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/5/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/5/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/5/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task6" x="20" y="525" width="328" height="98" id="5" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -201,10 +201,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task6/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/6/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/6/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/6/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/6/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task7" x="20" y="625" width="328" height="98" id="6" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -212,10 +212,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task7/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/7/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/7/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/7/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/7/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task8" x="350" y="25" width="328" height="98" id="7" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -223,10 +223,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task8/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/8/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/8/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/8/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/8/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task9" x="350" y="125" width="328" height="98" id="8" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -234,10 +234,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task9/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/9/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/9/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/9/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/9/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task10" x="350" y="225" width="328" height="98" id="9" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -245,10 +245,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task10/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/10/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/10/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/10/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/10/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task11" x="350" y="325" width="328" height="98" id="10" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -256,10 +256,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task11/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/11/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/11/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/11/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/11/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task12" x="350" y="425" width="328" height="98" id="11" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -267,10 +267,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task12/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/12/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/12/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/12/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/12/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task13" x="350" y="525" width="328" height="98" id="12" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -278,10 +278,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task13/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/13/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/13/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/13/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/13/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task14" x="350" y="625" width="328" height="98" id="13" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -289,10 +289,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task14/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/14/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/14/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/14/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/14/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task15" x="680" y="25" width="328" height="98" id="14" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -300,10 +300,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task15/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/15/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/15/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/15/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/15/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task16" x="680" y="125" width="328" height="98" id="15" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -311,10 +311,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task16/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/16/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/16/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/16/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/16/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task17" x="680" y="225" width="328" height="98" id="16" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -322,10 +322,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task17/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/17/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/17/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/17/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/17/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task18" x="680" y="325" width="328" height="98" id="17" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -333,10 +333,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task18/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/18/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/18/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/18/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/18/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task19" x="680" y="425" width="328" height="98" id="18" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -344,10 +344,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task19/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/19/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/19/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/19/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/19/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task20" x="680" y="525" width="328" height="98" id="19" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -355,10 +355,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task20/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/20/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/20/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/20/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/20/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 <WINDOW class="Container" text="Task21" x="680" y="625" width="328" height="98" id="20" state="1" group="0" font="tahoma,10,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" tabbar="1" meta="0">
@@ -366,10 +366,10 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/Task21/TaskName/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Frequency" x="152" y="22" width="160" height="60" id="2" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/21/period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/21/Period" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 <WINDOW class="Monitor" text="Duration" x="0" y="22" width="160" height="60" id="3" state="241" group="0" font="tahoma,20,0" send="1" osc_target="-2" midi_target="-2" kbmouse_target="-2" color="8355711" label="1" precision="3" unit="" value="1">
-<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/taskstats/21/duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
+<VARIABLE name="value=0" send="8" osc_target="0" osc_trigger="1" osc_message="/TaskStats/21/Duration" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
 </WINDOW>
@@ -385,45 +385,45 @@
 </WINDOW>
 </WINDOW>
 <SCRIPT name="Task1Name(OSC_ARGS)" script="decl Object = findchild(Task1,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/1/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/1/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task2Name(OSC_ARGS)" script="decl Object = findchild(Task2,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/2/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/2/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task3Name(OSC_ARGS)" script="decl Object = findchild(Task3,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/3/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/3/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task4Name(OSC_ARGS)" script="decl Object = findchild(Task4,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/4/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/4/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task5Name(OSC_ARGS)" script="decl Object = findchild(Task5,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/5/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/5/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task6Name(OSC_ARGS)" script="decl Object = findchild(Task6,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/6/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/6/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task7Name(OSC_ARGS)" script="decl Object = findchild(Task7,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/7/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/7/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task8Name(OSC_ARGS)" script="decl Object = findchild(Task8,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/8/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/8/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task9Name(OSC_ARGS)" script="decl Object = findchild(Task9,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/9/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/9/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task10Name(OSC_ARGS)" script="decl Object = findchild(Task10,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/10/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/10/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task11Name(OSC_ARGS)" script="decl Object = findchild(Task11,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/11/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/11/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task12Name(OSC_ARGS)" script="decl Object = findchild(Task12,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/12/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/12/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task13Name(OSC_ARGS)" script="decl Object = findchild(Task13,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/13/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/13/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task14Name(OSC_ARGS)" script="decl Object = findchild(Task14,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/14/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/14/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task15Name(OSC_ARGS)" script="decl Object = findchild(Task15,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/15/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/15/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task16Name(OSC_ARGS)" script="decl Object = findchild(Task16,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/16/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/16/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task17Name(OSC_ARGS)" script="decl Object = findchild(Task17,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/17/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/17/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task18Name(OSC_ARGS)" script="decl Object = findchild(Task18,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/18/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/18/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task19Name(OSC_ARGS)" script="decl Object = findchild(Task19,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/19/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/19/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task20Name(OSC_ARGS)" script="decl Object = findchild(Task20,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/20/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/20/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 <SCRIPT name="Task21Name(OSC_ARGS)" script="decl Object = findchild(Task21,'TaskName');
-setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/taskstats/21/name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
+setattribute(Object, 'content', OSC_ARGS);" trigger_script="" trigger_type="2" trigger="1" clock="0" clock_div="4" osc_message="/TaskStats/21/Name" midi_message="0x90,0x90,0,0" midi_target="-1" flag="9"/>
 </JZML>
