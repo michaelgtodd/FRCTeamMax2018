@@ -161,11 +161,11 @@ namespace _2018_Main_Dashboard
                 }
                 if (TaskStatsStringArray[3].Equals("Duration"))
                 {
-                    CurrentTaskData.DurString[TaskNumber] = (string)message.Arguments[0];
+                    CurrentTaskData.DurString[TaskNumber] = ((int)message.Arguments[0]).ToString();
                 }
                 if (TaskStatsStringArray[3].Equals("Period"))
                 {
-                    CurrentTaskData.FreqString[TaskNumber] = (string)message.Arguments[0];
+                    CurrentTaskData.FreqString[TaskNumber] = ((int)message.Arguments[0]).ToString();
                 }
 
             }
