@@ -106,6 +106,14 @@ namespace _2018_Main_Dashboard
 
             }
         }
+        
+        private void ChangeZStart()
+        {
+            if (ControllerCombobox.SelectedIndex == 0)
+            {
+
+            }
+        }
 
         private void ShowController()
         {
