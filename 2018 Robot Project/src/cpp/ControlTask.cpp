@@ -52,8 +52,8 @@ void ControlTask::Always()
 		{
 			Controls->SpeedLift += SwitchesRight->GetRawAxis(1);
 		}
-		Controls->SpeedLift = max(-1, Controls->SpeedLift);
-		Controls->SpeedLift = min(1, Controls->SpeedLift);
+		Controls->SpeedLift = std::max(-1, Controls->SpeedLift);
+		Controls->SpeedLift = std::min(1, Controls->SpeedLift);
 
 		Controls->SpeedGrabWheelLeft = SwitchesLeft->GetRawButton(0) - SwitchesLeft->GetRawButton(1);
 		Controls->SpeedGrabWheelRight = SwitchesRight->GetRawButton(5) - SwitchesRight->GetRawButton(3);
