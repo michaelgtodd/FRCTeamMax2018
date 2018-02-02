@@ -9,8 +9,8 @@
 
     <Grid>
 
-
-        <TabItem Header="Alert">
+        <TabControl Margin="0,0,0,-11" TabStripPlacement="left">
+            <TabItem Header="Alert">
                 <Grid Name="AlertGrid" Background="LightSlateGray" >
                     <TextBlock Name="Block1"  TextAlignment="Center" Background="Black" Margin="0,0,0,378" Foreground="#20C20E">
          Caution 1
@@ -125,257 +125,258 @@
                     </TextBlock>
                 </Grid>
             </TabItem>
-            
-            
+
+
             <TabItem Header="Tasks">
 
                 <Grid Name="TasksGrid" Margin="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
 
-                </Grid.RowDefinitions>
-                <Border Background="Black">
-                    <Grid Margin="2,2,2,2" Background="LightSlateGray">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="34"/>
-                            <RowDefinition Height="33"/>
-                            <RowDefinition Height="33"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Name="Task1Name" TextAlignment="Center" Grid.Row="0">
+                    </Grid.RowDefinitions>
+                    <Border Background="Black">
+                        <Grid Margin="2,2,2,2" Background="LightSlateGray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="34"/>
+                                <RowDefinition Height="33"/>
+                                <RowDefinition Height="33"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="Task1Name" TextAlignment="Center" Grid.Row="0">
                          Name 1
-                        </TextBlock>
-                        <TextBlock Name="Task1Freq" TextAlignment="Center" Grid.Row="1">
+                            </TextBlock>
+                            <TextBlock Name="Task1Freq" TextAlignment="Center" Grid.Row="1">
                         Frequency: XYZ
-                        </TextBlock>
-                        <TextBlock Name="Task1Dur" TextAlignment="Center" Grid.Row="2">
+                            </TextBlock>
+                            <TextBlock Name="Task1Dur" TextAlignment="Center" Grid.Row="2">
                         Duration: XYZ
-                        </TextBlock>
-                    </Grid>
-                </Border>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
 
-                <Border Background="Black" Grid.Row="0" Grid.Column="1">
-                    <Grid Margin="2,2,2,2" Background="LightSlateGray">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="34"/>
-                            <RowDefinition Height="33"/>
-                            <RowDefinition Height="33"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Name="Task2Name" TextAlignment="Center" Grid.Row="0">
+                    <Border Background="Black" Grid.Row="0" Grid.Column="1">
+                        <Grid Margin="2,2,2,2" Background="LightSlateGray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="34"/>
+                                <RowDefinition Height="33"/>
+                                <RowDefinition Height="33"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="Task2Name" TextAlignment="Center" Grid.Row="0">
                          Name 2
-                        </TextBlock>
-                        <TextBlock Name="Task2Freq" TextAlignment="Center" Grid.Row="1">
+                            </TextBlock>
+                            <TextBlock Name="Task2Freq" TextAlignment="Center" Grid.Row="1">
                         Frequency: XYZ
-                        </TextBlock>
-                        <TextBlock Name="Task2Dur" TextAlignment="Center" Grid.Row="2">
+                            </TextBlock>
+                            <TextBlock Name="Task2Dur" TextAlignment="Center" Grid.Row="2">
                         Duration: XYZ
-                        </TextBlock>
-                    </Grid>
-                </Border>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
 
-                <Border Background="Black" Grid.Row="0" Grid.Column="2">
-                    <Grid Margin="2,2,2,2" Background="LightSlateGray">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="34"/>
-                            <RowDefinition Height="33"/>
-                            <RowDefinition Height="33"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Name="Task3Name" TextAlignment="Center" Grid.Row="0">
+                    <Border Background="Black" Grid.Row="0" Grid.Column="2">
+                        <Grid Margin="2,2,2,2" Background="LightSlateGray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="34"/>
+                                <RowDefinition Height="33"/>
+                                <RowDefinition Height="33"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="Task3Name" TextAlignment="Center" Grid.Row="0">
                          Name 3
-                        </TextBlock>
-                        <TextBlock Name="Task3Freq" TextAlignment="Center" Grid.Row="1">
+                            </TextBlock>
+                            <TextBlock Name="Task3Freq" TextAlignment="Center" Grid.Row="1">
                         Frequency: XYZ
-                        </TextBlock>
-                        <TextBlock Name="Task3Dur" TextAlignment="Center" Grid.Row="2">
+                            </TextBlock>
+                            <TextBlock Name="Task3Dur" TextAlignment="Center" Grid.Row="2">
                         Duration: XYZ
-                        </TextBlock>
-                    </Grid>
-                </Border>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
 
-                <Border Background="Black" Grid.Row="1" Grid.Column="0">
-                    <Grid Margin="2,2,2,2" Background="LightSlateGray">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="34"/>
-                            <RowDefinition Height="33"/>
-                            <RowDefinition Height="33"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Name="Task4Name" TextAlignment="Center" Grid.Row="0">
+                    <Border Background="Black" Grid.Row="1" Grid.Column="0">
+                        <Grid Margin="2,2,2,2" Background="LightSlateGray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="34"/>
+                                <RowDefinition Height="33"/>
+                                <RowDefinition Height="33"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="Task4Name" TextAlignment="Center" Grid.Row="0">
                          Name 4
-                        </TextBlock>
-                        <TextBlock Name="Task4Freq" TextAlignment="Center" Grid.Row="1">
+                            </TextBlock>
+                            <TextBlock Name="Task4Freq" TextAlignment="Center" Grid.Row="1">
                         Frequency: XYZ
-                        </TextBlock>
-                        <TextBlock Name="Task4Dur" TextAlignment="Center" Grid.Row="2">
+                            </TextBlock>
+                            <TextBlock Name="Task4Dur" TextAlignment="Center" Grid.Row="2">
                         Duration: XYZ
-                        </TextBlock>
-                    </Grid>
-                </Border>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
 
-                <Border Background="Black" Grid.Row="1" Grid.Column="1">
-                    <Grid Margin="2,2,2,2" Background="LightSlateGray">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="34"/>
-                            <RowDefinition Height="33"/>
-                            <RowDefinition Height="33"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Name="Task5Name" TextAlignment="Center" Grid.Row="0">
+                    <Border Background="Black" Grid.Row="1" Grid.Column="1">
+                        <Grid Margin="2,2,2,2" Background="LightSlateGray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="34"/>
+                                <RowDefinition Height="33"/>
+                                <RowDefinition Height="33"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="Task5Name" TextAlignment="Center" Grid.Row="0">
                          Name 5
-                        </TextBlock>
-                        <TextBlock Name="Task5Freq" TextAlignment="Center" Grid.Row="1">
+                            </TextBlock>
+                            <TextBlock Name="Task5Freq" TextAlignment="Center" Grid.Row="1">
                         Frequency: XYZ
-                        </TextBlock>
-                        <TextBlock Name="Task5Dur" TextAlignment="Center" Grid.Row="2">
+                            </TextBlock>
+                            <TextBlock Name="Task5Dur" TextAlignment="Center" Grid.Row="2">
                         Duration: XYZ
-                        </TextBlock>
-                    </Grid>
-                </Border>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
 
-                <Border Background="Black" Grid.Row="1" Grid.Column="2">
-                    <Grid Margin="2,2,2,2" Background="LightSlateGray">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="34"/>
-                            <RowDefinition Height="33"/>
-                            <RowDefinition Height="33"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Name="Task6Name" TextAlignment="Center" Grid.Row="0">
+                    <Border Background="Black" Grid.Row="1" Grid.Column="2">
+                        <Grid Margin="2,2,2,2" Background="LightSlateGray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="34"/>
+                                <RowDefinition Height="33"/>
+                                <RowDefinition Height="33"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="Task6Name" TextAlignment="Center" Grid.Row="0">
                          Name 6
-                        </TextBlock>
-                        <TextBlock Name="Task6Freq" TextAlignment="Center" Grid.Row="1">
+                            </TextBlock>
+                            <TextBlock Name="Task6Freq" TextAlignment="Center" Grid.Row="1">
                         Frequency: XYZ
-                        </TextBlock>
-                        <TextBlock Name="Task6Dur" TextAlignment="Center" Grid.Row="2">
+                            </TextBlock>
+                            <TextBlock Name="Task6Dur" TextAlignment="Center" Grid.Row="2">
                         Duration: XYZ
-                        </TextBlock>
-                    </Grid>
-                </Border>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
 
-                <Border Background="Black" Grid.Row="2" Grid.Column="0">
-                    <Grid Margin="2,2,2,2" Background="LightSlateGray">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="34"/>
-                            <RowDefinition Height="33"/>
-                            <RowDefinition Height="33"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Name="Task7Name" TextAlignment="Center" Grid.Row="0">
+                    <Border Background="Black" Grid.Row="2" Grid.Column="0">
+                        <Grid Margin="2,2,2,2" Background="LightSlateGray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="34"/>
+                                <RowDefinition Height="33"/>
+                                <RowDefinition Height="33"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="Task7Name" TextAlignment="Center" Grid.Row="0">
                          Name 7
-                        </TextBlock>
-                        <TextBlock Name="Task7Freq" TextAlignment="Center" Grid.Row="1">
+                            </TextBlock>
+                            <TextBlock Name="Task7Freq" TextAlignment="Center" Grid.Row="1">
                         Frequency: XYZ
-                        </TextBlock>
-                        <TextBlock Name="Task7Dur" TextAlignment="Center" Grid.Row="2">
+                            </TextBlock>
+                            <TextBlock Name="Task7Dur" TextAlignment="Center" Grid.Row="2">
                         Duration: XYZ
-                        </TextBlock>
-                    </Grid>
-                </Border>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
 
-                <Border Background="Black" Grid.Row="2" Grid.Column="1">
-                    <Grid Margin="2,2,2,2" Background="LightSlateGray">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="34"/>
-                            <RowDefinition Height="33"/>
-                            <RowDefinition Height="33"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Name="Task8Name" TextAlignment="Center" Grid.Row="0">
+                    <Border Background="Black" Grid.Row="2" Grid.Column="1">
+                        <Grid Margin="2,2,2,2" Background="LightSlateGray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="34"/>
+                                <RowDefinition Height="33"/>
+                                <RowDefinition Height="33"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="Task8Name" TextAlignment="Center" Grid.Row="0">
                          Name 8
-                        </TextBlock>
-                        <TextBlock Name="Task8Freq" TextAlignment="Center" Grid.Row="1">
+                            </TextBlock>
+                            <TextBlock Name="Task8Freq" TextAlignment="Center" Grid.Row="1">
                         Frequency: XYZ
-                        </TextBlock>
-                        <TextBlock Name="Task8Dur" TextAlignment="Center" Grid.Row="2">
+                            </TextBlock>
+                            <TextBlock Name="Task8Dur" TextAlignment="Center" Grid.Row="2">
                         Duration: XYZ
-                        </TextBlock>
-                    </Grid>
-                </Border>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
 
-                <Border Background="Black" Grid.Row="2" Grid.Column="2">
-                    <Grid Margin="2,2,2,2" Background="LightSlateGray">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="34"/>
-                            <RowDefinition Height="33"/>
-                            <RowDefinition Height="33"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Name="Task9Name" TextAlignment="Center" Grid.Row="0">
+                    <Border Background="Black" Grid.Row="2" Grid.Column="2">
+                        <Grid Margin="2,2,2,2" Background="LightSlateGray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="34"/>
+                                <RowDefinition Height="33"/>
+                                <RowDefinition Height="33"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="Task9Name" TextAlignment="Center" Grid.Row="0">
                          Name 9
-                        </TextBlock>
-                        <TextBlock Name="Task9Freq" TextAlignment="Center" Grid.Row="1">
+                            </TextBlock>
+                            <TextBlock Name="Task9Freq" TextAlignment="Center" Grid.Row="1">
                         Frequency: XYZ
-                        </TextBlock>
-                        <TextBlock Name="Task9Dur" TextAlignment="Center" Grid.Row="2">
+                            </TextBlock>
+                            <TextBlock Name="Task9Dur" TextAlignment="Center" Grid.Row="2">
                         Duration: XYZ
-                        </TextBlock>
-                    </Grid>
-                </Border>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
 
-                <Border Background="Black" Grid.Row="3" Grid.Column="0">
-                    <Grid Margin="2,2,2,2" Background="LightSlateGray">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="34"/>
-                            <RowDefinition Height="33"/>
-                            <RowDefinition Height="33"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Name="Task10Name" TextAlignment="Center" Grid.Row="0">
+                    <Border Background="Black" Grid.Row="3" Grid.Column="0">
+                        <Grid Margin="2,2,2,2" Background="LightSlateGray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="34"/>
+                                <RowDefinition Height="33"/>
+                                <RowDefinition Height="33"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="Task10Name" TextAlignment="Center" Grid.Row="0">
                          Name 10
-                        </TextBlock>
-                        <TextBlock Name="Task10Freq" TextAlignment="Center" Grid.Row="1">
+                            </TextBlock>
+                            <TextBlock Name="Task10Freq" TextAlignment="Center" Grid.Row="1">
                         Frequency: XYZ
-                        </TextBlock>
-                        <TextBlock Name="Task10Dur" TextAlignment="Center" Grid.Row="2">
+                            </TextBlock>
+                            <TextBlock Name="Task10Dur" TextAlignment="Center" Grid.Row="2">
                         Duration: XYZ
-                        </TextBlock>
-                    </Grid>
-                </Border>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
 
-                <Border Background="Black" Grid.Row="3" Grid.Column="1">
-                    <Grid Margin="2,2,2,2" Background="LightSlateGray">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="34"/>
-                            <RowDefinition Height="33"/>
-                            <RowDefinition Height="33"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Name="Task11Name" TextAlignment="Center" Grid.Row="0">
+                    <Border Background="Black" Grid.Row="3" Grid.Column="1">
+                        <Grid Margin="2,2,2,2" Background="LightSlateGray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="34"/>
+                                <RowDefinition Height="33"/>
+                                <RowDefinition Height="33"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="Task11Name" TextAlignment="Center" Grid.Row="0">
                          Name 11
-                        </TextBlock>
-                        <TextBlock Name="Task11Freq" TextAlignment="Center" Grid.Row="1">
+                            </TextBlock>
+                            <TextBlock Name="Task11Freq" TextAlignment="Center" Grid.Row="1">
                         Frequency: XYZ
-                        </TextBlock>
-                        <TextBlock Name="Task11Dur" TextAlignment="Center" Grid.Row="2">
+                            </TextBlock>
+                            <TextBlock Name="Task11Dur" TextAlignment="Center" Grid.Row="2">
                         Duration: XYZ
-                        </TextBlock>
-                    </Grid>
-                </Border>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
 
-                <Border Background="Black" Grid.Row="3" Grid.Column="2">
-                    <Grid Margin="2,2,2,2" Background="LightSlateGray">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="34"/>
-                            <RowDefinition Height="33"/>
-                            <RowDefinition Height="33"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Name="Task12Name" TextAlignment="Center" Grid.Row="0">
+                    <Border Background="Black" Grid.Row="3" Grid.Column="2">
+                        <Grid Margin="2,2,2,2" Background="LightSlateGray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="34"/>
+                                <RowDefinition Height="33"/>
+                                <RowDefinition Height="33"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Name="Task12Name" TextAlignment="Center" Grid.Row="0">
                          Name 12
-                        </TextBlock>
-                        <TextBlock Name="Task12Freq" TextAlignment="Center" Grid.Row="1">
+                            </TextBlock>
+                            <TextBlock Name="Task12Freq" TextAlignment="Center" Grid.Row="1">
                         Frequency: XYZ
-                        </TextBlock>
-                        <TextBlock Name="Task12Dur" TextAlignment="Center" Grid.Row="2">
+                            </TextBlock>
+                            <TextBlock Name="Task12Dur" TextAlignment="Center" Grid.Row="2">
                         Duration: XYZ
-                        </TextBlock>
-                    </Grid>
-                </Border>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
 
 
 
 
-            </Grid>
-        </TabItem>
-    
+                </Grid>
+            </TabItem>
+        </TabControl>
+
 
     </Grid>
 
