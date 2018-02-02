@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_2018_Main_Dashboard"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="300">
+             d:DesignHeight="200" d:DesignWidth="300">
     <Grid Background="Black">
-        <local:AxisGrid x:Name="JoystickAxisGrid" Margin="40,100,210,250"/>
-        <local:ZAxisBar x:Name="JoystickZAxisBar" Margin="40,170,210,220"/>
-        <Grid Margin="100, 100, 40,220">
+        <local:AxisGrid x:Name="JoystickAxisGrid" Margin="40,84,210,216"/>
+        <local:ZAxisBar x:Name="JoystickZAxisBar" Margin="40,148,210,189"/>
+        <Grid Margin="130,103,10,167">
             <Border Background="Green" Margin="0,0,135,55" Height="25">
                 <Border Name="Button1" Margin="2 ,2, 2, 2" Background="Black">
                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">1</TextBlock>
@@ -71,15 +71,15 @@
                 </Border>
             </Border>
         </Grid>
-        <CheckBox Name="TankCheckbox" Checked="TankCheckboxChecked" Unchecked="TankCheckboxUnchecked" IsChecked="False" Margin="221,37,65,349"></CheckBox>
-        <CheckBox Name="ArcadeCheckbox" Checked="ArcadeCheckboxChecked" Unchecked="ArcadeCheckboxUnchecked" IsChecked="True" Margin="221,56,66,329"></CheckBox>
-        <Label Foreground="White" Margin="235,29,19,341">Tank</Label>
-        <Label Foreground="White" Margin="234,49,16,321">Arcade</Label>
+        <CheckBox Name="TankCheckbox" Checked="TankCheckboxChecked" Unchecked="TankCheckboxUnchecked" IsChecked="False" Margin="221,29,65,307"></CheckBox>
+        <CheckBox Name="ArcadeCheckbox" Checked="ArcadeCheckboxChecked" Unchecked="ArcadeCheckboxUnchecked" IsChecked="True" Margin="222,49,65,288"></CheckBox>
+        <Label Foreground="White" Margin="235,22,19,300">Tank</Label>
+        <Label Foreground="White" Margin="235,43,15,278">Arcade</Label>
         <TextBlock Foreground="White" TextAlignment="Center" Margin="10,84,178,286">X/Y Axis</TextBlock>
         <TextBlock TextAlignment="Center"  Foreground="White" Margin="33,153,204,232">Z Axis</TextBlock>
         <TextBlock Name="SecondaryXY" Foreground="White" TextAlignment="Center" Margin="9,183,179,187" Visibility="Hidden">Secondary X/Y</TextBlock>
         <TextBlock Name="SecondaryZ" Foreground="White" TextAlignment="Center" Margin="10,252,178,118" Visibility="Hidden">Secondary Z</TextBlock>
-        <ComboBox FontSize="20" SelectedIndex="0" Name="ControllerCombobox" Margin="15,37,100,333" SelectionChanged="ControllerComboboxSelectionChanged">
+        <ComboBox FontSize="20" SelectedIndex="0" Name="ControllerCombobox" Margin="10,26,105,292" SelectionChanged="ControllerComboboxSelectionChanged">
             <ComboBoxItem Name="Joystick">
                 Joystick
             </ComboBoxItem>
@@ -87,7 +87,7 @@
                 Xbox Controller
             </ComboBoxItem>
         </ComboBox>
-        <TextBlock Name="DriverControllerSelection" Foreground="white" FontSize="20" FontWeight="Bold" Grid.Row="0" Margin="0,0,0,368" TextAlignment="Center">Driver Controller Selection</TextBlock>
+        <TextBlock Name="DriverControllerSelection" Foreground="white" FontSize="20" FontWeight="Bold" Grid.Row="0" Margin="3,0,47,326" TextAlignment="Center">Driver Controller Selection</TextBlock>
         <TextBlock Name="Buttons" Foreground="White" TextAlignment="Center" Margin="148,84,88,296">Buttons</TextBlock>
         <TextBlock Name="SecondaryButtons" Foreground="White" TextAlignment="Center" Margin="118,183,58,197" Visibility="Hidden"> Secondary Buttons</TextBlock>
 

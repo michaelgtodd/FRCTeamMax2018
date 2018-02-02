@@ -29,5 +29,6 @@ namespace _2018_Main_Dashboard
             double ZAxisWidth = ZAxis * 25 + 25;
             ZAxisIndicator.Width = ZAxisWidth;
         }
+
     }
 }

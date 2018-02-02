@@ -87,6 +87,7 @@ namespace MaxLog
 	};
 
 	std::vector<UdpTransmitSocket *> transmitSockets;
+	UdpTransmitSocket * lemurSocket;
 
 	void RunListener()
 	{
@@ -107,7 +108,7 @@ namespace MaxLog
 		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.12", BROADCASTPORT)));
 		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.13", BROADCASTPORT)));
 		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.14", BROADCASTPORT)));
-		transmitSockets.push_back(new UdpTransmitSocket(IpEndpointName("10.10.71.15", BROADCASTPORT2)));
+		lemurSocket = new UdpTransmitSocket(IpEndpointName("10.10.71.15", BROADCASTPORT2));
 
 		std::thread * oscReceiveThread =  new std::thread(&RunListener);
 
@@ -136,6 +137,11 @@ namespace MaxLog
 			(*i)->Send(p.Data(), p.Size());
 		}
 	}
+
+	void TransmitLemur(osc::OutboundPacketStream p)
+	{
+		lemurSocket->Send(p.Data(), p.Size());
+	}
 	
 	void LogPass(std::string error_message)
 	{
@@ -146,6 +152,7 @@ namespace MaxLog
 		p << osc::BeginMessage("/pass") << error_message.c_str() << osc::EndMessage;
 
 		transmit(p);
+		TransmitLemur(p);
 	}
 
 	void LogInfo(std::string error_message)
@@ -157,6 +164,7 @@ namespace MaxLog
 		p << osc::BeginMessage("/info") << error_message.c_str() << osc::EndMessage;
 
 		transmit(p);
+		TransmitLemur(p);
 	}
 
 	void LogError(std::string error_message)
@@ -168,6 +176,7 @@ namespace MaxLog
 		p << osc::BeginMessage("/error") << error_message.c_str() << osc::EndMessage;
 
 		transmit(p);
+		TransmitLemur(p);
 	}
 
 	void TransmitInt(std::string label, int value) 
@@ -179,6 +188,7 @@ namespace MaxLog
 		p << osc::BeginMessage(label.c_str()) << value << osc::EndMessage;
 
 		transmit(p);
+		TransmitLemur(p);
 	}
 
 	void TransmitString(std::string label, std::string value)
@@ -190,6 +200,7 @@ namespace MaxLog
 		p << osc::BeginMessage(label.c_str()) << value.c_str() << osc::EndMessage;
 
 		transmit(p);
+		TransmitLemur(p);
 	}
 
 	void TransmitDouble(std::string label, double value)
@@ -201,6 +212,15 @@ namespace MaxLog
 		p << osc::BeginMessage(label.c_str()) << value << osc::EndMessage;
 
 		transmit(p);
+
+		char lbuffer[OUTPUT_BUFFER_SIZE];
+
+		osc::OutboundPacketStream q(lbuffer, OUTPUT_BUFFER_SIZE);
+
+		q << osc::BeginMessage(label.c_str()) << (float)value << osc::EndMessage;
+
+		TransmitLemur(q);
+
 	}
 
 	void TransmitBool(std::string label, bool value)
@@ -212,5 +232,6 @@ namespace MaxLog
 		p << osc::BeginMessage(label.c_str()) << value << osc::EndMessage;
 
 		transmit(p);
+		TransmitLemur(p);
 	}
 }
