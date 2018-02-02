@@ -44,16 +44,22 @@ void ControlTask::Always()
 	{
 		Joystick * SwitchesLeft = new Joystick(2);
 		Joystick * SwitchesRight = new Joystick(3);
-		if (abs(SwitchesLeft->GetRawAxis(1)) >= 0.25)
+
+		Controls->SpeedLift = 0;
+		if (fabs(SwitchesLeft->GetRawAxis(1)) >= 0.25)
 		{
-			Controls->SpeedLift = SwitchesLeft->GetRawAxis(1);
+			Controls->SpeedLift = -SwitchesLeft->GetRawAxis(1);
 		}
-		if (abs(SwitchesRight->GetRawAxis(1)) >= 0.25)
+		if (fabs(SwitchesRight->GetRawAxis(1)) >= 0.25)
 		{
-			Controls->SpeedLift += SwitchesRight->GetRawAxis(1);
+			Controls->SpeedLift = -SwitchesRight->GetRawAxis(1);
 		}
+<<<<<<< HEAD
+
+=======
 		Controls->SpeedLift = std::max(-1, Controls->SpeedLift);
 		Controls->SpeedLift = std::min(1, Controls->SpeedLift);
+>>>>>>> 3f7f51856daf615bfdb80be5e16c1f00a5aad0c3
 
 		Controls->SpeedGrabWheelLeft = SwitchesLeft->GetRawButton(0) - SwitchesLeft->GetRawButton(1);
 		Controls->SpeedGrabWheelRight = SwitchesRight->GetRawButton(5) - SwitchesRight->GetRawButton(3);
@@ -64,7 +70,7 @@ void ControlTask::Always()
 		}
 		Controls->SpeedArmLeft = SwitchesLeft->GetRawAxis(2);
 		Controls->SpeedArmRight = SwitchesRight->GetRawAxis(2);
-		std::cout << "Lift: " << Controls->SpeedLift << std::endl;
+
 		delete (SwitchesLeft);
 		delete (SwitchesRight);
 
