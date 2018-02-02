@@ -5,10 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_2018_Main_Dashboard"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="358">
 
     <Grid>
-        <TabControl>
+<<<<<<< HEAD
+       
+=======
+        <TabControl Margin="0,0,0,-11" TabStripPlacement="Left">
+>>>>>>> a70fe8f3bb6f652ba0668e55e9eccf1a8ddc976f
 
 
             <TabItem Header="Alert">
@@ -130,11 +134,11 @@
             
             <TabItem Header="Tasks">
 
-                <Grid Name="TasksGrid" Margin="-4">
+                <Grid Name="TasksGrid" Margin="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100"/>
@@ -376,7 +380,7 @@
 
             </Grid>
         </TabItem>
-    </TabControl>
+    
 
     </Grid>
 
