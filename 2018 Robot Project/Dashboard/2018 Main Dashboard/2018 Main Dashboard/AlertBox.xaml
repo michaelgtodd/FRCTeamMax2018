@@ -8,14 +8,9 @@
              d:DesignHeight="400" d:DesignWidth="358">
 
     <Grid>
-<<<<<<< HEAD
-       
-=======
-        <TabControl Margin="0,0,0,-11" TabStripPlacement="Left">
->>>>>>> a70fe8f3bb6f652ba0668e55e9eccf1a8ddc976f
 
 
-            <TabItem Header="Alert">
+        <TabItem Header="Alert">
                 <Grid Name="AlertGrid" Background="LightSlateGray" >
                     <TextBlock Name="Block1"  TextAlignment="Center" Background="Black" Margin="0,0,0,378" Foreground="#20C20E">
          Caution 1
