@@ -1,6 +1,8 @@
 #include "ControlTask.h"
 #include "maxutils/MaxDataStream.h"
 #include "maxutils/MaxControls.h"
+#include <iostream>
+#include <math.h>
 
 MaxTaskSchedule taskschedule;
 ControlTask ControlTaskInstance(&taskschedule);
@@ -38,28 +40,21 @@ void ControlTask::Always()
 	{
 
 	}
-	else if (Controls->ControllerType == JoystickType)
+	else
 	{
 		Joystick * SwitchesLeft = new Joystick(2);
 		Joystick * SwitchesRight = new Joystick(3);
-		if (SwitchesLeft->GetRawAxis(1) >= 0.25)
+		if (abs(SwitchesLeft->GetRawAxis(1)) >= 0.25)
 		{
-			Controls->SpeedLift = 1.25 * (SwitchesLeft->GetRawAxis(1) - 0.25);
+			Controls->SpeedLift = SwitchesLeft->GetRawAxis(1);
 		}
-		else if (SwitchesLeft->GetRawAxis(1) <= -0.25)
+		if (abs(SwitchesRight->GetRawAxis(1)) >= 0.25)
 		{
-			Controls->SpeedLift = 1.25 * (SwitchesLeft->GetRawAxis(1) + 0.25);
+			Controls->SpeedLift += SwitchesRight->GetRawAxis(1);
 		}
-		if (SwitchesRight->GetRawAxis(1) >= 0.25)
-		{
-			Controls->SpeedLift = Controls->SpeedLift - 1.25 * (SwitchesRight->GetRawAxis(1) - 0.25);
-		}
-		else if (SwitchesRight->GetRawAxis(1) <= -0.25)
-		{
-			Controls->SpeedLift = Controls->SpeedLift - 1.25 * (SwitchesRight->GetRawAxis(1) + 0.25);
-		}
-		Controls->SpeedLift = Controls->SpeedLift >= 0.99 ? 0.99 : Controls->SpeedLift;
-		Controls->SpeedLift = Controls->SpeedLift <= -0.99 ? -0.99 : Controls->SpeedLift;
+		Controls->SpeedLift = max(-1, Controls->SpeedLift);
+		Controls->SpeedLift = min(1, Controls->SpeedLift);
+
 		Controls->SpeedGrabWheelLeft = SwitchesLeft->GetRawButton(0) - SwitchesLeft->GetRawButton(1);
 		Controls->SpeedGrabWheelRight = SwitchesRight->GetRawButton(5) - SwitchesRight->GetRawButton(3);
 		if ((SwitchesRight->GetRawButton(0)) || (SwitchesLeft->GetRawButton(0)))
@@ -69,12 +64,14 @@ void ControlTask::Always()
 		}
 		Controls->SpeedArmLeft = SwitchesLeft->GetRawAxis(2);
 		Controls->SpeedArmRight = SwitchesRight->GetRawAxis(2);
+		std::cout << "Lift: " << Controls->SpeedLift << std::endl;
 		delete (SwitchesLeft);
 		delete (SwitchesRight);
+
 	}
 
 	// Drive Motors
-	if (Controls->ControllerType == ControlLayout::Tank && Controls->ControllerType == JoystickType)
+	if (Controls->ControllerMode == ControlLayout::Tank && Controls->ControllerType == JoystickType)
 	{
 			Joystick * Left = new Joystick(0);
 			Joystick * Right = new Joystick(1);
@@ -84,7 +81,7 @@ void ControlTask::Always()
 			delete (Left);
 			delete (Right);
 	}
-	else if (Controls->ControllerType == ControlLayout::Tank && Controls->ControllerType == XboxType)
+	else if (Controls->ControllerMode == ControlLayout::Tank && Controls->ControllerType == XboxType)
 	{
 		Joystick * Xbox = new Joystick(0);
 		Controls->SpeedLeft = Xbox->GetRawAxis(1);
@@ -92,25 +89,22 @@ void ControlTask::Always()
 		Controls->SolenoidPos = (Xbox->GetRawButton(4) == 1) ? 1 : -1;
 		delete (Xbox);
 	}
-	else if (Controls->ControllerType == ControlLayout::Arcade && Controls->ControllerType == JoystickType)
-	{
-		Joystick * MainJoystick = new Joystick(0);
-		Controls->SolenoidPos = (MainJoystick->GetRawButton(0) == 1) ? 1 : -1;
-		Controls->SpeedLeft = MainJoystick->GetRawAxis(1) + MainJoystick->GetRawAxis(2);
-		Controls->SpeedRight = MainJoystick->GetRawAxis(1) - MainJoystick->GetRawAxis(2);
-		Controls->SpeedLeft = Controls->SpeedLeft >= 0.99 ? 0.99 : Controls->SpeedLeft;
-		Controls->SpeedLeft = Controls->SpeedLeft <= -0.99 ? -0.99 : Controls->SpeedLeft;
-		Controls->SpeedRight = Controls->SpeedRight >= 0.99 ? 0.99 : Controls->SpeedRight;
-		Controls->SpeedRight = Controls->SpeedRight <= -0.99 ? -0.99 : Controls->SpeedRight;
-		delete (MainJoystick);
-	}
-	else if (Controls->ControllerType == ControlLayout::Arcade && Controls->ControllerType == XboxType)
+	else if (Controls->ControllerMode == ControlLayout::Arcade && Controls->ControllerType == XboxType)
 	{
 		Joystick * Xbox = new Joystick(0);
 		Controls->SpeedLeft = Xbox->GetRawAxis(1) + Xbox->GetRawAxis(2);
 		Controls->SpeedRight = Xbox->GetRawAxis(1) - Xbox->GetRawAxis(2);
 		Controls->SolenoidPos = (Xbox->GetRawButton(4) == 1) ? 1 : -1;
 		delete (Xbox);
+	}
+	else
+	{
+		Joystick * MainJoystick = new Joystick(0);
+		Controls->SolenoidPos = (MainJoystick->GetRawButton(1) == 1) ? 1 : -1;
+		Controls->SpeedLeft = -MainJoystick->GetRawAxis(1) + MainJoystick->GetRawAxis(2);
+		Controls->SpeedRight = -MainJoystick->GetRawAxis(1) - MainJoystick->GetRawAxis(2);
+		Controls->SpeedLeft = -Controls->SpeedLeft;
+		delete (MainJoystick);
 	}
 	taskschedule_->DispatchControl(Controls);
 }
