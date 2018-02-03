@@ -20,7 +20,7 @@ namespace _2018_Main_Dashboard
     /// </summary>
     public partial class AlertBox : UserControl
     {
-        private List<string> ErrorList { get; set; }
+        //private List<string> ErrorList { get; set; }
         List<TextBlock> TaskNameList;
         List<TextBlock> TaskDurList;
         List<TextBlock> TaskFreqList;
@@ -28,7 +28,7 @@ namespace _2018_Main_Dashboard
         public AlertBox()
         {
             InitializeComponent();
-            ErrorList = new List<string>();            
+            //ErrorList = new List<string>();            
             TaskNameList = new List<TextBlock>
             {
                 Task1Name, Task2Name, Task3Name, Task4Name, Task5Name, Task6Name, Task7Name, Task8Name, Task9Name, Task10Name, Task11Name, Task12Name
@@ -44,64 +44,55 @@ namespace _2018_Main_Dashboard
 
         }
 
-        private void Tasks_Button_Click(object sender, RoutedEventArgs e)
-        {
-            TasksMonitor ew = new TasksMonitor();
-            ew.Name = "ActiveTaskMonitor";
-            ew.Show();
-        }
 
-        private void Swap_Button_Click(object sender, RoutedEventArgs e)
-        {
-            ErrorsWindow ew = new ErrorsWindow();
-            ew.Show();
-        }
 
-        public void UpdateError(string Error)
-        {
-            if (ErrorList.Contains(Error))
-            {
-                return;
+        
 
-            }
-            ErrorList.Add(Error);
-            switch (ErrorList.Count)
-            {
-                case 1:
-                    Block1.Text = Error;
-                    break;
-                case 2:
-                    Block2.Text = Error;
-                    break;
-                case 3:
-                    Block3.Text = Error;
-                    break;
-                case 4:
-                    Block4.Text = Error;
-                    break;
-                case 5:
-                    Block5.Text = Error;
-                    break;
-                case 6:
-                    Block6.Text = Error;
-                    break;
-                case 7:
-                    Block7.Text = Error;
-                    break;
-                case 8:
-                    Block8.Text = Error;
-                    break;
-                case 9:
-                    Block9.Text = Error;
-                    break;
-                default:
-                    break;
+        //public void UpdateError(string Error)
+        //{
+        //    if (ErrorList.Contains(Error))
+        //    {
+        //        return;
 
-            }
+        //    }
+        //    ErrorList.Add(Error);
+        //    switch (ErrorList.Count)
+        //    {
+        //        case 1:
+        //            Block1.Text = Error;
+        //            break;
+        //        case 2:
+        //            Block2.Text = Error;
+        //            break;
+        //        case 3:
+        //            Block3.Text = Error;
+        //            break;
+        //        case 4:
+        //            Block4.Text = Error;
+        //            break;
+        //        case 5:
+        //            Block5.Text = Error;
+        //            break;
+        //        case 6:
+        //            Block6.Text = Error;
+        //            break;
+        //        case 7:
+        //            Block7.Text = Error;
+        //            break;
+        //        case 8:
+        //            Block8.Text = Error;
+        //            break;
+        //        case 9:
+        //            Block9.Text = Error;
+        //            break;
+        //        default:
+        //            break;
+
+        //    }
 
 
 
-        }
+        //}
 
         public void UpdateTaskData(TaskData DataForTasks)
         {

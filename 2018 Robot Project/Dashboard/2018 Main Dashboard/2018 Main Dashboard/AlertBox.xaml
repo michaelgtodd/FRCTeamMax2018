@@ -5,112 +5,128 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_2018_Main_Dashboard"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="366">
+             d:DesignHeight="507" d:DesignWidth="366">
 
     <Grid>
 
-        <TabControl Margin="0,0,0,-11"  >
-            <TabItem Header="Alert" Width="121">
+        <TabControl Margin="0,0,0,0" >
+            <TabItem Header="Caution" Width="121" Height="31" >
                 <Grid Name="AlertGrid" Background="Black" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="119" />
+                        <ColumnDefinition Width="118" />
+                        <ColumnDefinition Width="119" />
+
+
+                    </Grid.ColumnDefinitions>
+                        
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        
-                        
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="59"/>
+                        <RowDefinition Height="59"/>
+                        <RowDefinition Height="59"/>
+                        <RowDefinition Height="59"/>
+                        <RowDefinition Height="59"/>
+                        <RowDefinition Height="59"/>
+                        <RowDefinition Height="59"/>
+                        <RowDefinition Height="59"/>
+                        <RowDefinition Height="3"/>
+
                     </Grid.RowDefinitions>
+                    
+                    <Border Background="Black" Grid.Row="1" Grid.Column="0">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution1" Text="Caution 1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>                        
+                    </Border>
 
-                    <TextBlock Name="Block1"  TextAlignment="Center" Background="Black" Grid.Row="0" Foreground="#20C20E">
-         Caution 1
-                    </TextBlock>
-                    <TextBlock Name="Block2" TextAlignment="Center" Background="Black" Grid.Row="1" Foreground="#20C20E">   
-         Caution 2
-                    </TextBlock>
-                    <TextBlock Name="Block3" TextAlignment="Center" Background="Black" Grid.Row="2" Foreground="#20C20E">
-         Caution 3
-                    </TextBlock>
-                    <TextBlock Name="Block4" TextAlignment="Center" Background="Black" Grid.Row="3" Foreground="#20C20E">
-         Caution 4
-                    </TextBlock>
-                    <TextBlock Name="Block5" TextAlignment="Center" Background="Black" Grid.Row="4" Foreground="#20C20E">
-         Caution 5
-                    </TextBlock>
-                    <TextBlock Name="Block6" TextAlignment="Center" Background="Black" Grid.Row="5" Foreground="#20C20E">
-         Caution 6
-                    </TextBlock>
-                    <TextBlock Name="Block7" TextAlignment="Center" Background="Black" Grid.Row="6" Foreground="#20C20E">
-         Caution 7
-                    </TextBlock>
-                    <TextBlock Name="Block8" TextAlignment="Center" Background="Black" Grid.Row="7" Foreground="#20C20E">
-         Caution 8
-                    </TextBlock>
-                    <TextBlock Name="Block9" TextAlignment="Center" Background="Black" Grid.Row="8" Foreground="#20C20E">
-         Caution 9
-                    </TextBlock>
-                    <TextBlock Name="Block10" TextAlignment="Center" Background="Black" Grid.Row="9" Foreground="#20C20E">
-         Caution 10
-                    </TextBlock>
-                    <TextBlock Name="Block11" TextAlignment="Center" Background="Black" Grid.Row="10" Foreground="#20C20E">
-         Caution 11
-                    </TextBlock>
-                    <TextBlock Name="Block12" TextAlignment="Center" Background="Black" Grid.Row="11" Foreground="#20C20E">
-         Caution 12
-                    </TextBlock>
-                    <TextBlock Name="Block13" TextAlignment="Center" Background="Black" Grid.Row="12" Foreground="#20C20E">
-         Caution 13
-                    </TextBlock>
-                    <TextBlock Name="Block14" TextAlignment="Center" Background="Black" Grid.Row="13" Foreground="#20C20E">
-         Caution 14
-                    </TextBlock>
-                    <TextBlock Name="BlockFill" TextAlignment="Center" Background="Black" Grid.Row="14" Foreground="#20C20E">
+                    <Border Background="Black" Grid.Row="1" Grid.Column="1">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution2" Text="Caution 2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
 
-                    </TextBlock>
+                    <Border Background="Black" Grid.Row="1" Grid.Column="2">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution3" Text="Caution 3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
 
-                    <Button Name="Swap" Height="50" Width="50" Margin="75,338,175,13" ToolTip="Swap Between Caution/Error" Click="Swap_Button_Click"  >
-                        <TextBlock> Swap</TextBlock>
-                    </Button>
-                    <Button Name="Tasks" Height="50" Width="50" Margin="175,338,75,13" ToolTip="Tasks Info" Click="Tasks_Button_Click">
-                        <TextBlock> Tasks</TextBlock>
-                    </Button>
+                    <Border Background="Black" Grid.Row="2" Grid.Column="0">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution4" Text="Caution4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="2" Grid.Column="1">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution5" Text="Caution 5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="2" Grid.Column="2">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution6" Text="Caution 6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="3" Grid.Column="0">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution7" Text="Catuion 7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="3" Grid.Column="1">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution8" Text="Caution8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="3" Grid.Column="2">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution9" Text="Caution 9" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="4" Grid.Column="0">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution10" Text="Caution 10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="4" Grid.Column="1">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution11" Text="Caution 11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="4" Grid.Column="2">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution12" Text="Caution 12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Error" Width="120">
+            <TabItem Header="Error" Width="120" Height="31">
                 <Grid Name="ErrorGrid" Background="Black">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="119"/>
+                        <ColumnDefinition Width="118"/>
+                        <ColumnDefinition Width="119"/>
+                    </Grid.ColumnDefinitions>
+                    
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
-                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>                     
+                        
                     </Grid.RowDefinitions>
                     <TextBlock Name="Error1"  TextAlignment="Center" Background="Black" Grid.Row="0" Foreground="#FF0000">
          Error 1
@@ -170,13 +186,13 @@
             </TabItem>
 
 
-            <TabItem Header="Tasks" Width="121">
+            <TabItem Header="Tasks" Width="121" Height="31">
 
                 <Grid Name="TasksGrid" Margin="0" Background="Black">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="119"/>
                         <ColumnDefinition Width="118"/>
-                        <ColumnDefinition Width="119"/>
+                        <ColumnDefinition Width="118"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="120"/>
