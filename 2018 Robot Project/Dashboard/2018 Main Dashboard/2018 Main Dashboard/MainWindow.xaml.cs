@@ -65,11 +65,10 @@ namespace _2018_Main_Dashboard
             {
                 "", "", "", "", "", "", "", "", "","", "", ""
             };
-
         }
-
-
     }
+
+    
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -124,9 +123,13 @@ namespace _2018_Main_Dashboard
 
         public void HandleOscPacket(OscMessage message)
         {
-            if (message.Address.Equals("/Error/Test"))
+            if (message.Address.Contains("Caution"))
             {
-                //Application.Current.Dispatcher.BeginInvoke(
+                string[] CautionArray = message.Address.Split('/');
+                    
+
+
+                 //Application.Current.Dispatcher.BeginInvoke(
                 //DispatcherPriority.Background,
                 //new Action(() => AlertWidget.UpdateError((string)message.Arguments[0])));
             }

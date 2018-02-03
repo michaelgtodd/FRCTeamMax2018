@@ -44,7 +44,7 @@ namespace _2018_Main_Dashboard
 
         }
 
-
+        //Public void UpdateCaution
 
         
 
@@ -104,5 +104,122 @@ namespace _2018_Main_Dashboard
             }
 
         }
+
+        public void UpdateCaution(string CautionType, string CautionName, bool CautionState)
+        {
+            if (CautionType.Equals("Motor"))
+            {
+                if (CautionName.Equals("DriveTrainLeft1"))
+                {
+                    return;
+                }
+
+                if (CautionName.Equals("DriveTrainLeft2"))
+                {
+                    return;
+                }
+
+                if (CautionName.Equals("DriveTrainLeft3"))
+                {
+                    return;
+                }
+
+                if (CautionName.Equals("DriveTrainRight1"))
+                {
+                    return;
+                }
+
+                if (CautionName.Equals("DriveTrainRight2"))
+                {
+                    return;
+                }
+
+                if(CautionName.Equals("DriveTrainRight3"))
+                {
+                    return;
+                }             
+                
+                if(CautionName.Equals("Elavator1"))
+                {
+                    return;
+                }
+
+                if(CautionName.Equals(("Elavator2")))
+                {
+                    return;
+                }
+
+                if(CautionName.Equals("ArmLeft"))
+                {
+                    return;
+                }
+
+                if(CautionName.Equals("ArmRight"))
+                {
+                    return;
+                }
+
+                if(CautionName.Equals("ArmLeftWheel"))
+                {
+                    return;
+                }
+
+                if(CautionName.Equals("ArmRightWheel"))
+                {
+                    return;
+                }
+
+                return;
+            }
+
+            if (CautionType.Equals("Encoder"))
+            {
+                if(CautionName.Equals("DriveTrainEncoderLeft"))
+                {
+                    return;
+                }
+
+                if(CautionName.Equals("DriveTrainRight"))
+                {
+                    return;
+                }
+
+                if(CautionName.Equals("Elavator"))
+                {
+                    return;
+                }
+
+                if(CautionName.Equals("ArmLeft"))
+                {
+                    return;
+                }
+
+                if(CautionName.Equals("ArmRight"))
+                {
+                    return;
+                }
+
+                if(CautionName.Equals("ArmLeftWheel"))
+                {
+                    return;
+                }
+
+                if(CautionName.Equals("ArmRightWheel"))
+                {
+                    return;
+                }
+                return;
+
+                
+            }
+            if (CautionType.Equals("Pressure"))
+            {
+                return;
+            }
+
+
+
+        }
+
     }
 }
