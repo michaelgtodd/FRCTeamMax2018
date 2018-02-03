@@ -5,56 +5,79 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_2018_Main_Dashboard"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="358">
+             d:DesignHeight="500" d:DesignWidth="366">
 
     <Grid>
 
-        <TabControl Margin="0,0,0,-11" TabStripPlacement="left">
-            <TabItem Header="Alert">
-                <Grid Name="AlertGrid" Background="LightSlateGray" >
-                    <TextBlock Name="Block1"  TextAlignment="Center" Background="Black" Margin="0,0,0,378" Foreground="#20C20E">
+        <TabControl Margin="0,0,0,-11"  >
+            <TabItem Header="Alert" Width="121">
+                <Grid Name="AlertGrid" Background="Black" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        
+                        
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Name="Block1"  TextAlignment="Center" Background="Black" Grid.Row="0" Foreground="#20C20E">
          Caution 1
                     </TextBlock>
-                    <TextBlock Name="Block2" TextAlignment="Center" Background="Black" Margin="0,22,0,356" Foreground="#20C20E">   
+                    <TextBlock Name="Block2" TextAlignment="Center" Background="Black" Grid.Row="1" Foreground="#20C20E">   
          Caution 2
                     </TextBlock>
-                    <TextBlock Name="Block3" TextAlignment="Center" Background="Black" Margin="0,44,0,334" Foreground="#20C20E">
+                    <TextBlock Name="Block3" TextAlignment="Center" Background="Black" Grid.Row="2" Foreground="#20C20E">
          Caution 3
                     </TextBlock>
-                    <TextBlock Name="Block4" TextAlignment="Center" Background="Black" Margin="0,66,0,312" Foreground="#20C20E">
+                    <TextBlock Name="Block4" TextAlignment="Center" Background="Black" Grid.Row="3" Foreground="#20C20E">
          Caution 4
                     </TextBlock>
-                    <TextBlock Name="Block5" TextAlignment="Center" Background="Black" Margin="0,88,0,290" Foreground="#20C20E">
+                    <TextBlock Name="Block5" TextAlignment="Center" Background="Black" Grid.Row="4" Foreground="#20C20E">
          Caution 5
                     </TextBlock>
-                    <TextBlock Name="Block6" TextAlignment="Center" Background="Black" Margin="0,110,0,268" Foreground="#20C20E">
+                    <TextBlock Name="Block6" TextAlignment="Center" Background="Black" Grid.Row="5" Foreground="#20C20E">
          Caution 6
                     </TextBlock>
-                    <TextBlock Name="Block7" TextAlignment="Center" Background="Black" Margin="0,132,0,246" Foreground="#20C20E">
+                    <TextBlock Name="Block7" TextAlignment="Center" Background="Black" Grid.Row="6" Foreground="#20C20E">
          Caution 7
                     </TextBlock>
-                    <TextBlock Name="Block8" TextAlignment="Center" Background="Black" Margin="0,154,0,224" Foreground="#20C20E">
+                    <TextBlock Name="Block8" TextAlignment="Center" Background="Black" Grid.Row="7" Foreground="#20C20E">
          Caution 8
                     </TextBlock>
-                    <TextBlock Name="Block9" TextAlignment="Center" Background="Black" Margin="0,176,0,202" Foreground="#20C20E">
+                    <TextBlock Name="Block9" TextAlignment="Center" Background="Black" Grid.Row="8" Foreground="#20C20E">
          Caution 9
                     </TextBlock>
-                    <TextBlock Name="Block10" TextAlignment="Center" Background="Black" Margin="0,198,0,180" Foreground="#20C20E">
+                    <TextBlock Name="Block10" TextAlignment="Center" Background="Black" Grid.Row="9" Foreground="#20C20E">
          Caution 10
                     </TextBlock>
-                    <TextBlock Name="Block11" TextAlignment="Center" Background="Black" Margin="0,220,0,158" Foreground="#20C20E">
+                    <TextBlock Name="Block11" TextAlignment="Center" Background="Black" Grid.Row="10" Foreground="#20C20E">
          Caution 11
                     </TextBlock>
-                    <TextBlock Name="Block12" TextAlignment="Center" Background="Black" Margin="0,242,0,136" Foreground="#20C20E">
+                    <TextBlock Name="Block12" TextAlignment="Center" Background="Black" Grid.Row="11" Foreground="#20C20E">
          Caution 12
                     </TextBlock>
-                    <TextBlock Name="Block13" TextAlignment="Center" Background="Black" Margin="0,264,0,114" Foreground="#20C20E">
+                    <TextBlock Name="Block13" TextAlignment="Center" Background="Black" Grid.Row="12" Foreground="#20C20E">
          Caution 13
                     </TextBlock>
-                    <TextBlock Name="Block14" TextAlignment="Center" Background="Black" Margin="0,286,0,96" Foreground="#20C20E">
+                    <TextBlock Name="Block14" TextAlignment="Center" Background="Black" Grid.Row="13" Foreground="#20C20E">
          Caution 14
                     </TextBlock>
-                    <TextBlock Name="BlockFill" TextAlignment="Center" Background="Black" Margin="0,304,0,76" Foreground="#20C20E">
+                    <TextBlock Name="BlockFill" TextAlignment="Center" Background="Black" Grid.Row="14" Foreground="#20C20E">
 
                     </TextBlock>
 
@@ -67,79 +90,99 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Error">
+            <TabItem Header="Error" Width="120">
                 <Grid Name="ErrorGrid" Background="Black">
-                    <TextBlock Name="Error1"  TextAlignment="Center" Background="Black" Margin="0,0,0,378" Foreground="#FF0000">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Name="Error1"  TextAlignment="Center" Background="Black" Grid.Row="0" Foreground="#FF0000">
          Error 1
                     </TextBlock>
-                    <TextBlock Name="Error2" TextAlignment="Center" Background="Black" Margin="0,22,0,356" Foreground="#FF0000">   
+                    <TextBlock Name="Error2" TextAlignment="Center" Background="Black" Grid.Row="1" Foreground="#FF0000">   
          Error 2
                     </TextBlock>
-                    <TextBlock Name="Error3" TextAlignment="Center" Background="Black" Margin="0,44,0,334" Foreground="#FF0000">
+                    <TextBlock Name="Error3" TextAlignment="Center" Background="Black" Grid.Row="2" Foreground="#FF0000">
          Error 3
                     </TextBlock>
-                    <TextBlock Name="Error4" TextAlignment="Center" Background="Black" Margin="0,66,0,312" Foreground="#FF0000">
+                    <TextBlock Name="Error4" TextAlignment="Center" Background="Black" Grid.Row="3" Foreground="#FF0000">
          Error 4
                     </TextBlock>
-                    <TextBlock Name="Error5" TextAlignment="Center" Background="Black" Margin="0,88,0,290" Foreground="#FF0000">
+                    <TextBlock Name="Error5" TextAlignment="Center" Background="Black" Grid.Row="4" Foreground="#FF0000">
          Error 5
                     </TextBlock>
-                    <TextBlock Name="Error6" TextAlignment="Center" Background="Black" Margin="0,110,0,268" Foreground="#FF0000">
+                    <TextBlock Name="Error6" TextAlignment="Center" Background="Black" Grid.Row="5" Foreground="#FF0000">
          Error 6
                     </TextBlock>
-                    <TextBlock Name="Error7" TextAlignment="Center" Background="Black" Margin="0,132,0,246" Foreground="#FF0000">
+                    <TextBlock Name="Error7" TextAlignment="Center" Background="Black" Grid.Row="6" Foreground="#FF0000">
          Error 7
                     </TextBlock>
-                    <TextBlock Name="Error8" TextAlignment="Center" Background="Black" Margin="0,154,0,224" Foreground="#FF0000">
+                    <TextBlock Name="Error8" TextAlignment="Center" Background="Black" Grid.Row="7" Foreground="#FF0000">
          Error 8
                     </TextBlock>
-                    <TextBlock Name="Error9" TextAlignment="Center" Background="Black" Margin="0,176,0,202" Foreground="#FF0000">
+                    <TextBlock Name="Error9" TextAlignment="Center" Background="Black" Grid.Row="8" Foreground="#FF0000">
          Error 9
                     </TextBlock>
-                    <TextBlock Name="Error10" TextAlignment="Center" Background="Black" Margin="0,198,0,180" Foreground="#FF0000">
+                    <TextBlock Name="Error10" TextAlignment="Center" Background="Black" Grid.Row="9" Foreground="#FF0000">
          Error 10
                     </TextBlock>
-                    <TextBlock Name="Error11" TextAlignment="Center" Background="Black" Margin="0,220,0,158" Foreground="#FF0000">
+                    <TextBlock Name="Error11" TextAlignment="Center" Background="Black" Grid.Row="10" Foreground="#FF0000">
          Error 11
                     </TextBlock>
-                    <TextBlock Name="Error12" TextAlignment="Center" Background="Black" Margin="0,242,0,136" Foreground="#FF0000">
+                    <TextBlock Name="Error12" TextAlignment="Center" Background="Black" Grid.Row="11" Foreground="#FF0000">
          Error 12
                     </TextBlock>
-                    <TextBlock Name="Error13" TextAlignment="Center" Background="Black" Margin="0,264,0,114" Foreground="#FF0000">
+                    <TextBlock Name="Error13" TextAlignment="Center" Background="Black" Grid.Row="12" Foreground="#FF0000">
          Error 13
                     </TextBlock>
-                    <TextBlock Name="Error14" TextAlignment="Center" Background="Black" Margin="0,286,0,96" Foreground="#FF0000">
+                    <TextBlock Name="Error14" TextAlignment="Center" Background="Black" Grid.Row="13" Foreground="#FF0000">
          Error 14
                     </TextBlock>
-                    <TextBlock Name="Error15" TextAlignment="Center" Background="Black" Margin="0,304,0,74" Foreground="#FF0000">
+                    <TextBlock Name="Error15" TextAlignment="Center" Background="Black" Grid.Row="14" Foreground="#FF0000">
          Error 15
                     </TextBlock>
-                    <TextBlock Name="Error16" TextAlignment="Center" Background="Black" Margin="0,326,0,52" Foreground="#FF0000">
+                    <TextBlock Name="Error16" TextAlignment="Center" Background="Black" Grid.Row="15" Foreground="#FF0000">
          Error 16
                     </TextBlock>
-                    <TextBlock Name="Error17" TextAlignment="Center" Background="Black" Margin="0,348,0,30" Foreground="#FF0000">
+                    <TextBlock Name="Error17" TextAlignment="Center" Background="Black" Grid.Row="16" Foreground="#FF0000">
          Error 17
                     </TextBlock>
-                    <TextBlock Name="Error18" TextAlignment="Center" Background="Black" Margin="0,370,0,0" Foreground="#FF0000">
+                    <TextBlock Name="Error18" TextAlignment="Center" Background="Black" Grid.Row="17" Foreground="#FF0000">
          Error 18
                     </TextBlock>
                 </Grid>
             </TabItem>
 
 
-            <TabItem Header="Tasks">
+            <TabItem Header="Tasks" Width="121">
 
-                <Grid Name="TasksGrid" Margin="0">
+                <Grid Name="TasksGrid" Margin="0" Background="Black">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="119"/>
+                        <ColumnDefinition Width="118"/>
+                        <ColumnDefinition Width="119"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="100"/>
-                        <RowDefinition Height="100"/>
-                        <RowDefinition Height="100"/>
-                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="120"/>
+                        <RowDefinition Height="120"/>
+                        <RowDefinition Height="120"/>
+                        <RowDefinition Height="119"/>
 
                     </Grid.RowDefinitions>
                     <Border Background="Black">
