@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_2018_Main_Dashboard"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="200">
-    <Grid Background="LightSlateGray">
-        <ComboBox FontSize="15" SelectedIndex="0"  Name="AutoCombobox"  Width="75" Height="25" Margin="10,7,115,68" SelectionChanged="Goal_SelectionChanged">
+             d:DesignHeight="75" d:DesignWidth="200">
+    <Grid Background="Black">
+        <Rectangle Stroke="White" StrokeThickness="4"></Rectangle>
+        <ComboBox FontSize="15" SelectedIndex="0"  Name="AutoCombobox"  Width="75" Height="25" Margin="10,40,115,10" SelectionChanged="Goal_SelectionChanged">
             <ComboBoxItem Name="AutoPostitonLeft">
                 Left
             </ComboBoxItem>
@@ -18,22 +19,23 @@
                 Right
             </ComboBoxItem>
         </ComboBox>
-        <ComboBox FontSize="15" SelectedIndex="0"  Name="AutoComboboxversion"  Width="75" Height="25" Margin="115,7,10,68" SelectionChanged="Goal_SelectionChanged">
+        <ComboBox FontSize="15" SelectedIndex="0"  Name="AutoComboboxversion"  Width="75" Height="25" Margin="115,40,10,10" SelectionChanged="Goal_SelectionChanged">
             <ComboBoxItem Name="AutoScale">
-                Good
+                Yes
             </ComboBoxItem>
             <ComboBoxItem Name="AutoSwitch">
-                Bad
+                No
             </ComboBoxItem>
             <ComboBoxItem Name="AutoBoth">
                 Kyle
             </ComboBoxItem>
         </ComboBox>
-        <TextBlock Name="PositionText" Margin="-27,32,102,5" TextAlignment="Center">
+        <TextBlock Name="PositionText" Margin="10,23,115,38" TextAlignment="Center" Foreground="White">
             Position
         </TextBlock>
-        <TextBlock Name="GoalText" Margin="85,32,-21,5" TextAlignment="Center">
-            Team Ability
+        <TextBlock Name="GoalText" Margin="111,23,4,35" TextAlignment="Center" Foreground="White">
+            Switch Priority
         </TextBlock>
+        <TextBlock Name="Auto" Text="Autonomous Selection" Foreground="White" TextAlignment="Center" FontSize="18" Margin="0,0,0,49" FontWeight="DemiBold"/>
     </Grid>
 </UserControl>

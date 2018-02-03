@@ -170,5 +170,8 @@
     <Resource Include="Joystick.jpg" />
     <Resource Include="Xbox Controller.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GreenHill.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
