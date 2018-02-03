@@ -107,18 +107,21 @@ namespace _2018_Main_Dashboard
 
         public void OscSendRunner()
         {
-            UDPSender Sender = new SharpOSC.UDPSender("10.10.71.2", 5801);
-            OscBundle ToSend = new SharpOSC.OscBundle(Utils.DateTimeToTimetag(DateTime.Now));
-            OscMessage ControllerMessage = new OscMessage("/Dashboard/ControllerMessage/", CurrentDashboardData.CurrentController);
-            ToSend.Messages.Add(ControllerMessage);
-            OscMessage DriveModeMessage = new OscMessage("/Dashboard/DriveModeMessage/", CurrentDashboardData.CurrentDriveMode);
-            ToSend.Messages.Add(DriveModeMessage);
-            OscMessage AutoPositionMessage = new OscMessage("/Dashboard/AutoPositionMessage/", CurrentDashboardData.AutoPosition);
-            ToSend.Messages.Add(AutoPositionMessage);
-            OscMessage AutoGoalMessage = new OscMessage("/Dashboard/AutoGoalMessage/", CurrentDashboardData.AutoGoal);
-            ToSend.Messages.Add(AutoGoalMessage);
-            Sender.Send(ToSend);
-            Thread.Sleep(1);
+            while(true)
+            { 
+                UDPSender Sender = new SharpOSC.UDPSender("10.10.71.2", 5801);
+                OscBundle ToSend = new SharpOSC.OscBundle(Utils.DateTimeToTimetag(DateTime.Now));
+                OscMessage ControllerMessage = new OscMessage("/Dashboard/ControllerMessage/", CurrentDashboardData.CurrentController);
+                ToSend.Messages.Add(ControllerMessage);
+                OscMessage DriveModeMessage = new OscMessage("/Dashboard/DriveModeMessage/", CurrentDashboardData.CurrentDriveMode);
+                ToSend.Messages.Add(DriveModeMessage);
+                OscMessage AutoPositionMessage = new OscMessage("/Dashboard/AutoPositionMessage/", CurrentDashboardData.AutoPosition);
+                ToSend.Messages.Add(AutoPositionMessage);
+                OscMessage AutoGoalMessage = new OscMessage("/Dashboard/AutoGoalMessage/", CurrentDashboardData.AutoGoal);
+                ToSend.Messages.Add(AutoGoalMessage);
+                Sender.Send(ToSend);
+                Thread.Sleep(50);
+            }
         }
 
         public void HandleOscPacket(OscMessage message)
