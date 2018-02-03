@@ -63,16 +63,16 @@ namespace _2018_Main_Dashboard
         public void UpdateControllerData(ControllerData DataForController0, ControllerData DataForController1)
         {
             JoystickAxisGrid.MakeThingMove(DataForController0.AxisList[0], DataForController0.AxisList[1]);
-            JoystickZAxisBar.ChangeZAxisWidth(DataForController0.AxisList[2]);
+            JoystickZAxisBar.ChangeZAxisWidth(DataForController0.AxisList[2], ControllerCombobox.Text);
             if (ControllerCombobox.Text == "Joystick")
             {
                 SecondaryGrid.MakeThingMove(DataForController1.AxisList[0], DataForController1.AxisList[1]);
-                SecondaryAxisBar.ChangeZAxisWidth(DataForController1.AxisList[2]);
+                SecondaryAxisBar.ChangeZAxisWidth(DataForController1.AxisList[2], "Joystick");
             }
             else if (ControllerCombobox.Text == "Xbox Controller")
             {
                 SecondaryGrid.MakeThingMove(DataForController0.AxisList[4], DataForController0.AxisList[5]);
-                SecondaryAxisBar.ChangeZAxisWidth(DataForController0.AxisList[3]);
+                SecondaryAxisBar.ChangeZAxisWidth(DataForController0.AxisList[3], "Xbox Controller");
             }
         }
         public void UpdateJoystickWidget(ControllerData Controller0, ControllerData Controller1)
