@@ -24,10 +24,19 @@ namespace _2018_Main_Dashboard
         {
             InitializeComponent();
         }
-        public void ChangeZAxisWidth(double ZAxis)
+        public void ChangeZAxisWidth(double ZAxis, string Controller)
         {
-            double ZAxisWidth = ZAxis * 25 + 25;
-            ZAxisIndicator.Width = ZAxisWidth;
+            double ZAxisWidth;
+            if (Controller == "Xbox Controller")
+            {
+                ZAxisWidth = ZAxis * 50;
+                ZAxisIndicator.Width = ZAxisWidth;
+            }
+            else if (Controller == "Joystick")
+            {
+                ZAxisWidth = ZAxis * 25 + 25;
+                ZAxisIndicator.Width = ZAxisWidth;
+            }
         }
 
     }
