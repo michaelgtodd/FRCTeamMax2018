@@ -14,8 +14,17 @@ void LiftingTask::Run()
 	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedArmRight);
 	GrabWheelL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedGrabWheelLeft);
 	GrabWheelR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedGrabWheelRight);
-	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
-	LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
+	if (fabs(ControlInput->SpeedLift) > 0)
+	{
+		LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
+		LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
+	}
+	else
+	{
+		LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::Position, ControlInput->SpeedLift);
+		LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::Position, ControlInput->SpeedLift);
+	}
+	
 }
 
 void LiftingTask::Disable()

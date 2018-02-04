@@ -106,6 +106,34 @@ void ControlTask::Always()
 		Controls->SpeedLeft = -Controls->SpeedLeft;
 		delete (MainJoystick);
 	}
+
+	//Lifting_Task
+	if (Controls->ControllerMode == ControlLayout::Tank && Controls->ControllerType == JoystickType) 
+	{
+		Joystick * Left = new Joystick(2);
+		Joystick * Right = new Joystick(3);
+		Controls->SpeedLift = (fabs(Left->GetRawAxis(1) + Right->GetRawAxis(1)) < .25) ? 0 : (Left->GetRawAxis(1) + Right->GetRawAxis(1));
+		delete (Left);
+		delete (Right);
+	}
+	else if (Controls->ControllerMode == ControlLayout::Tank && Controls->ControllerType == XboxType)
+	{
+		Joystick * Xbox = new Joystick(2);
+		Controls->SpeedLift = (fabs(Xbox->GetRawAxis(1) + Xbox->GetRawAxis(5)) < .25) ? 0 : (Xbox->GetRawAxis(1) + Xbox->GetRawAxis(5));
+		delete (Xbox);
+	}
+	else if (Controls->ControllerMode == ControlLayout::Arcade && Controls->ControllerType == XboxType) 
+	{
+		Joystick * Xbox = new Joystick(2);
+		Controls->SpeedLift = (fabs(Xbox->GetRawAxis(1)) < .1) ? 0 : (Xbox->GetRawAxis(1));
+		delete (Xbox);
+	}
+	else 
+	{
+		Joystick * MainJoystick = new Joystick(2);
+		Controls->SpeedLift = (fabs(MainJoystick->GetRawAxis(1)) < .1) ? 0 : (MainJoystick->GetRawAxis(1));
+		delete (MainJoystick);
+	}
 	taskschedule_->DispatchControl(Controls);
 }
 
