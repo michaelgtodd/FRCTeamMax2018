@@ -175,6 +175,12 @@ namespace _2018_Main_Dashboard
                 }
 
             }
+            if (message.Address.Equals("/Power/Total"))
+            {
+                Application.Current.Dispatcher.BeginInvoke(
+               DispatcherPriority.Background,
+               new Action(() => CurrentGaugeWidget.ChangeWidth((double)message.Arguments[0])));
+            }
         }
         public void SetControllerData(ControllerData CurrentControllerData, string[] StringArray, OscMessage Message)
         {

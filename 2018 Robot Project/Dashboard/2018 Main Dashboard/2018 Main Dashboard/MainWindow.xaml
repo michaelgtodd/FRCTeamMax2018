@@ -22,6 +22,7 @@
                 <local:AlertBox x:Name="AlertWidget" Width="366" Height="507" Margin="990,10,10,10"/>
                 <local:AutoSwitchControl x:Name="AutoSwitch" Width="200" Height="75" Margin="315,10,851,442"/>
             <local:JoystickWidget x:Name="SwitchesWidget" Width="300" Height="250"  Margin="10,267,1056,10"/>
+            <local:CurrentGauge x:Name="CurrentGaugeWidget" Height="75" Width="200" Margin="520,11,646,441" />
 
 
 

@@ -20,6 +20,7 @@ void PowerReportingTask::Always()
 	{
 		MaxLog::TransmitDouble("/power/" + std::to_string(i), PDP->GetCurrent(0));
 	}
+	MaxLog::TransmitDouble("/Power/Total", PDP->GetTotalCurrent());
 }
 
 void PowerReportingTask::Autonomous()
