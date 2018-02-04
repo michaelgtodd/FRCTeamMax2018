@@ -8,6 +8,7 @@
              d:DesignHeight="507" d:DesignWidth="366">
 
     <Grid>
+        
         <TabControl Margin="0,0,0,0" >
             <TabItem Header="Caution" Width="121">
                 <Grid Name="AlertGrid" Background="Black" >
@@ -32,122 +33,122 @@
                     </Grid.RowDefinitions>
 
                     <Border Background="Black" Grid.Row="1" Grid.Column="0">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                        <Grid Name="DriveMotorL1" Background="LightSlateGray" Margin="2,2,2,2">
                             <TextBlock Name="Caution1" Text="Drive Train Motor Left #1" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>                        
                     </Border>
 
                     <Border Background="Black" Grid.Row="1" Grid.Column="1">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                        <Grid Name="DriveMotorL2" Background="LightSlateGray" Margin="2,2,2,2">
                             <TextBlock Name="Caution2" Text="Drive Train Motor Left #2" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="1" Grid.Column="2">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                        <Grid Name="DriveMotorL3" Background="LightSlateGray" Margin="2,2,2,2">
                             <TextBlock Name="Caution3" Text="Drive Train Motor Left #3" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="2" Grid.Column="0">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                        <Grid Name="DriveMotorR1" Background="LightSlateGray" Margin="2,2,2,2">
                             <TextBlock Name="Caution4" Text="Drive Train Motor Right #1" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="2" Grid.Column="1">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                        <Grid Name="DriveMotorR2" Background="LightSlateGray" Margin="2,2,2,2">
                             <TextBlock Name="Caution5" Text="Drive Train Motor Right #2" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
-                    <Border Background="Black" Grid.Row="2" Grid.Column="2">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution6" Text="Drive Train Motor Left #3" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border Background="Black" Grid.Row="2" Grid.Column="2" >
+                        <Grid Name="DriveMotorR3" Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution6" Text="Drive Train Motor Right #3" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="3" Grid.Column="0">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                        <Grid Name="ElavatorMotor1" Background="LightSlateGray" Margin="2,2,2,2">
                             <TextBlock Name="Caution7" Text="Elavator Motor #1" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="3" Grid.Column="1">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                        <Grid Name="ElavatorMotor2" Background="LightSlateGray" Margin="2,2,2,2">
                             <TextBlock Name="Caution8" Text="Elavator Motor #2" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="3" Grid.Column="2">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                        <Grid Name="ArmMotorL" Background="LightSlateGray" Margin="2,2,2,2">
                             <TextBlock Name="Caution9" Text="Arm Motor Left" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="4" Grid.Column="0">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                        <Grid Name="ArmMotorR" Background="LightSlateGray" Margin="2,2,2,2">
                             <TextBlock Name="Caution10" Text="Arm Motor Right" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="4" Grid.Column="1">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution11" Text="Drive Trian Encoder Left" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Grid Name="ArmWheelMotorL" Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution11" Text="Arm Wheel Motor Left" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="4" Grid.Column="2">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution12" Text="Drive Train Encoder Right" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Grid Name="ArmWheelMotorR" Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution12" Text="Arm Wheel Motor Right" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
                     
                     <Border Background="Black" Grid.Row="5" Grid.Column="0">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution13" Text="Arm Encoder Left" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Grid Name="DriveEncoderL" Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution13" Text="Drive Train Encoder Left" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="5" Grid.Column="1">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution14" Text="Arm Encoder Right" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Grid Name="DriveEncoderR" Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution14" Text="Drive Train Encoder Right" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="5" Grid.Column="3">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution15" Text="Elavator Encoder" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Grid Name="ArmEncoderL" Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution15" Text="Arm Encoder Left" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="6" Grid.Column="0">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution16" Text="Arm Wheel Encoder Left" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Grid Name="ArmEncoderR" Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution16" Text="Arm Encoder Right" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="6" Grid.Column="1">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution17" Text="Arm Wheel Encoder Right" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Grid Name="ElavatorEncoder" Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution17" Text="Elavator Encoder" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="6" Grid.Column="2">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                        <Grid Name="LowPressure" Background="LightSlateGray" Margin="2,2,2,2">
                             <TextBlock Name="Caution18" Text="Low Pressure" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="7" Grid.Column="0">
-                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution19" Text="Task Performance" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Grid Name="TaskPerformance" Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution19" Text="Task Performance Warning" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="7" Grid.Column="1">
                         <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution20" Text="Task Performance Warning" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="Caution20" Text="Caution 20" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 

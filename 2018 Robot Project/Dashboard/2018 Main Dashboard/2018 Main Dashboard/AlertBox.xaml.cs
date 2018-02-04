@@ -107,116 +107,261 @@ namespace _2018_Main_Dashboard
 
         public void UpdateCaution(string CautionType, string CautionName, bool CautionState)
         {
+            //Motors
             if (CautionType.Equals("Motor"))
             {
                 if (CautionName.Equals("DriveTrainLeft1"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        DriveMotorL1.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        DriveMotorL1.Background = Brushes.Red;
+                    }
                 }
 
                 if (CautionName.Equals("DriveTrainLeft2"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        DriveMotorL2.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        DriveMotorL2.Background = Brushes.Red;
+                    }
                 }
 
                 if (CautionName.Equals("DriveTrainLeft3"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        DriveMotorL3.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        DriveMotorL3.Background = Brushes.Red;
+                    }
                 }
 
                 if (CautionName.Equals("DriveTrainRight1"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        DriveMotorR1.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        DriveMotorR1.Background = Brushes.Red;
+                    }
                 }
 
                 if (CautionName.Equals("DriveTrainRight2"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        DriveMotorR2.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        DriveMotorR2.Background = Brushes.Red;
+                    }
                 }
 
                 if(CautionName.Equals("DriveTrainRight3"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        DriveMotorR3.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        DriveMotorR3.Background = Brushes.Red;
+                    }
                 }             
                 
                 if(CautionName.Equals("Elavator1"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        ElavatorMotor1.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        ElavatorMotor1.Background = Brushes.Red;
+                    }
                 }
 
                 if(CautionName.Equals(("Elavator2")))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        ElavatorMotor2.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        ElavatorMotor2.Background = Brushes.Red;
+                    }
                 }
 
                 if(CautionName.Equals("ArmLeft"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        ArmMotorL.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        ArmMotorL.Background = Brushes.Red;
+                    }
                 }
 
                 if(CautionName.Equals("ArmRight"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        ArmMotorR.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        ArmMotorR.Background = Brushes.Red;
+                    }
                 }
 
                 if(CautionName.Equals("ArmLeftWheel"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        ArmWheelMotorL.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        ArmWheelMotorL.Background = Brushes.Red;
+                    }
                 }
 
                 if(CautionName.Equals("ArmRightWheel"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        ArmWheelMotorR.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        ArmWheelMotorR.Background = Brushes.Red;
+                    }
                 }
 
                 return;
             }
-
+            //Encoders
             if (CautionType.Equals("Encoder"))
             {
                 if(CautionName.Equals("DriveTrainEncoderLeft"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        DriveEncoderL.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        DriveEncoderL.Background = Brushes.Red;
+                    }
                 }
 
                 if(CautionName.Equals("DriveTrainRight"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        DriveEncoderR.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        DriveEncoderR.Background = Brushes.Red;
+                    }
                 }
 
                 if(CautionName.Equals("Elavator"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        ElavatorEncoder.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        ElavatorEncoder.Background = Brushes.Red;
+                    }
                 }
 
                 if(CautionName.Equals("ArmLeft"))
                 {
-                    return;
+                    if (CautionState.Equals(true))
+                    {
+                        ArmEncoderL.Background = Brushes.Green;
+                    }
+
+                    if (CautionState.Equals(false))
+                    {
+                        ArmEncoderL.Background = Brushes.Red;
+                    }
                 }
 
                 if(CautionName.Equals("ArmRight"))
                 {
-                    return;
-                }
+                    if (CautionState.Equals(true))
+                    {
+                        ArmEncoderR.Background = Brushes.Green;
+                    }
 
-                if(CautionName.Equals("ArmLeftWheel"))
-                {
-                    return;
-                }
-
-                if(CautionName.Equals("ArmRightWheel"))
-                {
-                    return;
-                }
-                return;
-
-                
+                    if (CautionState.Equals(false))
+                    {
+                        ArmEncoderR.Background = Brushes.Red;
+                    }
+                }                                              
             }
+            //Pressure
             if (CautionType.Equals("Pressure"))
             {
-                return;
-            }
+                if (CautionState.Equals(true))
+                {
+                    LowPressure.Background = Brushes.Green;
+                }
 
+                if (CautionState.Equals(false))
+                {
+                    LowPressure.Background = Brushes.Red;
+                }
+            }
+            //Tasks
+            if (CautionType.Equals("Tasks"))
+            {
+                if (CautionState.Equals(true))
+                {
+                    TaskPerformance.Background = Brushes.Green;
+                }
+                
+                if (CautionState.Equals(false))
+                {
+                    TaskPerformance.Background = Brushes.Red;
+                }
+            }
 
 
         }
