@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="_2018_Main_Dashboard.CurrentGauge"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_2018_Main_Dashboard"
+             mc:Ignorable="d" 
+             d:DesignHeight="75" d:DesignWidth="200">
+    <Grid Background="Black">
+        <Grid Background="White" Width="180" Height="30" Margin="10,35,10,10">
+            <Rectangle Name="CurrentGaugeBar" Width="180" Height="30" Fill="Green" HorizontalAlignment="Left" VerticalAlignment="Top">
+            </Rectangle>
+        </Grid>
+        <Rectangle Stroke="White" StrokeThickness="4"></Rectangle>
+        <TextBlock Name="GaugeLabel" Foreground="White" TextAlignment="Center" FontSize="18" FontWeight="Bold" Margin="0,1,0,50">
+            Current Gauge
+        </TextBlock>
+    </Grid>
+</UserControl>

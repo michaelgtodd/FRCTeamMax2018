@@ -66,6 +66,9 @@
     <Compile Include="AxisGrid.xaml.cs">
       <DependentUpon>AxisGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CurrentGauge.xaml.cs">
+      <DependentUpon>CurrentGauge.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ErrorsWindow.xaml.cs">
       <DependentUpon>ErrorsWindow.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AxisGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CurrentGauge.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
