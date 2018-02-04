@@ -8,21 +8,18 @@
              d:DesignHeight="507" d:DesignWidth="366">
 
     <Grid>
-
         <TabControl Margin="0,0,0,0" >
-            <TabItem Header="Caution" Width="121" Height="31" >
+            <TabItem Header="Caution" Width="121">
                 <Grid Name="AlertGrid" Background="Black" >
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="119" />
                         <ColumnDefinition Width="118" />
                         <ColumnDefinition Width="119" />
-
-
                     </Grid.ColumnDefinitions>
                         
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="2"/>
                         <RowDefinition Height="59"/>
                         <RowDefinition Height="59"/>
                         <RowDefinition Height="59"/>
@@ -31,162 +28,169 @@
                         <RowDefinition Height="59"/>
                         <RowDefinition Height="59"/>
                         <RowDefinition Height="59"/>
-                        <RowDefinition Height="3"/>
-
+                        <RowDefinition Height="2"/>
                     </Grid.RowDefinitions>
-                    
+
                     <Border Background="Black" Grid.Row="1" Grid.Column="0">
                         <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution1" Text="Caution 1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="Caution1" Text="Drive Train Motor Left #1" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>                        
                     </Border>
 
                     <Border Background="Black" Grid.Row="1" Grid.Column="1">
                         <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution2" Text="Caution 2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="Caution2" Text="Drive Train Motor Left #2" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="1" Grid.Column="2">
                         <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution3" Text="Caution 3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="Caution3" Text="Drive Train Motor Left #3" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="2" Grid.Column="0">
                         <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution4" Text="Caution4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="Caution4" Text="Drive Train Motor Right #1" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="2" Grid.Column="1">
                         <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution5" Text="Caution 5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="Caution5" Text="Drive Train Motor Right #2" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="2" Grid.Column="2">
                         <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution6" Text="Caution 6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="Caution6" Text="Drive Train Motor Left #3" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="3" Grid.Column="0">
                         <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution7" Text="Catuion 7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="Caution7" Text="Elavator Motor #1" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="3" Grid.Column="1">
                         <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution8" Text="Caution8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="Caution8" Text="Elavator Motor #2" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="3" Grid.Column="2">
                         <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution9" Text="Caution 9" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="Caution9" Text="Arm Motor Left" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="4" Grid.Column="0">
                         <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution10" Text="Caution 10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="Caution10" Text="Arm Motor Right" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="4" Grid.Column="1">
                         <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution11" Text="Caution 11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="Caution11" Text="Drive Trian Encoder Left" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="4" Grid.Column="2">
                         <Grid Background="LightSlateGray" Margin="2,2,2,2">
-                            <TextBlock Name="Caution12" Text="Caution 12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Name="Caution12" Text="Drive Train Encoder Right" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                    
+                    <Border Background="Black" Grid.Row="5" Grid.Column="0">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution13" Text="Arm Encoder Left" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
-                </Grid>
-            </TabItem>
-            <TabItem Header="Error" Width="120" Height="31">
-                <Grid Name="ErrorGrid" Background="Black">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="119"/>
-                        <ColumnDefinition Width="118"/>
-                        <ColumnDefinition Width="119"/>
-                    </Grid.ColumnDefinitions>
+                    <Border Background="Black" Grid.Row="5" Grid.Column="1">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution14" Text="Arm Encoder Right" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="5" Grid.Column="3">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution15" Text="Elavator Encoder" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="6" Grid.Column="0">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution16" Text="Arm Wheel Encoder Left" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="6" Grid.Column="1">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution17" Text="Arm Wheel Encoder Right" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="6" Grid.Column="2">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution18" Text="Low Pressure" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="7" Grid.Column="0">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution19" Text="Task Performance" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="7" Grid.Column="1">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution20" Text="Task Performance Warning" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="7" Grid.Column="2">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution21" Text="Caution 21" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="8" Grid.Column="0">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution22" Text="Caution 22" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="8" Grid.Column="1">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution23" Text="Caution 23" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Background="Black" Grid.Row="8" Grid.Column="2">
+                        <Grid Background="LightSlateGray" Margin="2,2,2,2">
+                            <TextBlock Name="Caution24" Text="Caution 24" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
                     
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>                     
-                        
-                    </Grid.RowDefinitions>
-                    <TextBlock Name="Error1"  TextAlignment="Center" Background="Black" Grid.Row="0" Foreground="#FF0000">
-         Error 1
-                    </TextBlock>
-                    <TextBlock Name="Error2" TextAlignment="Center" Background="Black" Grid.Row="1" Foreground="#FF0000">   
-         Error 2
-                    </TextBlock>
-                    <TextBlock Name="Error3" TextAlignment="Center" Background="Black" Grid.Row="2" Foreground="#FF0000">
-         Error 3
-                    </TextBlock>
-                    <TextBlock Name="Error4" TextAlignment="Center" Background="Black" Grid.Row="3" Foreground="#FF0000">
-         Error 4
-                    </TextBlock>
-                    <TextBlock Name="Error5" TextAlignment="Center" Background="Black" Grid.Row="4" Foreground="#FF0000">
-         Error 5
-                    </TextBlock>
-                    <TextBlock Name="Error6" TextAlignment="Center" Background="Black" Grid.Row="5" Foreground="#FF0000">
-         Error 6
-                    </TextBlock>
-                    <TextBlock Name="Error7" TextAlignment="Center" Background="Black" Grid.Row="6" Foreground="#FF0000">
-         Error 7
-                    </TextBlock>
-                    <TextBlock Name="Error8" TextAlignment="Center" Background="Black" Grid.Row="7" Foreground="#FF0000">
-         Error 8
-                    </TextBlock>
-                    <TextBlock Name="Error9" TextAlignment="Center" Background="Black" Grid.Row="8" Foreground="#FF0000">
-         Error 9
-                    </TextBlock>
-                    <TextBlock Name="Error10" TextAlignment="Center" Background="Black" Grid.Row="9" Foreground="#FF0000">
-         Error 10
-                    </TextBlock>
-                    <TextBlock Name="Error11" TextAlignment="Center" Background="Black" Grid.Row="10" Foreground="#FF0000">
-         Error 11
-                    </TextBlock>
-                    <TextBlock Name="Error12" TextAlignment="Center" Background="Black" Grid.Row="11" Foreground="#FF0000">
-         Error 12
-                    </TextBlock>
-                    <TextBlock Name="Error13" TextAlignment="Center" Background="Black" Grid.Row="12" Foreground="#FF0000">
-         Error 13
-                    </TextBlock>
-                    <TextBlock Name="Error14" TextAlignment="Center" Background="Black" Grid.Row="13" Foreground="#FF0000">
-         Error 14
-                    </TextBlock>
-                    <TextBlock Name="Error15" TextAlignment="Center" Background="Black" Grid.Row="14" Foreground="#FF0000">
-         Error 15
-                    </TextBlock>
-                    <TextBlock Name="Error16" TextAlignment="Center" Background="Black" Grid.Row="15" Foreground="#FF0000">
-         Error 16
-                    </TextBlock>
-                    <TextBlock Name="Error17" TextAlignment="Center" Background="Black" Grid.Row="16" Foreground="#FF0000">
-         Error 17
-                    </TextBlock>
-                    <TextBlock Name="Error18" TextAlignment="Center" Background="Black" Grid.Row="17" Foreground="#FF0000">
-         Error 18
-                    </TextBlock>
                 </Grid>
+            </TabItem>
+            
+            
+            <TabItem Header="Error" Width="120" >
+                <ScrollViewer>
+                    <Grid Name="ErrorGrid" Background="Black" Height="1000">               
+                        <TextBlock Name="Error"  TextAlignment="Center" Background="Black" Foreground="#FF0000" Height="1000">
+                            Error 
+                        </TextBlock>                        
+                    </Grid>
+                </ScrollViewer>
             </TabItem>
 
 
-            <TabItem Header="Tasks" Width="121" Height="31">
+            <TabItem Header="Tasks" Width="121" >
 
                 <Grid Name="TasksGrid" Margin="0" Background="Black">
                     <Grid.ColumnDefinitions>
@@ -194,11 +198,11 @@
                         <ColumnDefinition Width="118"/>
                         <ColumnDefinition Width="118"/>
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="120"/>
-                        <RowDefinition Height="120"/>
-                        <RowDefinition Height="120"/>
+                    <Grid.RowDefinitions>                        
                         <RowDefinition Height="119"/>
+                        <RowDefinition Height="119"/>
+                        <RowDefinition Height="119"/>
+                        <RowDefinition Height="118"/>
 
                     </Grid.RowDefinitions>
                     <Border Background="Black">
@@ -426,12 +430,11 @@
                             <TextBlock Name="Task12Dur" TextAlignment="Center" Grid.Row="2">
                         Duration: XYZ
                             </TextBlock>
+                            
                         </Grid>
                     </Border>
-
-
-
-
+                    
+                    
                 </Grid>
             </TabItem>
         </TabControl>
