@@ -57,6 +57,9 @@ private:
 	double AxisPrimaryY;
 	double AxisSecondaryX;
 	double AxisSecondaryY;
+	int Output;
+	int debugCounter;
+	const int DEBUG_COUNTER_LIMIT = 60;
 };
 
 extern ControlTask ControlTaskInstance;

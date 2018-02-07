@@ -21,13 +21,11 @@ void DrivingTask::Run()
 	case -1:
 		DriveShift->Set(frc::DoubleSolenoid::Value::kReverse);
 		break;
-	case 0:
-		DriveShift->Set(frc::DoubleSolenoid::Value::kOff);
-		break;
 	case 1:
 		DriveShift->Set(frc::DoubleSolenoid::Value::kForward);
 		break;
 	default:
+		DriveShift->Set(frc::DoubleSolenoid::Value::kReverse);
 		break;
 	}
 }
@@ -62,7 +60,7 @@ void DrivingTask::Init()
 	RightMotor1 = new TalonSRX(13);
 	RightMotor2 = new TalonSRX(14);
 	RightMotor3 = new TalonSRX(15);
-	DriveShift = new frc::DoubleSolenoid { 1, 2 };
+	DriveShift = new frc::DoubleSolenoid { 0, 1 };
 
 	ConfigureCurrentLimit(LeftMotor1);
 	ConfigureCurrentLimit(LeftMotor2);

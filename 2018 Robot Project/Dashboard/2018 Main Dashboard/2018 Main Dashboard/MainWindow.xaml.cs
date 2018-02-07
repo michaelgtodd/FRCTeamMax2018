@@ -175,7 +175,7 @@ namespace _2018_Main_Dashboard
                 }
 
             }
-            if (message.Address.Equals("/Power/Total"))
+            if (message.Address.Equals("/Power/Total/"))
             {
                 Application.Current.Dispatcher.BeginInvoke(
                DispatcherPriority.Background,
