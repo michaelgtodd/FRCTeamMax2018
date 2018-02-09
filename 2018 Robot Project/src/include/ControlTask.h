@@ -22,9 +22,10 @@ class RobotControl : public MaxControl
 {
 public:
 	RobotControl();
-	ControlType ControllerType;
+	ControlType DriverType;
 	ControlType SwitchesType;
-	ControlLayout ControllerMode;
+	ControlLayout DriverMode;
+	ControlLayout SwitchesMode;
 	double SpeedLeft;
 	double SpeedRight;
 	double SpeedLift;

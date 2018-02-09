@@ -21,10 +21,11 @@ namespace _2018_Main_Dashboard
 
     public class DashboardData
     {
-        public string CurrentController { get; set; }
-        public string CurrentDriveMode { get; set; }
+        public string DriverController { get; set; }
+        public string DriverMode { get; set; }
         public string AutoPosition { get; set; }
         public string AutoGoal { get; set; }
+        public string SwitchesController { get; set; }
         public string SwitchesMode { get; set; }
     }
 
@@ -112,20 +113,23 @@ namespace _2018_Main_Dashboard
             { 
                 UDPSender Sender = new SharpOSC.UDPSender("10.10.71.2", 5801);
                 OscBundle ToSend = new SharpOSC.OscBundle(Utils.DateTimeToTimetag(DateTime.Now));
-                OscMessage ControllerMessage = new OscMessage("/Dashboard/ControllerMessage/", CurrentDashboardData.CurrentController);
-                ToSend.Messages.Add(ControllerMessage);
-                OscMessage DriveModeMessage = new OscMessage("/Dashboard/DriveModeMessage/", CurrentDashboardData.CurrentDriveMode);
-                ToSend.Messages.Add(DriveModeMessage);
+                OscMessage DriverController = new OscMessage("/Dashboard/DriverController/", CurrentDashboardData.DriverController);
+                ToSend.Messages.Add(DriverController);
+                OscMessage DriveMode = new OscMessage("/Dashboard/DriveMode/", CurrentDashboardData.DriverMode);
+                ToSend.Messages.Add(DriveMode);
                 OscMessage AutoPositionMessage = new OscMessage("/Dashboard/AutoPositionMessage/", CurrentDashboardData.AutoPosition);
                 ToSend.Messages.Add(AutoPositionMessage);
                 OscMessage AutoGoalMessage = new OscMessage("/Dashboard/AutoGoalMessage/", CurrentDashboardData.AutoGoal);
                 ToSend.Messages.Add(AutoGoalMessage);
-                OscMessage SwitchesMessage = new OscMessage("/Dashboard/SwitchesMode/", CurrentDashboardData.SwitchesMode);
-                ToSend.Messages.Add(SwitchesMessage);
+                OscMessage SwitchesController = new OscMessage("/Dashboard/SwitchesController/", CurrentDashboardData.SwitchesController);
+                ToSend.Messages.Add(SwitchesController);
+                OscMessage SwitchesMode = new OscMessage("/Dashboard/SwitchesMode/", CurrentDashboardData.SwitchesMode);
+                ToSend.Messages.Add(SwitchesMode);
                 Sender.Send(ToSend);
                 Thread.Sleep(50);
             }
         }
+
 
         public void HandleOscPacket(OscMessage message)
         {
@@ -205,10 +209,10 @@ namespace _2018_Main_Dashboard
             {
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.CurrentController = JoystickWidget.ControllerCombobox.Text));
+                new Action(() => CurrentDashboardData.DriverController = DriverWidget.ControllerCombobox.Text));
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.CurrentDriveMode = (JoystickWidget.TankCheckbox.IsChecked == true) ? "Tank" : "Arcade"));
+                new Action(() => CurrentDashboardData.DriverMode = (DriverWidget.TankCheckbox.IsChecked == true) ? "Tank" : "Arcade"));
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
                 new Action(() => CurrentDashboardData.AutoGoal = AutoSwitch.Goal));
@@ -217,7 +221,10 @@ namespace _2018_Main_Dashboard
                 new Action(() => CurrentDashboardData.AutoPosition = AutoSwitch.Position));
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.SwitchesMode = SwitchesWidget.ControllerCombobox.Text));
+                new Action(() => CurrentDashboardData.SwitchesController = SwitchesWidget.ControllerCombobox.Text));
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => CurrentDashboardData.SwitchesMode = (SwitchesWidget.TankCheckbox.IsChecked == true) ? "Tank" : "Arcade"));
                 Thread.Sleep(1);
             }
         }
@@ -240,7 +247,7 @@ namespace _2018_Main_Dashboard
             {
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => JoystickWidget.UpdateJoystickWidget(ControllerData0, ControllerData1)));
+                new Action(() => DriverWidget.UpdateJoystickWidget(ControllerData0, ControllerData1)));
                 Application.Current.Dispatcher.BeginInvoke(
               DispatcherPriority.Background,
               new Action(() => SwitchesWidget.UpdateJoystickWidget(ControllerData2, ControllerData3)));
