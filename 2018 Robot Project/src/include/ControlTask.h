@@ -23,6 +23,7 @@ class RobotControl : public MaxControl
 public:
 	RobotControl();
 	ControlType ControllerType;
+	ControlType SwitchesType;
 	ControlLayout ControllerMode;
 	double SpeedLeft;
 	double SpeedRight;

@@ -14,6 +14,7 @@ void LiftingTask::Run()
 	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedArmRight);
 	GrabWheelL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedGrabWheelLeft);
 	GrabWheelR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedGrabWheelRight);
+	std::cout << ControlInput->SpeedGrabWheelLeft << ControlInput->SpeedGrabWheelRight << std::endl;
 	//if (fabs(ControlInput->SpeedLift) > 0)
 	//{
 		LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);

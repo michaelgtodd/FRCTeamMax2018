@@ -25,6 +25,7 @@ namespace _2018_Main_Dashboard
         public string CurrentDriveMode { get; set; }
         public string AutoPosition { get; set; }
         public string AutoGoal { get; set; }
+        public string SwitchesMode { get; set; }
     }
 
     public class ControllerData
@@ -119,6 +120,8 @@ namespace _2018_Main_Dashboard
                 ToSend.Messages.Add(AutoPositionMessage);
                 OscMessage AutoGoalMessage = new OscMessage("/Dashboard/AutoGoalMessage/", CurrentDashboardData.AutoGoal);
                 ToSend.Messages.Add(AutoGoalMessage);
+                OscMessage SwitchesMessage = new OscMessage("/Dashboard/SwitchesMode/", CurrentDashboardData.SwitchesMode);
+                ToSend.Messages.Add(SwitchesMessage);
                 Sender.Send(ToSend);
                 Thread.Sleep(50);
             }
@@ -212,6 +215,9 @@ namespace _2018_Main_Dashboard
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
                 new Action(() => CurrentDashboardData.AutoPosition = AutoSwitch.Position));
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => CurrentDashboardData.SwitchesMode = SwitchesWidget.ControllerCombobox.Text));
                 Thread.Sleep(1);
             }
         }

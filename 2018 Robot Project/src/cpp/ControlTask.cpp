@@ -39,39 +39,67 @@ void ControlTask::Always()
 	Output = 0;
 
 	//Lift and grab
-	//if (Controls->ControllerType == XboxType)
-	//{
+	if (Controls->SwitchesType == XboxType)
+	{
 
-	//}
-	//else
-	//{
-	//	Joystick * SwitchesLeft = new Joystick(2);
-	//	Joystick * SwitchesRight = new Joystick(3);
+	}
+	else
+	{
+		Joystick * SwitchesLeft = new Joystick(2);
+		Joystick * SwitchesRight = new Joystick(3);
 
-	//	Controls->SpeedLift = 0;
-	//	if (fabs(SwitchesLeft->GetRawAxis(1)) >= 0.25)
-	//	{
-	//		Controls->SpeedLift = -SwitchesLeft->GetRawAxis(1);
-	//	}
-	//	if (fabs(SwitchesRight->GetRawAxis(1)) >= 0.25)
-	//	{
-	//		Controls->SpeedLift = -SwitchesRight->GetRawAxis(1);
-	//	}
+		Controls->SpeedLift = 0;
+		if (fabs(SwitchesLeft->GetRawAxis(1)) >= 0.25)
+		{
+			Controls->SpeedLift = -SwitchesLeft->GetRawAxis(1);
+		}
+		else
+		{
+			Controls->SpeedLift = 0;
+		}
+		if (fabs(SwitchesRight->GetRawAxis(1)) >= 0.25)
+		{
+			Controls->SpeedLift = -SwitchesRight->GetRawAxis(1);
+		}
+		else
+		{
+			Controls->SpeedLift = 0;
+		}
 
-	//	Controls->SpeedGrabWheelLeft = SwitchesLeft->GetRawButton(0) - SwitchesLeft->GetRawButton(1);
-	//	Controls->SpeedGrabWheelRight = SwitchesRight->GetRawButton(5) - SwitchesRight->GetRawButton(3);
-	//	if ((SwitchesRight->GetRawButton(0)) || (SwitchesLeft->GetRawButton(0)))
-	//	{
-	//		Controls->SpeedGrabWheelLeft = 1;
-	//		Controls->SpeedGrabWheelRight = 1;
-	//	}
-	//	Controls->SpeedArmLeft = SwitchesLeft->GetRawAxis(2);
-	//	Controls->SpeedArmRight = SwitchesRight->GetRawAxis(2);
-
-	//	delete (SwitchesLeft);
-	//	delete (SwitchesRight);
-
-	//}
+		
+		Controls->SpeedArmLeft = 0;
+		Controls->SpeedArmRight = 0;
+		if (fabs(SwitchesLeft->GetRawAxis(2)) >= 0.25)
+		{
+			Controls->SpeedArmLeft = -SwitchesLeft->GetRawAxis(2);
+		}
+		if (fabs(SwitchesRight->GetRawAxis(2)) >= 0.25)
+		{
+			Controls->SpeedArmRight = -SwitchesRight->GetRawAxis(2);
+		}
+		//Controls->SpeedGrabWheelLeft = SwitchesLeft->GetRawButton(6) - SwitchesLeft->GetRawButton(4);
+		//Controls->SpeedGrabWheelRight = SwitchesRight->GetRawButton(5) - SwitchesRight->GetRawButton(3);
+		
+		if ((SwitchesRight->GetRawButton(1)) || (SwitchesLeft->GetRawButton(1)))
+		{
+			std::cout << "wheel running" << std::endl;
+			Controls->SpeedGrabWheelLeft = 1;
+			Controls->SpeedGrabWheelRight = 1;
+		}
+		else if ((SwitchesRight->GetRawButton(2)) || (SwitchesLeft->GetRawButton(2)))
+		{
+			Controls->SpeedGrabWheelLeft = -1;
+			Controls->SpeedGrabWheelRight = -1;
+		}
+		else
+		{
+			Controls->SpeedGrabWheelLeft = 0;
+			Controls->SpeedGrabWheelRight = 0;
+		}
+	
+		delete (SwitchesLeft);
+		delete (SwitchesRight);
+	}
 
 	
 	 //Drive Motors
@@ -113,10 +141,10 @@ void ControlTask::Always()
 		delete (MainJoystick);
 		Output = 4;
 	}
-	std::cout << "Output: " << Output << " Controller Mode:" << Controls->ControllerMode << " Controller Type: " << Controls->ControllerType << std::endl;
+	//std::cout << "Output: " << Output << " Controller Mode:" << Controls->ControllerMode << " Controller Type: " << Controls->ControllerType << std::endl;
 
 	//Lifting_Task
-	if (Controls->ControllerMode == ControlLayout::Tank && Controls->ControllerType == JoystickType) 
+	if (Controls->SwitchesType == JoystickType) 
 	{
 		Joystick * Left = new Joystick(2);
 		Joystick * Right = new Joystick(3);
@@ -124,24 +152,28 @@ void ControlTask::Always()
 		delete (Left);
 		delete (Right);
 	}
-	else if (Controls->ControllerMode == ControlLayout::Tank && Controls->ControllerType == XboxType)
+	else if (Controls->ControllerType == XboxType)
 	{
 		Joystick * Xbox = new Joystick(2);
 		Controls->SpeedLift = (fabs(Xbox->GetRawAxis(1) + Xbox->GetRawAxis(5)) < .25) ? 0 : (Xbox->GetRawAxis(1) + Xbox->GetRawAxis(5));
 		delete (Xbox);
 	}
-	else if (Controls->ControllerMode == ControlLayout::Arcade && Controls->ControllerType == XboxType) 
-	{
-		Joystick * Xbox = new Joystick(2);
-		Controls->SpeedLift = (fabs(Xbox->GetRawAxis(1)) < .1) ? 0 : (Xbox->GetRawAxis(1));
-		delete (Xbox);
-	}
 	else 
 	{
-		Joystick * MainJoystick = new Joystick(2);
-		Controls->SpeedLift = (fabs(MainJoystick->GetRawAxis(1)) < .1) ? 0 : (MainJoystick->GetRawAxis(1));
-		delete (MainJoystick);
+
 	}
+	//else if (Controls->ControllerMode == ControlLayout::Arcade && Controls->ControllerType == XboxType) 
+	//{
+	//	Joystick * Xbox = new Joystick(2);
+	//	Controls->SpeedLift = (fabs(Xbox->GetRawAxis(1)) < .1) ? 0 : (Xbox->GetRawAxis(1));
+	//	delete (Xbox);
+	//}
+	//else 
+	//{
+	//	Joystick * MainJoystick = new Joystick(2);
+	//	Controls->SpeedLift = (fabs(MainJoystick->GetRawAxis(1)) < .1) ? 0 : (MainJoystick->GetRawAxis(1));
+	//	delete (MainJoystick);
+	//}
 	taskschedule_->DispatchControl(Controls);
 }
 
@@ -167,13 +199,12 @@ void ControlTask::UpdateAutonomousData(AutonomousControl)
 
 void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 {
-	if (strcmp(messages.AddressPattern(), "/Dashboard/ControllerMessage/") == 0)
+	if (strcmp(messages.AddressPattern(), "/Dashboard/ControllerMode/") == 0)
 	{
-		//std::cout << "Made it into the controller message if statement." << std::endl;
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
 		const char * CharControllerType;
 		args >> CharControllerType >> osc::EndMessage;
-		std::cout << "Made it into the controller message if statement. Controller type is " << CharControllerType << "." << std::endl;
+
 		if (strcmp(CharControllerType, "Joystick") == 0)
 		{
 			Controls->ControllerType = ControlType::JoystickType;
@@ -186,14 +217,30 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		{
 			Controls->ControllerType = ControlType::JoystickType;
 		}
-		//std::cout << "Made it here." << std::endl;
+	}
+	if (strcmp(messages.AddressPattern(), "/Dashboard/SwitchesMode/") == 0)
+	{
+		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
+		const char * CharControllerType;
+		args >> CharControllerType >> osc::EndMessage;
+		if (strcmp(CharControllerType, "Joystick") == 0)
+		{
+			Controls->SwitchesType = ControlType::JoystickType;
+		}
+		else if (strcmp(CharControllerType, "Xbox Controller") == 0)
+		{
+			Controls->SwitchesType = ControlType::XboxType;
+		}
+		else
+		{
+			Controls->SwitchesType = ControlType::JoystickType;
+		}
 	}
 	if (strcmp(messages.AddressPattern(), "/Dashboard/DriveModeMessage/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
 		const char * CharDriveModeMessage;
 		args >> CharDriveModeMessage >> osc::EndMessage;
-		std::cout << "Made it into the drive mode message if statement. Drive mode is " << CharDriveModeMessage << "." << std::endl;
 		if (strcmp(CharDriveModeMessage, "Arcade") == 0)
 		{
 			Controls->ControllerMode = ControlLayout::Arcade;
