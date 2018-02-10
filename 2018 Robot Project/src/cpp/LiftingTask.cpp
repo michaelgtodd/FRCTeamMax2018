@@ -17,7 +17,7 @@ void LiftingTask::Run()
 {
 	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
 	LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
-	std::cout << " Right Arm Encoder: " << LiftMotorL->GetSensorCollection().GetQuadraturePosition() << std::endl;
+	//std::cout << " Right Arm Encoder: " << LiftMotorL->GetSensorCollection().GetQuadraturePosition() << std::endl;
 	int PulseWidthPosL = GrabArmL->GetSensorCollection().GetPulseWidthPosition();
 	//std::cout << "Left Arm Encoder: " << modulo(PulseWidthPosL, 4096) - LEFT_ENCODER_OFFSET << std::endl;
 	int PulseWidthPosR = GrabArmR->GetSensorCollection().GetPulseWidthPosition();
@@ -46,7 +46,7 @@ void LiftingTask::Disable()
 	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	//LiftMotorL->SetSelectedSensorPosition(0, 0, 0);
-	std::cout << "Disabled: " << LiftMotorL->GetSensorCollection().GetQuadraturePosition() << std::endl;
+	//std::cout << "Disabled: " << LiftMotorL->GetSensorCollection().GetQuadraturePosition() << std::endl;
 	LiftMotorL->GetSensorCollection().SetQuadraturePosition(0, 0);
 }
 
@@ -71,8 +71,8 @@ void LiftingTask::Init()
 	LiftMotorL = new TalonSRX(12);
 	LiftMotorR = new TalonSRX(3);
 
-	CurrentLimit(GrabArmL, 2);
-	CurrentLimit(GrabArmR, 2);
+	CurrentLimit(GrabArmL, 4);
+	CurrentLimit(GrabArmR, 4);
 	CurrentLimit(GrabWheelL, 20);
 	CurrentLimit(GrabWheelR, 20);
 	CurrentLimit(LiftMotorL, 20);

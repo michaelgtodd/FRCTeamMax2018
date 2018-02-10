@@ -70,9 +70,22 @@ void ControlTask::Always()
 		Controls->SpeedLift = (fabs(MainJoystick->GetRawAxis(1)) > 0.25) ? MainJoystick->GetRawAxis(1) : 0;
 		//std::cout << "Speed of Lift in Control Task:" << Controls->SpeedLift << std::endl;
 
-		Controls->LeftArmPosition = (MainJoystick->GetRawButton(1)) ? 120 : 180;
-		Controls->RightArmPosition = (MainJoystick->GetRawButton(1)) ? 240 : 180;
-
+		if (MainJoystick->GetRawButton(2))
+		{
+			Controls->LeftArmPosition = 345;
+			Controls->RightArmPosition = 15;
+			Controls->SpeedLift = 0;
+		}
+		else if (MainJoystick->GetRawButton(1))
+		{
+			Controls->LeftArmPosition = 120;
+			Controls->RightArmPosition = 240;
+		}
+		else
+		{
+			Controls->LeftArmPosition =  180;
+			Controls->RightArmPosition = 180;
+		}
 		delete(MainJoystick);
 	}
 
