@@ -26,6 +26,8 @@ public:
 	ControlType SwitchesType;
 	ControlLayout DriverMode;
 	ControlLayout SwitchesMode;
+	int DriverPreference;
+	int SwitchesPreference;
 	double SpeedLeft;
 	double SpeedRight;
 	double SpeedLift;
