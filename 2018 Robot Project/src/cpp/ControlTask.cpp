@@ -282,9 +282,6 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
 		const char * CharControllerType;
 		args >> CharControllerType >> osc::EndMessage;
-
-		cout << "Driver Controller: " << CharControllerType << endl;
-
 		if (strcmp(CharControllerType, "Joystick") == 0)
 		{
 			Controls->DriverType = ControlType::JoystickType;
@@ -304,9 +301,6 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
 		const char * CharDriverMode;
 		args >> CharDriverMode >> osc::EndMessage;
-
-		cout << "Driver Mode: " << CharDriverMode << endl;
-
 		if (strcmp(CharDriverMode, "Arcade") == 0)
 		{
 			Controls->DriverMode = ControlLayout::Arcade;
@@ -349,10 +343,6 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
 		const char * CharSwitchesMode;
 		args >> CharSwitchesMode >> osc::EndMessage;
-
-		cout << "Switch Mode: " << CharSwitchesMode << endl;
-
-
 		if (strcmp(CharSwitchesMode, "Tank") == 0)
 		{
 			Controls->SwitchesMode = ControlLayout::Tank;

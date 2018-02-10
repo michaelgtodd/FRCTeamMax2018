@@ -25,7 +25,15 @@ void LiftingTask::Run()
 	//	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::Position, ControlInput->SpeedLift);
 	//	LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::Position, ControlInput->SpeedLift);
 	//}
-	
+
+	int PulseWidthPosL = GrabArmL->GetSensorCollection().GetPulseWidthPosition();
+	//std::cout << "Left Arm Encoder: " << PulseWidthPosL << std::endl;
+	int PulseWidthPosR = GrabArmR->GetSensorCollection().GetPulseWidthPosition();
+	//std::cout << "Right Arm Encoder: " << PulseWidthPosR << std::endl;
+	double DegreeLeftArmPosition = ((double)PulseWidthPosL) / 4096.0 * 360.0;
+	std::cout << "Left Arm Encoder: " << DegreeLeftArmPosition << std::endl;
+	double DegreeRightArmPosition = ((double)PulseWidthPosR) / 4096.0 * 360.0;
+	std::cout << "Right Arm Encoder: " << DegreeRightArmPosition << std::endl;
 }
 
 void LiftingTask::Disable()
