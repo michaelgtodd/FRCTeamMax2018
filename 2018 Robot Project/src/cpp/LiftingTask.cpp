@@ -59,8 +59,8 @@ void LiftingTask::Init()
 	LiftMotorL = new TalonSRX(12);
 	LiftMotorR = new TalonSRX(3);
 
-	CurrentLimit(GrabArmL, 1);
-	CurrentLimit(GrabArmR, 1);
+	CurrentLimit(GrabArmL, 2);
+	CurrentLimit(GrabArmR, 2);
 	CurrentLimit(GrabWheelL, 20);
 	CurrentLimit(GrabWheelR, 20);
 	CurrentLimit(LiftMotorL, 20);
