@@ -211,9 +211,8 @@ void ControlTask::Always()
 		Controls->SolenoidPos = (MainJoystick->GetRawButton(1) == true) ? -1 : 1;
 		Controls->SpeedLeft = 0;
 		Controls->SpeedRight = 0;
-		//Controls->SpeedLeft = ((fabs(MainJoystick->GetRawAxis(2)) > 0.025) ? 0 : -MainJoystick->GetRawAxis(2)) + 
-		Controls->SpeedLeft = -MainJoystick->GetRawAxis(2) + MainJoystick->GetRawAxis(1);
-		Controls->SpeedRight = -MainJoystick->GetRawAxis(2) - MainJoystick->GetRawAxis(1);
+		Controls->SpeedLeft = (fabs(MainJoystick->GetRawAxis(2)) > 0.025 ? -MainJoystick->GetRawAxis(2) : 0) + (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
+		Controls->SpeedRight = (fabs(MainJoystick->GetRawAxis(2)) > 0.025 ? -MainJoystick->GetRawAxis(2) : 0) - (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
 		delete (MainJoystick);
 		Output = 4;
 	}
