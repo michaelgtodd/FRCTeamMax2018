@@ -12,6 +12,9 @@ public:
 	void Autonomous();
 	void ControllerUpdate(MaxControl * controls);
 private:
+	const int LEFT_ENCODER_OFFSET = 2770;
+	const int RIGHT_ENCODER_OFFSET = 3113;
+	const double GAIN = 0.006;
 	void Init();
 	void CurrentLimit(TalonSRX * talon, int amps);
 	RobotControl * ControlInput;
