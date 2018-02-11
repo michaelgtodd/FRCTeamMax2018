@@ -67,7 +67,8 @@ void ControlTask::Always()
 		{
 			Controls->SpeedArmLeft = 0;
 		}
-		if (fabs(Xbox->GetRawAxis(4)) > 0.05)
+		if (fabs(Xbox->GetR
+			awAxis(4)) > 0.05)
 		{
 			Controls->SpeedArmRight = Xbox->GetRawAxis(4);
 		}
