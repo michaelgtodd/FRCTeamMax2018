@@ -39,7 +39,6 @@ void ControlTask::Run()
 
 void ControlTask::Always()
 {
-
 	//======================================================================================
 	// Switches Controllers
 	//======================================================================================	
@@ -118,6 +117,46 @@ void ControlTask::Always()
 			
 			delete (Left);
 			delete (Right);
+	}
+	else if (false) //Drive and lift with a single joystick
+	{
+		Joystick * MainJoystick = new Joystick(0);
+		Controls->SolenoidPos = (MainJoystick->GetRawButton(2) == true) ? -1 : 1;
+		Controls->SpeedLeft = 0;
+		Controls->SpeedRight = 0;
+		Controls->SpeedLeft = ((fabs(MainJoystick->GetRawAxis(2)) > 0.025) ? -MainJoystick->GetRawAxis(2) : 0) + (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
+		Controls->SpeedRight = ((fabs(MainJoystick->GetRawAxis(2)) > 0.025) ? -MainJoystick->GetRawAxis(2) : 0) - (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
+
+		if (MainJoystick->GetPOV() == 0)
+		{
+			Controls->SpeedLift = 0.9;
+		}
+		else if (MainJoystick->GetPOV() == 180)
+		{
+			Controls->SpeedLift = -0.9;
+		}
+		else
+		{
+			Controls->SpeedLift = 0;
+		}
+
+		if (MainJoystick->GetRawButton(7))
+		{
+			Controls->LeftArmPosition = 345;
+			Controls->RightArmPosition = 15;
+			Controls->SpeedLift = 0;
+		}
+		else if (MainJoystick->GetRawButton(1))
+		{
+			Controls->LeftArmPosition = 120;
+			Controls->RightArmPosition = 240;
+		}
+		else
+		{
+			Controls->LeftArmPosition = 180;
+			Controls->RightArmPosition = 180;
+		}
+		delete (MainJoystick);
 	}
 	else if (Controls->DriverMode == ControlLayout::Tank && Controls->DriverType == XboxType)
 	{
