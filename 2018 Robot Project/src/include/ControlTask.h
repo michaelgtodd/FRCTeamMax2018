@@ -18,6 +18,13 @@ enum ControlLayout
 	Arcade = 1
 };
 
+enum RobotPos
+{
+	Left = -1,
+	Center = 0,
+	Right = 1
+};
+
 class RobotControl : public MaxControl
 {
 public:
