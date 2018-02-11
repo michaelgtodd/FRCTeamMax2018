@@ -107,260 +107,107 @@ namespace _2018_Main_Dashboard
 
         public void UpdateCaution(string CautionType, string CautionName, bool CautionState)
         {
-            //Motors
+            //Motors    
             if (CautionType.Equals("Motor"))
             {
                 if (CautionName.Equals("DriveTrainLeft1"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        DriveMotorL1.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        DriveMotorL1.Background = Brushes.Red;
-                    }
+                    DriveMotorL1.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
                 if (CautionName.Equals("DriveTrainLeft2"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        DriveMotorL2.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        DriveMotorL2.Background = Brushes.Red;
-                    }
+                    DriveMotorL2.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
                 if (CautionName.Equals("DriveTrainLeft3"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        DriveMotorL3.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        DriveMotorL3.Background = Brushes.Red;
-                    }
+                    DriveMotorL3.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
                 if (CautionName.Equals("DriveTrainRight1"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        DriveMotorR1.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        DriveMotorR1.Background = Brushes.Red;
-                    }
+                    DriveMotorR1.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
                 if (CautionName.Equals("DriveTrainRight2"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        DriveMotorR2.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        DriveMotorR2.Background = Brushes.Red;
-                    }
+                     DriveMotorR2.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
                 if(CautionName.Equals("DriveTrainRight3"))
-                {
-                    if (CautionState.Equals(true))
-                    {
-                        DriveMotorR3.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        DriveMotorR3.Background = Brushes.Red;
-                    }
+                {                   
+                    DriveMotorR3.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }             
                 
-                if(CautionName.Equals("Elavator1"))
+                if(CautionName.Equals("Elevator1"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        ElavatorMotor1.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        ElavatorMotor1.Background = Brushes.Red;
-                    }
+                    ElevatorMotor1.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
-                if(CautionName.Equals(("Elavator2")))
-                {
-                    if (CautionState.Equals(true))
-                    {
-                        ElavatorMotor2.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        ElavatorMotor2.Background = Brushes.Red;
-                    }
+                if(CautionName.Equals(("Elevator2")))
+                {                 
+                    ElevatorMotor2.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
                 if(CautionName.Equals("ArmLeft"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        ArmMotorL.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        ArmMotorL.Background = Brushes.Red;
-                    }
+                    ArmMotorL.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
                 if(CautionName.Equals("ArmRight"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        ArmMotorR.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        ArmMotorR.Background = Brushes.Red;
-                    }
+                    ArmMotorR.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
                 if(CautionName.Equals("ArmLeftWheel"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        ArmWheelMotorL.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        ArmWheelMotorL.Background = Brushes.Red;
-                    }
+                    ArmWheelMotorL.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
                 if(CautionName.Equals("ArmRightWheel"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        ArmWheelMotorR.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        ArmWheelMotorR.Background = Brushes.Red;
-                    }
-                }
-
-                return;
+                    ArmWheelMotorR.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
+                }                
             }
+
             //Encoders
             if (CautionType.Equals("Encoder"))
             {
                 if(CautionName.Equals("DriveTrainEncoderLeft"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        DriveEncoderL.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        DriveEncoderL.Background = Brushes.Red;
-                    }
+                    DriveEncoderL.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
                 if(CautionName.Equals("DriveTrainRight"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        DriveEncoderR.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        DriveEncoderR.Background = Brushes.Red;
-                    }
+                    DriveEncoderR.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
-                if(CautionName.Equals("Elavator"))
+                if(CautionName.Equals("Elevator"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        ElavatorEncoder.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        ElavatorEncoder.Background = Brushes.Red;
-                    }
+                    ElevatorEncoder.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
                 if(CautionName.Equals("ArmLeft"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        ArmEncoderL.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        ArmEncoderL.Background = Brushes.Red;
-                    }
+                    ArmEncoderL.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }
 
                 if(CautionName.Equals("ArmRight"))
                 {
-                    if (CautionState.Equals(true))
-                    {
-                        ArmEncoderR.Background = Brushes.Green;
-                    }
-
-                    if (CautionState.Equals(false))
-                    {
-                        ArmEncoderR.Background = Brushes.Red;
-                    }
+                    ArmEncoderR.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
                 }                                              
             }
             //Pressure
             if (CautionType.Equals("Pressure"))
             {
-                if (CautionState.Equals(true))
-                {
-                    LowPressure.Background = Brushes.Green;
-                }
-
-                if (CautionState.Equals(false))
-                {
-                    LowPressure.Background = Brushes.Red;
-                }
+                LowPressure.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
             }
             //Tasks
             if (CautionType.Equals("Tasks"))
             {
-                if (CautionState.Equals(true))
-                {
-                    TaskPerformance.Background = Brushes.Green;
-                }
-                
-                if (CautionState.Equals(false))
-                {
-                    TaskPerformance.Background = Brushes.Red;
-                }
+                TaskPerformance.Background = (CautionState == true) ? Brushes.Green : Brushes.Red;
             }
 
 
