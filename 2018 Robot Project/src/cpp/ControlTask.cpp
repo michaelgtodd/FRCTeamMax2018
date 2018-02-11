@@ -16,8 +16,8 @@ RobotControl::RobotControl()
 	SpeedLeft = 0;
 	SpeedRight = 0;
 	SpeedLift = 0;
-	SpeedArmLeft = 0;
-	SpeedArmRight = 0;
+	LeftArmPosition = 0;
+	RightArmPosition = 0;
 	SpeedGrabWheelLeft = 0;
 	SpeedGrabWheelRight = 0;
 	SolenoidPos = -1;
@@ -39,160 +39,59 @@ void ControlTask::Run()
 
 void ControlTask::Always()
 {
-	//std::cout << "Controller Type: " << Controls->ControllerType << " Controller Mode: " << Controls->ControllerMode << std::endl;
-	Output = 0;
+	//======================================================================================
+	// Switches Controllers
+	//======================================================================================	
 
-	//Lift and grab
 	if (Controls->SwitchesType == XboxType && Controls->SwitchesMode == Tank)
 	{
-		Joystick * Xbox = new Joystick(2);
-
-		if (Xbox->GetRawAxis(2) < 0.05 && Xbox->GetRawAxis(3) < 0.05)
-		{
-			Controls->SpeedLift = 0;
-		}
-		else
-		{
-			Controls->SpeedLift = Xbox->GetRawAxis(3) - Xbox->GetRawAxis(2);
-		}
-
-		Controls->SpeedGrabWheelLeft = Xbox->GetRawButton(5) - Xbox->GetRawButton(6);
-		Controls->SpeedGrabWheelRight = -Controls->SpeedGrabWheelRight;
-
-		if (fabs(Xbox->GetRawAxis(0)) > 0.05)
-		{
-			Controls->SpeedArmLeft = Xbox->GetRawAxis(0);
-		}
-		else
-		{
-			Controls->SpeedArmLeft = 0;
-		}
-		if (fabs(Xbox->GetR
-			awAxis(4)) > 0.05)
-		{
-			Controls->SpeedArmRight = Xbox->GetRawAxis(4);
-		}
-		else
-		{
-			Controls->SpeedArmRight = 0;
-		}
-		delete(Xbox);
+		
 	}
 	else if (Controls->SwitchesType == XboxType && Controls->SwitchesMode == Arcade)
 	{
-		Joystick * Xbox = new Joystick(2);
-		
-		if (Xbox->GetRawAxis(2) < 0.05 && Xbox->GetRawAxis(3) < 0.05)
-		{
-			Controls->SpeedLift = 0;
-		}
-		else
-		{
-			Controls->SpeedLift = Xbox->GetRawAxis(3) - Xbox->GetRawAxis(2);
-		}
-		
-		if (Xbox->GetRawButton(7))
-		{
-			Controls->SwitchesPreference = 1;
-		}
-		else if (Xbox->GetRawButton(8))
-		{
-			Controls->SwitchesPreference = 0;
-		}
 
-		if (Controls->SwitchesPreference = 1)
-		{
-			
-		}
-		else
-		{
-
-		}
-
-		delete (Xbox);
 	}
 	else if (Controls->SwitchesType == JoystickType && Controls->SwitchesMode == Arcade)
 	{
 		Joystick * MainJoystick = new Joystick(2);
 
-		if (fabs(MainJoystick->GetRawAxis(1)) < 0.05)
-		{
-			Controls->SpeedLift = 0;
-		}
-		else
-		{
-			Controls->SpeedLift = MainJoystick->GetRawAxis(1);
-		}
+		Controls->SpeedLift = (MainJoystick->GetRawAxis(1) > 0.25) ? MainJoystick->GetRawAxis(1) : 0;
 
-		if (MainJoystick->GetRawAxis(3) >= 0.5)
-		{
-			Controls->SwitchesPreference = 1;
-		}
-		else
-		{
-			Controls->SwitchesPreference = 0;
-		}
+		Controls->LeftArmPosition = (MainJoystick->GetRawButton(1)) ? 120 : 180;
+		Controls->RightArmPosition = (MainJoystick->GetRawButton(1)) ? 240 : 189;
 
 		delete(MainJoystick);
 	}
-	else //Joystick tank
+	else //Joystick Arcade
 	{
-		Joystick * SwitchesLeft = new Joystick(2);
-		Joystick * SwitchesRight = new Joystick(3);
+		Joystick * MainJoystick = new Joystick(2);
 
-		Controls->SpeedLift = 0;
-		if (fabs(SwitchesLeft->GetRawAxis(1)) >= 0.25)
+		Controls->SpeedLift = (fabs(MainJoystick->GetRawAxis(1)) > 0.25) ? MainJoystick->GetRawAxis(1) : 0;
+		//std::cout << "Speed of Lift in Control Task:" << Controls->SpeedLift << std::endl;
+
+		if (MainJoystick->GetRawButton(2))
 		{
-			Controls->SpeedLift = -SwitchesLeft->GetRawAxis(1);
-		}
-		else
-		{
+			Controls->LeftArmPosition = 345;
+			Controls->RightArmPosition = 15;
 			Controls->SpeedLift = 0;
 		}
-		if (fabs(SwitchesRight->GetRawAxis(1)) >= 0.25)
+		else if (MainJoystick->GetRawButton(1))
 		{
-			Controls->SpeedLift = -SwitchesRight->GetRawAxis(1);
+			Controls->LeftArmPosition = 120;
+			Controls->RightArmPosition = 240;
 		}
 		else
 		{
-			Controls->SpeedLift = 0;
+			Controls->LeftArmPosition =  180;
+			Controls->RightArmPosition = 180;
 		}
-
-		
-		Controls->SpeedArmLeft = 0;
-		Controls->SpeedArmRight = 0;
-		if (fabs(SwitchesLeft->GetRawAxis(2)) >= 0.50)
-		{
-			Controls->SpeedArmLeft = -SwitchesLeft->GetRawAxis(2);
-		}
-		if (fabs(SwitchesRight->GetRawAxis(2)) >= 0.50)
-		{
-			Controls->SpeedArmRight = -SwitchesRight->GetRawAxis(2);
-		}
-		
-		if ((SwitchesRight->GetRawButton(1)) || (SwitchesLeft->GetRawButton(1)))
-		{
-			//std::cout << "wheel running" << std::endl;
-			Controls->SpeedGrabWheelLeft = 1;
-			Controls->SpeedGrabWheelRight = -1;
-		}
-		else if ((SwitchesRight->GetRawButton(2)) || (SwitchesLeft->GetRawButton(2)))
-		{
-			Controls->SpeedGrabWheelLeft = -1;
-			Controls->SpeedGrabWheelRight = 1;
-		}
-		else
-		{
-			Controls->SpeedGrabWheelLeft = 0;
-			Controls->SpeedGrabWheelRight = 0;
-		}
-	
-		delete (SwitchesLeft);
-		delete (SwitchesRight);
+		delete(MainJoystick);
 	}
 
-	
-	 //Drive Motors
+	//======================================================================================
+	// Drive Controllers
+	//======================================================================================	 
+
 	if (Controls->DriverMode == ControlLayout::Tank && Controls->DriverType == JoystickType)
 	{
 			Joystick * Left = new Joystick(0);
@@ -218,7 +117,46 @@ void ControlTask::Always()
 			
 			delete (Left);
 			delete (Right);
-			Output = 1;
+	}
+	else if (false) //Drive and lift with a single joystick
+	{
+		Joystick * MainJoystick = new Joystick(0);
+		Controls->SolenoidPos = (MainJoystick->GetRawButton(2) == true) ? -1 : 1;
+		Controls->SpeedLeft = 0;
+		Controls->SpeedRight = 0;
+		Controls->SpeedLeft = ((fabs(MainJoystick->GetRawAxis(2)) > 0.025) ? -MainJoystick->GetRawAxis(2) : 0) + (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
+		Controls->SpeedRight = ((fabs(MainJoystick->GetRawAxis(2)) > 0.025) ? -MainJoystick->GetRawAxis(2) : 0) - (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
+
+		if (MainJoystick->GetPOV() == 0)
+		{
+			Controls->SpeedLift = 0.9;
+		}
+		else if (MainJoystick->GetPOV() == 180)
+		{
+			Controls->SpeedLift = -0.9;
+		}
+		else
+		{
+			Controls->SpeedLift = 0;
+		}
+
+		if (MainJoystick->GetRawButton(7))
+		{
+			Controls->LeftArmPosition = 345;
+			Controls->RightArmPosition = 15;
+			Controls->SpeedLift = 0;
+		}
+		else if (MainJoystick->GetRawButton(1))
+		{
+			Controls->LeftArmPosition = 120;
+			Controls->RightArmPosition = 240;
+		}
+		else
+		{
+			Controls->LeftArmPosition = 180;
+			Controls->RightArmPosition = 180;
+		}
+		delete (MainJoystick);
 	}
 	else if (Controls->DriverMode == ControlLayout::Tank && Controls->DriverType == XboxType)
 	{
@@ -227,7 +165,6 @@ void ControlTask::Always()
 		Controls->SpeedRight = -Xbox->GetRawAxis(5);
 		Controls->SolenoidPos = (Xbox->GetRawButton(6) == true) ? -1 : 1;
 		delete (Xbox);
-		Output = 2;
 	}
 	else if (Controls->DriverMode == ControlLayout::Arcade && Controls->DriverType == XboxType)
 	{
@@ -236,9 +173,8 @@ void ControlTask::Always()
 		Controls->SpeedRight = -Xbox->GetRawAxis(4) - Xbox->GetRawAxis(1);
 		Controls->SolenoidPos = (Xbox->GetRawButton(6) == true) ? -1 : 1;
 		delete (Xbox);
-		Output = 3;
 	}
-	else
+	else // Joystick Arcade
 	{
 		Joystick * MainJoystick = new Joystick(0);
 		Controls->SolenoidPos = (MainJoystick->GetRawButton(1) == true) ? -1 : 1;
@@ -247,10 +183,7 @@ void ControlTask::Always()
 		Controls->SpeedLeft = ((fabs(MainJoystick->GetRawAxis(2)) > 0.025) ? -MainJoystick->GetRawAxis(2) : 0) + (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
 		Controls->SpeedRight = ((fabs(MainJoystick->GetRawAxis(2)) > 0.025) ? -MainJoystick->GetRawAxis(2) : 0) - (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
 		delete (MainJoystick);
-		Output = 4;
 	}
-	//std::cout << "Output: " << Output << " Controller Mode:" << Controls->ControllerMode << " Controller Type: " << Controls->ControllerType << std::endl;
-
 	taskschedule_->DispatchControl(Controls);
 }
 
@@ -276,8 +209,6 @@ void ControlTask::UpdateAutonomousData(AutonomousControl)
 
 void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 {
-	//cout << messages.AddressPattern() << endl;
-
 	if (strcmp(messages.AddressPattern(), "/Dashboard/DriverController/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -321,10 +252,6 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
 		const char * CharControllerType;
 		args >> CharControllerType >> osc::EndMessage;
-
-		//cout << "Switch Controller: " << CharControllerType << endl;
-
-
 		if (strcmp(CharControllerType, "Joystick") == 0)
 		{
 			Controls->SwitchesType = ControlType::JoystickType;

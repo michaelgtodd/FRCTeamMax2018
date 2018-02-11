@@ -31,8 +31,8 @@ public:
 	double SpeedLeft;
 	double SpeedRight;
 	double SpeedLift;
-	double SpeedArmLeft;
-	double SpeedArmRight;
+	double LeftArmPosition;
+	double RightArmPosition;
 	double SpeedGrabWheelLeft;
 	double SpeedGrabWheelRight;
 	int SolenoidPos;
