@@ -4,29 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2018_Main_Dashboard"
+        xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Width="1366" Height="527"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="Manual" Left="0" Top="0">
-    <Window.Resources>
-        <!--hello world-->
-    </Window.Resources>
     <Grid>
-        <Image Source="GreenHill.png" Margin="-10,-50,0,-110">
-            
-        </Image>
+        <Image Source="GreenHill.png" Margin="-10,-50,0,-110"/>
         <Grid Width="1366" Height="527">
 
             <local:JoystickWidget x:Name="DriverWidget" Width="300" Height="250"  Margin="10,10,1056,267"/>
-                <local:AlertBox x:Name="AlertWidget" Width="366" Height="507" Margin="990,10,10,10"/>
-                <local:AutoSwitchControl x:Name="AutoSwitch" Width="200" Height="75" Margin="315,10,851,442"/>
+            <local:AlertBox x:Name="AlertWidget" Width="366" Height="507" Margin="990,10,10,10"/>
+            <local:AutoSwitchControl x:Name="AutoSwitch" Width="200" Height="75" Margin="315,10,851,442"/>
             <local:JoystickWidget x:Name="SwitchesWidget" Width="300" Height="250"  Margin="10,267,1056,10"/>
             <local:CurrentGauge x:Name="CurrentGaugeWidget" Height="75" Width="200" Margin="520,11,646,441" />
-
-
-
         </Grid>
-        
+        <cefSharp:ChromiumWebBrowser Name="CameraBrowser" Address="http://10.10.71.50:8081" Margin="320,277,726,10"/>
+
     </Grid>
 </Window>
