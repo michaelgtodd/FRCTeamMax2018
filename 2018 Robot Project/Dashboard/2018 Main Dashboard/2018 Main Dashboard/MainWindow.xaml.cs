@@ -136,13 +136,18 @@ namespace _2018_Main_Dashboard
             if (message.Address.Contains("Caution"))
             {
                 string[] CautionArray = message.Address.Split('/');
-                    
+                
+                
 
+                int CautionInteger = (int)message.Arguments[0];
+                bool CautionState = (CautionInteger == 1) ? true : false;
 
-                 //Application.Current.Dispatcher.BeginInvoke(
-                //DispatcherPriority.Background,
-                //new Action(() => AlertWidget.UpdateError((string)message.Arguments[0])));
+                 Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => AlertWidget.UpdateCaution(CautionArray[2],CautionArray[3],CautionState)));
             }
+            
+
             if (message.Address.Contains("Joystick"))
             {
                 string[] JoystickStringArray = message.Address.Split('/');

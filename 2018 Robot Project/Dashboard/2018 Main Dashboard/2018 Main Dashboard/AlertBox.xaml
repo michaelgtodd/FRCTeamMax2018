@@ -69,13 +69,13 @@
                     </Border>
 
                     <Border Background="Black" Grid.Row="3" Grid.Column="0">
-                        <Grid Name="ElavatorMotor1" Background="LightSlateGray" Margin="2,2,2,2">
+                        <Grid Name="ElevatorMotor1" Background="LightSlateGray" Margin="2,2,2,2">
                             <TextBlock Name="Caution7" Text="Elavator Motor #1" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
 
                     <Border Background="Black" Grid.Row="3" Grid.Column="1">
-                        <Grid Name="ElavatorMotor2" Background="LightSlateGray" Margin="2,2,2,2">
+                        <Grid Name="ElevatorMotor2" Background="LightSlateGray" Margin="2,2,2,2">
                             <TextBlock Name="Caution8" Text="Elavator Motor #2" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
@@ -129,7 +129,7 @@
                     </Border>
 
                     <Border Background="Black" Grid.Row="6" Grid.Column="1">
-                        <Grid Name="ElavatorEncoder" Background="LightSlateGray" Margin="2,2,2,2">
+                        <Grid Name="ElevatorEncoder" Background="LightSlateGray" Margin="2,2,2,2">
                             <TextBlock Name="Caution17" Text="Elavator Encoder" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
@@ -183,7 +183,7 @@
             <TabItem Header="Error" Width="120" >
                 <ScrollViewer>
                     <Grid Name="ErrorGrid" Background="Black" Height="1000">               
-                        <TextBlock Name="Error"  TextAlignment="Center" Background="Black" Foreground="#FF0000" Height="1000">
+                        <TextBlock Name="Error"  TextAlignment="Left" Background="Black" Foreground="White" Height="1000">
                             Error 
                         </TextBlock>                        
                     </Grid>

@@ -18,6 +18,13 @@ enum ControlLayout
 	Arcade = 1
 };
 
+enum FieldPos
+{
+	Left = -1,
+	Center = 0,
+	Right = 1
+};
+
 class RobotControl : public MaxControl
 {
 public:
@@ -38,8 +45,12 @@ public:
 	int SolenoidPos;
 };
 
-class AutonomousControl
+class AutonomousControl : public MaxControl
 {
+public:
+	FieldPos StartingPos;
+	FieldPos SwitchPos;
+	FieldPos ScalePos;
 };
 
 class ControlTask : public MaxTask
@@ -57,6 +68,7 @@ private:
 	void Init();
 	MaxTaskSchedule * taskschedule_;
 	RobotControl * Controls;
+	AutonomousControl * Auto;
 	double AxisPrimaryX;
 	double AxisPrimaryY;
 	double AxisSecondaryX;

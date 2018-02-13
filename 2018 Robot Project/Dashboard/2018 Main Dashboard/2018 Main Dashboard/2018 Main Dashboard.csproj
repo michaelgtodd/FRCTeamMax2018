@@ -74,6 +74,9 @@
     <Compile Include="AlertBox.xaml.cs">
       <DependentUpon>AlertBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AudioStuff.xaml.cs">
+      <DependentUpon>AudioStuff.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AutoSwitchControl.xaml.cs">
       <DependentUpon>AutoSwitchControl.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
       <DependentUpon>ZAxisBar.xaml</DependentUpon>
     </Compile>
     <Page Include="AlertBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AudioStuff.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,6 +201,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="GreenHill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DOOM.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sanic.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
