@@ -183,7 +183,7 @@
             <TabItem Header="Error" Width="120" >
                 <ScrollViewer>
                     <Grid Name="ErrorGrid" Background="Black" Height="1000">               
-                        <TextBlock Name="Error"  TextAlignment="Center" Background="Black" Foreground="#FF0000" Height="1000">
+                        <TextBlock Name="Error"  TextAlignment="Left" Background="Black" Foreground="White" Height="1000">
                             Error 
                         </TextBlock>                        
                     </Grid>
