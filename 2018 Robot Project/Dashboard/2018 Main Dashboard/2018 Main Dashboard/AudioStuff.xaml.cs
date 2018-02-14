@@ -21,24 +21,68 @@ namespace _2018_Main_Dashboard
     /// </summary>
     public partial class AudioStuff : UserControl
     {
-        SoundPlayer Music = new SoundPlayer("Music/Sanic.wav");
-        
+        SoundPlayer SanicMusic = new SoundPlayer("Sanic.wav");
+        SoundPlayer PokeMusic = new SoundPlayer("Pokemon.wav");
 
         public AudioStuff()
         {
             InitializeComponent();
-            Music.Load();
-            Music.Play();
+            
+            SanicMusic.Load();
+            SanicMusic.Play();
         }
 
         private void Mute(object sender, RoutedEventArgs e)
         {
-            Music.Stop();
+            PokeMusic.Stop();
+            SanicMusic.Stop();
         }
 
         private void Play(object sender, RoutedEventArgs e)
         {
-            Music.Play();
+            if (NameCombo.SelectedIndex == 2)
+            {
+                PokeMusic.Play();
+            }
+            else if (NameCombo.SelectedIndex == 0)
+            {
+                SanicMusic.Play();
+            }
+            
         }
+
+        private void Sanic_Selected(object sender, RoutedEventArgs e)
+        {
+           // Music.SoundLocation = "Sanic.wav";
+
+        }
+
+        private void DOOM_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Pokemon_Selected(object sender, RoutedEventArgs e)
+        {
+
+
+
+        }
+
+        private void NameCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (NameCombo.SelectedIndex == 2)
+            {
+                SanicMusic.Stop();
+                PokeMusic.Play();
+                PokeMusic.Play();     
+            }
+            else if (NameCombo.SelectedIndex == 0)
+            {
+                PokeMusic.Stop();
+                SanicMusic.Load();
+                SanicMusic.Play();
+            }
+        }       
     }
 }

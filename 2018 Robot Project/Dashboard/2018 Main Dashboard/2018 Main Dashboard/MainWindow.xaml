@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:_2018_Main_Dashboard"
         xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         mc:Ignorable="d"
+        x:Name="MainWindow1"
         Title="MainWindow" Width="1366" Height="527"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="Manual" Left="0" Top="0">
     <Grid>
 
-        <Image Source="GreenHill.png" Margin="-10,-50,0,-110"/>
+        <Image Name="ThemeImage" Source="GreenHill.png" Margin="-10,-50,0,-110"/>
 
         <Grid Width="1366" Height="527">
 
@@ -21,7 +22,7 @@
             <local:AutoSwitchControl x:Name="AutoSwitch" Width="200" Height="75" Margin="315,10,851,442"/>
             <local:JoystickWidget x:Name="SwitchesWidget" Width="300" Height="250"  Margin="10,267,1056,10"/>
             <local:CurrentGauge x:Name="CurrentGaugeWidget" Height="75" Width="200" Margin="520,11,646,441" />
-            <local:AudioStuff x:Name="MusicButton" Height="75" Width="150" Margin="730, 10, 436, 441"/>
+            <local:AudioStuff x:Name="ThemeSelector" Height="75" Width="150" Margin="730, 10, 436, 441"/>
 
         </Grid>
         <cefSharp:ChromiumWebBrowser Name="CameraBrowser" Address="http://10.10.71.50:8081" Margin="320,277,726,10"/>

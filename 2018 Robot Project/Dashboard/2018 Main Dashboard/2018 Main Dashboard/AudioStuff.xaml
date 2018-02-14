@@ -11,6 +11,17 @@
         <TextBlock Name="ThemeTextblock" Foreground="White" TextAlignment="Center" FontSize="18" FontWeight="Bold" Margin="0,1,0,50">
             Theme Select
         </TextBlock>
-        <CheckBox Checked ="Mute"  Unchecked= "Play" Margin="130,55,0,0"> </CheckBox>
+        <CheckBox Checked ="Mute"  Unchecked= "Play" Margin="119,25,11,30"> </CheckBox>
+        <ComboBox Height="20" Width="115" Name="NameCombo" SelectionChanged="NameCombo_SelectionChanged" Margin="15,45,20,10">
+            <ComboBoxItem Name="Sanic" IsSelected="True" Selected="Sanic_Selected">
+                Sanic
+            </ComboBoxItem>
+            <ComboBoxItem Name="DOOM" Selected="DOOM_Selected">
+                DOOM
+            </ComboBoxItem>
+            <ComboBoxItem Name="Pokemon">
+                Dany DiVito-mon
+            </ComboBoxItem>
+        </ComboBox>
     </Grid>
 </UserControl>
