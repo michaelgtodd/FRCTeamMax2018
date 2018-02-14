@@ -87,24 +87,28 @@ namespace _2018_Main_Dashboard
 
         public void OscReceiveRunner()
         {
-            var listener = new UDPListener(5801);
-            OscMessage messageReceived = null;
-            while (true)
+            try
             {
-                try
+                var listener = new UDPListener(5801);
+                OscMessage messageReceived = null;
+                while (true)
                 {
-                    messageReceived = (OscMessage)listener.Receive();
-                    if (messageReceived != null)
+                    try
                     {
-                        HandleOscPacket(messageReceived);
+                        messageReceived = (OscMessage)listener.Receive();
+                        if (messageReceived != null)
+                        {
+                            HandleOscPacket(messageReceived);
+                        }
+                        Thread.Sleep(1);
                     }
-                    Thread.Sleep(1);
-                }
-                catch
-                {
-                    Console.WriteLine("Unhandled Exception");
+                    catch
+                    {
+                        Console.WriteLine("Unhandled Exception");
+                    }
                 }
             }
+            catch { }
         }
 
         public void OscSendRunner()
