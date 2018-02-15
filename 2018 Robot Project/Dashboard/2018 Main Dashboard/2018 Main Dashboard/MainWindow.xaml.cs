@@ -264,6 +264,13 @@ namespace _2018_Main_Dashboard
             }
         }
 
+        public void UpdateBackgroundImage(string BackgroundImagePath)
+        {
+            Uri BackgroundImageData = new Uri(BackgroundImagePath, UriKind.Relative);
+            BitmapImage BackgroundImage = new BitmapImage(BackgroundImageData);
+            ThemeImage.Source = BackgroundImage;
+        }
+
         public MainWindow()
         {
             InitializeComponent();

@@ -206,7 +206,11 @@
     <Resource Include="DOOM.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="DOOMfeld.jpg" />
+    <Content Include="DOOMfeld.wav" />
+    <Content Include="DoomMusic.wav" />
     <Content Include="Pokemon.wav" />
+    <Resource Include="PokemonTown.jpg" />
     <Content Include="Sanic.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

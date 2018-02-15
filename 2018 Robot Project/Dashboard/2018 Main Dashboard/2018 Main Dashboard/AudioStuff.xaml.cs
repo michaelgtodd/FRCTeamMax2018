@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace _2018_Main_Dashboard
 {
@@ -23,6 +24,7 @@ namespace _2018_Main_Dashboard
     {
         SoundPlayer SanicMusic = new SoundPlayer("Sanic.wav");
         SoundPlayer PokeMusic = new SoundPlayer("Pokemon.wav");
+        SoundPlayer DoomMusic = new SoundPlayer("DOOMfeld.wav");
 
         public AudioStuff()
         {
@@ -71,18 +73,44 @@ namespace _2018_Main_Dashboard
 
         private void NameCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (NameCombo.SelectedIndex == 2)
+
+
+
+                MainWindow MainApplication = Application.Current.MainWindow as _2018_Main_Dashboard.MainWindow;
+
+                if (NameCombo.SelectedIndex == 0)
+                {
+                    DoomMusic.Stop();
+                  SanicMusic.Stop();
+                    PokeMusic.Play();
+                    PokeMusic.Play();
+
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => MainApplication.UpdateBackgroundImage("GreenHill.png")));
+                }
+                else if (NameCombo.SelectedIndex == 1)
+                {
+                    SanicMusic.Stop();
+                    PokeMusic.Stop();
+                    DoomMusic.Load();
+                    DoomMusic.Play();
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => MainApplication.UpdateBackgroundImage("DOOMfeld.jpg")));
+                }
+            else if (NameCombo.SelectedIndex == 2)
             {
+                DoomMusic.Stop();
                 SanicMusic.Stop();
+                PokeMusic.Load();
                 PokeMusic.Play();
-                PokeMusic.Play();     
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => MainApplication.UpdateBackgroundImage("PokemonTown.jpg")));
             }
-            else if (NameCombo.SelectedIndex == 0)
-            {
-                PokeMusic.Stop();
-                SanicMusic.Load();
-                SanicMusic.Play();
-            }
+
+
         }       
     }
 }

@@ -20,7 +20,7 @@
                 DOOM
             </ComboBoxItem>
             <ComboBoxItem Name="Pokemon">
-                Dany DiVito-mon
+                Danny DiVito-mon
             </ComboBoxItem>
         </ComboBox>
     </Grid>
