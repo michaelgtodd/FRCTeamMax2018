@@ -109,6 +109,16 @@ namespace _2018_Main_Dashboard
                 DispatcherPriority.Background,
                 new Action(() => MainApplication.UpdateBackgroundImage("PokemonTown.jpg")));
             }
+            else if (NameCombo.SelectedIndex == 3)
+            {
+                DoomMusic.Stop();
+                SanicMusic.Stop();
+                PokeMusic.Load();
+                PokeMusic.Play();
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => MainApplication.UpdateBackgroundImage("PokemonTown.jpg")));
+            }
 
 
         }       

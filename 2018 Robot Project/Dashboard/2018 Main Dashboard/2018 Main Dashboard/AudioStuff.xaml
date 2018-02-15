@@ -22,6 +22,9 @@
             <ComboBoxItem Name="Pokemon">
                 Danny DiVito-mon
             </ComboBoxItem>
+            <ComboBoxItem Name="BetterThanSapphire">
+                Poke-Center
+            </ComboBoxItem>
         </ComboBox>
     </Grid>
 </UserControl>
