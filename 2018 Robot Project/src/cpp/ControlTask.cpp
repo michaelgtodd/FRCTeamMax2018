@@ -18,8 +18,7 @@ RobotControl::RobotControl()
 	SpeedLift = 0;
 	LeftArmPosition = 0;
 	RightArmPosition = 0;
-	SpeedGrabWheelLeft = 0;
-	SpeedGrabWheelRight = 0;
+	LiftHeight = 0;
 	SolenoidPos = -1;
 }
 
@@ -140,7 +139,7 @@ void ControlTask::Always()
 			Controls->SpeedLift = 0;
 		}
 
-		if (MainJoystick->GetRawButton(7))
+		/*if (MainJoystick->GetRawButton(7))
 		{
 			Controls->LeftArmPosition = 345;
 			Controls->RightArmPosition = 15;
@@ -155,7 +154,7 @@ void ControlTask::Always()
 		{
 			Controls->LeftArmPosition = 180;
 			Controls->RightArmPosition = 180;
-		}
+		}*/
 		delete (MainJoystick);
 	}
 	else if (Controls->DriverMode == ControlLayout::Tank && Controls->DriverType == XboxType)

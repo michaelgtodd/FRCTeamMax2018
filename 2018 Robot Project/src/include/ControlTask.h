@@ -40,8 +40,7 @@ public:
 	double SpeedLift;
 	double LeftArmPosition;
 	double RightArmPosition;
-	double SpeedGrabWheelLeft;
-	double SpeedGrabWheelRight;
+	int LiftHeight;
 	int SolenoidPos;
 };
 

@@ -5,7 +5,7 @@
 
 void LiftingTask::Always()
 {
-
+	ControlInput->SpeedLift = (LiftMotorL->GetSensorCollection().GetPulseWidthPosition() >= 10000) ? 0 : ControlInput->SpeedLift;
 }
 
 int modulo(int x, int N)
@@ -26,7 +26,7 @@ void LiftingTask::Run()
 	//std::cout << "Left Arm Encoder: " << DegreeLeftArmPosition;
 	double DegreeRightArmPosition = ((double)modulo(PulseWidthPosR - RIGHT_ENCODER_OFFSET, 4096)) / 4096.0 * 360.0;
 	//std::cout << " Right Arm Encoder: " << DegreeRightArmPosition << std::endl;
-
+	//std::cout << "Lift motor left: " << LiftMotorL->GetSensorCollection().GetPulseWidthPosition() << std::endl;
 
 	double RightError = ControlInput->RightArmPosition - DegreeRightArmPosition;
 	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, RightError * GAIN);
@@ -41,8 +41,6 @@ void LiftingTask::Disable()
 {
 	GrabArmL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
-	GrabWheelL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
-	GrabWheelR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	//LiftMotorL->SetSelectedSensorPosition(0, 0, 0);
@@ -66,15 +64,11 @@ void LiftingTask::Init()
 
 	GrabArmL = new TalonSRX(5);
 	GrabArmR = new TalonSRX(10);
-	GrabWheelL = new TalonSRX(11);
-	GrabWheelR = new TalonSRX(4);
 	LiftMotorL = new TalonSRX(12);
 	LiftMotorR = new TalonSRX(3);
 
 	CurrentLimit(GrabArmL, 4);
 	CurrentLimit(GrabArmR, 4);
-	CurrentLimit(GrabWheelL, 20);
-	CurrentLimit(GrabWheelR, 20);
 	CurrentLimit(LiftMotorL, 20);
 	CurrentLimit(LiftMotorR, 20);
 
