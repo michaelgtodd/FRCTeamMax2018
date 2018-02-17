@@ -180,14 +180,14 @@ void ControlTask::Always()
 		Controls->SpeedLeft = 0;
 		Controls->SpeedRight = 0;
 		double twist;
-		if (fabs(MainJoystick->GetRawAxis(2)) > 0.4)
+		if (fabs(MainJoystick->GetRawAxis(2)) > 0.3)
 		{
-			twist = fabs(MainJoystick->GetRawAxis(2)) - 0.4;
-			twist /= 0.6;
+			twist = fabs(MainJoystick->GetRawAxis(2)) - 0.3;
+			twist /= 0.7;
 			twist *= 0.3;
-			double twistmin = fabs(MainJoystick->GetRawAxis(1)) * 0.2;
-			twistmin += 0.17;
-			twistmin *= 1.3;
+			double twistmin = fabs(MainJoystick->GetRawAxis(1)) * 0.7;
+			twistmin += 0.5;
+			twistmin *= 3.5;
 			twist = fmin(twistmin, twist);
 			std::cout << "twist1: " << twist;
 			twist *= -1.0;

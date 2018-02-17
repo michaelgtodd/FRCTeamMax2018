@@ -28,8 +28,8 @@ void DrivingTask::Run()
 		DriveShift->Set(frc::DoubleSolenoid::Value::kReverse);
 		break;
 	}
-	double TargetVelocityL = ControlInput->SpeedLeft * 4096.0 * 5000.0 / 600.0;
-	double TargetVelocityR = ControlInput->SpeedRight * 4060.0 * 5000.0 / 600.0;
+	double TargetVelocityL = ControlInput->SpeedLeft * 4096.0 * 2000.0 / 600.0;
+	double TargetVelocityR = ControlInput->SpeedRight * 4060.0 * 2000.0 / 600.0;
 	LeftMotor1->Set(ControlMode::Velocity, TargetVelocityL);
 	RightMotor3->Set(ControlMode::Velocity, TargetVelocityR);
 	//LeftMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
@@ -85,11 +85,11 @@ void DrivingTask::Init()
 
 void DrivingTask::ConfigureCurrentLimit(TalonSRX * talon)
 {
-	talon->ConfigContinuousCurrentLimit(35, 0);
+	talon->ConfigContinuousCurrentLimit(25, 0);
 	talon->ConfigPeakCurrentLimit(0, 0);
 	talon->ConfigPeakCurrentDuration(0, 0);
 	talon->EnableCurrentLimit(true);
-	talon->ConfigClosedloopRamp(0.5, 10);
+	talon->ConfigClosedloopRamp(0.3, 10);
 	talon->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Coast);
 	talon->ConfigVoltageCompSaturation(12.0, 10);
 	talon->EnableVoltageCompensation(true);
@@ -104,8 +104,8 @@ void DrivingTask::ConfigureDriveTalon(TalonSRX * talon)
 	talon->ConfigNominalOutputReverse(0, 10);
 	talon->ConfigPeakOutputForward(1, 10);
 	talon->ConfigPeakOutputReverse(-1, 10);
-	talon->Config_kF(0, 0.05, 10);
-	talon->Config_kP(0, 0.05, 10);
+	talon->Config_kF(0, 0.06, 10);
+	talon->Config_kP(0, 0.03, 10);
 	talon->Config_kI(0, 0, 10);
 	talon->Config_kD(0, 0, 10);
 }
