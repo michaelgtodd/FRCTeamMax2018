@@ -5,7 +5,7 @@
 
 void LiftingTask::Always()
 {
-	ControlInput->SpeedLift = (LiftMotorL->GetSensorCollection().GetPulseWidthPosition() >= 10000) ? 0 : ControlInput->SpeedLift;
+
 }
 
 int modulo(int x, int N)
@@ -16,7 +16,7 @@ int modulo(int x, int N)
 void LiftingTask::Run()
 {
 	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
-	LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
+	//LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
 	//std::cout << " Right Arm Encoder: " << LiftMotorL->GetSensorCollection().GetQuadraturePosition() << std::endl;
 	int PulseWidthPosL = GrabArmL->GetSensorCollection().GetPulseWidthPosition();
 	//std::cout << "Left Arm Encoder: " << modulo(PulseWidthPosL, 4096) - LEFT_ENCODER_OFFSET << std::endl;
@@ -42,8 +42,8 @@ void LiftingTask::Disable()
 	GrabArmL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
-	LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
-	//LiftMotorL->SetSelectedSensorPosition(0, 0, 0);
+	//LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
+	LiftMotorL->SetSelectedSensorPosition(0, 0, 0);
 	//std::cout << "Disabled: " << LiftMotorL->GetSensorCollection().GetQuadraturePosition() << std::endl;
 	LiftMotorL->GetSensorCollection().SetQuadraturePosition(0, 0);
 }
@@ -73,6 +73,11 @@ void LiftingTask::Init()
 	CurrentLimit(LiftMotorR, 20);
 
 	LiftMotorL->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 0);
+	LiftMotorL->ConfigForwardSoftLimitEnable(true, 10);
+	LiftMotorL->ConfigReverseSoftLimitEnable(true, 10);
+	LiftMotorR->Set(ControlMode::Follower, 12);
+	LiftMotorL->ConfigForwardSoftLimitThreshold(195000, 10);
+	LiftMotorL->ConfigReverseSoftLimitThreshold(-14500, 10);
 	GrabArmL->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 0);
 	GrabArmR->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 0);
 }
