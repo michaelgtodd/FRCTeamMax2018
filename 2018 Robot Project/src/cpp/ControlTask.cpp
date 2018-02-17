@@ -76,8 +76,8 @@ void ControlTask::Always()
 		}
 		else if (MainJoystick->GetRawButton(1))
 		{
-			Controls->LeftArmPosition = 120;
-			Controls->RightArmPosition = 240;
+			Controls->LeftArmPosition = 100;
+			Controls->RightArmPosition = 260;
 		}
 		else
 		{
@@ -179,8 +179,29 @@ void ControlTask::Always()
 		Controls->SolenoidPos = (MainJoystick->GetRawButton(1) == true) ? -1 : 1;
 		Controls->SpeedLeft = 0;
 		Controls->SpeedRight = 0;
-		Controls->SpeedLeft = ((fabs(MainJoystick->GetRawAxis(2)) > 0.025) ? -MainJoystick->GetRawAxis(2) : 0) + (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
-		Controls->SpeedRight = ((fabs(MainJoystick->GetRawAxis(2)) > 0.025) ? -MainJoystick->GetRawAxis(2) : 0) - (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
+		double twist;
+		if (fabs(MainJoystick->GetRawAxis(2)) > 0.4)
+		{
+			twist = fabs(MainJoystick->GetRawAxis(2)) - 0.4;
+			twist /= 0.6;
+			twist *= 0.3;
+			double twistmin = fabs(MainJoystick->GetRawAxis(1)) * 0.2;
+			twistmin += 0.17;
+			twistmin *= 1.3;
+			twist = fmin(twistmin, twist);
+			std::cout << "twist1: " << twist;
+			twist *= -1.0;
+			twist *= (fabs(MainJoystick->GetRawAxis(2)) / MainJoystick->GetRawAxis(2));
+
+			std::cout << "twist: " << twist << std::endl;
+		}
+		else
+		{
+			twist = 0.0;
+		}
+		
+		Controls->SpeedLeft = (twist) + (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
+		Controls->SpeedRight = (twist) - (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
 		delete (MainJoystick);
 	}
 	taskschedule_->DispatchControl(Controls);

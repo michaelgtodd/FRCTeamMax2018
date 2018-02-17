@@ -12,8 +12,8 @@ public:
 	void Autonomous();
 	void ControllerUpdate(MaxControl * controls);
 private:
-	const int LEFT_ENCODER_OFFSET = 2797;
-	const int RIGHT_ENCODER_OFFSET = 2952;
+	const int LEFT_ENCODER_OFFSET = 2089;
+	const int RIGHT_ENCODER_OFFSET = 2358;
 	const double GAIN = 0.006;
 	void Init();
 	void CurrentLimit(TalonSRX * talon, int amps);

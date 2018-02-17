@@ -72,14 +72,14 @@ void LiftingTask::Init()
 	CurrentLimit(LiftMotorL, 20);
 	CurrentLimit(LiftMotorR, 20);
 
-	LiftMotorL->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 0);
+	LiftMotorL->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
 	LiftMotorL->ConfigForwardSoftLimitEnable(true, 10);
 	LiftMotorL->ConfigReverseSoftLimitEnable(true, 10);
 	LiftMotorR->Set(ControlMode::Follower, 12);
 	LiftMotorL->ConfigForwardSoftLimitThreshold(195000, 10);
 	LiftMotorL->ConfigReverseSoftLimitThreshold(-14500, 10);
-	GrabArmL->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 0);
-	GrabArmR->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 0);
+	GrabArmL->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
+	GrabArmR->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
 }
 
 void LiftingTask::CurrentLimit(TalonSRX * talon, int amps)

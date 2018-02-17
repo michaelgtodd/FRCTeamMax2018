@@ -14,6 +14,7 @@ public:
 private:
 	void Init();
 	void ConfigureCurrentLimit(TalonSRX * talon);
+	void ConfigureDriveTalon(TalonSRX * talon);
 	RobotControl * ControlInput;
 	TalonSRX * LeftMotor1;
 	TalonSRX * LeftMotor2;
