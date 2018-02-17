@@ -70,9 +70,9 @@ void ControlTask::Always()
 
 		if (MainJoystick->GetRawButton(2))
 		{
-			Controls->LeftArmPosition = 345;
-			Controls->RightArmPosition = 15;
-			Controls->SpeedLift = 0;
+			Controls->LeftArmPosition = 300;
+			Controls->RightArmPosition = 60;
+			//Controls->SpeedLift = 0;
 		}
 		else if (MainJoystick->GetRawButton(1))
 		{
