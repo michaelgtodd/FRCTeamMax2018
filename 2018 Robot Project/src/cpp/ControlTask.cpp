@@ -44,7 +44,7 @@ void ControlTask::Always()
 
 	if (Controls->SwitchesType == XboxType && Controls->SwitchesMode == Tank)
 	{
-		
+
 	}
 	else if (Controls->SwitchesType == XboxType && Controls->SwitchesMode == Arcade)
 	{
@@ -81,7 +81,7 @@ void ControlTask::Always()
 		}
 		else
 		{
-			Controls->LeftArmPosition =  180;
+			Controls->LeftArmPosition = 180;
 			Controls->RightArmPosition = 180;
 		}
 		delete(MainJoystick);
@@ -89,121 +89,54 @@ void ControlTask::Always()
 
 	//======================================================================================
 	// Drive Controllers
-	//======================================================================================	 
+	//======================================================================================
 
-	if (Controls->DriverMode == ControlLayout::Tank && Controls->DriverType == JoystickType)
-	{
-			Joystick * Left = new Joystick(0);
-			Joystick * Right = new Joystick(1);
-			if (fabs(Left->GetRawAxis(1)) > 0.025)
-			{
-				Controls->SpeedLeft = Left->GetRawAxis(1);
-			}
-			else
-			{
-				Controls->SpeedLeft = 0;
-			}
-			if (fabs(Right->GetRawAxis(1)) > 0.025)
-			{
-				Controls->SpeedRight = -Right->GetRawAxis(1);
-			}
-			else
-			{
-				Controls->SpeedRight = 0;
-			}
+	/* Determine the axis and buttons that should be used. */
+	double ForwardAxis, TwistAxis;
+	bool ShiftButton;
 
-			Controls->SolenoidPos = ((Left->GetRawButton(1) == true || Right->GetRawButton(1)) == true) ? 1 : -1;
-			
-			delete (Left);
-			delete (Right);
-	}
-	else if (false) //Drive and lift with a single joystick
-	{
-		Joystick * MainJoystick = new Joystick(0);
-		Controls->SolenoidPos = (MainJoystick->GetRawButton(2) == true) ? -1 : 1;
-		Controls->SpeedLeft = 0;
-		Controls->SpeedRight = 0;
-		Controls->SpeedLeft = ((fabs(MainJoystick->GetRawAxis(2)) > 0.025) ? -MainJoystick->GetRawAxis(2) : 0) + (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
-		Controls->SpeedRight = ((fabs(MainJoystick->GetRawAxis(2)) > 0.025) ? -MainJoystick->GetRawAxis(2) : 0) - (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
+	Joystick * DriveJoystick = new Joystick(0);
 
-		if (MainJoystick->GetPOV() == 0)
-		{
-			Controls->SpeedLift = 0.9;
-		}
-		else if (MainJoystick->GetPOV() == 180)
-		{
-			Controls->SpeedLift = -0.9;
-		}
-		else
-		{
-			Controls->SpeedLift = 0;
-		}
+	if (Controls->DriverType == XboxType)
+	{
+		ForwardAxis = DriveJoystick->GetRawAxis(1);
+		TwistAxis = DriveJoystick->GetRawAxis(4);
+		ShiftButton = DriveJoystick->GetRawButton(6);
+	}
+	else // Controls->DriverType == JoystickType
+	{
+		ForwardAxis = DriveJoystick->GetRawAxis(1);
+		TwistAxis = DriveJoystick->GetRawAxis(2);
+		ShiftButton = DriveJoystick->GetRawButton(1);
+	}
 
-		/*if (MainJoystick->GetRawButton(7))
-		{
-			Controls->LeftArmPosition = 345;
-			Controls->RightArmPosition = 15;
-			Controls->SpeedLift = 0;
-		}
-		else if (MainJoystick->GetRawButton(1))
-		{
-			Controls->LeftArmPosition = 120;
-			Controls->RightArmPosition = 240;
-		}
-		else
-		{
-			Controls->LeftArmPosition = 180;
-			Controls->RightArmPosition = 180;
-		}*/
-		delete (MainJoystick);
-	}
-	else if (Controls->DriverMode == ControlLayout::Tank && Controls->DriverType == XboxType)
+	Controls->SolenoidPos = (ShiftButton == true) ? -1 : 1;
+	Controls->SpeedLeft = 0;
+	Controls->SpeedRight = 0;
+	double twist;
+	if (fabs(TwistAxis) > 0.3)
 	{
-		Joystick * Xbox = new Joystick(0);
-		Controls->SpeedLeft = Xbox->GetRawAxis(1);
-		Controls->SpeedRight = -Xbox->GetRawAxis(5);
-		Controls->SolenoidPos = (Xbox->GetRawButton(6) == true) ? -1 : 1;
-		delete (Xbox);
-	}
-	else if (Controls->DriverMode == ControlLayout::Arcade && Controls->DriverType == XboxType)
-	{
-		Joystick * Xbox = new Joystick(0);
-		Controls->SpeedLeft = -Xbox->GetRawAxis(4) + Xbox->GetRawAxis(1);
-		Controls->SpeedRight = -Xbox->GetRawAxis(4) - Xbox->GetRawAxis(1);
-		Controls->SolenoidPos = (Xbox->GetRawButton(6) == true) ? -1 : 1;
-		delete (Xbox);
-	}
-	else // Joystick Arcade
-	{
-		Joystick * MainJoystick = new Joystick(0);
-		Controls->SolenoidPos = (MainJoystick->GetRawButton(1) == true) ? -1 : 1;
-		Controls->SpeedLeft = 0;
-		Controls->SpeedRight = 0;
-		double twist;
-		if (fabs(MainJoystick->GetRawAxis(2)) > 0.3)
-		{
-			twist = fabs(MainJoystick->GetRawAxis(2)) - 0.3;
-			twist /= 0.7;
-			twist *= 0.3;
-			double twistmin = fabs(MainJoystick->GetRawAxis(1)) * 0.7;
-			twistmin += 0.5;
-			twistmin *= 3.5;
-			twist = fmin(twistmin, twist);
-			std::cout << "twist1: " << twist;
-			twist *= -1.0;
-			twist *= (fabs(MainJoystick->GetRawAxis(2)) / MainJoystick->GetRawAxis(2));
+		twist = fabs(TwistAxis) - 0.3;
+		twist /= 0.7;
+		twist *= 0.3;
+		double twistmin = fabs(ForwardAxis) * 0.7;
+		twistmin += 0.5;
+		twistmin *= 3.5;
+		twist = fmin(twistmin, twist);
+		std::cout << "twist1: " << twist;
+		twist *= -1.0;
+		twist *= (fabs(TwistAxis) / TwistAxis);
 
-			std::cout << "twist: " << twist << std::endl;
-		}
-		else
-		{
-			twist = 0.0;
-		}
-		
-		Controls->SpeedLeft = (twist) + (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
-		Controls->SpeedRight = (twist) - (fabs(MainJoystick->GetRawAxis(1)) > 0.025 ? MainJoystick->GetRawAxis(1) : 0);
-		delete (MainJoystick);
+		std::cout << "twist: " << twist << std::endl;
 	}
+	else
+	{
+		twist = 0.0;
+	}
+
+	Controls->SpeedLeft = (twist)+(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
+	Controls->SpeedRight = (twist)-(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
+
 	taskschedule_->DispatchControl(Controls);
 }
 
@@ -220,7 +153,7 @@ void ControlTask::ControllerUpdate(MaxControl * controls)
 void ControlTask::Autonomous()
 {
 	switch (Auto->StartingPos) {
-	case Right :
+	case Right:
 		if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
 		{
 
@@ -243,7 +176,7 @@ void ControlTask::Autonomous()
 		}
 
 		break;
-	case Center :
+	case Center:
 		if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
 		{
 
@@ -266,7 +199,7 @@ void ControlTask::Autonomous()
 		}
 
 		break;
-	case Left :
+	case Left:
 		if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
 		{
 
@@ -289,7 +222,7 @@ void ControlTask::Autonomous()
 		}
 
 		break;
-	default :
+	default:
 
 		break;
 	}
@@ -297,7 +230,7 @@ void ControlTask::Autonomous()
 
 void ControlTask::UpdateAutonomousData(AutonomousControl)
 {
-	
+
 }
 
 void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
