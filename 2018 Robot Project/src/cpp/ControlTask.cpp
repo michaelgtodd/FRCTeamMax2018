@@ -42,50 +42,40 @@ void ControlTask::Always()
 	// Switches Controllers
 	//======================================================================================	
 
-	if (Controls->SwitchesType == XboxType && Controls->SwitchesMode == Tank)
+	double LiftAxis;
+	bool GrabButton, RetractButton, OverRideButton;
+	Joystick * SwitchesJoystick = new Joystick(2);
+
+	if (Controls->SwitchesType == XboxType)
 	{
 
 	}
-	else if (Controls->SwitchesType == XboxType && Controls->SwitchesMode == Arcade)
+	else
 	{
-
+		LiftAxis = SwitchesJoystick->GetRawAxis(1);
+		GrabButton = SwitchesJoystick->GetRawButton(1);
+		RetractButton = SwitchesJoystick->GetRawButton(2);
+		OverRideButton = SwitchesJoystick->GetRawButton(8);
 	}
-	else if (Controls->SwitchesType == JoystickType && Controls->SwitchesMode == Arcade)
+	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
+
+	if (RetractButton)
 	{
-		Joystick * MainJoystick = new Joystick(2);
-
-		Controls->SpeedLift = (MainJoystick->GetRawAxis(1) > 0.25) ? MainJoystick->GetRawAxis(1) : 0;
-
-		Controls->LeftArmPosition = (MainJoystick->GetRawButton(1)) ? 120 : 180;
-		Controls->RightArmPosition = (MainJoystick->GetRawButton(1)) ? 240 : 189;
-
-		delete(MainJoystick);
+		Controls->LeftArmPosition = 300;
+		Controls->RightArmPosition = 60;
 	}
-	else //Joystick Arcade
+	else if (GrabButton)
 	{
-		Joystick * MainJoystick = new Joystick(2);
-
-		Controls->SpeedLift = (fabs(MainJoystick->GetRawAxis(1)) > 0.25) ? MainJoystick->GetRawAxis(1) : 0;
-		//std::cout << "Speed of Lift in Control Task:" << Controls->SpeedLift << std::endl;
-
-		if (MainJoystick->GetRawButton(2))
-		{
-			Controls->LeftArmPosition = 300;
-			Controls->RightArmPosition = 60;
-			//Controls->SpeedLift = 0;
-		}
-		else if (MainJoystick->GetRawButton(1))
-		{
-			Controls->LeftArmPosition = 100;
-			Controls->RightArmPosition = 260;
-		}
-		else
-		{
-			Controls->LeftArmPosition = 180;
-			Controls->RightArmPosition = 180;
-		}
-		delete(MainJoystick);
+		Controls->LeftArmPosition = 100;
+		Controls->RightArmPosition = 260;
 	}
+	else
+	{
+		Controls->LeftArmPosition = 180;
+		Controls->RightArmPosition = 180;
+	}
+
+	delete (SwitchesJoystick);
 
 	//======================================================================================
 	// Drive Controllers
@@ -136,7 +126,7 @@ void ControlTask::Always()
 
 	Controls->SpeedLeft = (twist)+(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
 	Controls->SpeedRight = (twist)-(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
-
+	delete (DriveJoystick);
 	taskschedule_->DispatchControl(Controls);
 }
 
