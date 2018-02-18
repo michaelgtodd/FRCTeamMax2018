@@ -91,9 +91,14 @@ namespace DataMonitor
                     tryupdate(chart2, "Series2", (double)message.Arguments[0]);
                 });
             }
+            if (message.Address.Contains("twist"))
+            {
+                chart1.Invoke((MethodInvoker)delegate {
+                    // Running on the UI thread
+                    tryupdate(chart3, "Series1", (double)message.Arguments[0]);
+                });
+            }
         }
-
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
 
         public Form1()
         {
@@ -107,15 +112,6 @@ namespace DataMonitor
 
         private void chart2_Click(object sender, EventArgs e)
         {
-            double yValue = 50.0;
-            Random random = new Random();
-            for (int pointIndex = 0; pointIndex < 100; pointIndex++)
-            {
-                yValue = yValue + (random.NextDouble() * 10.0 - 5.0);
-            }
-
-            // Set fast line chart type
-            chart2.Series["Series1"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
         }
 
         private void chart1_Click(object sender, EventArgs e)

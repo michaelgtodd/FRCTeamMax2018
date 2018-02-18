@@ -148,7 +148,12 @@ void ControlTask::Always()
 		//std::cout << "twist1: " << twist;
 		twist *= -1.0;
 		twist *= (fabs(TwistAxis) / TwistAxis);
-		MaxLog::TransmitDouble("/twist", twist);
+		run++;
+		if (run % 10 == 0)
+		{
+			MaxLog::TransmitDouble("/twist", twist);
+			run = 0;
+		}
 		//std::cout << "twist: " << twist << std::endl;
 	}
 	else
@@ -338,6 +343,7 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 void ControlTask::Init()
 {
 	Controls = new RobotControl();
+	run = 0;
 
 	debugCounter = 0;
 }

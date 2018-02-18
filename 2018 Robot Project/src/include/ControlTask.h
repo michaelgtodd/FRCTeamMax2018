@@ -66,6 +66,7 @@ public:
 	void UpdateAutonomousData(AutonomousControl);
 private:
 	void Init();
+	int run;
 	MaxTaskSchedule * taskschedule_;
 	RobotControl * Controls;
 	AutonomousControl * Auto;
