@@ -20,7 +20,7 @@ RobotControl::RobotControl()
 	RightArmPosition = 0;
 	LiftHeight = 0;
 	SolenoidPos = -1;
-	Override = false;
+	ResetPos = false;
 }
 
 ControlTask::ControlTask(MaxTaskSchedule * taskschedule)
@@ -44,19 +44,42 @@ void ControlTask::Always()
 	//======================================================================================	
 
 	double LiftAxis;
-	bool GrabButton, RetractButton, OverrideButton;
+	bool GrabButton, RetractButton, ResetPosButton;
 	Joystick * SwitchesJoystick = new Joystick(2);
 
 	if (Controls->SwitchesType == XboxType)
 	{
-
+		LiftAxis = (fabs(SwitchesJoystick->GetRawAxis(1)) > 0.05 ? SwitchesJoystick->GetRawAxis(1) : 0) - (fabs(SwitchesJoystick->GetRawAxis(5)) > 0.05 ? SwitchesJoystick->GetRawAxis(5) : 0);
+		GrabButton = SwitchesJoystick->GetRawButton(5);
+		RetractButton = SwitchesJoystick->GetRawButton(6);
+		ResetPosButton = SwitchesJoystick->GetRawButton(8);
+	}
+	else if (false) //Single driver & switches
+	{
+		Joystick * MainJoystick = new Joystick(0);
+		if (MainJoystick->GetPOV() == 0)
+		{
+			LiftAxis = 0.75;
+		}
+		else if (MainJoystick->GetPOV() == 180)
+		{
+			LiftAxis = -0.75;
+		}
+		else
+		{
+			LiftAxis = 0.0;
+		}
+		GrabButton = MainJoystick->GetRawButton(1);
+		RetractButton = MainJoystick->GetRawButton(7);
+		ResetPosButton = MainJoystick->GetRawButton(8);
+		delete (MainJoystick);
 	}
 	else
 	{
 		LiftAxis = SwitchesJoystick->GetRawAxis(1);
 		GrabButton = SwitchesJoystick->GetRawButton(1);
 		RetractButton = SwitchesJoystick->GetRawButton(2);
-		OverrideButton = SwitchesJoystick->GetRawButton(8);
+		ResetPosButton = SwitchesJoystick->GetRawButton(8);
 	}
 	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
 
@@ -75,9 +98,13 @@ void ControlTask::Always()
 		Controls->LeftArmPosition = 180;
 		Controls->RightArmPosition = 180;
 	}
-	if (OverrideButton)
+	if (ResetPosButton)
 	{
-		Controls->Override = true;
+		Controls->ResetPos = true;
+	}
+	else
+	{
+		Controls->ResetPos = false;
 	}
 
 	delete (SwitchesJoystick);

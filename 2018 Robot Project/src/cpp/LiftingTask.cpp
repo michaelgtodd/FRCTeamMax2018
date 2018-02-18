@@ -15,10 +15,10 @@ int modulo(int x, int N)
 
 void LiftingTask::Run()
 {
-	if (ControlInput->Override)
+	if (ControlInput->ResetPos)
 	{
-		LiftMotorL->ConfigForwardSoftLimitEnable(false, 10);
-		LiftMotorL->ConfigReverseSoftLimitEnable(false, 10);
+		LiftMotorL->SetSelectedSensorPosition(LIFT_LOWER_LIMIT, 0, 0);
+		LiftMotorL->GetSensorCollection().SetQuadraturePosition(LIFT_LOWER_LIMIT, 0);
 	}
 	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
 	//LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
@@ -81,8 +81,8 @@ void LiftingTask::Init()
 	LiftMotorL->ConfigForwardSoftLimitEnable(true, 10);
 	LiftMotorL->ConfigReverseSoftLimitEnable(true, 10);
 	LiftMotorR->Set(ControlMode::Follower, 12);
-	LiftMotorL->ConfigForwardSoftLimitThreshold(195000, 10);
-	LiftMotorL->ConfigReverseSoftLimitThreshold(-14500, 10);
+	LiftMotorL->ConfigForwardSoftLimitThreshold(LIFT_UPPER_LIMIT, 10);
+	LiftMotorL->ConfigReverseSoftLimitThreshold(LIFT_LOWER_LIMIT, 10);
 	GrabArmL->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
 	GrabArmR->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10);
 }
