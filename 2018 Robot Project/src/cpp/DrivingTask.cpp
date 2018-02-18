@@ -32,6 +32,17 @@ void DrivingTask::Run()
 	double TargetVelocityR = ControlInput->SpeedRight * 4060.0 * 2000.0 / 600.0;
 	LeftMotor1->Set(ControlMode::Velocity, TargetVelocityL);
 	RightMotor3->Set(ControlMode::Velocity, TargetVelocityR);
+
+	runs++;
+	if (runs % 10 == 0)
+	{
+		runs = 0;
+		MaxLog::TransmitDouble("/lefttargetvel", TargetVelocityL);
+		MaxLog::TransmitDouble("/righttargetvel", TargetVelocityR);
+		MaxLog::TransmitDouble("/rightactualvel", RightMotor3->GetSelectedSensorVelocity(0));
+		MaxLog::TransmitDouble("/leftactualvel", LeftMotor1->GetSelectedSensorVelocity(0));
+	}
+
 	//LeftMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	//std::cout << "Left Drive Motor:  " << LeftMotor1->GetSelectedSensorVelocity(0) << " Target: " << TargetVelocityL << std::endl;
 }
@@ -67,6 +78,8 @@ void DrivingTask::Init()
 	RightMotor2 = new TalonSRX(14);
 	RightMotor3 = new TalonSRX(15);
 	DriveShift = new frc::DoubleSolenoid { 0, 1 };
+
+	runs = 0;
 
 	ConfigureCurrentLimit(LeftMotor1);
 	ConfigureCurrentLimit(LeftMotor2);
