@@ -12,6 +12,7 @@ public:
 	void Autonomous();
 	void ControllerUpdate(MaxControl * controls);
 private:
+	int runs;
 	void Init();
 	void ConfigureCurrentLimit(TalonSRX * talon);
 	void ConfigureDriveTalon(TalonSRX * talon);
