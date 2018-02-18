@@ -43,6 +43,7 @@ public:
 	int LiftHeight;
 	int SolenoidPos;
 	bool ResetPos;
+	bool Override;
 };
 
 class AutonomousControl : public MaxControl

@@ -21,6 +21,7 @@ RobotControl::RobotControl()
 	LiftHeight = 0;
 	SolenoidPos = -1;
 	ResetPos = false;
+	Override = false;
 }
 
 ControlTask::ControlTask(MaxTaskSchedule * taskschedule)
