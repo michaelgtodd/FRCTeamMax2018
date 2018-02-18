@@ -15,6 +15,11 @@ int modulo(int x, int N)
 
 void LiftingTask::Run()
 {
+	if (ControlInput->Override)
+	{
+		LiftMotorL->ConfigForwardSoftLimitEnable(false, 10);
+		LiftMotorL->ConfigReverseSoftLimitEnable(false, 10);
+	}
 	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
 	//LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
 	//std::cout << " Right Arm Encoder: " << LiftMotorL->GetSensorCollection().GetQuadraturePosition() << std::endl;
