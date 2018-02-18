@@ -146,11 +146,11 @@ void ControlTask::Always()
 		twistmin += 0.5;
 		twistmin *= 3.5;
 		twist = fmin(twistmin, twist);
-		std::cout << "twist1: " << twist;
+		//std::cout << "twist1: " << twist;
 		twist *= -1.0;
 		twist *= (fabs(TwistAxis) / TwistAxis);
-
-		std::cout << "twist: " << twist << std::endl;
+		MaxLog::TransmitDouble("/twist", twist);
+		//std::cout << "twist: " << twist << std::endl;
 	}
 	else
 	{
