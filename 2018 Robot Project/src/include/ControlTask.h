@@ -42,7 +42,7 @@ public:
 	double RightArmPosition;
 	int LiftHeight;
 	int SolenoidPos;
-	bool Override;
+	bool ResetPos;
 };
 
 class AutonomousControl : public MaxControl
