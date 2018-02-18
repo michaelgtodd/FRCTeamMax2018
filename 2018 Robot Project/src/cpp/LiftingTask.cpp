@@ -20,6 +20,13 @@ void LiftingTask::Run()
 		LiftMotorL->SetSelectedSensorPosition(LIFT_LOWER_LIMIT, 0, 0);
 		LiftMotorL->GetSensorCollection().SetQuadraturePosition(LIFT_LOWER_LIMIT, 0);
 	}
+	if (ControlInput->Override)
+	{
+		LiftMotorL->SetSelectedSensorPosition(0, 0, 0);
+		LiftMotorL->GetSensorCollection().SetQuadraturePosition(0, 0);
+	}
+	LiftMotorL->ConfigForwardSoftLimitEnable(ControlInput->LiftLimitEnable, 0);
+	LiftMotorL->ConfigReverseSoftLimitEnable(ControlInput->LiftLimitEnable, 0);
 	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
 	//LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
 	//std::cout << " Right Arm Encoder: " << LiftMotorL->GetSensorCollection().GetQuadraturePosition() << std::endl;
