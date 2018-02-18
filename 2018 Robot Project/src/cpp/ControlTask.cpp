@@ -137,12 +137,13 @@ void ControlTask::Always()
 	Controls->SpeedLeft = 0;
 	Controls->SpeedRight = 0;
 	double twist;
+	double twistmin = 0;
 	if (fabs(TwistAxis) > 0.3)
 	{
 		twist = fabs(TwistAxis) - 0.3;
 		twist /= 0.7;
 		twist *= 0.3;
-		double twistmin = fabs(ForwardAxis) * 0.7;
+		twistmin = fabs(ForwardAxis) * 0.7;
 		twistmin += 0.5;
 		twistmin *= 3.5;
 		twist = fmin(twistmin, twist);
@@ -150,16 +151,17 @@ void ControlTask::Always()
 		twist *= -1.0;
 		twist *= (fabs(TwistAxis) / TwistAxis);
 		run++;
-		if (run % 10 == 0)
-		{
-			MaxLog::TransmitDouble("/twist", twist);
-			run = 0;
-		}
 		//std::cout << "twist: " << twist << std::endl;
 	}
 	else
 	{
 		twist = 0.0;
+	}
+	if (run % 10 == 0)
+	{
+		MaxLog::TransmitDouble("/twist", twist);
+		MaxLog::TransmitDouble("/twistmin", twistmin);
+		run = 0;
 	}
 
 	Controls->SpeedLeft = (twist)+(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
