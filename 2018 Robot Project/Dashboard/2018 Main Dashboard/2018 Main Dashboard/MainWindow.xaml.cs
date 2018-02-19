@@ -100,7 +100,6 @@ namespace _2018_Main_Dashboard
                         {
                             HandleOscPacket(messageReceived);
                         }
-                        Thread.Sleep(1);
                     }
                     catch
                     {
@@ -123,7 +122,7 @@ namespace _2018_Main_Dashboard
                 ToSend.Messages.Add(DriveMode);
                 OscMessage AutoPositionMessage = new OscMessage("/Dashboard/AutoPositionMessage/", CurrentDashboardData.AutoPosition);
                 ToSend.Messages.Add(AutoPositionMessage);
-                OscMessage AutoGoalMessage = new OscMessage("/Dashboard/AutoGoalMessage/", CurrentDashboardData.AutoGoal);
+                OscMessage AutoGoalMessage = new OscMessage("/Dashboard/AutoSwitchPriority/", CurrentDashboardData.AutoGoal);
                 ToSend.Messages.Add(AutoGoalMessage);
                 OscMessage SwitchesController = new OscMessage("/Dashboard/SwitchesController/", CurrentDashboardData.SwitchesController);
                 ToSend.Messages.Add(SwitchesController);

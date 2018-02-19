@@ -30,6 +30,8 @@ namespace _2018_Main_Dashboard
             if (Controller == "Xbox Controller")
             {
                 ZAxisWidth = ZAxis * 50;
+                if (ZAxisWidth < 0)
+                    ZAxisWidth = 0;
                 ZAxisIndicator.Width = ZAxisWidth;
             }
             else if (Controller == "Joystick")

@@ -5,6 +5,7 @@
 #include "ip/UdpSocket.h"
 #include "WPILib.h"
 #include <string.h>
+#include "maxutils\MaxAutonomous.h"
 
 enum ControlType
 {
@@ -20,9 +21,16 @@ enum ControlLayout
 
 enum FieldPos
 {
-	Left = -1,
-	Center = 0,
-	Right = 1
+	Left = 0,
+	Center = 1,
+	Right = 2
+};
+
+enum SwitchPriority
+{
+	Kyle = 0,
+	No = 1,
+	Yes = 2
 };
 
 class RobotControl : public MaxControl
@@ -45,6 +53,8 @@ public:
 	bool ResetPos;
 	bool Override;
 	bool LiftLimitEnable;
+	FieldPos StartingPos;
+	SwitchPriority SwitchPrioritySelection;
 };
 
 class AutonomousControl : public MaxControl

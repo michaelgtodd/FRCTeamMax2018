@@ -33,6 +33,9 @@
   </PropertyGroup>
   <ItemGroup Label="Sources">
     <ClCompile Include="build.gradle" />
+    <ClCompile Include="src\cpp\AutonomousCenter.cpp" />
+    <ClCompile Include="src\cpp\AutonomousLeft.cpp" />
+    <ClCompile Include="src\cpp\AutonomousRight.cpp" />
     <ClCompile Include="src\cpp\ControlTask.cpp" />
     <ClCompile Include="src\cpp\DashboardTask.cpp" />
     <ClCompile Include="src\cpp\DrivingTask.cpp" />
@@ -53,6 +56,8 @@
     <ClCompile Include="src\cpp\SampleTask.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\include\AutonomousRight.h" />
+    <ClInclude Include="src\include\AutonomousCenter.h" />
     <ClInclude Include="src\include\ControlTask.h" />
     <ClInclude Include="src\include\DashboardTask.h" />
     <ClInclude Include="src\include\DrivingTask.h" />
@@ -61,6 +66,7 @@
     <ClInclude Include="src\include\ip\PacketListener.h" />
     <ClInclude Include="src\include\ip\TimerListener.h" />
     <ClInclude Include="src\include\ip\UdpSocket.h" />
+    <ClInclude Include="src\include\AutonomousLeft.h" />
     <ClInclude Include="src\include\LiftingTask.h" />
     <ClInclude Include="src\include\maxutils\MaxAutonomous.h" />
     <ClInclude Include="src\include\maxutils\MaxControls.h" />

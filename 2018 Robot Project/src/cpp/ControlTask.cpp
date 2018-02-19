@@ -23,6 +23,8 @@ RobotControl::RobotControl()
 	ResetPos = false;
 	Override = false;
 	LiftLimitEnable = true;
+	StartingPos = FieldPos::Right;
+	SwitchPrioritySelection = SwitchPriority::Kyle;
 }
 
 ControlTask::ControlTask(MaxTaskSchedule * taskschedule)
@@ -37,10 +39,6 @@ ControlTask::ControlTask(MaxTaskSchedule * taskschedule)
 void ControlTask::Run()
 {
 
-}
-
-void ControlTask::Always()
-{
 	//======================================================================================
 	// Switches Controllers
 	//======================================================================================	
@@ -181,6 +179,27 @@ void ControlTask::Always()
 	taskschedule_->DispatchControl(Controls);
 }
 
+void ControlTask::Always()
+{
+	//======================================================================================
+	// Autonomous Selection
+	//======================================================================================
+	switch (Controls->StartingPos)
+	{
+	case FieldPos::Left:
+		MaxAutonomousManagerInstance.SelectAutonomous("AutonomousLeft");
+		break;
+	case FieldPos::Center:
+		MaxAutonomousManagerInstance.SelectAutonomous("AutonomousCenter");
+		break;
+	case FieldPos::Right:
+		MaxAutonomousManagerInstance.SelectAutonomous("AutonomousRight");
+		break;
+	default:
+		break;
+	}
+}
+
 void ControlTask::Disable()
 {
 
@@ -206,67 +225,67 @@ void ControlTask::Autonomous()
 	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
 	//	{
 
-	//	}
-	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
-	//	{
+//	}
+//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
+//	{
 
-	//	}
-	//	else
-	//	{
+//	}
+//	else
+//	{
 
-	//	}
+//	}
 
-	//	break;
-	//case Center:
-	//	if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
-	//	{
+//	break;
+//case Center:
+//	if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
+//	{
 
-	//	}
-	//	else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
-	//	{
+//	}
+//	else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
+//	{
 
-	//	}
-	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
-	//	{
+//	}
+//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
+//	{
 
-	//	}
-	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
-	//	{
+//	}
+//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
+//	{
 
-	//	}
-	//	else
-	//	{
+//	}
+//	else
+//	{
 
-	//	}
+//	}
 
-	//	break;
-	//case Left:
-	//	if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
-	//	{
+//	break;
+//case Left:
+//	if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
+//	{
 
-	//	}
-	//	else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
-	//	{
+//	}
+//	else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
+//	{
 
-	//	}
-	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
-	//	{
+//	}
+//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
+//	{
 
-	//	}
-	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
-	//	{
+//	}
+//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
+//	{
 
-	//	}
-	//	else
-	//	{
+//	}
+//	else
+//	{
 
-	//	}
+//	}
 
-	//	break;
-	//default:
+//	break;
+//default:
 
-	//	break;
-	//}
+//	break;
+//}
 }
 
 void ControlTask::UpdateAutonomousData(AutonomousControl)
@@ -276,6 +295,49 @@ void ControlTask::UpdateAutonomousData(AutonomousControl)
 
 void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 {
+	if (strcmp(messages.AddressPattern(), "/Dashboard/AutoPositionMessage/") == 0)
+	{
+		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
+		const char * CharAutoPositionMessage;
+		std::cout << "Test 1: " << endl;
+		args >> CharAutoPositionMessage >> osc::EndMessage;
+		std::cout << "Test 2: " << endl;
+		if (strcmp(CharAutoPositionMessage, "Left") == 0)
+		{
+			std::cout << "Test 3: " << endl;
+			Controls->StartingPos = FieldPos::Left;
+		}
+		else if (strcmp(CharAutoPositionMessage, "Mid") == 0)
+		{
+			std::cout << "Test 4: " << endl;
+			Controls->StartingPos = FieldPos::Center;
+		}
+		else
+		{
+			std::cout << "Test 5: " << endl;
+			Controls->StartingPos = FieldPos::Right;
+		}
+	}
+
+	if (strcmp(messages.AddressPattern(), "/Dashboard/AutoSwitchPriority/") == 0)
+	{
+		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
+		const char * CharAutoSwitchPriority;
+		args >> CharAutoSwitchPriority >> osc::EndMessage;
+		if (strcmp(CharAutoSwitchPriority, "Yes") == 0)
+		{
+			Controls->SwitchPrioritySelection = SwitchPriority::Yes;
+		}
+		else if (strcmp(CharAutoSwitchPriority, "No") == 0)
+		{
+			Controls->SwitchPrioritySelection = SwitchPriority::No;
+		}
+		else
+		{
+			Controls->SwitchPrioritySelection = SwitchPriority::Kyle;
+		}
+	}
+
 	if (strcmp(messages.AddressPattern(), "/Dashboard/DriverController/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();

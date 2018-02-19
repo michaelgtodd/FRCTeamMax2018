@@ -25,6 +25,8 @@ namespace _2018_Main_Dashboard
         public AutoSwitchControl()
         {
             InitializeComponent();
+            Postion = "Left";
+            Goal = "Yes";
         }
 
         private void Position_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,20 +48,21 @@ namespace _2018_Main_Dashboard
                 Position = "Right";
             }
         }
+
         private void Goal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem Goal_Selected = (ComboBoxItem)e.AddedItems[0];
-            if (Goal_Selected.Name == "AutoScale")
+            if (Goal_Selected.Name == "No")
             {
-                Goal = "Scale";
+                Goal = "No";
             }
-            else if (Goal_Selected.Name == "AutoSwitch")
+            else if (Goal_Selected.Name == "Yes")
             {
-                Goal = "Switch";
+                Goal = "Yes";
             }
-            else if (Goal_Selected.Name == "AutoBoth")
+            else if (Goal_Selected.Name == "Kyle")
             {
-                Goal = "Both";
+                Goal = "Kyle";
             }
         }
 
