@@ -22,9 +22,9 @@ namespace _2018_Main_Dashboard
     /// </summary>
     public partial class AudioStuff : UserControl
     {
-        SoundPlayer SanicMusic = new SoundPlayer("Sanic.wav");
-        SoundPlayer PokeMusic = new SoundPlayer("Pokemon.wav");
-        SoundPlayer DoomMusic = new SoundPlayer("DOOMfeld.wav");
+        SoundPlayer SanicMusic = new SoundPlayer("Music/Sanic.wav");
+        SoundPlayer PokeMusic = new SoundPlayer("Music/Pokemon.wav");
+        SoundPlayer DoomMusic = new SoundPlayer("Music/DOOMfeld.wav");
 
         public AudioStuff()
         {

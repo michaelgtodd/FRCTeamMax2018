@@ -22,7 +22,7 @@
             <local:AutoSwitchControl x:Name="AutoSwitch" Width="200" Height="75" Margin="315,10,851,442"/>
             <local:JoystickWidget x:Name="SwitchesWidget" Width="300" Height="250"  Margin="10,267,1056,10"/>
             <local:CurrentGauge x:Name="CurrentGaugeWidget" Height="75" Width="200" Margin="520,11,646,441" />
-
+            <local:AudioStuff x:Name="ThemeSelector" Height="75" Width="200"/>
         </Grid>
         <cefSharp:ChromiumWebBrowser Name="CameraBrowser" Address="http://10.10.71.50:8081" Margin="320,277,726,10"/>
 
