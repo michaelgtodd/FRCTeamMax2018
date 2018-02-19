@@ -1,5 +1,6 @@
 #include "maxutils\MaxAutonomous.h"
 #include "maxutils\MaxDataStream.h"
+#include "iostream"
 
 MaxAutonomousManager MaxAutonomousManagerInstance;
 
@@ -42,6 +43,7 @@ void MaxAutonomousManager::Autonomous()
 	if (!LastStateAutonomous)
 	{
 		MaxLog::LogInfo("Starting Autonomous: " + SelectedAutonomous->GetName());
+		std::cout << "Starting auto..." << std::endl;
 		SelectedAutonomous->Init();
 	}
 

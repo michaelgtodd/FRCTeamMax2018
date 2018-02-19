@@ -1,11 +1,14 @@
 #include "SampleAutonomous.h"
 #include "maxutils\MaxDataStream.h"
 #include "ControlTask.h"
+#include "iostream"
 #include <math.h>
 
 void SampleAutonomous::Init()
 {
 	MaxLog::LogInfo("Starting Auto");
+
+	std::cout << "Auto Init" << std::endl;
 
 	StartTime = Timer::GetFPGATimestamp();
 	LastMessage = 0;
@@ -23,6 +26,7 @@ void SampleAutonomous::Autonomous()
 	if (floor(RunTime) > LastMessage)
 	{
 		LastMessage = floor(RunTime);
+		std::cout << "Running at " << std::to_string(LastMessage) << " seconds" << std::endl;
 		MaxLog::LogInfo("Running at " + std::to_string(LastMessage) + " seconds");
 	}
 

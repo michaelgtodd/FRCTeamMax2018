@@ -51,12 +51,10 @@ namespace MaxLog
 
 	void MaxCautionManager::Disable()
 	{
-		Run();
 	}
 
 	void MaxCautionManager::Autonomous()
 	{
-		Run();
 	}
 
 	void MaxCautionManager::ControllerUpdate(MaxControl * controls)

@@ -193,80 +193,80 @@ void ControlTask::ControllerUpdate(MaxControl * controls)
 
 void ControlTask::Autonomous()
 {
-	switch (Auto->StartingPos) {
-	case Right:
-		if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
-		{
+	//switch (Auto->StartingPos) {
+	//case Right:
+	//	if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
+	//	{
 
-		}
-		else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
-		{
+	//	}
+	//	else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
+	//	{
 
-		}
-		else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
-		{
+	//	}
+	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
+	//	{
 
-		}
-		else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
-		{
+	//	}
+	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
+	//	{
 
-		}
-		else
-		{
+	//	}
+	//	else
+	//	{
 
-		}
+	//	}
 
-		break;
-	case Center:
-		if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
-		{
+	//	break;
+	//case Center:
+	//	if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
+	//	{
 
-		}
-		else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
-		{
+	//	}
+	//	else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
+	//	{
 
-		}
-		else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
-		{
+	//	}
+	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
+	//	{
 
-		}
-		else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
-		{
+	//	}
+	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
+	//	{
 
-		}
-		else
-		{
+	//	}
+	//	else
+	//	{
 
-		}
+	//	}
 
-		break;
-	case Left:
-		if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
-		{
+	//	break;
+	//case Left:
+	//	if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
+	//	{
 
-		}
-		else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
-		{
+	//	}
+	//	else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
+	//	{
 
-		}
-		else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
-		{
+	//	}
+	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
+	//	{
 
-		}
-		else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
-		{
+	//	}
+	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
+	//	{
 
-		}
-		else
-		{
+	//	}
+	//	else
+	//	{
 
-		}
+	//	}
 
-		break;
-	default:
+	//	break;
+	//default:
 
-		break;
-	}
+	//	break;
+	//}
 }
 
 void ControlTask::UpdateAutonomousData(AutonomousControl)

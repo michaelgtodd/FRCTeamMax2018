@@ -2,34 +2,83 @@
 #include <iostream>
 #include "maxutils/MaxDataStream.h"
 
-
 void DrivingTask::Always()
 {
 	//std::cout << "Speed Left: " << ControlInput->SpeedLeft << " Speed Right: " << ControlInput->SpeedRight << std::endl;
 }
 
+void DrivingTask::SetIndividualPIDConstants(TalonSRX * talon, double P, double I, double D, double F)
+{
+	talon->Config_kP(0, P, 0);
+	talon->Config_kI(0, I, 0);
+	talon->Config_kD(0, D, 0);
+	talon->Config_kF(0, F, 0);
+}
+
+void DrivingTask::SetPIDConstants(GearType TargetGear)
+{
+	double P = 0;
+	double I = 0;
+	double D = 0;
+	double F = 0;
+
+	switch (TargetGear)
+	{
+	case High:
+		P = 0.03;
+		I = 0.0;
+		D = 0.0;
+		F = 0.06;
+	case Low:
+	default:
+		P = 0.0113;
+		I = 0.0;
+		D = 0.0;
+		F = 0.2264;
+	}
+
+	SetIndividualPIDConstants(RightMotor3, P, I, D, F);
+	SetIndividualPIDConstants(LeftMotor1, P, I, D, F);
+}
+
 void DrivingTask::Run()
 {	
-	//LeftMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
-	//LeftMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
-	//LeftMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
-	//RightMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
-	//RightMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
-	//RightMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedRight);
-	switch (ControlInput->SolenoidPos)
+	double RightSpeed = RightMotor3->GetSelectedSensorVelocity(0);
+	double LeftSpeed = LeftMotor1->GetSelectedSensorVelocity(0);
+	
+	if (ActiveGear == Low && fabs(LeftSpeed) > 10000.0 && fabs(RightSpeed) > 10000.0)
 	{
-	case -1:
-		DriveShift->Set(frc::DoubleSolenoid::Value::kReverse);
-		break;
-	case 1:
+		ActiveGear = High;
+	}
+
+	if (ActiveGear == High && (fabs(LeftSpeed) < 6000.0 || fabs(RightSpeed) < 6000.0))
+	{
+		ActiveGear = Low;
+	}
+
+	if (ControlInput->SolenoidPos == -1)
+	{
+		ActiveGear = Low;
+	}
+
+	switch (ActiveGear)
+	{
+	case High:
 		DriveShift->Set(frc::DoubleSolenoid::Value::kForward);
 		break;
+	case Low:
 	default:
 		DriveShift->Set(frc::DoubleSolenoid::Value::kReverse);
 		break;
 	}
+
+	SetPIDConstants(ActiveGear);
+
 	double TargetVelocityL = ControlInput->SpeedLeft * 4096.0 * 2000.0 / 600.0;
 	double TargetVelocityR = ControlInput->SpeedRight * 4060.0 * 2000.0 / 600.0;
+
+	SetPIDConstants(ActiveGear);
+
 	LeftMotor1->Set(ControlMode::Velocity, TargetVelocityL);
 	RightMotor3->Set(ControlMode::Velocity, TargetVelocityR);
 
@@ -37,6 +86,7 @@ void DrivingTask::Run()
 	if (runs % 10 == 0)
 	{
 		runs = 0;
+		MaxLog::TransmitInt("/gear", 0);
 		MaxLog::TransmitDouble("/lefttargetvel", TargetVelocityL);
 		MaxLog::TransmitDouble("/righttargetvel", TargetVelocityR);
 		MaxLog::TransmitDouble("/rightactualvel", RightMotor3->GetSelectedSensorVelocity(0));
@@ -71,6 +121,8 @@ void DrivingTask::Init()
 {
 	ControlInput = new RobotControl();
 
+	ActiveGear = Low;
+
 	LeftMotor1 = new TalonSRX(0);
 	LeftMotor2 = new TalonSRX(1);
 	LeftMotor3 = new TalonSRX(2);
@@ -93,7 +145,9 @@ void DrivingTask::Init()
 	LeftMotor3->Set(ControlMode::Follower, 0);
 	RightMotor1->Set(ControlMode::Follower, 15);
 	RightMotor2->Set(ControlMode::Follower, 15);
-	ConfigureDriveTalon(RightMotor3);
+	ConfigureDriveTalon(RightMotor3); 
+	
+	SetPIDConstants(ActiveGear);
 }
 
 void DrivingTask::ConfigureCurrentLimit(TalonSRX * talon)
@@ -117,8 +171,4 @@ void DrivingTask::ConfigureDriveTalon(TalonSRX * talon)
 	talon->ConfigNominalOutputReverse(0, 10);
 	talon->ConfigPeakOutputForward(1, 10);
 	talon->ConfigPeakOutputReverse(-1, 10);
-	talon->Config_kF(0, 0.06, 10);
-	talon->Config_kP(0, 0.03, 10);
-	talon->Config_kI(0, 0, 10);
-	talon->Config_kD(0, 0, 10);
 }

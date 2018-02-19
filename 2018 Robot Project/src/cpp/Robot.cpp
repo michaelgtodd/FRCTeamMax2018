@@ -4,6 +4,7 @@
 #include "maxutils/MaxAutonomous.h"
 #include "SampleAutonomous.h"
 #include "PowerReportingTask.h"
+#include "iostream"
 
 void Robot::RobotInit() 
 {
@@ -13,7 +14,7 @@ void Robot::RobotInit()
 
 	// Task names cannot contain spaces at this time
 	taskschedule.AddTask((MaxTask*)&ControlTaskInstance, "ControlTask", 100);
-	//taskschedule.AddTask((MaxTask*)&MaxAutonomousManagerInstance, "AutoManager", 100);
+	taskschedule.AddTask((MaxTask*)&MaxAutonomousManagerInstance, "AutoManager", 100);
 	taskschedule.AddTask(new DrivingTask, "DrivingTask", 100);
 	taskschedule.AddTask(new LiftingTask, "LiftingTask", 100);
 	//taskschedule.AddTask(new SampleTask, "Task1", 10);
@@ -24,6 +25,7 @@ void Robot::RobotInit()
 	taskschedule.LaunchTasks();
 }
 
+void Robot::Disabled() { }
 void Robot::Autonomous() { }
 void Robot::OperatorControl() { }
 void Robot::Test() { }

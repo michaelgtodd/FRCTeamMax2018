@@ -158,13 +158,12 @@ void MaxTask::ThreadProcess()
 	while (true)
 	{
 		double loopStart = Timer::GetFPGATimestamp();
-
 		
-		if (RobotState::IsEnabled())
+		if (RobotState::IsOperatorControl() && RobotState::IsEnabled())
 		{
 			Run();
 		}
-		else if (RobotState::IsAutonomous())
+		else if (RobotState::IsAutonomous() && RobotState::IsEnabled())
 		{
 			Autonomous();
 		}
