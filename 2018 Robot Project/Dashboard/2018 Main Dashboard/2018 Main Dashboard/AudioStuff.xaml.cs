@@ -25,6 +25,7 @@ namespace _2018_Main_Dashboard
         SoundPlayer SanicMusic = new SoundPlayer("Music/Sanic.wav");
         SoundPlayer PokeMusic = new SoundPlayer("Music/Pokemon.wav");
         SoundPlayer DoomMusic = new SoundPlayer("Music/DOOMfeld.wav");
+        SoundPlayer SinnohCenter = new SoundPlayer("Music/SinnohSong.wav");
 
         public AudioStuff()
         {
@@ -38,43 +39,38 @@ namespace _2018_Main_Dashboard
         {
             PokeMusic.Stop();
             SanicMusic.Stop();
+            DoomMusic.Stop();
+            SinnohCenter.Stop();
         }
-
         private void Play(object sender, RoutedEventArgs e)
         {
-            if (NameCombo.SelectedIndex == 2)
+            if (NameCombo.SelectedIndex == 0)
             {
-                PokeMusic.Play();
-            }
-            else if (NameCombo.SelectedIndex == 0)
-            {
+                SanicMusic.Load();
                 SanicMusic.Play();
             }
-            
-        }
 
-        private void Sanic_Selected(object sender, RoutedEventArgs e)
-        {
-           // Music.SoundLocation = "Sanic.wav";
+            else if (NameCombo.SelectedIndex == 1)
+            {
+                DoomMusic.Load();
+                DoomMusic.Play();
+            }
 
-        }
+            else if (NameCombo.SelectedIndex == 2)
+            {
+                PokeMusic.Load();
+                PokeMusic.Play();
+            }
 
-        private void DOOM_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Pokemon_Selected(object sender, RoutedEventArgs e)
-        {
-
-
-
+            else if (NameCombo.SelectedIndex == 3)
+            {
+                SinnohCenter.Load();
+                SinnohCenter.Play();
+            }
         }
 
         private void NameCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-
 
                 MainWindow MainApplication = Application.Current.MainWindow as _2018_Main_Dashboard.MainWindow;
 
@@ -82,7 +78,8 @@ namespace _2018_Main_Dashboard
                 {
                     DoomMusic.Stop();
                   SanicMusic.Stop();
-                    PokeMusic.Play();
+                SinnohCenter.Stop();
+                PokeMusic.Play();
                     PokeMusic.Play();
 
                 Application.Current.Dispatcher.BeginInvoke(
@@ -93,7 +90,8 @@ namespace _2018_Main_Dashboard
                 {
                     SanicMusic.Stop();
                     PokeMusic.Stop();
-                    DoomMusic.Load();
+                SinnohCenter.Stop();
+                DoomMusic.Load();
                     DoomMusic.Play();
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
@@ -103,6 +101,7 @@ namespace _2018_Main_Dashboard
             {
                 DoomMusic.Stop();
                 SanicMusic.Stop();
+                SinnohCenter.Stop();
                 PokeMusic.Load();
                 PokeMusic.Play();
                 Application.Current.Dispatcher.BeginInvoke(
@@ -113,11 +112,12 @@ namespace _2018_Main_Dashboard
             {
                 DoomMusic.Stop();
                 SanicMusic.Stop();
-                PokeMusic.Load();
-                PokeMusic.Play();
+                PokeMusic.Stop();
+                SinnohCenter.Load();
+               SinnohCenter.Play();
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
-                new Action(() => MainApplication.UpdateBackgroundImage("PokemonTown.jpg")));
+                new Action(() => MainApplication.UpdateBackgroundImage("Sinnoh4.png")));
             }
 
 

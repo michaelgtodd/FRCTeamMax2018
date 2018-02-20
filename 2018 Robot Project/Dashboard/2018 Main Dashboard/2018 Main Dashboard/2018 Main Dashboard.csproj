@@ -101,6 +101,9 @@
     <Compile Include="AxisGrid.xaml.cs">
       <DependentUpon>AxisGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CameraWindow.xaml.cs">
+      <DependentUpon>CameraWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CurrentGauge.xaml.cs">
       <DependentUpon>CurrentGauge.xaml</DependentUpon>
     </Compile>
@@ -109,6 +112,9 @@
     </Compile>
     <Compile Include="JoystickWidget.xaml.cs">
       <DependentUpon>JoystickWidget.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Secret.xaml.cs">
+      <DependentUpon>Secret.xaml</DependentUpon>
     </Compile>
     <Compile Include="SharpOSC\Extensions.cs" />
     <Compile Include="SharpOSC\Midi.cs" />
@@ -146,6 +152,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CameraWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CurrentGauge.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,6 +180,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Secret.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TasksMonitor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -211,9 +225,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Max1071.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Joystick.jpg" />
     <Resource Include="Xbox Controller.jpg" />
   </ItemGroup>
@@ -224,9 +235,13 @@
     <Resource Include="DOOM.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SinnohSong.wav" />
+    <Content Include="SecretSong.wav" />
+    <Resource Include="Sinnoh4.png" />
     <Resource Include="DOOMfeld.jpg" />
     <Content Include="DOOMfeld.wav" />
     <Content Include="DoomMusic.wav" />
+    <Resource Include="Knuckles.gif" />
     <Content Include="Pokemon.wav" />
     <Resource Include="PokemonTown.jpg" />
     <Content Include="Sanic.wav" />
