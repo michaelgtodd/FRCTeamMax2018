@@ -32,7 +32,7 @@ void AutonomousRight::Autonomous()
 
 	// Send data to the control task to send to other tasks
 	AutonomousControl control;
-	ControlTaskInstance.UpdateAutonomousData(control);
+	ControlTaskInstance.UpdateAutonomousData(&control);
 }
 
 void AutonomousRight::End()

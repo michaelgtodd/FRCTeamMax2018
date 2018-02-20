@@ -109,7 +109,7 @@ void DrivingTask::Disable()
 
 void DrivingTask::Autonomous()
 {
-	Disable();
+	Run();
 }
 
 void DrivingTask::ControllerUpdate(MaxControl * controls)

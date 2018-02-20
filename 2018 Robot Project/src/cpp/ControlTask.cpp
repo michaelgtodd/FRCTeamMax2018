@@ -16,8 +16,8 @@ RobotControl::RobotControl()
 	SpeedLeft = 0;
 	SpeedRight = 0;
 	SpeedLift = 0;
-	LeftArmPosition = 0;
-	RightArmPosition = 0;
+	LeftArmPosition = 180;
+	RightArmPosition = 180;
 	LiftHeight = 0;
 	SolenoidPos = -1;
 	ResetPos = false;
@@ -176,7 +176,7 @@ void ControlTask::Run()
 	Controls->SpeedLeft = (twist)+(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
 	Controls->SpeedRight = (twist)-(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
 	delete (DriveJoystick);
-	taskschedule_->DispatchControl(Controls);
+	std::cout << "About to send" << std::endl;
 }
 
 void ControlTask::Always()
@@ -198,11 +198,22 @@ void ControlTask::Always()
 	default:
 		break;
 	}
+	// This must remain in Always()
+	taskschedule_->DispatchControl(Controls);
 }
 
 void ControlTask::Disable()
 {
-
+	Controls->SpeedLeft = 0;
+	Controls->SpeedRight = 0;
+	Controls->SpeedLift = 0;
+	Controls->LeftArmPosition = 180;
+	Controls->RightArmPosition = 180;
+	Controls->LiftHeight = 0;
+	Controls->SolenoidPos = -1;
+	Controls->ResetPos = false;
+	Controls->Override = false;
+	Controls->LiftLimitEnable = true;
 }
 
 void ControlTask::ControllerUpdate(MaxControl * controls)
@@ -288,9 +299,14 @@ void ControlTask::Autonomous()
 //}
 }
 
-void ControlTask::UpdateAutonomousData(AutonomousControl)
+void ControlTask::UpdateAutonomousData(AutonomousControl * AutoControlInput)
 {
-
+	Controls->LeftArmPosition = AutoControlInput->ArmPositionLeft;
+	Controls->RightArmPosition = AutoControlInput->ArmPositionRight;
+	Controls->SpeedLeft = AutoControlInput->SpeedLeft;
+	Controls->SpeedRight = AutoControlInput->SpeedRight;
+	std::cout << "In to controls: " << AutoControlInput->ArmPositionRight << " Out of control: " << Controls->RightArmPosition << std::endl;
+	Controls->SpeedLift = AutoControlInput->SpeedLift;
 }
 
 void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
@@ -299,22 +315,17 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
 		const char * CharAutoPositionMessage;
-		std::cout << "Test 1: " << endl;
 		args >> CharAutoPositionMessage >> osc::EndMessage;
-		std::cout << "Test 2: " << endl;
 		if (strcmp(CharAutoPositionMessage, "Left") == 0)
 		{
-			std::cout << "Test 3: " << endl;
 			Controls->StartingPos = FieldPos::Left;
 		}
 		else if (strcmp(CharAutoPositionMessage, "Mid") == 0)
 		{
-			std::cout << "Test 4: " << endl;
 			Controls->StartingPos = FieldPos::Center;
 		}
 		else
 		{
-			std::cout << "Test 5: " << endl;
 			Controls->StartingPos = FieldPos::Right;
 		}
 	}

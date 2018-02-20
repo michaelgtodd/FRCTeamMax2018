@@ -25,7 +25,7 @@ namespace _2018_Main_Dashboard
         public AutoSwitchControl()
         {
             InitializeComponent();
-            Postion = "Left";
+            Position = "Left";
             Goal = "Yes";
         }
 

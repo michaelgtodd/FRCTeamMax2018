@@ -8,7 +8,7 @@
              d:DesignHeight="75" d:DesignWidth="200">
     <Grid Background="Black">
         <Rectangle Stroke="White" StrokeThickness="4"></Rectangle>
-        <ComboBox FontSize="15" SelectedIndex="0"  Name="AutoCombobox"  Width="75" Height="25" Margin="10,40,115,10" SelectionChanged="Goal_SelectionChanged">
+        <ComboBox FontSize="15" SelectedIndex="0"  Name="AutoCombobox"  Width="75" Height="25" Margin="10,40,115,10" SelectionChanged="Position_SelectionChanged">
             <ComboBoxItem Name="AutoPostitonLeft">
                 Left
             </ComboBoxItem>

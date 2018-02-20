@@ -40,6 +40,8 @@ void LiftingTask::Run()
 	//std::cout << " Right Arm Encoder: " << DegreeRightArmPosition << std::endl;
 	//std::cout << "Lift motor left: " << LiftMotorL->GetSensorCollection().GetPulseWidthPosition() << std::endl;
 
+	std::cout << "DegreeRight: " << DegreeRightArmPosition;
+	std::cout << " Target: " << ControlInput->RightArmPosition << std::endl;
 	double RightError = ControlInput->RightArmPosition - DegreeRightArmPosition;
 	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, RightError * GAIN);
 	//std::cout << " Right Error: " << RightError << "Output" << RightError * GAIN << std::endl;
@@ -62,7 +64,7 @@ void LiftingTask::Disable()
 
 void LiftingTask::Autonomous()
 {
-	Disable();
+	Run();
 }
 
 void LiftingTask::ControllerUpdate(MaxControl * controls)

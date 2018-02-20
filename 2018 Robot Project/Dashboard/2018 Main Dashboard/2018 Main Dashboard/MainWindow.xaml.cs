@@ -100,6 +100,7 @@ namespace _2018_Main_Dashboard
                         {
                             HandleOscPacket(messageReceived);
                         }
+                        Thread.Sleep(1);
                     }
                     catch
                     {
