@@ -35,9 +35,6 @@ namespace _2018_Main_Dashboard
             if (Position_Selected.Name == "AutoPositionLeft")
             {
                 Position = "Left";
-                /// Double Quotes = " this is inside "
-                /// Why is "" his is inside ""
-                /// ' is apparently a quote
             }
             else if (Position_Selected.Name == "AutoPositionMid")
             {

@@ -9,7 +9,7 @@
     <Grid Background="Black">
         <Rectangle Stroke="White" StrokeThickness="4"></Rectangle>
         <ComboBox FontSize="15" SelectedIndex="0"  Name="AutoCombobox"  Width="75" Height="25" Margin="10,40,115,10" SelectionChanged="Position_SelectionChanged">
-            <ComboBoxItem Name="AutoPostitonLeft">
+            <ComboBoxItem Name="AutoPositionLeft">
                 Left
             </ComboBoxItem>
             <ComboBoxItem Name="AutoPositionMid">
@@ -20,13 +20,13 @@
             </ComboBoxItem>
         </ComboBox>
         <ComboBox FontSize="15" SelectedIndex="0"  Name="AutoComboboxversion"  Width="75" Height="25" Margin="115,40,10,10" SelectionChanged="Goal_SelectionChanged">
-            <ComboBoxItem Name="AutoScale">
+            <ComboBoxItem Name="Yes">
                 Yes
             </ComboBoxItem>
-            <ComboBoxItem Name="AutoSwitch">
+            <ComboBoxItem Name="No">
                 No
             </ComboBoxItem>
-            <ComboBoxItem Name="AutoBoth">
+            <ComboBoxItem Name="Kyle">
                 Kyle
             </ComboBoxItem>
         </ComboBox>
