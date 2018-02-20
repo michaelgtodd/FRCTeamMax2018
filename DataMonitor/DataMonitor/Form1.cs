@@ -69,7 +69,7 @@ namespace DataMonitor
                     tryupdate(chart1,"Series1",(double) message.Arguments[0]);
                 });
             }
-            if (message.Address.Contains("righttargetvel"))
+            else if (message.Address.Contains("righttargetvel"))
             {
                 chart2.Invoke((MethodInvoker)delegate {
                     // Running on the UI thread
@@ -77,25 +77,67 @@ namespace DataMonitor
                 });
 
             }
-            if (message.Address.Contains("leftactualvel"))
+            else if (message.Address.Contains("leftactualvel"))
             {
                 chart1.Invoke((MethodInvoker)delegate {
                     // Running on the UI thread
                     tryupdate(chart1, "Series2", (double)message.Arguments[0]);
                 });
             }
-            if (message.Address.Contains("rightactualvel"))
+            else if (message.Address.Contains("rightactualvel"))
             {
                 chart1.Invoke((MethodInvoker)delegate {
                     // Running on the UI thread
                     tryupdate(chart2, "Series2", (double)message.Arguments[0]);
                 });
             }
-            if (message.Address.Contains("twist"))
+            else if (message.Address.Equals("/twist"))
             {
                 chart1.Invoke((MethodInvoker)delegate {
                     // Running on the UI thread
                     tryupdate(chart3, "Series1", (double)message.Arguments[0]);
+                });
+            }
+            else if (message.Address.Equals("/power/0"))
+            {
+                chart1.Invoke((MethodInvoker)delegate {
+                    // Running on the UI thread
+                    tryupdate(chart4, "Series1", (double)message.Arguments[0]);
+                });
+            }
+            else if (message.Address.Equals("/power/1"))
+            {
+                chart1.Invoke((MethodInvoker)delegate {
+                    // Running on the UI thread
+                    tryupdate(chart5, "Series1", (double)message.Arguments[0]);
+                });
+            }
+            else if (message.Address.Equals("/power/2"))
+            {
+                chart1.Invoke((MethodInvoker)delegate {
+                    // Running on the UI thread
+                    tryupdate(chart6, "Series1", (double)message.Arguments[0]);
+                });
+            }
+            else if (message.Address.Equals("/power/15"))
+            {
+                chart1.Invoke((MethodInvoker)delegate {
+                    // Running on the UI thread
+                    tryupdate(chart7, "Series1", (double)message.Arguments[0]);
+                });
+            }
+            else if (message.Address.Equals("/power/14"))
+            {
+                chart1.Invoke((MethodInvoker)delegate {
+                    // Running on the UI thread
+                    tryupdate(chart8, "Series1", (double)message.Arguments[0]);
+                });
+            }
+            else if (message.Address.Equals("/power/13"))
+            {
+                chart1.Invoke((MethodInvoker)delegate {
+                    // Running on the UI thread
+                    tryupdate(chart9, "Series1", (double)message.Arguments[0]);
                 });
             }
         }
@@ -115,6 +157,11 @@ namespace DataMonitor
         }
 
         private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
