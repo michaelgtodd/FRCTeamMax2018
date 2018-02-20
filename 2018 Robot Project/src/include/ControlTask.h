@@ -60,11 +60,11 @@ public:
 class AutonomousControl : public MaxControl
 {
 public:
-	double SpeedLeft;
-	double SpeedRight;
-	double SpeedLift;
-	double ArmPositionLeft;
-	double ArmPositionRight;
+	double SpeedLeft = 0;
+	double SpeedRight = 0;
+	double SpeedLift = 0;
+	double ArmPositionLeft = 0;
+	double ArmPositionRight = 0;
 };
 
 class ControlTask : public MaxTask
@@ -77,7 +77,7 @@ public:
 	void ControllerUpdate(MaxControl * controls);
 	void Autonomous();
 	void ProcessOscData(osc::ReceivedMessage messages);
-	void UpdateAutonomousData(AutonomousControl * AutoControlInput);
+	void UpdateAutonomousData(AutonomousControl AutoControlInput);
 private:
 	void Init();
 	int run;

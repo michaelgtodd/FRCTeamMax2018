@@ -299,14 +299,14 @@ void ControlTask::Autonomous()
 //}
 }
 
-void ControlTask::UpdateAutonomousData(AutonomousControl * AutoControlInput)
+void ControlTask::UpdateAutonomousData(AutonomousControl AutoControlInput)
 {
-	Controls->LeftArmPosition = AutoControlInput->ArmPositionLeft;
-	Controls->RightArmPosition = AutoControlInput->ArmPositionRight;
-	Controls->SpeedLeft = AutoControlInput->SpeedLeft;
-	Controls->SpeedRight = AutoControlInput->SpeedRight;
-	std::cout << "In to controls: " << AutoControlInput->ArmPositionRight << " Out of control: " << Controls->RightArmPosition << std::endl;
-	Controls->SpeedLift = AutoControlInput->SpeedLift;
+	Controls->LeftArmPosition = AutoControlInput.ArmPositionLeft;
+	Controls->RightArmPosition = AutoControlInput.ArmPositionRight;
+	Controls->SpeedLeft = AutoControlInput.SpeedLeft;
+	Controls->SpeedRight = AutoControlInput.SpeedRight;
+	std::cout << "In to controls: " << AutoControlInput.ArmPositionRight << " Out of control: " << Controls->RightArmPosition << std::endl;
+	Controls->SpeedLift = AutoControlInput.SpeedLift;
 }
 
 void ControlTask::ProcessOscData(osc::ReceivedMessage messages)

@@ -22,6 +22,7 @@ private:
 	double StartTime = 0;
 	double RunTime = 0;
 	int LastMessage = 0;
+	AutonomousControl control;
 	SwitchPriority SwitchPriorityInput;
 	TalonSRX * AutoMotorLeft;
 	TalonSRX * AutoMotorRight;

@@ -31,7 +31,6 @@ void AutonomousLeft::ControllerUpdate(MaxControl * controls)
 void AutonomousLeft::Autonomous()
 {
 	// Send data to the control task to send to other tasks
-	AutonomousControl control;
 	switch (stage)
 	{
 	case 0:
@@ -85,7 +84,7 @@ void AutonomousLeft::Autonomous()
 	default:
 		break;
 	}
-	ControlTaskInstance.UpdateAutonomousData(&control);
+	ControlTaskInstance.UpdateAutonomousData(control);
 	std::cout << "Stage: " << stage << std::endl;
 }
 

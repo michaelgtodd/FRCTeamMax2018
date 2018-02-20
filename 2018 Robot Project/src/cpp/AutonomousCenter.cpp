@@ -30,9 +30,8 @@ void AutonomousCenter::Autonomous()
 		MaxLog::LogInfo("Running at " + std::to_string(LastMessage) + " seconds");
 	}
 
-	// Send data to the control task to send to other tasks
-	AutonomousControl control;
-	ControlTaskInstance.UpdateAutonomousData(&control);
+	// Send data to the control task to send to other tasks]
+	ControlTaskInstance.UpdateAutonomousData(control);
 }
 
 void AutonomousCenter::End()
