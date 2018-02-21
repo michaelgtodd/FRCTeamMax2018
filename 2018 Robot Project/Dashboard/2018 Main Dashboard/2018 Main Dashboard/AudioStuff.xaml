@@ -31,6 +31,9 @@
             <ComboBoxItem Name="BetterThanSapphire">
                 Poke-Center
             </ComboBoxItem>
+            <ComboBoxItem Name="JeopardySong">
+                Waiting
+            </ComboBoxItem>
         </ComboBox>
     </Grid>
 </UserControl>

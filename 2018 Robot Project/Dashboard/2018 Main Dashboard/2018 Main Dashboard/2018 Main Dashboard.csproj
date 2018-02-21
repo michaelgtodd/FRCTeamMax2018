@@ -235,6 +235,8 @@
     <Resource Include="DOOM.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Jeopardy2.jpg" />
+    <Content Include="JeopardyTheme.wav" />
     <Content Include="SinnohSong.wav" />
     <Content Include="SecretSong.wav" />
     <Resource Include="Sinnoh4.png" />
@@ -274,6 +276,7 @@
   <Import Project="..\packages\CefSharp.Wpf.63.0.1\build\CefSharp.Wpf.targets" Condition="Exists('..\packages\CefSharp.Wpf.63.0.1\build\CefSharp.Wpf.targets')" />
   <PropertyGroup>
     <PostBuildEvent>if not exist "$(TargetDir)Music" mkdir "$(TargetDir)Music"
-xcopy "$(ProjectDir)*.wav" "$(TargetDir)Music" /Y</PostBuildEvent>
+copy "$(ProjectDir)*.wav" "$(TargetDir)Music" /Y
+</PostBuildEvent>
   </PropertyGroup>
 </Project>
