@@ -142,6 +142,12 @@ namespace DataMonitor
             }
         }
 
+        public void initChart(System.Windows.Forms.DataVisualization.Charting.Chart chart, string series)
+        {
+            for(int i = 0; i < 300; i ++)
+                chart.Series[series].Points.AddY(0);
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -149,6 +155,34 @@ namespace DataMonitor
             System.Threading.Thread OscReceive =
                 new System.Threading.Thread
                     (new System.Threading.ThreadStart(OscReceiveRunner));
+
+            initChart(chart1, "Series1");
+            initChart(chart1, "Series2");
+
+            initChart(chart2, "Series1");
+            initChart(chart2, "Series2");
+
+            initChart(chart3, "Series1");
+            initChart(chart3, "Series2");
+
+            initChart(chart4, "Series1");
+            initChart(chart4, "Series2");
+
+            initChart(chart5, "Series1");
+            initChart(chart5, "Series2");
+
+            initChart(chart6, "Series1");
+            initChart(chart6, "Series2");
+
+            initChart(chart7, "Series1");
+            initChart(chart7, "Series2");
+
+            initChart(chart8, "Series1");
+            initChart(chart8, "Series2");
+
+            initChart(chart9, "Series1");
+            initChart(chart9, "Series2");
+
             OscReceive.Start();
         }
 
@@ -162,6 +196,16 @@ namespace DataMonitor
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chart7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chart8_Click(object sender, EventArgs e)
         {
 
         }
