@@ -305,7 +305,7 @@ void ControlTask::UpdateAutonomousData(AutonomousControl AutoControlInput)
 	Controls->RightArmPosition = AutoControlInput.ArmPositionRight;
 	Controls->SpeedLeft = AutoControlInput.SpeedLeft;
 	Controls->SpeedRight = AutoControlInput.SpeedRight;
-	std::cout << "In to controls: " << AutoControlInput.ArmPositionRight << " Out of control: " << Controls->RightArmPosition << std::endl;
+	//std::cout << "In to controls: " << AutoControlInput.ArmPositionRight << " Out of control: " << Controls->RightArmPosition << std::endl;
 	Controls->SpeedLift = AutoControlInput.SpeedLift;
 }
 
@@ -347,6 +347,7 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		{
 			Controls->SwitchPrioritySelection = SwitchPriority::Kyle;
 		}
+		//std::cout << "Switch Priority: " << Controls->SwitchPrioritySelection << std::endl;
 	}
 
 	if (strcmp(messages.AddressPattern(), "/Dashboard/DriverController/") == 0)

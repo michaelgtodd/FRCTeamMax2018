@@ -5,18 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_2018_Main_Dashboard"
              mc:Ignorable="d" 
-             d:DesignHeight="75" d:DesignWidth="150">
+             d:DesignHeight="75" d:DesignWidth="200">
     <Grid Background="Black">
         <Rectangle Stroke="White" StrokeThickness="4"></Rectangle>
         <TextBlock Name="ThemeTextblock" Foreground="White" TextAlignment="Center" FontSize="18" FontWeight="Bold" Margin="0,1,0,50">
             Theme Select
         </TextBlock>
-        <CheckBox Checked ="Mute"  Unchecked= "Play" Margin="119,25,11,30"> </CheckBox>
-        <ComboBox Height="20" Width="115" Name="NameCombo" SelectionChanged="NameCombo_SelectionChanged" Margin="15,45,20,10">
-            <ComboBoxItem Name="Sanic" IsSelected="True" Selected="Sanic_Selected">
+        <TextBlock Name="MuteText" Foreground="White" TextAlignment="Center" Margin="161,26,6,35">
+            Mute
+        </TextBlock>
+        <TextBlock Name="ThemeOptions" Foreground="White" TextAlignment="Center" Margin="7,25,36,36">
+            Theme Options
+        </TextBlock>
+        <CheckBox Checked ="Mute"  Unchecked= "Play" Margin="171,46,14,16"></CheckBox>
+        <ComboBox Height="25" Name="NameCombo" SelectionChanged="NameCombo_SelectionChanged" Margin="7,40,36,10" FontSize="15">
+            <ComboBoxItem Name="Sanic" IsSelected="True" >
                 Sanic
             </ComboBoxItem>
-            <ComboBoxItem Name="DOOM" Selected="DOOM_Selected">
+            <ComboBoxItem Name="DOOM" >
                 DOOM
             </ComboBoxItem>
             <ComboBoxItem Name="Pokemon">
@@ -24,6 +30,9 @@
             </ComboBoxItem>
             <ComboBoxItem Name="BetterThanSapphire">
                 Poke-Center
+            </ComboBoxItem>
+            <ComboBoxItem Name="JeopardySong">
+                Waiting
             </ComboBoxItem>
         </ComboBox>
     </Grid>

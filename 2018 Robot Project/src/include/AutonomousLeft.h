@@ -24,6 +24,9 @@ private:
 	int LastMessage = 0;
 	AutonomousControl control;
 	SwitchPriority SwitchPriorityInput;
+	FieldPos SwitchPosition;
+	FieldPos ScalePosition;
+	FieldPos FarSwitchPosition;
 	TalonSRX * AutoMotorLeft;
 	TalonSRX * AutoMotorRight;
 	TalonSRX * AutoMotorLift;
