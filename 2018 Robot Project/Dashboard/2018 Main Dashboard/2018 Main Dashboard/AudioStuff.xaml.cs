@@ -26,6 +26,7 @@ namespace _2018_Main_Dashboard
         SoundPlayer PokeMusic = new SoundPlayer("Music/Pokemon.wav");
         SoundPlayer DoomMusic = new SoundPlayer("Music/DOOMfeld.wav");
         SoundPlayer SinnohCenter = new SoundPlayer("Music/SinnohSong.wav");
+        SoundPlayer JeopardyMusic = new SoundPlayer("Music/JeopardyTheme.wav");
 
         public AudioStuff()
         {
@@ -41,6 +42,7 @@ namespace _2018_Main_Dashboard
             SanicMusic.Stop();
             DoomMusic.Stop();
             SinnohCenter.Stop();
+            JeopardyMusic.Stop();
         }
         private void Play(object sender, RoutedEventArgs e)
         {
@@ -67,6 +69,12 @@ namespace _2018_Main_Dashboard
                 SinnohCenter.Load();
                 SinnohCenter.Play();
             }
+
+            else if (NameCombo.SelectedIndex == 4)
+            {
+                JeopardyMusic.Load();
+                JeopardyMusic.Play();
+            }
         }
 
         private void NameCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -79,6 +87,7 @@ namespace _2018_Main_Dashboard
                     DoomMusic.Stop();
                   SanicMusic.Stop();
                 SinnohCenter.Stop();
+                JeopardyMusic.Stop();
                 PokeMusic.Play();
                     PokeMusic.Play();
 
@@ -91,6 +100,7 @@ namespace _2018_Main_Dashboard
                     SanicMusic.Stop();
                     PokeMusic.Stop();
                 SinnohCenter.Stop();
+                JeopardyMusic.Stop();
                 DoomMusic.Load();
                     DoomMusic.Play();
                 Application.Current.Dispatcher.BeginInvoke(
@@ -102,6 +112,7 @@ namespace _2018_Main_Dashboard
                 DoomMusic.Stop();
                 SanicMusic.Stop();
                 SinnohCenter.Stop();
+                JeopardyMusic.Stop();
                 PokeMusic.Load();
                 PokeMusic.Play();
                 Application.Current.Dispatcher.BeginInvoke(
@@ -113,11 +124,24 @@ namespace _2018_Main_Dashboard
                 DoomMusic.Stop();
                 SanicMusic.Stop();
                 PokeMusic.Stop();
+                JeopardyMusic.Stop();
                 SinnohCenter.Load();
                SinnohCenter.Play();
                 Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,
                 new Action(() => MainApplication.UpdateBackgroundImage("Sinnoh4.png")));
+            }
+                else if (NameCombo.SelectedIndex == 4)
+            {
+                DoomMusic.Stop();
+                SanicMusic.Stop();
+                PokeMusic.Stop();
+                SinnohCenter.Stop();
+                JeopardyMusic.Load();
+                JeopardyMusic.Play();
+                Application.Current.Dispatcher.BeginInvoke(
+               DispatcherPriority.Background,
+               new Action(() => MainApplication.UpdateBackgroundImage("Jeopardy.jpg")));
             }
 
 
