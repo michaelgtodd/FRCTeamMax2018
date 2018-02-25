@@ -8,10 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="420" d:DesignWidth="610">
     <Grid Background="Black">
-        <TextBlock Name="CameraText" FontSize="55" FontWeight="Bold" Foreground="White" TextAlignment="Center">
-            Video Feed
-        </TextBlock>
-        <Rectangle Stroke="White" StrokeThickness="4"></Rectangle>
+        <TextBlock Name="CameraText" FontSize="55" FontWeight="Bold" Foreground="White" TextAlignment="Center" Text="Video Feed"/>
+        <Rectangle Stroke="White" StrokeThickness="4"/>
         <cefSharp:ChromiumWebBrowser Name="CameraBrowser" Address="http://10.10.71.91:8081" Height="270" Width="415" />
     </Grid>
 </UserControl>
