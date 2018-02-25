@@ -216,25 +216,29 @@ namespace _2018_Main_Dashboard
         {
             while (true)
             {
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.DriverController = DriverWidget.ControllerCombobox.Text));
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.DriverMode = (DriverWidget.TankCheckbox.IsChecked == true) ? "Tank" : "Arcade"));
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.AutoGoal = AutoSwitch.Goal));
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.AutoPosition = AutoSwitch.Position));
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.SwitchesController = SwitchesWidget.ControllerCombobox.Text));
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => CurrentDashboardData.SwitchesMode = (SwitchesWidget.TankCheckbox.IsChecked == true) ? "Tank" : "Arcade"));
-                Thread.Sleep(1);
+                try
+                {
+                    Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Background,
+                    new Action(() => CurrentDashboardData.DriverController = DriverWidget.ControllerCombobox.Text));
+                    Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Background,
+                    new Action(() => CurrentDashboardData.DriverMode = (DriverWidget.TankCheckbox.IsChecked == true) ? "Tank" : "Arcade"));
+                    Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Background,
+                    new Action(() => CurrentDashboardData.AutoGoal = AutoSwitch.Goal));
+                    Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Background,
+                    new Action(() => CurrentDashboardData.AutoPosition = AutoSwitch.Position));
+                    Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Background,
+                    new Action(() => CurrentDashboardData.SwitchesController = SwitchesWidget.ControllerCombobox.Text));
+                    Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Background,
+                    new Action(() => CurrentDashboardData.SwitchesMode = (SwitchesWidget.TankCheckbox.IsChecked == true) ? "Tank" : "Arcade"));
+                    Thread.Sleep(1);
+                }
+                catch (NullReferenceException) { }
             }
         }
 
@@ -242,10 +246,14 @@ namespace _2018_Main_Dashboard
         {
             while (true)
             {
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => AlertWidget.UpdateTaskData(CurrentTaskData)));
-                Thread.Sleep(1);
+                try
+                {
+                    Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Background,
+                    new Action(() => AlertWidget.UpdateTaskData(CurrentTaskData)));
+                    Thread.Sleep(1);
+                }
+                catch(NullReferenceException) {}
             }
 
         }
@@ -254,13 +262,13 @@ namespace _2018_Main_Dashboard
         {
             while (true)
             {
-                Application.Current.Dispatcher.BeginInvoke(
-                DispatcherPriority.Background,
-                new Action(() => DriverWidget.UpdateJoystickWidget(ControllerData0, ControllerData1)));
-                Application.Current.Dispatcher.BeginInvoke(
-              DispatcherPriority.Background,
-              new Action(() => SwitchesWidget.UpdateJoystickWidget(ControllerData2, ControllerData3)));
-                Thread.Sleep(1);
+                    Application.Current.Dispatcher.BeginInvoke(
+                  DispatcherPriority.Background,
+                  new Action(() => DriverWidget.UpdateJoystickWidget(ControllerData0, ControllerData1)));
+                    Application.Current.Dispatcher.BeginInvoke(
+                  DispatcherPriority.Background,
+                  new Action(() => SwitchesWidget.UpdateJoystickWidget(ControllerData2, ControllerData3)));
+                    Thread.Sleep(1);
             }
         }
 
