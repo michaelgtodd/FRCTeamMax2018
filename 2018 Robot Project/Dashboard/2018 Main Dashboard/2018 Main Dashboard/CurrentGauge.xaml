@@ -8,12 +8,9 @@
              d:DesignHeight="75" d:DesignWidth="200">
     <Grid Background="Black">
         <Grid Background="White" Width="180" Height="30" Margin="10,35,10,10">
-            <Rectangle Name="CurrentGaugeBar" Width="180" Height="30" Fill="Green" HorizontalAlignment="Left" VerticalAlignment="Top">
-            </Rectangle>
+            <Rectangle Name="CurrentGaugeBar" Width="180" Height="30" Fill="Green" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         </Grid>
-        <Rectangle Stroke="White" StrokeThickness="4"></Rectangle>
-        <TextBlock Name="GaugeLabel" Foreground="White" TextAlignment="Center" FontSize="18" FontWeight="Bold" Margin="0,1,0,50">
-            Current Gauge
-        </TextBlock>
+        <Rectangle Stroke="White" StrokeThickness="4"/>
+        <TextBlock Name="GaugeLabel" Foreground="White" TextAlignment="Center" FontSize="18" FontWeight="Bold" Margin="0,1,0,50" Text="Current Gauge"/>
     </Grid>
 </UserControl>
