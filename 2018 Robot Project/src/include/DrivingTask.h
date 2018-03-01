@@ -31,11 +31,11 @@ private:
 	TalonSRX * LeftMotor2;
 #if COMP_BOT
 	TalonSRX * LeftMotor3;
-	TalonSRX * RightMotor1;
 #endif
+	TalonSRX * RightMotor1;
 	TalonSRX * RightMotor2;
-	TalonSRX * RightMotor3;
 #if COMP_BOT
+	TalonSRX * RightMotor3;
 	DoubleSolenoid * DriveShift;
 #endif
 };

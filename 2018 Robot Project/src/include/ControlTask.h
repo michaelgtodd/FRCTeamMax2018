@@ -1,5 +1,5 @@
 #pragma once
-#define COMP_BOT true
+#define COMP_BOT false
 #include "maxutils/MaxTask.h"
 #include "osc/OscReceivedElements.h"
 #include "osc/OscPacketListener.h"

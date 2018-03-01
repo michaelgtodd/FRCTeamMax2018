@@ -179,7 +179,7 @@ void ControlTask::Run()
 	Controls->SpeedLeft = (twist)+(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
 	Controls->SpeedRight = (twist)-(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
 	delete (DriveJoystick);
-	std::cout << "About to send" << std::endl;
+	//std::cout << "About to send" << std::endl;
 }
 
 void ControlTask::Always()
