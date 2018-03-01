@@ -7,6 +7,7 @@ void DrivingTask::Always()
 	//std::cout << "Speed Left: " << ControlInput->SpeedLeft << " Speed Right: " << ControlInput->SpeedRight << std::endl;
 }
 
+#if COMP_BOT
 void DrivingTask::SetIndividualPIDConstants(TalonSRX * talon, double P, double I, double D, double F)
 {
 	talon->Config_kP(0, P, 0);
@@ -40,13 +41,14 @@ void DrivingTask::SetPIDConstants(GearType TargetGear)
 	SetIndividualPIDConstants(RightMotor3, P, I, D, F);
 	SetIndividualPIDConstants(LeftMotor1, P, I, D, F);
 }
+#endif
 
 void DrivingTask::Run()
 {	
+#if COMP_BOT
 	double RightSpeed = RightMotor3->GetSelectedSensorVelocity(0);
 	double LeftSpeed = LeftMotor1->GetSelectedSensorVelocity(0);
 
-#if COMP_BOT
 	if (ActiveGear == Low && fabs(LeftSpeed) > 10000.0 && fabs(RightSpeed) > 10000.0)
 	{
 		ActiveGear = High;
@@ -72,8 +74,6 @@ void DrivingTask::Run()
 		DriveShift->Set(frc::DoubleSolenoid::Value::kReverse);
 		break;
 	}
-#endif
-
 	SetPIDConstants(ActiveGear);
 
 	double TargetVelocityL = ControlInput->SpeedLeft * 4096.0 * 2000.0 / 600.0;
@@ -97,6 +97,10 @@ void DrivingTask::Run()
 
 	//LeftMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	//std::cout << "Left Drive Motor:  " << LeftMotor1->GetSelectedSensorVelocity(0) << " Target: " << TargetVelocityL << std::endl;
+#else
+	LeftMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLeft);
+	RightMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInut->SpeedRight);
+#endif
 }
 
 void DrivingTask::Disable()
@@ -123,7 +127,9 @@ void DrivingTask::Init()
 {
 	ControlInput = new RobotControl();
 
+#if COMP_BOT
 	ActiveGear = Low;
+#endif
 
 	LeftMotor1 = new TalonSRX(0);
 	LeftMotor2 = new TalonSRX(1);

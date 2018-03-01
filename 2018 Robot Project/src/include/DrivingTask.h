@@ -23,8 +23,10 @@ private:
 	void Init();
 	void ConfigureCurrentLimit(TalonSRX * talon);
 	void ConfigureDriveTalon(TalonSRX * talon);
+#if COMP_BOT
 	void SetIndividualPIDConstants(TalonSRX * talon, double P, double I, double D, double F);
 	void SetPIDConstants(GearType TargetGear);
+#endif
 	GearType ActiveGear;
 	RobotControl * ControlInput;
 	TalonSRX * LeftMotor1;
