@@ -1,4 +1,5 @@
 #pragma once
+#define COMP_BOT true
 #include "maxutils/MaxTask.h"
 #include "osc/OscReceivedElements.h"
 #include "osc/OscPacketListener.h"
@@ -49,7 +50,9 @@ public:
 	double LeftArmPosition;
 	double RightArmPosition;
 	int LiftHeight;
+#if COMP_BOT
 	int SolenoidPos;
+#endif
 	bool ResetPos;
 	bool Override;
 	bool LiftLimitEnable;
@@ -65,6 +68,7 @@ public:
 	double SpeedLift = 0;
 	double ArmPositionLeft = 0;
 	double ArmPositionRight = 0;
+	double Yaw = 0;
 };
 
 class ControlTask : public MaxTask

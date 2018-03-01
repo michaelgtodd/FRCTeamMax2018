@@ -21,6 +21,7 @@ public:
 private:
 	double StartTime = 0;
 	double RunTime = 0;
+	double Yaw = 0;
 	int LastMessage = 0;
 	AutonomousControl control;
 	SwitchPriority SwitchPriorityInput;
@@ -32,4 +33,6 @@ private:
 	TalonSRX * AutoMotorLift;
 	TalonSRX * AutoPosArmLeft;
 	TalonSRX * AutoPosArmRight;
+	TalonSRX * DummyTalon;
+	PigeonIMU * PigeonInput;
 };

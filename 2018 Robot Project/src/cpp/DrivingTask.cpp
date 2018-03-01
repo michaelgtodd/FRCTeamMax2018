@@ -45,7 +45,8 @@ void DrivingTask::Run()
 {	
 	double RightSpeed = RightMotor3->GetSelectedSensorVelocity(0);
 	double LeftSpeed = LeftMotor1->GetSelectedSensorVelocity(0);
-	
+
+#if COMP_BOT
 	if (ActiveGear == Low && fabs(LeftSpeed) > 10000.0 && fabs(RightSpeed) > 10000.0)
 	{
 		ActiveGear = High;
@@ -71,6 +72,7 @@ void DrivingTask::Run()
 		DriveShift->Set(frc::DoubleSolenoid::Value::kReverse);
 		break;
 	}
+#endif
 
 	SetPIDConstants(ActiveGear);
 
@@ -125,29 +127,38 @@ void DrivingTask::Init()
 
 	LeftMotor1 = new TalonSRX(0);
 	LeftMotor2 = new TalonSRX(1);
+#if COMP_BOT
 	LeftMotor3 = new TalonSRX(2);
 	RightMotor1 = new TalonSRX(13);
+#endif
 	RightMotor2 = new TalonSRX(14);
 	RightMotor3 = new TalonSRX(15);
+#if COMP_BOT
 	DriveShift = new frc::DoubleSolenoid { 0, 1 };
-
+#endif
 	runs = 0;
 
 	ConfigureCurrentLimit(LeftMotor1);
 	ConfigureCurrentLimit(LeftMotor2);
+#if COMP_BOT
 	ConfigureCurrentLimit(LeftMotor3);
 	ConfigureCurrentLimit(RightMotor1);
+#endif
 	ConfigureCurrentLimit(RightMotor2);
 	ConfigureCurrentLimit(RightMotor3);
 
 	ConfigureDriveTalon(LeftMotor1);
 	LeftMotor2->Set(ControlMode::Follower, 0);
+#if COMP_BOT
 	LeftMotor3->Set(ControlMode::Follower, 0);
 	RightMotor1->Set(ControlMode::Follower, 15);
+#endif
 	RightMotor2->Set(ControlMode::Follower, 15);
 	ConfigureDriveTalon(RightMotor3); 
 	
+#if COMP_BOT
 	SetPIDConstants(ActiveGear);
+#endif
 }
 
 void DrivingTask::ConfigureCurrentLimit(TalonSRX * talon)

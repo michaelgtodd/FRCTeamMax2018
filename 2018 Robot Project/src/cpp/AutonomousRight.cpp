@@ -30,6 +30,8 @@ void AutonomousRight::Init()
 	AutoMotorLift = new TalonSRX(12);
 	AutoPosArmLeft = new TalonSRX(5);
 	AutoPosArmRight = new TalonSRX(10);
+	DummyTalon = new TalonSRX(1);
+	PigeonInput = new PigeonIMU(DummyTalon);
 	ResetSensor();
 }
 

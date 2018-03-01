@@ -1,4 +1,5 @@
 #pragma once
+#define COMP_BOT true
 #include "maxutils/MaxTask.h"
 #include "ControlTask.h"
 #include "ctre/Phoenix.h"
@@ -28,9 +29,13 @@ private:
 	RobotControl * ControlInput;
 	TalonSRX * LeftMotor1;
 	TalonSRX * LeftMotor2;
+#if COMP_BOT
 	TalonSRX * LeftMotor3;
 	TalonSRX * RightMotor1;
+#endif
 	TalonSRX * RightMotor2;
 	TalonSRX * RightMotor3;
+#if COMP_BOT
 	DoubleSolenoid * DriveShift;
+#endif
 };

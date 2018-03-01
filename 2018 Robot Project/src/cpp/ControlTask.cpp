@@ -19,7 +19,9 @@ RobotControl::RobotControl()
 	LeftArmPosition = 180;
 	RightArmPosition = 180;
 	LiftHeight = 0;
+#if COMP_BOT
 	SolenoidPos = -1;
+#endif
 	ResetPos = false;
 	Override = false;
 	LiftLimitEnable = true;
@@ -141,8 +143,9 @@ void ControlTask::Run()
 		TwistAxis = DriveJoystick->GetRawAxis(2);
 		ShiftButton = DriveJoystick->GetRawButton(1);
 	}
-
+#if COMP_BOT
 	Controls->SolenoidPos = (ShiftButton == true) ? -1 : 1;
+#endif
 	Controls->SpeedLeft = 0;
 	Controls->SpeedRight = 0;
 	double twist;
@@ -210,7 +213,9 @@ void ControlTask::Disable()
 	Controls->LeftArmPosition = 180;
 	Controls->RightArmPosition = 180;
 	Controls->LiftHeight = 0;
+#if COMP_BOT
 	Controls->SolenoidPos = -1;
+#endif
 	Controls->ResetPos = false;
 	Controls->Override = false;
 	Controls->LiftLimitEnable = true;
