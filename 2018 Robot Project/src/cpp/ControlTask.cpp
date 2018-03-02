@@ -152,19 +152,20 @@ void ControlTask::Run()
 	double twistmin = 0;
 	if (fabs(TwistAxis) > 0.3)
 	{
-		twist = fabs(TwistAxis);// -0.3;
-		//twist /= 0.7;
-		//twist *= 0.3;
-		//twistmin = fabs(ForwardAxis) * 0.7;
-		//twistmin += 0.5;
-		//twistmin *= 3.5;
-		std::cout << "Twist: " << twist << " twistmin: " << twistmin << std::endl;
-		//twist = fmin(twistmin, twist);
-		//std::cout << "twist1: " << twist;
+#if COMP_BOT
+		twist = fabs(TwistAxis) -0.3;
+		twist /= 0.7;
+		twist *= 0.3;
+		twistmin = fabs(ForwardAxis) * 0.7;
+		twistmin += 0.5;
+		twistmin *= 3.5;
+		twist = fmin(twistmin, twist);
+#else
+		twist = fabs(TwistAxis);
+#endif
 		twist *= -1.0;
 		twist *= (fabs(TwistAxis) / TwistAxis);
 		run++;
-		//std::cout << "twist: " << twist << std::endl;
 	}
 	else
 	{
@@ -176,13 +177,10 @@ void ControlTask::Run()
 		MaxLog::TransmitDouble("/twistmin", twistmin);
 		run = 0;
 	}
-#if COMP_BOT
+
 	Controls->SpeedLeft = (twist)+(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
 	Controls->SpeedRight = (twist)-(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
-#else
-	Controls->SpeedLeft = (twist)+(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
-	Controls->SpeedRight = (twist)-(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
-#endif;
+
 	delete (DriveJoystick);
 	//std::cout << "About to send" << std::endl;
 }
