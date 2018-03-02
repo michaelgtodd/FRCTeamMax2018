@@ -178,7 +178,7 @@ void DrivingTask::Init()
 	ConfigureDriveTalon(RightMotor1);
 
 	LeftMotor2->Set(ControlMode::Follower, 1);
-	RightMotor2->Set(ControlMode::Follower, 14);
+	RightMotor2->Set(ControlMode::Follower, 13);
 #endif
 
 #if COMP_BOT

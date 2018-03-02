@@ -31,13 +31,13 @@ void LiftingTask::Run()
 	//LiftMotorR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
 	//std::cout << " Right Arm Encoder: " << LiftMotorL->GetSensorCollection().GetQuadraturePosition() << std::endl;
 	int PulseWidthPosL = GrabArmL->GetSensorCollection().GetPulseWidthPosition();
-	std::cout << "Left Arm Encoder: " << modulo(PulseWidthPosL, 4096);
+	//std::cout << "Left Arm Encoder: " << modulo(PulseWidthPosL, 4096);
 	int PulseWidthPosR = GrabArmR->GetSensorCollection().GetPulseWidthPosition();
-	std::cout << "Right Arm Encoder: " << modulo(PulseWidthPosR, 4096) << std::endl;
+	//std::cout << "Right Arm Encoder: " << modulo(PulseWidthPosR, 4096) << std::endl;
 	double DegreeLeftArmPosition = ((double)modulo(PulseWidthPosL - LEFT_ENCODER_OFFSET, 4096)) / 4096.0 * 360.0;
-	std::cout << "Left Arm Encoder: " << DegreeLeftArmPosition;
+	//std::cout << "Left Arm Encoder: " << DegreeLeftArmPosition;
 	double DegreeRightArmPosition = ((double)modulo(PulseWidthPosR - RIGHT_ENCODER_OFFSET, 4096)) / 4096.0 * 360.0;
-	std::cout << " Right Arm Encoder: " << DegreeRightArmPosition << std::endl;
+	//std::cout << " Right Arm Encoder: " << DegreeRightArmPosition << std::endl;
 	//std::cout << "Lift motor left: " << LiftMotorL->GetSensorCollection().GetPulseWidthPosition() << std::endl;
 
 	//std::cout << "Switch code!" << std::endl;std::cout << "DegreeRight: " << DegreeRightArmPosition;
