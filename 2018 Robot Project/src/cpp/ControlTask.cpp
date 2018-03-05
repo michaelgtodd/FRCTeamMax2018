@@ -46,61 +46,54 @@ void ControlTask::Run()
 	//======================================================================================	
 
 	double LiftAxis;
-	bool GrabButton, RetractButton, ResetPosButton, OverrideButton, EnableLimit;
+	bool Grab11Inch, Grab13Inch, Retract, Neutral;
+	bool  ResetPosButton, OverrideButton, EnableLimit, Inwards, Outwards, Clamp;
 	Joystick * SwitchesJoystick = new Joystick(2);
 
 	if (Controls->SwitchesType == XboxType)
 	{
-		LiftAxis = (fabs(SwitchesJoystick->GetRawAxis(1)) > 0.05 ? SwitchesJoystick->GetRawAxis(1) : 0) - (fabs(SwitchesJoystick->GetRawAxis(5)) > 0.05 ? SwitchesJoystick->GetRawAxis(5) : 0);
-		GrabButton = SwitchesJoystick->GetRawButton(5);
-		RetractButton = SwitchesJoystick->GetRawButton(6);
-		ResetPosButton = SwitchesJoystick->GetRawButton(8);
-	}
-	else if (false) //Single driver & switches
-	{
-		Joystick * MainJoystick = new Joystick(0);
-		if (MainJoystick->GetPOV() == 0)
-		{
-			LiftAxis = 0.75;
-		}
-		else if (MainJoystick->GetPOV() == 180)
-		{
-			LiftAxis = -0.75;
-		}
-		else
-		{
-			LiftAxis = 0.0;
-		}
-		GrabButton = MainJoystick->GetRawButton(1);
-		RetractButton = MainJoystick->GetRawButton(7);
-		ResetPosButton = MainJoystick->GetRawButton(8);
-		delete (MainJoystick);
+
 	}
 	else
 	{
 		LiftAxis = SwitchesJoystick->GetRawAxis(1);
-		GrabButton = SwitchesJoystick->GetRawButton(1);
-		RetractButton = SwitchesJoystick->GetRawButton(2);
+		Grab11Inch = SwitchesJoystick->GetRawButton(8);
+		Grab13Inch = SwitchesJoystick->GetRawButton(7);
+		Retract = SwitchesJoystick->GetRawButton(10);
+		Neutral = SwitchesJoystick->GetRawButton(9);
 		ResetPosButton = SwitchesJoystick->GetRawButton(8);
 		OverrideButton = SwitchesJoystick->GetRawButton(10);
 		EnableLimit = SwitchesJoystick->GetRawAxis(3) > 0.0 ? true : false;
+		Inwards = SwitchesJoystick->GetRawButton(2);
+		Outwards = SwitchesJoystick->GetRawButton(1);
+		Clamp = SwitchesJoystick->GetRawButton(3);
 	}
 	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
 
-	if (RetractButton)
+	if (Retract)
 	{
 		Controls->LeftArmPosition = 300;
 		Controls->RightArmPosition = 60;
 	}
-	else if (GrabButton)
+	else if (Grab13Inch)
 	{
-		Controls->LeftArmPosition = 100;
-		Controls->RightArmPosition = 260;
+		Controls->LeftArmPosition = 120;
+		Controls->RightArmPosition = 240;
 	}
-	else
+	else if (Grab11Inch)
+	{
+		Controls->LeftArmPosition = 110;
+		Controls->RightArmPosition = 250;
+	}
+	else if (Neutral)
 	{
 		Controls->LeftArmPosition = 180;
 		Controls->RightArmPosition = 180;
+	}
+	else if (Clamp)
+	{
+		Controls->LeftArmPosition = 85;
+		Controls->RightArmPosition = 275;
 	}
 	if (ResetPosButton)
 	{
@@ -118,6 +111,12 @@ void ControlTask::Run()
 	{
 		Controls->Override = false;
 	}
+	if (Inwards)
+		Controls->WheelSpeed = -1;
+	else if (Outwards)
+		Controls->WheelSpeed = 1;
+	else
+		Controls->WheelSpeed = 0;
 	Controls->LiftLimitEnable = EnableLimit;
 	delete (SwitchesJoystick);
 

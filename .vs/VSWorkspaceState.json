@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\2018 Robot Project",
+    "\\2018 Robot Project\\src",
+    "\\2018 Robot Project\\src\\cpp",
+    "\\2018 Robot Project\\src\\include"
   ],
+  "SelectedNode": "\\2018 Robot Project\\src\\cpp\\ControlTask.cpp",
   "PreviewInSolutionExplorer": false
 }

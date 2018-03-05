@@ -25,6 +25,8 @@ void LiftingTask::Run()
 		LiftMotorL->SetSelectedSensorPosition(0, 0, 0);
 		LiftMotorL->GetSensorCollection().SetQuadraturePosition(0, 0);
 	}
+	GrabWheelL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->WheelSpeed);
+	GrabWheelR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, -ControlInput->WheelSpeed);
 	LiftMotorL->ConfigForwardSoftLimitEnable(ControlInput->LiftLimitEnable, 0);
 	LiftMotorL->ConfigReverseSoftLimitEnable(ControlInput->LiftLimitEnable, 0);
 	LiftMotorL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
@@ -35,19 +37,19 @@ void LiftingTask::Run()
 	int PulseWidthPosR = GrabArmR->GetSensorCollection().GetPulseWidthPosition();
 	//std::cout << "Right Arm Encoder: " << modulo(PulseWidthPosR, 4096) << std::endl;
 	double DegreeLeftArmPosition = ((double)modulo(PulseWidthPosL - LEFT_ENCODER_OFFSET, 4096)) / 4096.0 * 360.0;
-	//std::cout << "Left Arm Encoder: " << DegreeLeftArmPosition;
+	std::cout << "Left Arm Encoder: " << DegreeLeftArmPosition;
 	double DegreeRightArmPosition = ((double)modulo(PulseWidthPosR - RIGHT_ENCODER_OFFSET, 4096)) / 4096.0 * 360.0;
-	//std::cout << " Right Arm Encoder: " << DegreeRightArmPosition << std::endl;
+	std::cout << " Right Arm Encoder: " << DegreeRightArmPosition << std::endl;
 	//std::cout << "Lift motor left: " << LiftMotorL->GetSensorCollection().GetPulseWidthPosition() << std::endl;
 
 	//std::cout << "Switch code!" << std::endl;std::cout << "DegreeRight: " << DegreeRightArmPosition;
 	//std::cout << " Target: " << ControlInput->RightArmPosition << std::endl;
 	double RightError = ControlInput->RightArmPosition - DegreeRightArmPosition;
-	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, RightError * GAIN);
+	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, RightError * (RightError < 15 ? GAIN_RIGHT * 1.5 : GAIN_RIGHT));
 	//std::cout << " Right Error: " << RightError << "Output" << RightError * GAIN << std::endl;
 
 	double LeftError = ControlInput->LeftArmPosition - DegreeLeftArmPosition;
-	GrabArmL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, LeftError * GAIN);
+	GrabArmL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, LeftError * (LeftError < 15 ? GAIN_LEFT * 1.5 : GAIN_LEFT));
 	//std::cout << "Left Error: " << LeftError << " Output: " << LeftError * GAIN << "Left Arm Position"<<DegreeLeftArmPosition << std::endl;
 }
 
@@ -84,11 +86,14 @@ void LiftingTask::Init()
 #endif
 	LiftMotorL = new TalonSRX(12);
 	LiftMotorR = new TalonSRX(3);
-
+	GrabWheelL = new TalonSRX(8);
+	GrabWheelR = new TalonSRX(9);
 	CurrentLimit(GrabArmL, 4);
 	CurrentLimit(GrabArmR, 4);
 	CurrentLimit(LiftMotorL, 20);
 	CurrentLimit(LiftMotorR, 20);
+	CurrentLimit(GrabWheelL, 5);
+	CurrentLimit(GrabWheelR, 5);
 
 	LiftMotorL->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
 	LiftMotorL->ConfigForwardSoftLimitEnable(true, 10);

@@ -50,6 +50,7 @@ public:
 	double LeftArmPosition;
 	double RightArmPosition;
 	int LiftHeight;
+	double WheelSpeed;
 #if COMP_BOT
 	int SolenoidPos;
 #endif
