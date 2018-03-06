@@ -67,9 +67,9 @@ void ControlTask::Run()
 		NoSpin13Inch = SwitchesJoystick->GetRawButton(6);
 		SpinIn = SwitchesJoystick->GetRawButton(7);
 		SpinOut = SwitchesJoystick->GetRawButton(8);
-		Neutral = SwitchesJoystick->GetRawButton(9) || SwitchesJoystick->GetPOV(180);
+		Neutral = SwitchesJoystick->GetRawButton(9) || (SwitchesJoystick->GetPOV() == 180 ? true : false);
 		Retract = SwitchesJoystick->GetRawButton(10);
-		AutoReset = SwitchesJoystick->GetRawAxis(4) >= 0.5 ? true : false;
+		AutoReset = SwitchesJoystick->GetRawAxis(4) >= 0.0 ? true : false;
 		LiftAxis = SwitchesJoystick->GetRawAxis(1);
 
 		//ResetPosButton = SwitchesJoystick->GetRawButton(8);
@@ -80,7 +80,7 @@ void ControlTask::Run()
 
 	Controls->WheelSpeed = 0;
 
-	if (Neutral && AutoReset == false)
+	if (Neutral)
 	{
 		Controls->LeftArmPosition = 180;
 		Controls->RightArmPosition = 180;
@@ -92,15 +92,15 @@ void ControlTask::Run()
 	}
 	else if (Spin13Inch || NoSpin13Inch)
 	{
-		Controls->LeftArmPosition = 120;
-		Controls->RightArmPosition = 240;
+		Controls->LeftArmPosition = 106;
+		Controls->RightArmPosition = 254;
 		if (Spin13Inch)
-			Controls->WheelSpeed = -1;
+			Controls->WheelSpeed = 1;
 	}
 	else if (Spin11Inch || NoSpin11Inch)
 	{
-		Controls->LeftArmPosition = 110;
-		Controls->RightArmPosition = 250;
+		Controls->LeftArmPosition = 90;
+		Controls->RightArmPosition = 270;
 		if (Spin11Inch)
 			Controls->WheelSpeed = 1;
 	}
@@ -117,7 +117,7 @@ void ControlTask::Run()
 
 	if (SpinIn)
 		Controls->WheelSpeed = 1;
-	else if (SpinOut)
+	else if (SpinOut || Eject)
 		Controls->WheelSpeed = -1;
 
 	delete (SwitchesJoystick);
