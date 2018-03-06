@@ -46,8 +46,11 @@ void ControlTask::Run()
 	//======================================================================================	
 
 	double LiftAxis;
-	bool Grab11Inch, Grab13Inch, Retract, Neutral;
-	bool  ResetPosButton, OverrideButton, EnableLimit, Inwards, Outwards, Clamp;
+	bool Clamp, Eject;
+	bool Spin11Inch, Spin13Inch, NoSpin11Inch, NoSpin13Inch;
+	bool SpinIn, SpinOut;
+	bool Neutral, Retract;
+	bool AutoReset;
 	Joystick * SwitchesJoystick = new Joystick(2);
 
 	if (Controls->SwitchesType == XboxType)
@@ -56,68 +59,67 @@ void ControlTask::Run()
 	}
 	else
 	{
-		LiftAxis = SwitchesJoystick->GetRawAxis(1);
-		Grab11Inch = SwitchesJoystick->GetRawButton(8);
-		Grab13Inch = SwitchesJoystick->GetRawButton(7);
+		Clamp = SwitchesJoystick->GetRawButton(1);
+		Eject = SwitchesJoystick->GetRawButton(2);
+		Spin11Inch = SwitchesJoystick->GetRawButton(3);
+		Spin13Inch = SwitchesJoystick->GetRawButton(4);
+		NoSpin11Inch = SwitchesJoystick->GetRawButton(5);
+		NoSpin13Inch = SwitchesJoystick->GetRawButton(6);
+		SpinIn = SwitchesJoystick->GetRawButton(7);
+		SpinOut = SwitchesJoystick->GetRawButton(8);
+		Neutral = SwitchesJoystick->GetRawButton(9) || SwitchesJoystick->GetPOV(180);
 		Retract = SwitchesJoystick->GetRawButton(10);
-		Neutral = SwitchesJoystick->GetRawButton(9);
-		ResetPosButton = SwitchesJoystick->GetRawButton(8);
-		OverrideButton = SwitchesJoystick->GetRawButton(10);
-		EnableLimit = SwitchesJoystick->GetRawAxis(3) > 0.0 ? true : false;
-		Inwards = SwitchesJoystick->GetRawButton(2);
-		Outwards = SwitchesJoystick->GetRawButton(1);
-		Clamp = SwitchesJoystick->GetRawButton(3);
+		AutoReset = SwitchesJoystick->GetRawAxis(4) >= 0.5 ? true : false;
+		LiftAxis = SwitchesJoystick->GetRawAxis(1);
+
+		//ResetPosButton = SwitchesJoystick->GetRawButton(8);
+		//OverrideButton = SwitchesJoystick->GetRawButton(10);
+		//EnableLimit = SwitchesJoystick->GetRawAxis(3) > 0.0 ? true : false;
 	}
 	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
 
-	if (Retract)
+	Controls->WheelSpeed = 0;
+
+	if (Neutral && AutoReset == false)
+	{
+		Controls->LeftArmPosition = 180;
+		Controls->RightArmPosition = 180;
+	}
+	else if (Retract)
 	{
 		Controls->LeftArmPosition = 300;
 		Controls->RightArmPosition = 60;
 	}
-	else if (Grab13Inch)
+	else if (Spin13Inch || NoSpin13Inch)
 	{
 		Controls->LeftArmPosition = 120;
 		Controls->RightArmPosition = 240;
+		if (Spin13Inch)
+			Controls->WheelSpeed = -1;
 	}
-	else if (Grab11Inch)
+	else if (Spin11Inch || NoSpin11Inch)
 	{
 		Controls->LeftArmPosition = 110;
 		Controls->RightArmPosition = 250;
-	}
-	else if (Neutral)
-	{
-		Controls->LeftArmPosition = 180;
-		Controls->RightArmPosition = 180;
+		if (Spin11Inch)
+			Controls->WheelSpeed = 1;
 	}
 	else if (Clamp)
 	{
 		Controls->LeftArmPosition = 85;
 		Controls->RightArmPosition = 275;
 	}
-	if (ResetPosButton)
+	else if (AutoReset)
 	{
-		Controls->ResetPos = true;
+		Controls->LeftArmPosition = 180;
+		Controls->RightArmPosition = 180;
 	}
-	else
-	{
-		Controls->ResetPos = false;
-	}
-	if (OverrideButton)
-	{
-		Controls->Override = true;
-	}
-	else
-	{
-		Controls->Override = false;
-	}
-	if (Inwards)
-		Controls->WheelSpeed = -1;
-	else if (Outwards)
+
+	if (SpinIn)
 		Controls->WheelSpeed = 1;
-	else
-		Controls->WheelSpeed = 0;
-	Controls->LiftLimitEnable = EnableLimit;
+	else if (SpinOut)
+		Controls->WheelSpeed = -1;
+
 	delete (SwitchesJoystick);
 
 	//======================================================================================
