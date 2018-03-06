@@ -56,8 +56,23 @@ void LiftingTask::Run()
 	GrabArmL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, (LeftError * GAIN_LEFT) + (left_error_integrate * GAIN_LEFT_INTEGRATE));
 	//std::cout << "Left Error: " << LeftError << " Output: " << LeftError * GAIN << "Left Arm Position"<<DegreeLeftArmPosition << std::endl;
 
-	std::cout << "Left A: " << DegreeLeftArmPosition << " Left P-E: " << LeftError << " Left I-E: " << left_error_integrate;
-	std::cout << " Right A: " << DegreeRightArmPosition << " Right P-E: " << RightError << " Right I-E: " << right_error_integrate << std::endl;
+	//std::cout << "Left A: " << DegreeLeftArmPosition << " Left P-E: " << LeftError << " Left I-E: " << left_error_integrate;
+	//std::cout << " Right A: " << DegreeRightArmPosition << " Right P-E: " << RightError << " Right I-E: " << right_error_integrate << std::endl;
+	runs++;
+	if (runs > 4) {
+		MaxLog::TransmitDouble("/lift/left/error", LeftError);
+		MaxLog::TransmitDouble("/lift/right/error", RightError);
+
+		MaxLog::TransmitDouble("/lift/left/ierror", left_error_integrate);
+		MaxLog::TransmitDouble("/lift/right/ierror", right_error_integrate);
+
+		MaxLog::TransmitDouble("/lift/left/target", ControlInput->LeftArmPosition);
+		MaxLog::TransmitDouble("/lift/right/target", ControlInput->RightArmPosition);
+
+		MaxLog::TransmitDouble("/lift/left/actual", DegreeLeftArmPosition);
+		MaxLog::TransmitDouble("/lift/right/actual", DegreeRightArmPosition);
+		runs = 0;
+	}
 }
 
 void LiftingTask::Disable()
