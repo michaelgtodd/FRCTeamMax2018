@@ -47,7 +47,7 @@ void LiftingTask::Run()
 	double RightError = ControlInput->RightArmPosition - DegreeRightArmPosition;
 	right_error_integrate += RightError / INTEGRATOR_DIVISOR;
 	right_error_integrate = fabs(right_error_integrate) > MAX_INTEGRATOR_ERROR ? (fabs(right_error_integrate) / right_error_integrate) * MAX_INTEGRATOR_ERROR : right_error_integrate;
-	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, (RightError * GAIN_RIGHT) + (right_error_integrate * GAIN_RIGHT_INTEGRATE));
+	 GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, (RightError * GAIN_RIGHT) + (right_error_integrate * GAIN_RIGHT_INTEGRATE));
 	//std::cout << " Right Error: " << RightError << "Output" << RightError * GAIN << std::endl;
 
 	double LeftError = ControlInput->LeftArmPosition - DegreeLeftArmPosition;

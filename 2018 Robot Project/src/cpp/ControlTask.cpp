@@ -46,11 +46,8 @@ void ControlTask::Run()
 	//======================================================================================	
 
 	double LiftAxis;
-	bool Clamp, Eject;
-	bool Spin11Inch, Spin13Inch, NoSpin11Inch, NoSpin13Inch;
+	bool Clamp, Neutral, Pos11Inch, Pos13Inch, Retract;
 	bool SpinIn, SpinOut;
-	bool Neutral, Retract;
-	bool AutoReset;
 	Joystick * SwitchesJoystick = new Joystick(2);
 
 	if (Controls->SwitchesType == XboxType)
@@ -60,16 +57,12 @@ void ControlTask::Run()
 	else
 	{
 		Clamp = SwitchesJoystick->GetRawButton(1);
-		Eject = SwitchesJoystick->GetRawButton(2);
-		Spin11Inch = SwitchesJoystick->GetRawButton(3);
-		Spin13Inch = SwitchesJoystick->GetRawButton(4);
-		NoSpin11Inch = SwitchesJoystick->GetRawButton(5);
-		NoSpin13Inch = SwitchesJoystick->GetRawButton(6);
-		SpinIn = SwitchesJoystick->GetRawButton(7);
-		SpinOut = SwitchesJoystick->GetRawButton(8);
-		Neutral = SwitchesJoystick->GetRawButton(9) || (SwitchesJoystick->GetPOV() == 180 ? true : false);
-		Retract = SwitchesJoystick->GetRawButton(10);
-		AutoReset = SwitchesJoystick->GetRawAxis(4) >= 0.0 ? true : false;
+		Neutral = SwitchesJoystick->GetRawButton(2) || SwitchesJoystick->GetRawButton(10);
+		Pos11Inch = SwitchesJoystick->GetRawButton(7);
+		Pos13Inch = SwitchesJoystick->GetRawButton(8);
+		Retract = SwitchesJoystick->GetRawButton(9);
+		SpinIn = SwitchesJoystick->GetPOV() == 180 ? true : false;
+		SpinOut = SwitchesJoystick->GetPOV() == 0 ? true : false;
 		LiftAxis = SwitchesJoystick->GetRawAxis(1);
 
 		//ResetPosButton = SwitchesJoystick->GetRawButton(8);
@@ -77,8 +70,6 @@ void ControlTask::Run()
 		//EnableLimit = SwitchesJoystick->GetRawAxis(3) > 0.0 ? true : false;
 	}
 	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
-
-	Controls->WheelSpeed = 0;
 
 	if (Neutral)
 	{
@@ -90,35 +81,28 @@ void ControlTask::Run()
 		Controls->LeftArmPosition = 300;
 		Controls->RightArmPosition = 60;
 	}
-	else if (Spin13Inch || NoSpin13Inch)
+	else if (Pos13Inch)
 	{
 		Controls->LeftArmPosition = 106;
 		Controls->RightArmPosition = 254;
-		if (Spin13Inch)
-			Controls->WheelSpeed = 1;
 	}
-	else if (Spin11Inch || NoSpin11Inch)
+	else if (Pos11Inch)
 	{
 		Controls->LeftArmPosition = 90;
 		Controls->RightArmPosition = 270;
-		if (Spin11Inch)
-			Controls->WheelSpeed = 1;
 	}
 	else if (Clamp)
 	{
 		Controls->LeftArmPosition = 85;
 		Controls->RightArmPosition = 275;
 	}
-	else if (AutoReset)
-	{
-		Controls->LeftArmPosition = 180;
-		Controls->RightArmPosition = 180;
-	}
 
 	if (SpinIn)
 		Controls->WheelSpeed = 1;
-	else if (SpinOut || Eject)
+	else if (SpinOut)
 		Controls->WheelSpeed = -1;
+	else
+		Controls->WheelSpeed = 0;
 
 	delete (SwitchesJoystick);
 
