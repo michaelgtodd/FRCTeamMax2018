@@ -33,6 +33,8 @@ private:
 	const double GAIN_LEFT_INTEGRATE = 0.008;
 	const double GAIN_RIGHT_INTEGRATE = 0.005;
 
+	int runs = 0;
+
 	void Init();
 	void CurrentLimit(TalonSRX * talon, int amps);
 	RobotControl * ControlInput;
