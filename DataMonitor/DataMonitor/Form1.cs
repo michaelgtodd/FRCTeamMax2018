@@ -140,6 +140,62 @@ namespace DataMonitor
                     tryupdate(chart9, "Series1", (double)message.Arguments[0]);
                 });
             }
+            else if (message.Address.Equals("/lift/left/target"))
+            {
+                chart1.Invoke((MethodInvoker)delegate
+                {
+                    tryupdate(chart16, "Series1", (double)message.Arguments[0]);
+                });
+            }
+            else if (message.Address.Equals("/lift/right/target"))
+            {
+                chart1.Invoke((MethodInvoker)delegate
+                {
+                    tryupdate(chart17, "Series1", (double)message.Arguments[0]);
+                });
+            }
+            else if (message.Address.Equals("/lift/left/actual"))
+            {
+                chart1.Invoke((MethodInvoker)delegate
+                {
+                    tryupdate(chart16, "Series2", (double)message.Arguments[0]);
+                });
+            }
+            else if (message.Address.Equals("/lift/right/actual"))
+            {
+                chart1.Invoke((MethodInvoker)delegate
+                {
+                    tryupdate(chart17, "Series2", (double)message.Arguments[0]);
+                });
+            }
+            else if (message.Address.Equals("/lift/left/error"))
+            {
+                chart1.Invoke((MethodInvoker)delegate
+                {
+                    tryupdate(chart10, "Series1", (double)message.Arguments[0]);
+                });
+            }
+            else if (message.Address.Equals("/lift/right/error"))
+            {
+                chart1.Invoke((MethodInvoker)delegate
+                {
+                    tryupdate(chart11, "Series1", (double)message.Arguments[0]);
+                });
+            }
+            else if (message.Address.Equals("/lift/left/ierror"))
+            {
+                chart1.Invoke((MethodInvoker)delegate
+                {
+                    tryupdate(chart12, "Series1", (double)message.Arguments[0]);
+                });
+            }
+            else if (message.Address.Equals("/lift/right/ierror"))
+            {
+                chart1.Invoke((MethodInvoker)delegate
+                {
+                    tryupdate(chart13, "Series1", (double)message.Arguments[0]);
+                });
+            }
         }
 
         public void initChart(System.Windows.Forms.DataVisualization.Charting.Chart chart, string series)
@@ -182,6 +238,24 @@ namespace DataMonitor
 
             initChart(chart9, "Series1");
             initChart(chart9, "Series2");
+
+            initChart(chart10, "Series1");
+            initChart(chart10, "Series2");
+
+            initChart(chart11, "Series1");
+            initChart(chart11, "Series2");
+
+            initChart(chart12, "Series1");
+            initChart(chart12, "Series2");
+
+            initChart(chart13, "Series1");
+            initChart(chart13, "Series2");
+
+            initChart(chart16, "Series1");
+            initChart(chart16, "Series2");
+
+            initChart(chart17, "Series1");
+            initChart(chart17, "Series2");
 
             OscReceive.Start();
         }
