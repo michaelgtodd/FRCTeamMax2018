@@ -22,8 +22,17 @@ private:
 	const int LIFT_UPPER_LIMIT = 195000;
 
 
-	const double GAIN_LEFT = 0.016;
-	const double GAIN_RIGHT = 0.01;
+	const double GAIN_LEFT = 0.008; // 0.016;
+	const double GAIN_RIGHT = 0.005;
+
+	double left_error_integrate = 0.0;
+	double right_error_integrate = 0.0;
+
+	const double MAX_INTEGRATOR_ERROR = 30.0;
+	const double INTEGRATOR_DIVISOR = 100.0;
+	const double GAIN_LEFT_INTEGRATE = 0.008;
+	const double GAIN_RIGHT_INTEGRATE = 0.005;
+
 	void Init();
 	void CurrentLimit(TalonSRX * talon, int amps);
 	RobotControl * ControlInput;
