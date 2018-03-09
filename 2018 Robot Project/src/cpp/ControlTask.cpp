@@ -93,8 +93,8 @@ void ControlTask::Run()
 	}
 	else if (Clamp)
 	{
-		Controls->LeftArmPosition = 85;
-		Controls->RightArmPosition = 275;
+		Controls->LeftArmPosition = 40;
+		Controls->RightArmPosition = 320;
 	}
 
 	if (SpinIn)
@@ -135,7 +135,7 @@ void ControlTask::Run()
 	Controls->SpeedRight = 0;
 	double twist;
 	double twistmin = 0;
-	if (fabs(TwistAxis) > 0.3)
+	if (fabs(TwistAxis) > 0.5)
 	{
 #if COMP_BOT
 		twist = fabs(TwistAxis) -0.3;

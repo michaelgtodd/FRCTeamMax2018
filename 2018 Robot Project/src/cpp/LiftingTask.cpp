@@ -47,12 +47,20 @@ void LiftingTask::Run()
 	double RightError = ControlInput->RightArmPosition - DegreeRightArmPosition;
 	right_error_integrate += RightError / INTEGRATOR_DIVISOR;
 	right_error_integrate = fabs(right_error_integrate) > MAX_INTEGRATOR_ERROR ? (fabs(right_error_integrate) / right_error_integrate) * MAX_INTEGRATOR_ERROR : right_error_integrate;
+	if (fabs(RightError) < 2.0) 
+	{
+		right_error_integrate *= 0.8;
+	}
 	 GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, (RightError * GAIN_RIGHT) + (right_error_integrate * GAIN_RIGHT_INTEGRATE));
 	//std::cout << " Right Error: " << RightError << "Output" << RightError * GAIN << std::endl;
 
 	double LeftError = ControlInput->LeftArmPosition - DegreeLeftArmPosition;
 	left_error_integrate += LeftError / INTEGRATOR_DIVISOR;
 	left_error_integrate = fabs(left_error_integrate) > MAX_INTEGRATOR_ERROR ? (fabs(left_error_integrate) / left_error_integrate) * MAX_INTEGRATOR_ERROR : left_error_integrate;
+	if (fabs(LeftError) < 2.0)
+	{
+		left_error_integrate *= 0.8;
+	}
 	GrabArmL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, (LeftError * GAIN_LEFT) + (left_error_integrate * GAIN_LEFT_INTEGRATE));
 	//std::cout << "Left Error: " << LeftError << " Output: " << LeftError * GAIN << "Left Arm Position"<<DegreeLeftArmPosition << std::endl;
 
@@ -114,8 +122,8 @@ void LiftingTask::Init()
 	CurrentLimit(GrabArmR, 4);
 	CurrentLimit(LiftMotorL, 20);
 	CurrentLimit(LiftMotorR, 20);
-	CurrentLimit(GrabWheelL, 5);
-	CurrentLimit(GrabWheelR, 5);
+	CurrentLimit(GrabWheelL, 10);
+	CurrentLimit(GrabWheelR, 10);
 
 	LiftMotorL->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
 	LiftMotorL->ConfigForwardSoftLimitEnable(true, 10);
