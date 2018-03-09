@@ -71,7 +71,7 @@ void ControlTask::Run()
 	}
 	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
 
-	if (Neutral)
+	if (Pos13Inch)
 	{
 		Controls->LeftArmPosition = 180;
 		Controls->RightArmPosition = 180;
@@ -81,7 +81,7 @@ void ControlTask::Run()
 		Controls->LeftArmPosition = 300;
 		Controls->RightArmPosition = 60;
 	}
-	else if (Pos13Inch)
+	else if (Neutral)
 	{
 		Controls->LeftArmPosition = 106;
 		Controls->RightArmPosition = 254;
