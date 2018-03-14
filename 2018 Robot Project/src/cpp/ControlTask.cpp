@@ -48,6 +48,7 @@ void ControlTask::Run()
 	double LiftAxis;
 	bool Clamp, Neutral, Pos11Inch, Pos13Inch, Retract;
 	bool SpinIn, SpinOut;
+	bool OverRide;
 	Joystick * SwitchesJoystick = new Joystick(2);
 
 	if (Controls->SwitchesType == XboxType)
@@ -64,6 +65,7 @@ void ControlTask::Run()
 		SpinIn = SwitchesJoystick->GetPOV() == 180 ? true : false;
 		SpinOut = SwitchesJoystick->GetPOV() == 0 ? true : false;
 		LiftAxis = SwitchesJoystick->GetRawAxis(1);
+		OverRide = SwitchesJoystick->GetRawAxis(4) < 0 ? true : false;
 
 		//ResetPosButton = SwitchesJoystick->GetRawButton(8);
 		//OverrideButton = SwitchesJoystick->GetRawButton(10);
@@ -103,6 +105,11 @@ void ControlTask::Run()
 		Controls->WheelSpeed = -1;
 	else
 		Controls->WheelSpeed = 0;
+
+	if (OverRide)
+		Controls->Override = true;
+	else
+		Controls->Override = false;
 
 	delete (SwitchesJoystick);
 

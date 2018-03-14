@@ -2,15 +2,17 @@
 #include <iostream>
 #include "maxutils/MaxDataStream.h"
 
-
-void LiftingTask::Always()
-{
-
-}
-
 int modulo(int x, int N)
 {
 	return (x % N + N) % N;
+}
+
+void LiftingTask::Always()
+{
+	int PulseWidthPosL = GrabArmL->GetSensorCollection().GetPulseWidthPosition();
+	std::cout << "Left Arm Encoder: " << modulo(PulseWidthPosL, 4096);
+	int PulseWidthPosR = GrabArmR->GetSensorCollection().GetPulseWidthPosition();
+	std::cout << "Right Arm Encoder: " << modulo(PulseWidthPosR, 4096) << std::endl;
 }
 
 void LiftingTask::Run()
@@ -20,10 +22,18 @@ void LiftingTask::Run()
 		LiftMotorL->SetSelectedSensorPosition(LIFT_LOWER_LIMIT, 0, 0);
 		LiftMotorL->GetSensorCollection().SetQuadraturePosition(LIFT_LOWER_LIMIT, 0);
 	}
+
 	if (ControlInput->Override)
 	{
-		LiftMotorL->SetSelectedSensorPosition(0, 0, 0);
-		LiftMotorL->GetSensorCollection().SetQuadraturePosition(0, 0);
+		LiftMotorL->ConfigForwardSoftLimitEnable(false, 0);
+		LiftMotorL->ConfigReverseSoftLimitEnable(false, 0);
+	}
+	else
+	{
+		LiftMotorL->ConfigForwardSoftLimitEnable(true, 0);
+		LiftMotorL->ConfigReverseSoftLimitEnable(true, 0);
+		LiftMotorL->ConfigForwardSoftLimitThreshold(LIFT_UPPER_LIMIT, 0);
+		LiftMotorL->ConfigReverseSoftLimitThreshold(LIFT_LOWER_LIMIT, 0);
 	}
 	GrabWheelL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->WheelSpeed);
 	GrabWheelR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, -ControlInput->WheelSpeed);
