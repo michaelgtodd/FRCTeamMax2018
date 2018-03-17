@@ -43,10 +43,7 @@ void AutonomousCenter::ControllerUpdate(MaxControl * controls)
 
 void AutonomousCenter::Autonomous()
 {
-	if (SwitchPriorityInput != SwitchPriority::Kyle)
-	{
 		//Move Foward
-		stage = 0;
 		switch (stage)
 		{
 		case 0:
@@ -67,11 +64,12 @@ void AutonomousCenter::Autonomous()
 			break;
 		case 2:
 			//Drive Forward
-			if (Drive(50.0, 0.3, 2000.0))
+			if (Drive(70.0, 0.5, 2.0))
 			{
 				Brake();
 				ResetSensor();
 				StageStartTime = Timer::GetFPGATimestamp();
+				std::cout << "Reached 50 inches. Preparing to turn." << std::endl;
 				stage++;
 			}
 			std::cout << "Stage 2" << std::endl;
@@ -86,15 +84,7 @@ void AutonomousCenter::Autonomous()
 			std::cout << "default stage" << std::endl;
 			break;
 		}
-		if (SwitchPosition == FieldPos::Left)
-		{
 
-		}
-		else if (SwitchPosition == FieldPos::Right)
-		{
-
-		}
-	}
 	ControlTaskInstance.UpdateAutonomousData(control);
 }
 
@@ -106,22 +96,62 @@ void AutonomousCenter::End()
 	MaxLog::LogInfo("Ending Auto after " + std::to_string(LastMessage) + " seconds");
 }
 
-bool AutonomousCenter::Drive(double Inches, double SpeedLimit, double Tolerance)
+bool AutonomousCenter::Move(double DistanceInInches, double SpeedLimit, double ToleranceInInches)
 {
-	double Ticks = InchesToTicks(Inches);
+	//Convert Distance and Tolerance to Ticks
+	double DistanceInTicks = InchesToTicks(DistanceInInches);
+	double ToleranceInTicks = InchesToTicks(ToleranceInInches);
+
+	//Set the initial gains
 	double RightGain = 0.000025, LeftGain = 0.000025;
-	RightTarget = Ticks, LeftTarget = Ticks;
-	RightError = RightTarget - AutoMotorRight->GetSensorCollection().GetQuadraturePosition();
-	LeftError = LeftTarget - AutoMotorLeft->GetSensorCollection().GetQuadraturePosition();
-	double RightPower = fabs(RightError) > Tolerance ? 0 : RightError * RightGain;
-	double LeftPower = fabs(LeftError) > Tolerance ? 0 : LeftError * LeftGain;
+	double InitialSpeed = 0.8 * SpeedLimit;
+	
+	//Set the target distance and find remaining distance
+	RightTarget = DistanceInTicks, LeftTarget = DistanceInTicks;
+	RightTravel = AutoMotorRight->GetSensorCollection().GetQuadraturePosition();
+	LeftTravel = AutoMotorLeft->GetSensorCollection().GetQuadraturePosition();
+
+
+	return false;
+}
+
+bool AutonomousCenter::Drive(double DistanceInInches, double SpeedLimit, double ToleranceInInches)
+{
+	// Convert Distance and Tolerance to Ticks
+	double DistanceInTicks = InchesToTicks(DistanceInInches);
+	double ToleranceInTicks = InchesToTicks(ToleranceInInches);
+
+	// Set the constant gains.
+	const double RightGain = 0.0001, LeftGain = 0.0001;
+
+	// Set the Targets and Errors (Error is Target Minus Present Position)
+	RightTarget = DistanceInTicks, LeftTarget = DistanceInTicks;
+	RightError = RightTarget - fabs(AutoMotorRight->GetSensorCollection().GetQuadraturePosition());
+	LeftError = LeftTarget - fabs(AutoMotorLeft->GetSensorCollection().GetQuadraturePosition());
+
+	// Set the powers to 0 if we're within tolerance. If not, set to Error * Gain.
+	double RightPower = fabs(RightError) < ToleranceInTicks ? 0 : RightError * RightGain;
+	double LeftPower = fabs(LeftError) < ToleranceInTicks ? 0 : LeftError * LeftGain;
+
+	// Apply a cap power for the max and minimum speed limits.
 	RightPower = fmin(RightPower, -SpeedLimit);
 	RightPower = fmax(RightPower, SpeedLimit);
 	LeftPower = fmin(LeftPower, -SpeedLimit);
 	LeftPower = fmax(LeftPower, SpeedLimit);
+
+	// Set the active power.
 	control.SpeedRight = RightPower;
 	control.SpeedLeft = -LeftPower;
-	if (fabs(RightError) > Tolerance && fabs(LeftError) > Tolerance)
+
+	// Testing prints.
+	//std::cout << "Target: " << LeftTarget << " | " << RightTarget << std::endl;
+	std::cout << "Target - Distance Traveled: " << LeftError << " | " << RightError << std::endl;
+	std::cout << "Power: " << LeftPower << " | " << RightPower << std::endl;
+	//std::cout << "Tolerance in Ticks: " << ToleranceInTicks << std::endl;
+
+	// Skip to the next stage if we're within our tolerance.
+	if (fabs(AutoMotorRight->GetSensorCollection().GetQuadraturePosition()) > RightTarget && 
+		fabs(AutoMotorLeft->GetSensorCollection().GetQuadraturePosition()) > LeftTarget)
 		return true;
 	else
 		return false;

@@ -101,7 +101,8 @@ void DrivingTask::Run()
 		//MaxLog::TransmitDouble("/righttargetvel", TargetVelocityR);
 		//MaxLog::TransmitDouble("/rightactualvel", RightMotor3->GetSelectedSensorVelocity(0));
 		MaxLog::TransmitDouble("/leftactualvel", LeftMotor1->GetSelectedSensorVelocity(0));
-		std::cout << "Left Drive Output: " << LeftMotor1->GetMotorOutputPercent() << " Right Drive Motor: " << RightMotor3->GetMotorOutputPercent() << " Target Left: " << TargetVelocityL << " Target Right: " << TargetVelocityR <<  std::endl;
+		// TODO: TURN PRINT BACK ON LATER
+		//std::cout << "Left Drive Output: " << LeftMotor1->GetMotorOutputPercent() << " Right Drive Motor: " << RightMotor3->GetMotorOutputPercent() << " Target Left: " << TargetVelocityL << " Target Right: " << TargetVelocityR <<  std::endl;
 	}
 
 	//LeftMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);

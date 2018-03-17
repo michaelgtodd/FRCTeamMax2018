@@ -11,7 +11,8 @@ public:
 	void ControllerUpdate(MaxControl * controls);
 	void Autonomous();
 	void End();
-	bool Drive(double Inches, double SpeedLimit, double Tolerance);
+	bool Drive(double InchesInInchces, double SpeedLimit, double ToleranceInInches);
+	bool Move(double InchesInInches, double SpeedLimit, double ToleranceInInches);
 	bool Lift(double Ticks, double SpeedLimit, double Tolerance);
 	bool Turn(double Degrees, double SpeedLimit, double Tolerance);
 	void Brake();
@@ -23,9 +24,11 @@ public:
 private:
 	double StartTime = 0;
 	double RunTime = 0;
-	double LeftError = 0, LeftTarget = 0;
-	double RightError = 0, RightTarget = 0;
+	double LeftError = 0, LeftTarget = 0, LeftTravel = 0;
+	double RightError = 0, RightTarget = 0, RightTravel = 0;
 	double LiftError = 0, LiftTarget = 0;
+	double * YPR[3];
+	double * Yaw;
 	int LastMessage = 0;
 	AutonomousControl control;
 	SwitchPriority SwitchPriorityInput;

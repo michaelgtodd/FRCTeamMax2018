@@ -10,9 +10,9 @@ int modulo(int x, int N)
 void LiftingTask::Always()
 {
 	int PulseWidthPosL = GrabArmL->GetSensorCollection().GetPulseWidthPosition();
-	//std::cout << "Left Arm Encoder: " << modulo(PulseWidthPosL, 4096);
+	std::cout << "Left Arm Encoder: " << modulo(PulseWidthPosL, 4096);
 	int PulseWidthPosR = GrabArmR->GetSensorCollection().GetPulseWidthPosition();
-	//std::cout << "Right Arm Encoder: " << modulo(PulseWidthPosR, 4096) << std::endl;
+	std::cout << "Right Arm Encoder: " << modulo(PulseWidthPosR, 4096) << std::endl;
 }
 
 void LiftingTask::Run()
@@ -130,8 +130,8 @@ void LiftingTask::Init()
 	GrabWheelR = new TalonSRX(11);
 	CurrentLimit(GrabArmL, 4);														
 	CurrentLimit(GrabArmR, 4);
-	CurrentLimit(LiftMotorL, 20);
-	CurrentLimit(LiftMotorR, 20);
+	CurrentLimit(LiftMotorL, 4);
+	CurrentLimit(LiftMotorR, 4);
 	CurrentLimit(GrabWheelL, 10);
 	CurrentLimit(GrabWheelR, 10);
 

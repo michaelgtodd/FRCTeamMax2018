@@ -7,7 +7,7 @@
 
 void AutonomousLeft::Init()
 {
-	MaxLog::LogInfo("Starting Auto");
+	MaxLog::LogInfo("Starting Center Auto");
 
 	//Get field data
 	std::string gameData;
@@ -19,7 +19,7 @@ void AutonomousLeft::Init()
 		FarSwitchPosition = gameData[2] == 'L' ? FieldPos::Left : FieldPos::Right;
 	}
 
-	std::cout << "Position: Left | Switch Priority: " << SwitchPriorityInput << std::endl;
+	std::cout << "Position: Center | Switch Priority: " << SwitchPriorityInput << std::endl;
 	std::cout << "Game String: " << gameData << std::endl;
 	std::cout << "Switch: " << SwitchPosition << " Scale: " << ScalePosition << " Far Switch: " << FarSwitchPosition << std::endl;
 	StartTime = Timer::GetFPGATimestamp();
@@ -31,258 +31,60 @@ void AutonomousLeft::Init()
 	AutoMotorLift = new TalonSRX(12);
 	AutoPosArmLeft = new TalonSRX(5);
 	AutoPosArmRight = new TalonSRX(10);
+	DummyTalon = new TalonSRX(1);
+	PigeonInput = new PigeonIMU(DummyTalon);
 	ResetSensor();
 }
 
 void AutonomousLeft::ControllerUpdate(MaxControl * controls)
 {
-	SwitchPriorityInput = ((RobotControl * ) controls)->SwitchPrioritySelection;
+	SwitchPriorityInput = ((RobotControl *)controls)->SwitchPrioritySelection;
 }
 
 void AutonomousLeft::Autonomous()
 {
-	switch (SwitchPriorityInput)
+	//Move Foward
+	switch (stage)
 	{
-	case SwitchPriority::Yes:
-		if (SwitchPosition == FieldPos::Left)
-		{
-			//std::cout << "Switch code! Switch Priority: " << SwitchPriorityInput << std::endl;
-			switch (stage)
-			{
-			case 0:
-				StageStartTime = Timer::GetFPGATimestamp();
-				stage++;
-				break;
-			case 1:
-				control.SpeedLeft = 0;
-				control.SpeedRight = 0;
-				control.SpeedLift = 0;
-				control.ArmPositionLeft = 180;
-				control.ArmPositionRight = 180;
-				ResetSensor();
-				if ((Timer::GetFPGATimestamp() - StageStartTime) > 2.0)
-					stage++;
-				break;
-			case 2:
-			{
-				control.ArmPositionLeft = 100;
-				control.ArmPositionRight = 260;
-				stage++;
-			}
-			break;
-			case 3:
-				StageStartTime = Timer::GetFPGATimestamp();
-				stage++;
-				break;
-			case 4:
-				control.SpeedLeft = 0;
-				control.SpeedRight = 0;
-				ResetSensor();
-				if ((Timer::GetFPGATimestamp() - StageStartTime) > 2.0)
-					stage++;
-				break;
-			case 5:
-			{
-				double Error1;
-				double Power1 = Move(110.0, 0.2, &Error1);
-				control.SpeedLeft = -Power1;
-				control.SpeedRight = Power1;
-				double Error2;
-				double Power2 = Lift(80000, 0.6, &Error2);
-				control.SpeedLift = Power2;
-				//std::cout << "Error1: " << Error1 << " Error2: " << Error2 << std::endl;
-				if ((fabs(Error2) < 2000) && (fabs(Error1) < 500))
-					stage++;
-			}
-			break;
-			case 6:
-				control.SpeedLeft = 0;
-				control.SpeedRight = 0;
-				control.SpeedLift = 0;
-				control.ArmPositionLeft = 180;
-				control.ArmPositionRight = 180;
-				std::cout << "Released" << std::endl;
-				stage++;
-			default:
-				break;
-			}
-		}
-		else //Right switch
-		{
-			switch (stage)
-			{
-			case 0:
-				StageStartTime = Timer::GetFPGATimestamp();
-				stage++;
-				break;
-			case 1:
-				control.SpeedLeft = 0;
-				control.SpeedRight = 0;
-				control.SpeedLift = 0;
-				control.ArmPositionLeft = 180;
-				control.ArmPositionRight = 180;
-				ResetSensor();
-				if ((Timer::GetFPGATimestamp() - StageStartTime) > 2.0)
-					stage++;
-				break;
-			default:
-				break;
-			}
-		}
+	case 0:
+		//Reset
+		StageStartTime = Timer::GetFPGATimestamp();
+		ResetSensor();
+		stage++;
+		std::cout << "Stage 0" << std::endl;
 		break;
-	case SwitchPriority::No:
-		if (ScalePosition == FieldPos::Left)
-		{
-			//std::cout << "Scale code!" << std::endl;
-			switch (stage)
-			{
-			case 0:
-				StageStartTime = Timer::GetFPGATimestamp();
-				stage++;
-				break;
-			case 1:
-				control.SpeedLeft = 0;
-				control.SpeedRight = 0;
-				control.SpeedLift = 0;
-				control.ArmPositionLeft = 180;
-				control.ArmPositionRight = 180;
-				ResetSensor();
-				if ((Timer::GetFPGATimestamp() - StageStartTime) > 2.0)
-					stage++;
-				break;
-			case 2:
-			{
-				control.ArmPositionLeft = 100;
-				control.ArmPositionRight = 260;
-				stage++;
-			}
-			break;
-			case 3:
-				StageStartTime = Timer::GetFPGATimestamp();
-				stage++;
-				break;
-			case 4:
-				control.SpeedLeft = 0;
-				control.SpeedRight = 0;
-				ResetSensor();
-				if ((Timer::GetFPGATimestamp() - StageStartTime) > 0.5)
-					stage++;
-				break;
-			case 5:
-			{
-				double Error1;
-				double Power1 = Move(265.0, 0.2, &Error1);
-				control.SpeedLeft = -Power1;
-				control.SpeedRight = Power1;
-				double Error2;
-				double Power2 = Lift(175000, 0.6, &Error2);
-				control.SpeedLift = Power2;
-				std::cout << "Error1: " << Error1 << " Error2: " << Error2 << std::endl;
-				if ((fabs(Error2) < 2000) && (fabs(Error1) < 2000))
-					stage++;
-			}
-			break;
-			case 6:
-				StageStartTime = Timer::GetFPGATimestamp();
-				stage++;
-				break;
-			case 7:
-				control.SpeedLeft = 0;
-				control.SpeedRight = 0;
-				control.SpeedLift = 0;
-				ResetSensor();
-				if ((Timer::GetFPGATimestamp() - StageStartTime) > 2.0)
-					stage++;
-				break;
-			case 8:
-				control.SpeedLeft = 0;
-				control.SpeedRight = 0;
-				control.SpeedLift = 0;
-				control.ArmPositionLeft = 180;
-				control.ArmPositionRight = 180;
-				std::cout << "Released" << std::endl;
-				stage++;
-				break;
-			default:
-				break;
-			}
-			//std::cout << "Stage: " << stage << std::endl;
-			break;
-		}
-		else //Right scale
-		{
-			switch (stage)
-			{
-			case 0:
-				StageStartTime = Timer::GetFPGATimestamp();
-				stage++;
-				break;
-			case 1:
-				control.SpeedLeft = 0;
-				control.SpeedRight = 0;
-				control.SpeedLift = 0;
-				control.ArmPositionLeft = 180;
-				control.ArmPositionRight = 180;
-				ResetSensor();
-				if ((Timer::GetFPGATimestamp() - StageStartTime) > 2.0)
-					stage++;
-				break;
-			default:
-				break;
-			}
-		}
-		break;
-	case SwitchPriority::Kyle:
-		switch (stage)
-		{
-		case 0:
-			StageStartTime = Timer::GetFPGATimestamp();
+	case 1:
+		//Clamp
+		control.ArmPositionRight = 280;
+		control.ArmPositionLeft = 80;
+		Brake();
+		if ((Timer::GetFPGATimestamp() - StageStartTime) > 0.1)
 			stage++;
-			break;
-		case 1:
-			control.SpeedLeft = 0;
-			control.SpeedRight = 0;
-			control.SpeedLift = 0;
-			control.ArmPositionLeft = 180;
-			control.ArmPositionRight = 180;
+		std::cout << "Stage 1" << std::endl;
+		break;
+	case 2:
+		//Drive Forward
+		if (Drive(70.0, 0.5, 2.0))
+		{
+			Brake();
 			ResetSensor();
-			if ((Timer::GetFPGATimestamp() - StageStartTime) > 2.0)
-				stage++;
-			break;
-		case 2:
-		{
-			control.ArmPositionLeft = 100;
-			control.ArmPositionRight = 260;
-			stage++;
-		}
-		break;
-		case 3:
 			StageStartTime = Timer::GetFPGATimestamp();
+			std::cout << "Reached 50 inches. Preparing to turn." << std::endl;
 			stage++;
-			break;
-		case 4:
-			control.SpeedLeft = 0;
-			control.SpeedRight = 0;
-			ResetSensor();
-			if ((Timer::GetFPGATimestamp() - StageStartTime) > 0.5)
-				stage++;
-			break;
-		case 5:
-		{
-			double Error1;
-			double Power1 = Move(100.0, 0.2, &Error1);
-			control.SpeedLeft = -Power1;
-			control.SpeedRight = Power1;
-			if (fabs(Error1) < 2000)
-				stage++;
-			break;
 		}
-		default:
-			break;
-		}
+		std::cout << "Stage 2" << std::endl;
+		break;
+	case 3:
+		//Wait
+		if ((Timer::GetFPGATimestamp() - StageStartTime) > 0.1)
+			stage++;
+		std::cout << "Stage 3" << std::endl;
+		break;
 	default:
+		std::cout << "default stage" << std::endl;
 		break;
 	}
+
 	ControlTaskInstance.UpdateAutonomousData(control);
 }
 
@@ -294,37 +96,103 @@ void AutonomousLeft::End()
 	MaxLog::LogInfo("Ending Auto after " + std::to_string(LastMessage) + " seconds");
 }
 
+bool AutonomousLeft::Move(double DistanceInInches, double SpeedLimit, double ToleranceInInches)
+{
+	//Convert Distance and Tolerance to Ticks
+	double DistanceInTicks = InchesToTicks(DistanceInInches);
+	double ToleranceInTicks = InchesToTicks(ToleranceInInches);
+
+	//Set the initial gains
+	double RightGain = 0.000025, LeftGain = 0.000025;
+	double InitialSpeed = 0.8 * SpeedLimit;
+
+	//Set the target distance and find remaining distance
+	RightTarget = DistanceInTicks, LeftTarget = DistanceInTicks;
+	RightTravel = AutoMotorRight->GetSensorCollection().GetQuadraturePosition();
+	LeftTravel = AutoMotorLeft->GetSensorCollection().GetQuadraturePosition();
+
+
+	return false;
+}
+
+bool AutonomousLeft::Drive(double DistanceInInches, double SpeedLimit, double ToleranceInInches)
+{
+	// Convert Distance and Tolerance to Ticks
+	double DistanceInTicks = InchesToTicks(DistanceInInches);
+	double ToleranceInTicks = InchesToTicks(ToleranceInInches);
+
+	// Set the constant gains.
+	const double RightGain = 0.0001, LeftGain = 0.0001;
+
+	// Set the Targets and Errors (Error is Target Minus Present Position)
+	RightTarget = DistanceInTicks, LeftTarget = DistanceInTicks;
+	RightError = RightTarget - fabs(AutoMotorRight->GetSensorCollection().GetQuadraturePosition());
+	LeftError = LeftTarget - fabs(AutoMotorLeft->GetSensorCollection().GetQuadraturePosition());
+
+	// Set the powers to 0 if we're within tolerance. If not, set to Error * Gain.
+	double RightPower = fabs(RightError) < ToleranceInTicks ? 0 : RightError * RightGain;
+	double LeftPower = fabs(LeftError) < ToleranceInTicks ? 0 : LeftError * LeftGain;
+
+	// Apply a cap power for the max and minimum speed limits.
+	RightPower = fmin(RightPower, -SpeedLimit);
+	RightPower = fmax(RightPower, SpeedLimit);
+	LeftPower = fmin(LeftPower, -SpeedLimit);
+	LeftPower = fmax(LeftPower, SpeedLimit);
+
+	// Set the active power.
+	control.SpeedRight = RightPower;
+	control.SpeedLeft = -LeftPower;
+
+	// Testing prints.
+	//std::cout << "Target: " << LeftTarget << " | " << RightTarget << std::endl;
+	std::cout << "Target - Distance Traveled: " << LeftError << " | " << RightError << std::endl;
+	std::cout << "Power: " << LeftPower << " | " << RightPower << std::endl;
+	//std::cout << "Tolerance in Ticks: " << ToleranceInTicks << std::endl;
+
+	// Skip to the next stage if we're within our tolerance.
+	if (fabs(AutoMotorRight->GetSensorCollection().GetQuadraturePosition()) > RightTarget &&
+		fabs(AutoMotorLeft->GetSensorCollection().GetQuadraturePosition()) > LeftTarget)
+		return true;
+	else
+		return false;
+}
+
+bool AutonomousLeft::Turn(double Degrees, double SpeedLimit, double Tolerance)
+{
+
+}
+
+bool AutonomousLeft::Lift(double Height, double SpeedLimit, double Tolerance)
+{
+	double Gain = 0.00005;
+	LiftTarget = Height;
+	LiftError = LiftTarget - AutoMotorLift->GetSensorCollection().GetQuadraturePosition();
+	double Power = fabs(LiftError) > Tolerance ? 0 : LiftError * Gain;
+	Power = fmin(Power, -SpeedLimit);
+	Power = fmax(Power, SpeedLimit);
+	control.SpeedLift = Power;
+	if (fabs(LiftError) > Tolerance)
+		return true;
+	else
+		return false;
+}
+
+void AutonomousLeft::Brake()
+{
+	control.SpeedRight = 0;
+	control.SpeedLeft = 0;
+	RightTarget = 0;
+	LeftTarget = 0;
+	RightError = 0;
+	LeftError = 0;
+}
+
 void AutonomousLeft::ResetSensor()
 {
 	AutoMotorLeft->SetSelectedSensorPosition(0, 0, 0);
 	AutoMotorLeft->GetSensorCollection().SetQuadraturePosition(0, 0);
 	AutoMotorRight->SetSelectedSensorPosition(0, 0, 0);
 	AutoMotorRight->GetSensorCollection().SetQuadraturePosition(0, 0);
-}
-
-double AutonomousLeft::Move(double Inches, double SpeedLimit, double * Error)
-{
-	double TargetDistance = InchesToTicks(Inches);
-	double Gain = 0.000025;
-	*Error = TargetDistance - AutoMotorRight->GetSensorCollection().GetQuadraturePosition();
-	double Power = *Error * Gain;
-	Power = fmin(Power, SpeedLimit);
-	Power = fmax(Power, -SpeedLimit);
-	return Power;
-	//std::cout << "Taraget: " << TargetDistance << " Actual: " << AutoMotorRight->GetSensorCollection().GetQuadraturePosition();
-	//std::cout << " Error: " << Error << " Power: " << Power << std::endl;
-}
-
-double AutonomousLeft::Lift(double Ticks, double SpeedLimit, double * Error)
-{
-	double TargetDistance = Ticks;
-	double Gain = 0.00005;
-	*Error = TargetDistance - AutoMotorLift->GetSensorCollection().GetQuadraturePosition();
-	double Power = *Error * Gain;
-	Power = fmin(Power, SpeedLimit);
-	Power = fmax(Power, -SpeedLimit);
-	//std::cout << "Power: " << Power << " Target Distance: " << TargetDistance << " Error: " << *Error << " Actual: " << AutoMotorLift->GetSensorCollection().GetQuadraturePosition() << std::endl;
-	return Power;
 }
 
 double AutonomousLeft::InchesToTicks(double Inches)

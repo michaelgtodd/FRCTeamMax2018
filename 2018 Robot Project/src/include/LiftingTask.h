@@ -14,8 +14,8 @@ public:
 private:
 	
 	/* Encoder Offsets for Arms */
-	const int LEFT_ENCODER_OFFSET = 1012;
-	const int RIGHT_ENCODER_OFFSET = 174;
+	const int LEFT_ENCODER_OFFSET = 139;
+	const int RIGHT_ENCODER_OFFSET = 295;
 
 	/* Encoder Limits for Lift */
 	const int LIFT_LOWER_LIMIT = -14500;

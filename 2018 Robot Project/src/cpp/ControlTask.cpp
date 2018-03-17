@@ -71,10 +71,13 @@ void ControlTask::Run()
 		//EnableLimit = SwitchesJoystick->GetRawAxis(3) > 0.0 ? true : false;
 	}
 	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
+	Controls->SpeedLeft = fmin(Controls->SpeedLift, -0.05);
+	std::cout << "Lift speed" << Controls->SpeedLift << std::endl;
+	//Controls->SpeedLift = fmax(Controls->SpeedLeft, 0.4);
 
 	if (Neutral)
 	{
-		Controls->LeftArmPosition = 110;
+		Controls->LeftArmPosition = 125;
 		std::cout << "pos13" << std::endl;
 	}
 	else if (Retract)
@@ -167,7 +170,6 @@ void ControlTask::Run()
 
 	Controls->SpeedLeft = (twist)+(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
 	Controls->SpeedRight = (twist)-(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
-
 	delete (DriveJoystick);
 	//std::cout << "About to send" << std::endl;
 }
@@ -181,12 +183,15 @@ void ControlTask::Always()
 	{
 	case FieldPos::Left:
 		MaxAutonomousManagerInstance.SelectAutonomous("AutonomousLeft");
+		//std::cout << "Left auto" << std::endl;
 		break;
 	case FieldPos::Center:
 		MaxAutonomousManagerInstance.SelectAutonomous("AutonomousCenter");
+		//std::cout << "Center auto" << std::endl;
 		break;
 	case FieldPos::Right:
 		MaxAutonomousManagerInstance.SelectAutonomous("AutonomousRight");
+		//std::cout << "Right auto" << std::endl;
 		break;
 	default:
 		break;
