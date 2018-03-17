@@ -46,9 +46,9 @@ void ControlTask::Run()
 	//======================================================================================	
 
 	double LiftAxis;
-	bool Clamp, Neutral, Pos11Inch, Pos13Inch, Retract;
+	bool Clamp, Neutral, StartingPos, Retract;
 	bool SpinIn, SpinOut;
-	bool OverRide;
+	bool EnableLimit;
 	Joystick * SwitchesJoystick = new Joystick(2);
 
 	if (Controls->SwitchesType == XboxType)
@@ -58,14 +58,13 @@ void ControlTask::Run()
 	else
 	{
 		Clamp = SwitchesJoystick->GetRawButton(1);
-		Neutral = SwitchesJoystick->GetRawButton(2) || SwitchesJoystick->GetRawButton(10);
-		Pos11Inch = SwitchesJoystick->GetRawButton(7);
-		Pos13Inch = SwitchesJoystick->GetRawButton(8);
-		Retract = SwitchesJoystick->GetRawButton(9);
+		Neutral = SwitchesJoystick->GetRawButton(2);
+		StartingPos = SwitchesJoystick->GetRawButton(7);
+		Retract = SwitchesJoystick->GetRawButton(2);
 		SpinIn = SwitchesJoystick->GetPOV() == 180 ? true : false;
 		SpinOut = SwitchesJoystick->GetPOV() == 0 ? true : false;
 		LiftAxis = SwitchesJoystick->GetRawAxis(1);
-		OverRide = SwitchesJoystick->GetRawAxis(4) < 0 ? true : false;
+		EnableLimit = SwitchesJoystick->GetRawAxis(3) < 0 ? true : false;
 
 		//ResetPosButton = SwitchesJoystick->GetRawButton(8);
 		//OverrideButton = SwitchesJoystick->GetRawButton(10);
@@ -73,30 +72,25 @@ void ControlTask::Run()
 	}
 	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
 
-	if (Pos13Inch)
+	if (Neutral)
 	{
-		Controls->LeftArmPosition = 180;
-		Controls->RightArmPosition = 180;
+		Controls->LeftArmPosition = 115;
+		std::cout << "pos13" << std::endl;
 	}
 	else if (Retract)
 	{
-		Controls->LeftArmPosition = 300;
-		Controls->RightArmPosition = 60;
+		Controls->LeftArmPosition = 340;
+		std::cout << "retract" << std::endl;
 	}
-	else if (Neutral)
+	else if (StartingPos)
 	{
-		Controls->LeftArmPosition = 106;
-		Controls->RightArmPosition = 254;
-	}
-	else if (Pos11Inch)
-	{
-		Controls->LeftArmPosition = 90;
-		Controls->RightArmPosition = 270;
+		Controls->LeftArmPosition = 146;
+		std::cout << "neutral" << std::endl;
 	}
 	else if (Clamp)
 	{
-		Controls->LeftArmPosition = 40;
-		Controls->RightArmPosition = 320;
+		Controls->LeftArmPosition = 80;
+		std::cout << "clamp" << std::endl;
 	}
 
 	if (SpinIn)
@@ -106,12 +100,13 @@ void ControlTask::Run()
 	else
 		Controls->WheelSpeed = 0;
 
-	if (OverRide)
-		Controls->Override = true;
+	if (EnableLimit)
+		Controls->LiftLimitEnable = true;
 	else
-		Controls->Override = false;
+		Controls->LiftLimitEnable = false;
 
 	delete (SwitchesJoystick);
+	Controls->RightArmPosition = 360 - Controls->LeftArmPosition;
 
 	//======================================================================================
 	// Drive Controllers

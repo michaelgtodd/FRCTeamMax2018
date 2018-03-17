@@ -42,6 +42,7 @@ void AutonomousRight::ControllerUpdate(MaxControl * controls)
 
 void AutonomousRight::Autonomous()
 {
+
 	switch (SwitchPriorityInput)
 	{
 	case SwitchPriority::Yes:

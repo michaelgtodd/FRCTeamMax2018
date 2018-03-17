@@ -10,9 +10,9 @@ int modulo(int x, int N)
 void LiftingTask::Always()
 {
 	int PulseWidthPosL = GrabArmL->GetSensorCollection().GetPulseWidthPosition();
-	std::cout << "Left Arm Encoder: " << modulo(PulseWidthPosL, 4096);
+	//std::cout << "Left Arm Encoder: " << modulo(PulseWidthPosL, 4096);
 	int PulseWidthPosR = GrabArmR->GetSensorCollection().GetPulseWidthPosition();
-	std::cout << "Right Arm Encoder: " << modulo(PulseWidthPosR, 4096) << std::endl;
+	//std::cout << "Right Arm Encoder: " << modulo(PulseWidthPosR, 4096) << std::endl;
 }
 
 void LiftingTask::Run()
@@ -61,7 +61,7 @@ void LiftingTask::Run()
 	{
 		right_error_integrate *= 0.8;
 	}
-	 GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, (RightError * GAIN_RIGHT) + (right_error_integrate * GAIN_RIGHT_INTEGRATE));
+	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, (RightError * GAIN_RIGHT) + (right_error_integrate * GAIN_RIGHT_INTEGRATE));
 	//std::cout << " Right Error: " << RightError << "Output" << RightError * GAIN << std::endl;
 
 	double LeftError = ControlInput->LeftArmPosition - DegreeLeftArmPosition;
@@ -74,8 +74,8 @@ void LiftingTask::Run()
 	GrabArmL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, (LeftError * GAIN_LEFT) + (left_error_integrate * GAIN_LEFT_INTEGRATE));
 	//std::cout << "Left Error: " << LeftError << " Output: " << LeftError * GAIN << "Left Arm Position"<<DegreeLeftArmPosition << std::endl;
 
-	//std::cout << "Left A: " << DegreeLeftArmPosition << " Left P-E: " << LeftError << " Left I-E: " << left_error_integrate;
-	//std::cout << " Right A: " << DegreeRightArmPosition << " Right P-E: " << RightError << " Right I-E: " << right_error_integrate << std::endl;
+	std::cout << "Left A: " << DegreeLeftArmPosition << " Left Target: " << ControlInput->LeftArmPosition;// LeftError << " Left I-E: " << left_error_integrate;
+	std::cout << " Right A: " << DegreeRightArmPosition << " Right Target: " << ControlInput->RightArmPosition << std::endl;// RightError << " Right I-E: " << right_error_integrate << std::endl;
 	runs++;
 	if (runs > 4) {
 		MaxLog::TransmitDouble("/lift/left/error", LeftError);
@@ -118,17 +118,17 @@ void LiftingTask::Init()
 {
 	ControlInput = new RobotControl();
 #if COMP_BOT
-	GrabArmL = new TalonSRX(5);
-	GrabArmR = new TalonSRX(10);
+	GrabArmL = new TalonSRX(10);
+	GrabArmR = new TalonSRX(5);
 #else
 	GrabArmL = new TalonSRX(4);
 	GrabArmR = new TalonSRX(11);
 #endif
 	LiftMotorL = new TalonSRX(12);
 	LiftMotorR = new TalonSRX(3);
-	GrabWheelL = new TalonSRX(8);
-	GrabWheelR = new TalonSRX(9);
-	CurrentLimit(GrabArmL, 4);
+	GrabWheelL = new TalonSRX(4);
+	GrabWheelR = new TalonSRX(11);
+	CurrentLimit(GrabArmL, 4);														
 	CurrentLimit(GrabArmR, 4);
 	CurrentLimit(LiftMotorL, 20);
 	CurrentLimit(LiftMotorR, 20);

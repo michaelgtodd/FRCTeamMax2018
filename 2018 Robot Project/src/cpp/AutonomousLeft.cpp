@@ -106,8 +106,6 @@ void AutonomousLeft::Autonomous()
 			default:
 				break;
 			}
-			//std::cout << "Stage: " << stage << std::endl;
-			break;
 		}
 		else //Right switch
 		{

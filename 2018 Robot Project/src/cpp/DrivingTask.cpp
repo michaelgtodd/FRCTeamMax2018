@@ -63,6 +63,7 @@ void DrivingTask::Run()
 	{
 		ActiveGear = Low;
 	}
+	ActiveGear = Low;
 
 	switch (ActiveGear)
 	{
@@ -151,6 +152,7 @@ void DrivingTask::Init()
 
 #if COMP_BOT
 	DriveShift = new frc::DoubleSolenoid{ 0, 1 };
+	OffBoardCompressor = new Compressor(0);
 #endif
 
 	runs = 0;

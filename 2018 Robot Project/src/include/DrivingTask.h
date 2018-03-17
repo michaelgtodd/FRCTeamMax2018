@@ -37,5 +37,6 @@ private:
 #if COMP_BOT
 	TalonSRX * RightMotor3;
 	DoubleSolenoid * DriveShift;
+	Compressor * OffBoardCompressor;
 #endif
 };
