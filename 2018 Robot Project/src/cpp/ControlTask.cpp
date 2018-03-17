@@ -145,7 +145,7 @@ void ControlTask::Run()
 		twist *= 0.3;
 		twistmin = fabs(ForwardAxis) * 0.7;
 		twistmin += 0.5;
-		twistmin *= 3.5;
+		twistmin *= 5.5;
 		twist = fmin(twistmin, twist);
 #else
 		twist = fabs(TwistAxis);
