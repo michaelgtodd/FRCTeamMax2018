@@ -11,10 +11,11 @@ public:
 	void ControllerUpdate(MaxControl * controls);
 	void Autonomous();
 	void End();
+	bool Drive(double Inches, double SpeedLimit, double Tolerance);
+	bool Lift(double Ticks, double SpeedLimit, double Tolerance);
+	bool Turn(double Degrees, double SpeedLimit, double Tolerance);
+	void Brake();
 	void ResetSensor();
-	double Move(double Inches, double SpeedLimit, double * Error);
-	double Turn(double Degrees, double SpeedLimit, double * Error);
-	double Lift(double Ticks, double SpeedLimit, double * Error);
 	double InchesToTicks(double Inches);
 	int stage;
 	std::string GetName();
@@ -22,6 +23,9 @@ public:
 private:
 	double StartTime = 0;
 	double RunTime = 0;
+	double LeftError = 0, LeftTarget = 0;
+	double RightError = 0, RightTarget = 0;
+	double LiftError = 0, LiftTarget = 0;
 	int LastMessage = 0;
 	AutonomousControl control;
 	SwitchPriority SwitchPriorityInput;
@@ -33,4 +37,6 @@ private:
 	TalonSRX * AutoMotorLift;
 	TalonSRX * AutoPosArmLeft;
 	TalonSRX * AutoPosArmRight;
+	TalonSRX * DummyTalon;
+	PigeonIMU * PigeonInput;
 };
