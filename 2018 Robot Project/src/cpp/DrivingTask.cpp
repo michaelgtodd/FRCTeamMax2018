@@ -78,13 +78,14 @@ void DrivingTask::Run()
 
 	SetPIDConstants(ActiveGear);
 
-	double TargetVelocityL = ControlInput->SpeedLeft * 4096.0 * 2000.0 / 600.0;
-	double TargetVelocityR = ControlInput->SpeedRight * 4060.0 * 2000.0 / 600.0;
+	double TargetVelocityL = ControlInput->SpeedLeft * 1.2 * 4096.0 * 2000.0 / 600.0;
+	double TargetVelocityR = ControlInput->SpeedRight * 1.2 * 4060.0 * 2000.0 / 600.0;
 
 	SetPIDConstants(ActiveGear);
 
 	LeftMotor1->Set(ControlMode::Velocity, TargetVelocityL);
 	RightMotor3->Set(ControlMode::Velocity, TargetVelocityR);
+
 #else
 	LeftMotor1->Set(ControlMode::PercentOutput, -ControlInput->SpeedLeft);
 	RightMotor1->Set(ControlMode::PercentOutput, -ControlInput->SpeedRight);
@@ -100,6 +101,7 @@ void DrivingTask::Run()
 		//MaxLog::TransmitDouble("/righttargetvel", TargetVelocityR);
 		//MaxLog::TransmitDouble("/rightactualvel", RightMotor3->GetSelectedSensorVelocity(0));
 		MaxLog::TransmitDouble("/leftactualvel", LeftMotor1->GetSelectedSensorVelocity(0));
+		std::cout << "Left Drive Output: " << LeftMotor1->GetMotorOutputPercent() << " Right Drive Motor: " << RightMotor3->GetMotorOutputPercent() << " Target Left: " << TargetVelocityL << " Target Right: " << TargetVelocityR <<  std::endl;
 	}
 
 	//LeftMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);

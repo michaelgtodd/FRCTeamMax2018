@@ -74,8 +74,8 @@ void LiftingTask::Run()
 	GrabArmL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, (LeftError * GAIN_LEFT) + (left_error_integrate * GAIN_LEFT_INTEGRATE));
 	//std::cout << "Left Error: " << LeftError << " Output: " << LeftError * GAIN << "Left Arm Position"<<DegreeLeftArmPosition << std::endl;
 
-	std::cout << "Left A: " << DegreeLeftArmPosition << " Left Target: " << ControlInput->LeftArmPosition;// LeftError << " Left I-E: " << left_error_integrate;
-	std::cout << " Right A: " << DegreeRightArmPosition << " Right Target: " << ControlInput->RightArmPosition << std::endl;// RightError << " Right I-E: " << right_error_integrate << std::endl;
+	//std::cout << "Left A: " << DegreeLeftArmPosition << " Left Target: " << ControlInput->LeftArmPosition;// LeftError << " Left I-E: " << left_error_integrate;
+	//std::cout << " Right A: " << DegreeRightArmPosition << " Right Target: " << ControlInput->RightArmPosition << std::endl;// RightError << " Right I-E: " << right_error_integrate << std::endl;
 	runs++;
 	if (runs > 4) {
 		MaxLog::TransmitDouble("/lift/left/error", LeftError);
