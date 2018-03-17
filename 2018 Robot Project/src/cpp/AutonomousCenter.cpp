@@ -7,7 +7,7 @@
 
 void AutonomousCenter::Init()
 {
-	MaxLog::LogInfo("Starting Auto");
+	MaxLog::LogInfo("Starting Center Auto");
 
 	//Get field data
 	std::string gameData;
@@ -54,6 +54,7 @@ void AutonomousCenter::Autonomous()
 			StageStartTime = Timer::GetFPGATimestamp();
 			ResetSensor();
 			stage++;
+			std::cout << "Stage 0" << std::endl;
 			break;
 		case 1:
 			//Clamp
@@ -62,6 +63,7 @@ void AutonomousCenter::Autonomous()
 			Brake();
 			if ((Timer::GetFPGATimestamp() - StageStartTime) > 0.1)
 				stage++;
+			std::cout << "Stage 1" << std::endl;
 			break;
 		case 2:
 			//Drive Forward
@@ -72,13 +74,16 @@ void AutonomousCenter::Autonomous()
 				StageStartTime = Timer::GetFPGATimestamp();
 				stage++;
 			}
+			std::cout << "Stage 2" << std::endl;
 			break;
 		case 3:
 			//Wait
 			if ((Timer::GetFPGATimestamp() - StageStartTime) > 0.1)
 				stage++;
+			std::cout << "Stage 3" << std::endl;
 			break;
 		default:
+			std::cout << "default stage" << std::endl;
 			break;
 		}
 		if (SwitchPosition == FieldPos::Left)
