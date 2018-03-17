@@ -60,7 +60,7 @@ void ControlTask::Run()
 		Clamp = SwitchesJoystick->GetRawButton(1);
 		Neutral = SwitchesJoystick->GetRawButton(2);
 		StartingPos = SwitchesJoystick->GetRawButton(7);
-		Retract = SwitchesJoystick->GetRawButton(2);
+		Retract = SwitchesJoystick->GetRawButton(8);
 		SpinIn = SwitchesJoystick->GetPOV() == 180 ? true : false;
 		SpinOut = SwitchesJoystick->GetPOV() == 0 ? true : false;
 		LiftAxis = SwitchesJoystick->GetRawAxis(1);
@@ -74,7 +74,7 @@ void ControlTask::Run()
 
 	if (Neutral)
 	{
-		Controls->LeftArmPosition = 115;
+		Controls->LeftArmPosition = 110;
 		std::cout << "pos13" << std::endl;
 	}
 	else if (Retract)

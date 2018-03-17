@@ -138,6 +138,8 @@ void LiftingTask::Init()
 	LiftMotorL->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
 	LiftMotorL->ConfigForwardSoftLimitEnable(true, 10);
 	LiftMotorL->ConfigReverseSoftLimitEnable(true, 10);
+	LiftMotorL->ConfigClosedloopRamp(0.2, 10);
+	LiftMotorR->ConfigClosedloopRamp(0.2, 10);
 	LiftMotorR->Set(ControlMode::Follower, 12);
 	LiftMotorL->ConfigForwardSoftLimitThreshold(LIFT_UPPER_LIMIT, 10);
 	LiftMotorL->ConfigReverseSoftLimitThreshold(LIFT_LOWER_LIMIT, 10);
