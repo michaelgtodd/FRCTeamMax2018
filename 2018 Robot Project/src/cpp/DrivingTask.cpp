@@ -45,7 +45,7 @@ void DrivingTask::SetPIDConstants(GearType TargetGear)
 
 void DrivingTask::Run()
 {
-#if COMP_BOT
+
 	double RightSpeed = RightMotor3->GetSelectedSensorVelocity(0);
 	double LeftSpeed = LeftMotor1->GetSelectedSensorVelocity(0);
 
@@ -83,13 +83,13 @@ void DrivingTask::Run()
 
 	SetPIDConstants(ActiveGear);
 
-	LeftMotor1->Set(ControlMode::Velocity, TargetVelocityL);
-	RightMotor3->Set(ControlMode::Velocity, TargetVelocityR);
+//	LeftMotor1->Set(ControlMode::Velocity, TargetVelocityL);
+	//RightMotor3->Set(ControlMode::Velocity, TargetVelocityR);
 
-#else
+
 	LeftMotor1->Set(ControlMode::PercentOutput, -ControlInput->SpeedLeft);
-	RightMotor1->Set(ControlMode::PercentOutput, -ControlInput->SpeedRight);
-#endif
+	RightMotor3->Set(ControlMode::PercentOutput, -ControlInput->SpeedRight);
+
 
 
 	runs++;
@@ -111,12 +111,12 @@ void DrivingTask::Run()
 
 void DrivingTask::Disable()
 {
-	LeftMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
+//	LeftMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	//LeftMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	//LeftMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	//RightMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	//RightMotor2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
-	RightMotor1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
+//	RightMotor3->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 }
 
 void DrivingTask::Autonomous()

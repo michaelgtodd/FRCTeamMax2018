@@ -143,14 +143,6 @@ void ControlTask::Run()
 	if (fabs(TwistAxis) > 0.5)
 	{
 #if COMP_BOT
-		twist = fabs(TwistAxis) -0.3;
-		twist /= 0.7;
-		twist *= 0.3;
-		twistmin = fabs(ForwardAxis) * 0.7;
-		twistmin += 0.5;
-		twistmin *= 5.5;
-		twist = fmin(twistmin, twist);
-#else
 		twist = fabs(TwistAxis);
 #endif
 		twist *= -1.0;
