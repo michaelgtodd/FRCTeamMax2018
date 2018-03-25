@@ -162,7 +162,6 @@ void DrivingTask::Init()
 
 	ConfigureCurrentLimit(LeftMotor1);
 	ConfigureCurrentLimit(LeftMotor2);
-
 	ConfigureCurrentLimit(RightMotor1);
 	ConfigureCurrentLimit(RightMotor2);
 
