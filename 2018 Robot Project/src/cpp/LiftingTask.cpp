@@ -118,8 +118,8 @@ void LiftingTask::Init()
 {
 	ControlInput = new RobotControl();
 #if COMP_BOT
-	GrabArmL = new TalonSRX(10);
-	GrabArmR = new TalonSRX(5);
+	GrabArmL = new TalonSRX(5);
+	GrabArmR = new TalonSRX(10);
 #else
 	GrabArmL = new TalonSRX(4);
 	GrabArmR = new TalonSRX(11);
@@ -130,8 +130,8 @@ void LiftingTask::Init()
 	GrabWheelR = new TalonSRX(11);
 	CurrentLimit(GrabArmL, 4);														
 	CurrentLimit(GrabArmR, 4);
-	CurrentLimit(LiftMotorL, 4);
-	CurrentLimit(LiftMotorR, 4);
+	CurrentLimit(LiftMotorL, 10);
+	CurrentLimit(LiftMotorR, 10);
 	CurrentLimit(GrabWheelL, 10);
 	CurrentLimit(GrabWheelR, 10);
 

@@ -71,7 +71,7 @@ void ControlTask::Run()
 		//EnableLimit = SwitchesJoystick->GetRawAxis(3) > 0.0 ? true : false;
 	}
 	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
-	Controls->SpeedLeft = fmin(Controls->SpeedLift, -0.05);
+	//Controls->SpeedLeft = fmin(Controls->SpeedLift, -0.2);
 	std::cout << "Lift speed" << Controls->SpeedLift << std::endl;
 	//Controls->SpeedLift = fmax(Controls->SpeedLeft, 0.4);
 
@@ -123,14 +123,14 @@ void ControlTask::Run()
 
 	if (Controls->DriverType == XboxType)
 	{
-		ForwardAxis = DriveJoystick->GetRawAxis(1);
-		TwistAxis = DriveJoystick->GetRawAxis(4);
+		ForwardAxis = -DriveJoystick->GetRawAxis(1);
+		TwistAxis = -DriveJoystick->GetRawAxis(4);
 		ShiftButton = DriveJoystick->GetRawButton(6);
 	}
 	else // Controls->DriverType == JoystickType
 	{
-		ForwardAxis = DriveJoystick->GetRawAxis(1);
-		TwistAxis = DriveJoystick->GetRawAxis(2);
+		ForwardAxis = -DriveJoystick->GetRawAxis(1);
+		TwistAxis = -DriveJoystick->GetRawAxis(2);
 		ShiftButton = DriveJoystick->GetRawButton(1);
 	}
 #if COMP_BOT
