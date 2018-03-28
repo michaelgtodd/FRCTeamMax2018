@@ -11,20 +11,17 @@ ControlTask ControlTaskInstance(&taskschedule);
 
 RobotControl::RobotControl()
 {
-	DriverPreference = 0;
-	SwitchesPreference = 0;
+	DriverType = ControlType::JoystickType;
+	SwitchesType = ControlType::JoystickType;
+	DriverMode = ControlLayout::Arcade;
+	SwitchesMode = ControlLayout::Arcade;
+	DriveDebug = true;
+	SwitchesDebug = true;
 	SpeedLeft = 0;
 	SpeedRight = 0;
 	SpeedLift = 0;
 	LeftArmPosition = 180;
 	RightArmPosition = 180;
-	LiftHeight = 0;
-#if COMP_BOT
-	SolenoidPos = -1;
-#endif
-	ResetPos = false;
-	Override = false;
-	LiftLimitEnable = true;
 	StartingPos = FieldPos::Right;
 	SwitchPrioritySelection = SwitchPriority::Kyle;
 }
@@ -40,22 +37,22 @@ ControlTask::ControlTask(MaxTaskSchedule * taskschedule)
 
 void ControlTask::Run()
 {
-
 	//======================================================================================
 	// Switches Controllers
 	//======================================================================================	
 
+	/*Get inputs from joystick based on controller type*/
 	double LiftAxis;
 	bool Clamp, Neutral, StartingPos, Retract;
 	bool SpinIn, SpinOut;
-	bool EnableLimit;
+	bool EnableSwitchesDebug;
 	Joystick * SwitchesJoystick = new Joystick(2);
 
 	if (Controls->SwitchesType == XboxType)
 	{
 
 	}
-	else
+	else //Joystick arcade
 	{
 		Clamp = SwitchesJoystick->GetRawButton(1);
 		Neutral = SwitchesJoystick->GetRawButton(2);
@@ -64,38 +61,32 @@ void ControlTask::Run()
 		SpinIn = SwitchesJoystick->GetPOV() == 180 ? true : false;
 		SpinOut = SwitchesJoystick->GetPOV() == 0 ? true : false;
 		LiftAxis = SwitchesJoystick->GetRawAxis(1);
-		EnableLimit = SwitchesJoystick->GetRawAxis(3) < 0 ? true : false;
-
-		//ResetPosButton = SwitchesJoystick->GetRawButton(8);
-		//OverrideButton = SwitchesJoystick->GetRawButton(10);
-		//EnableLimit = SwitchesJoystick->GetRawAxis(3) > 0.0 ? true : false;
+		EnableSwitchesDebug = SwitchesJoystick->GetRawAxis(3) < 0 ? true : false;
 	}
-	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
-	//Controls->SpeedLeft = fmin(Controls->SpeedLift, -0.2);
-	std::cout << "Lift speed" << Controls->SpeedLift << std::endl;
-	//Controls->SpeedLift = fmax(Controls->SpeedLeft, 0.4);
 
+	/*Set lift speed*/
+	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
+	Controls->SpeedLift = fmin(Controls->SpeedLift, 0.2);
+
+	/*Set arm position*/
 	if (Neutral)
 	{
 		Controls->LeftArmPosition = 125;
-		std::cout << "pos13" << std::endl;
 	}
 	else if (Retract)
 	{
 		Controls->LeftArmPosition = 340;
-		std::cout << "retract" << std::endl;
 	}
 	else if (StartingPos)
 	{
 		Controls->LeftArmPosition = 146;
-		std::cout << "neutral" << std::endl;
 	}
 	else if (Clamp)
 	{
 		Controls->LeftArmPosition = 80;
-		std::cout << "clamp" << std::endl;
 	}
 
+	/*Set speed of grab wheels*/
 	if (SpinIn)
 		Controls->WheelSpeed = 1;
 	else if (SpinOut)
@@ -103,39 +94,29 @@ void ControlTask::Run()
 	else
 		Controls->WheelSpeed = 0;
 
-	if (EnableLimit)
-		Controls->LiftLimitEnable = true;
-	else
-		Controls->LiftLimitEnable = false;
-
+	/*Finish up*/
 	delete (SwitchesJoystick);
+	Controls->SwitchesDebug = EnableSwitchesDebug;
 	Controls->RightArmPosition = 360 - Controls->LeftArmPosition;
 
 	//======================================================================================
 	// Drive Controllers
 	//======================================================================================
 
-	/* Determine the axis and buttons that should be used. */
+	/*Get inputs from joystick based on controller type*/
 	double ForwardAxis, TwistAxis;
-	bool ShiftButton;
-
 	Joystick * DriveJoystick = new Joystick(0);
 
 	if (Controls->DriverType == XboxType)
 	{
 		ForwardAxis = -DriveJoystick->GetRawAxis(1);
 		TwistAxis = -DriveJoystick->GetRawAxis(4);
-		ShiftButton = DriveJoystick->GetRawButton(6);
 	}
-	else // Controls->DriverType == JoystickType
+	else //Joystick arcade
 	{
 		ForwardAxis = -DriveJoystick->GetRawAxis(1);
 		TwistAxis = -DriveJoystick->GetRawAxis(2);
-		ShiftButton = DriveJoystick->GetRawButton(1);
 	}
-#if COMP_BOT
-	Controls->SolenoidPos = (ShiftButton == true) ? -1 : 1;
-#endif
 	Controls->SpeedLeft = 0;
 	Controls->SpeedRight = 0;
 	double twist;
@@ -199,13 +180,6 @@ void ControlTask::Disable()
 	Controls->SpeedLift = 0;
 	Controls->LeftArmPosition = 180;
 	Controls->RightArmPosition = 180;
-	Controls->LiftHeight = 0;
-#if COMP_BOT
-	Controls->SolenoidPos = -1;
-#endif
-	Controls->ResetPos = false;
-	Controls->Override = false;
-	Controls->LiftLimitEnable = true;
 }
 
 void ControlTask::ControllerUpdate(MaxControl * controls)
@@ -215,80 +189,7 @@ void ControlTask::ControllerUpdate(MaxControl * controls)
 
 void ControlTask::Autonomous()
 {
-	//switch (Auto->StartingPos) {
-	//case Right:
-	//	if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
-	//	{
 
-	//	}
-	//	else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
-	//	{
-
-	//	}
-	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
-	//	{
-
-//	}
-//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
-//	{
-
-//	}
-//	else
-//	{
-
-//	}
-
-//	break;
-//case Center:
-//	if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
-//	{
-
-//	}
-//	else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
-//	{
-
-//	}
-//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
-//	{
-
-//	}
-//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
-//	{
-
-//	}
-//	else
-//	{
-
-//	}
-
-//	break;
-//case Left:
-//	if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
-//	{
-
-//	}
-//	else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
-//	{
-
-//	}
-//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
-//	{
-
-//	}
-//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
-//	{
-
-//	}
-//	else
-//	{
-
-//	}
-
-//	break;
-//default:
-
-//	break;
-//}
 }
 
 void ControlTask::UpdateAutonomousData(AutonomousControl AutoControlInput)

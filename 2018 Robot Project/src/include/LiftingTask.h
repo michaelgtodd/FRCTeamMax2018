@@ -40,8 +40,8 @@ private:
 	RobotControl * ControlInput;
 	TalonSRX * GrabArmL;
 	TalonSRX * GrabArmR;
-	TalonSRX * LiftMotorL;
-	TalonSRX * LiftMotorR;
+	TalonSRX * MasterMotorLift;
+	TalonSRX * SlaveMotorLift;
 	TalonSRX * GrabWheelL;
 	TalonSRX * GrabWheelR;
 };
