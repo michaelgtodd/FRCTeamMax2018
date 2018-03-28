@@ -27,23 +27,20 @@ void LiftingTask::Always()
 
 void LiftingTask::Run()
 {
+	/*Set wheel speed*/
 	GrabWheelL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->WheelSpeed);
 	GrabWheelR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, -ControlInput->WheelSpeed);
+
+	/*Set lift speed*/
 	MasterMotorLift->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
+
+	/*Get encoder data from arms*/
 	int PulseWidthPosL = GrabArmL->GetSensorCollection().GetPulseWidthPosition();
 	int PulseWidthPosR = GrabArmR->GetSensorCollection().GetPulseWidthPosition();
 	double DegreeLeftArmPosition = ((double)modulo(PulseWidthPosL - LEFT_ENCODER_OFFSET, 4096)) / 4096.0 * 360.0;
 	double DegreeRightArmPosition = ((double)modulo(PulseWidthPosR - RIGHT_ENCODER_OFFSET, 4096)) / 4096.0 * 360.0;
-	double RightError = ControlInput->RightArmPosition - DegreeRightArmPosition;
-	right_error_integrate += RightError / INTEGRATOR_DIVISOR;
-	right_error_integrate = fabs(right_error_integrate) > MAX_INTEGRATOR_ERROR ? (fabs(right_error_integrate) / right_error_integrate) * MAX_INTEGRATOR_ERROR : right_error_integrate;
-	if (fabs(RightError) < 2.0) 
-	{
-		right_error_integrate *= 0.8;
-	}
-	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, (RightError * GAIN_RIGHT) + (right_error_integrate * GAIN_RIGHT_INTEGRATE));
-	//std::cout << " Right Error: " << RightError << "Output" << RightError * GAIN << std::endl;
 
+	/*Set left arm based on encoder data*/
 	double LeftError = ControlInput->LeftArmPosition - DegreeLeftArmPosition;
 	left_error_integrate += LeftError / INTEGRATOR_DIVISOR;
 	left_error_integrate = fabs(left_error_integrate) > MAX_INTEGRATOR_ERROR ? (fabs(left_error_integrate) / left_error_integrate) * MAX_INTEGRATOR_ERROR : left_error_integrate;
@@ -52,10 +49,16 @@ void LiftingTask::Run()
 		left_error_integrate *= 0.8;
 	}
 	GrabArmL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, (LeftError * GAIN_LEFT) + (left_error_integrate * GAIN_LEFT_INTEGRATE));
-	//std::cout << "Left Error: " << LeftError << " Output: " << LeftError * GAIN << "Left Arm Position"<<DegreeLeftArmPosition << std::endl;
 
-	//std::cout << "Left A: " << DegreeLeftArmPosition << " Left Target: " << ControlInput->LeftArmPosition;// LeftError << " Left I-E: " << left_error_integrate;
-	//std::cout << " Right A: " << DegreeRightArmPosition << " Right Target: " << ControlInput->RightArmPosition << std::endl;// RightError << " Right I-E: " << right_error_integrate << std::endl;
+	/*Set right arm based on encoder data*/
+	double RightError = ControlInput->RightArmPosition - DegreeRightArmPosition;
+	right_error_integrate += RightError / INTEGRATOR_DIVISOR;
+	right_error_integrate = fabs(right_error_integrate) > MAX_INTEGRATOR_ERROR ? (fabs(right_error_integrate) / right_error_integrate) * MAX_INTEGRATOR_ERROR : right_error_integrate;
+	if (fabs(RightError) < 2.0) 
+	{
+		right_error_integrate *= 0.8;
+	}
+	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, (RightError * GAIN_RIGHT) + (right_error_integrate * GAIN_RIGHT_INTEGRATE));
 
 	/*Transmit and print data*/
 	if (runs > 4) 
@@ -74,6 +77,7 @@ void LiftingTask::Run()
 
 		if (ControlInput->SwitchesDebug == true)
 		{
+			/*Print data to dashboard*/
 			std::cout << "Left angle:  " << DegreeLeftArmPosition << std::endl;
 			std::cout << "Right angle: " << DegreeRightArmPosition << std::endl;
 		}
@@ -83,6 +87,8 @@ void LiftingTask::Run()
 void LiftingTask::Disable()
 {
 	/*Set all motors to zero*/
+	GrabWheelL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
+	GrabWheelR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	GrabArmL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	GrabArmR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	MasterMotorLift->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);

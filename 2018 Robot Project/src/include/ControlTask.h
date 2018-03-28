@@ -80,7 +80,7 @@ public:
 	void UpdateAutonomousData(AutonomousControl AutoControlInput);
 private:
 	void Init();
-	int run;
+	int runs;
 	MaxTaskSchedule * taskschedule_;
 	RobotControl * Controls;
 	AutonomousControl * Auto;

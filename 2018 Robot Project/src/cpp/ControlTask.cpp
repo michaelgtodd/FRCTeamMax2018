@@ -128,17 +128,17 @@ void ControlTask::Run()
 #endif
 		twist *= -1.0;
 		twist *= (fabs(TwistAxis) / TwistAxis);
-		run++;
+		runs++;
 	}
 	else
 	{
 		twist = 0.0;
 	}
-	if (run % 10 == 0)
+	if (runs % 10 == 0)
 	{
 		MaxLog::TransmitDouble("/twist", twist);
 		MaxLog::TransmitDouble("/twistmin", twistmin);
-		run = 0;
+		runs = 0;
 	}
 
 	Controls->SpeedLeft = (twist)+(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
@@ -204,6 +204,11 @@ void ControlTask::UpdateAutonomousData(AutonomousControl AutoControlInput)
 
 void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 {
+	//======================================================================================
+	// Get data from the dashboard
+	//======================================================================================
+
+	/*Get starting position*/
 	if (strcmp(messages.AddressPattern(), "/Dashboard/AutoPositionMessage/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -223,6 +228,7 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		}
 	}
 
+	/*Get switch priority*/
 	if (strcmp(messages.AddressPattern(), "/Dashboard/AutoSwitchPriority/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -240,9 +246,9 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		{
 			Controls->SwitchPrioritySelection = SwitchPriority::Kyle;
 		}
-		//std::cout << "Switch Priority: " << Controls->SwitchPrioritySelection << std::endl;
 	}
 
+	/*Get driver controller type*/
 	if (strcmp(messages.AddressPattern(), "/Dashboard/DriverController/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -262,6 +268,7 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		}
 	}
 
+	/*Get driver controller mode*/
 	if (strcmp(messages.AddressPattern(), "/Dashboard/DriveMode/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -281,6 +288,7 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		}
 	}
 
+	/*Get switches controller type*/
 	if (strcmp(messages.AddressPattern(), "/Dashboard/SwitchesController/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -300,6 +308,7 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		}
 	}
 
+	/*Get switches controller mode*/
 	if (strcmp(messages.AddressPattern(), "/Dashboard/SwitchesMode/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -318,13 +327,11 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 			Controls->SwitchesMode = ControlLayout::Tank;
 		}
 	}
-
 }
 
 void ControlTask::Init()
 {
 	Controls = new RobotControl();
-	run = 0;
-
+	runs = 0;
 	debugCounter = 0;
 }
