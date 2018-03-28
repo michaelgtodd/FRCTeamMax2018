@@ -17,7 +17,7 @@ void DrivingTask::Run()
 	runs++;
 	if (runs % 50 == 0)
 	{
-		if (ControlInput->DriveDebug == true)
+		if (ControlInput->DebugPrints == true)
 		{
 			std::cout << "Speed Left:  " << ControlInput->SpeedLeft << std::endl;
 			std::cout << "Speed Right: " << ControlInput->SpeedRight << std::endl;

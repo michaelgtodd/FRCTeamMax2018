@@ -15,8 +15,8 @@ RobotControl::RobotControl()
 	SwitchesType = ControlType::JoystickType;
 	DriverMode = ControlLayout::Arcade;
 	SwitchesMode = ControlLayout::Arcade;
-	DriveDebug = true;
-	SwitchesDebug = true;
+	DebugPrints = true;
+	Override = true;
 	SpeedLeft = 0;
 	SpeedRight = 0;
 	SpeedLift = 0;
@@ -45,7 +45,7 @@ void ControlTask::Run()
 	double LiftAxis;
 	bool Clamp, Neutral, StartingPos, Retract;
 	bool SpinIn, SpinOut;
-	bool EnableSwitchesDebug;
+	bool OverrideLimit;
 	Joystick * SwitchesJoystick = new Joystick(2);
 
 	if (Controls->SwitchesType == XboxType)
@@ -61,7 +61,7 @@ void ControlTask::Run()
 		SpinIn = SwitchesJoystick->GetPOV() == 180 ? true : false;
 		SpinOut = SwitchesJoystick->GetPOV() == 0 ? true : false;
 		LiftAxis = SwitchesJoystick->GetRawAxis(1);
-		EnableSwitchesDebug = SwitchesJoystick->GetRawAxis(3) < 0 ? true : false;
+		OverrideLimit = SwitchesJoystick->GetRawAxis(3) < 0 ? true : false;
 	}
 
 	/*Set lift speed*/
@@ -96,8 +96,8 @@ void ControlTask::Run()
 
 	/*Finish up*/
 	delete (SwitchesJoystick);
-	Controls->SwitchesDebug = EnableSwitchesDebug;
 	Controls->RightArmPosition = 360 - Controls->LeftArmPosition;
+	Controls->Override = OverrideLimit;
 
 	//======================================================================================
 	// Drive Controllers
@@ -105,6 +105,7 @@ void ControlTask::Run()
 
 	/*Get inputs from joystick based on controller type*/
 	double ForwardAxis, TwistAxis;
+	bool EnableDebug;
 	Joystick * DriveJoystick = new Joystick(0);
 
 	if (Controls->DriverType == XboxType)
@@ -116,6 +117,7 @@ void ControlTask::Run()
 	{
 		ForwardAxis = -DriveJoystick->GetRawAxis(1);
 		TwistAxis = -DriveJoystick->GetRawAxis(2);
+		EnableDebug = DriveJoystick->GetRawAxis(3) > 0 ? true : false;
 	}
 	Controls->SpeedLeft = 0;
 	Controls->SpeedRight = 0;
@@ -143,6 +145,7 @@ void ControlTask::Run()
 
 	Controls->SpeedLeft = (twist)+(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
 	Controls->SpeedRight = (twist)-(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
+	Controls->DebugPrints = EnableDebug;
 	delete (DriveJoystick);
 	//std::cout << "About to send" << std::endl;
 }
@@ -152,6 +155,7 @@ void ControlTask::Always()
 	//======================================================================================
 	// Autonomous Selection
 	//======================================================================================
+	
 	switch (Controls->StartingPos)
 	{
 	case FieldPos::Left:
@@ -169,8 +173,8 @@ void ControlTask::Always()
 	default:
 		break;
 	}
-	// This must remain in Always()
-	taskschedule_->DispatchControl(Controls);
+
+	taskschedule_->DispatchControl(Controls); // This must remain in Always()
 }
 
 void ControlTask::Disable()

@@ -9,20 +9,7 @@ int modulo(int x, int N)
 
 void LiftingTask::Always()
 {
-	int PulseWidthPosL = GrabArmL->GetSensorCollection().GetPulseWidthPosition();
-	int PulseWidthPosR = GrabArmR->GetSensorCollection().GetPulseWidthPosition();
 
-	/*Print data to dashboard*/
-	runs++;
-	if (runs > 4)
-	{
-		if (ControlInput->SwitchesDebug == true)
-		{
-			std::cout << "Left Arm Encoder:  " << modulo(PulseWidthPosL, 4096) << std::endl;
-			std::cout << "Right Arm Encoder: " << modulo(PulseWidthPosR, 4096) << std::endl;
-		}
-		runs = 0;
-	}
 }
 
 void LiftingTask::Run()
@@ -30,6 +17,18 @@ void LiftingTask::Run()
 	/*Set wheel speed*/
 	GrabWheelL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->WheelSpeed);
 	GrabWheelR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, -ControlInput->WheelSpeed);
+
+	/*Determine if lift limit should be enabled*/
+	if (ControlInput->Override == false) //Limit enabled
+	{
+		MasterMotorLift->ConfigForwardSoftLimitEnable(true, 0);
+		MasterMotorLift->ConfigReverseSoftLimitEnable(true, 0);
+	}
+	else //Limit disabled
+	{
+		MasterMotorLift->ConfigForwardSoftLimitEnable(false, 0);
+		MasterMotorLift->ConfigReverseSoftLimitEnable(false, 0);
+	}
 
 	/*Set lift speed*/
 	MasterMotorLift->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->SpeedLift);
@@ -75,7 +74,7 @@ void LiftingTask::Run()
 		MaxLog::TransmitDouble("/lift/left/actual", DegreeLeftArmPosition);
 		MaxLog::TransmitDouble("/lift/right/actual", DegreeRightArmPosition);
 
-		if (ControlInput->SwitchesDebug == true)
+		if (ControlInput->DebugPrints == true)
 		{
 			/*Print data to dashboard*/
 			std::cout << "Left angle:  " << DegreeLeftArmPosition << std::endl;
@@ -94,6 +93,20 @@ void LiftingTask::Disable()
 	MasterMotorLift->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);
 	MasterMotorLift->SetSelectedSensorPosition(0, 0, 0);
 	MasterMotorLift->GetSensorCollection().SetQuadraturePosition(0, 0);
+
+	/*Get encoder data and print it to the dashboard*/
+	int PulseWidthPosL = GrabArmL->GetSensorCollection().GetPulseWidthPosition();
+	int PulseWidthPosR = GrabArmR->GetSensorCollection().GetPulseWidthPosition();
+
+	runs++;
+	if (runs > 4)
+	{
+		if (ControlInput->DebugPrints == true)
+		{
+			std::cout << "Encoder values: " << modulo(PulseWidthPosL, 4096) << " | " << modulo(PulseWidthPosR, 4096) << std::endl;
+		}
+		runs = 0;
+	}
 }
 
 void LiftingTask::Autonomous()

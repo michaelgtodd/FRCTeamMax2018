@@ -44,8 +44,8 @@ public:
 	ControlType SwitchesType;
 	ControlLayout DriverMode;
 	ControlLayout SwitchesMode;
-	bool DriveDebug;
-	bool SwitchesDebug;
+	bool DebugPrints;
+	bool Override;
 	double SpeedLeft;
 	double SpeedRight;
 	double SpeedLift;
