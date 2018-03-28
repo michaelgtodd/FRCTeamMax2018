@@ -9,7 +9,7 @@ void AutonomousCenter::Init()
 {
 	MaxLog::LogInfo("Starting Center Auto");
 
-	//Get field data
+	/*Get field data*/
 	std::string gameData;
 	gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
 	if (gameData.length() >= 3)
@@ -19,20 +19,19 @@ void AutonomousCenter::Init()
 		FarSwitchPosition = gameData[2] == 'L' ? FieldPos::Left : FieldPos::Right;
 	}
 
+	/*Print field data to dashboard*/
 	std::cout << "Position: Center | Switch Priority: " << SwitchPriorityInput << std::endl;
 	std::cout << "Game String: " << gameData << std::endl;
 	std::cout << "Switch: " << SwitchPosition << " Scale: " << ScalePosition << " Far Switch: " << FarSwitchPosition << std::endl;
-	StartTime = Timer::GetFPGATimestamp();
-	LastMessage = 0;
-	stage = 0;
 
-	AutoMotorLeft = new TalonSRX(0);
-	AutoMotorRight = new TalonSRX(15);
+	/*Define Talons for sensor input*/
 	AutoMotorLift = new TalonSRX(12);
-	AutoPosArmLeft = new TalonSRX(5);
-	AutoPosArmRight = new TalonSRX(10);
 	DummyTalon = new TalonSRX(1);
 	PigeonInput = new PigeonIMU(DummyTalon);
+
+	/*Reset*/
+	StartTime = Timer::GetFPGATimestamp();
+	Brake();
 	ResetSensor();
 }
 
@@ -43,48 +42,46 @@ void AutonomousCenter::ControllerUpdate(MaxControl * controls)
 
 void AutonomousCenter::Autonomous()
 {
-		//Move Foward
-		switch (stage)
-		{
-		case 0:
-			//Reset
-			StageStartTime = Timer::GetFPGATimestamp();
-			ResetSensor();
-			stage++;
-			std::cout << "Stage 0" << std::endl;
-			break;
-		case 1:
-			//Clamp
-			control.ArmPositionRight = 280;
-			control.ArmPositionLeft = 80;
-			Brake();
-			if ((Timer::GetFPGATimestamp() - StageStartTime) > 0.1)
-				stage++;
-			std::cout << "Stage 1" << std::endl;
-			break;
-		case 2:
-			//Drive Forward
-			if (Drive(70.0, 0.5, 2.0))
-			{
-				Brake();
-				ResetSensor();
-				StageStartTime = Timer::GetFPGATimestamp();
-				std::cout << "Reached 50 inches. Preparing to turn." << std::endl;
-				stage++;
-			}
-			std::cout << "Stage 2" << std::endl;
-			break;
-		case 3:
-			//Wait
-			if ((Timer::GetFPGATimestamp() - StageStartTime) > 0.1)
-				stage++;
-			std::cout << "Stage 3" << std::endl;
-			break;
-		default:
-			std::cout << "default stage" << std::endl;
-			break;
-		}
+	/*Update variables*/
+	CurrentTime = Timer::GetFPGATimestamp();
+	PigeonInput->GetYawPitchRoll(YPR);
+	Yaw = YPR[1];
 
+	/*Print data to dashboard*/
+	runs++;
+	if (runs >= 50)
+	{
+		std::cout << "Yaw: " << Yaw << std::endl;
+		runs = 0;
+	}
+
+	/*Cross auto line*/
+	switch (stage)
+	{
+	case 0:
+		/*Clamp cube*/
+		control.ArmPositionLeft = 280;
+		control.ArmPositionRight = 80;
+		Brake();
+		std::cout << "Stage 0 completed." << std::endl;
+		stage++;
+		break;
+	case 1:
+		/*Drive forward*/
+		Drive(0.75, 0.5);
+		if (TimePassed(7.5)) //If 7.5 seconds passed
+		{
+			Brake();
+			ResetSensor();
+			std::cout << " Stage 1 completed." << std::endl;
+			stage++;
+		}
+		break;
+	default:
+		break;
+	}
+
+	/*Send data to Driving and Lifting Task*/
 	ControlTaskInstance.UpdateAutonomousData(control);
 }
 
@@ -96,65 +93,53 @@ void AutonomousCenter::End()
 	MaxLog::LogInfo("Ending Auto after " + std::to_string(LastMessage) + " seconds");
 }
 
-bool AutonomousCenter::Move(double DistanceInInches, double SpeedLimit, double ToleranceInInches)
+void AutonomousCenter::Drive(double SpeedMax, double SpeedMin)
 {
-	//Convert Distance and Tolerance to Ticks
-	double DistanceInTicks = InchesToTicks(DistanceInInches);
-	double ToleranceInTicks = InchesToTicks(ToleranceInInches);
+	/*Ensure all values are non-zero*/
+	LeftSpeed = LeftSpeed == 0 ? SpeedMax * 0.75 : LeftSpeed;
+	RightSpeed = RightSpeed == 0 ? SpeedMax * 0.75 : RightSpeed;
+	LeftSpeed = fmax(fmin(LeftSpeed, SpeedMax), SpeedMin);
+	RightSpeed = fmax(fmin(RightSpeed, SpeedMax), SpeedMin);
 
-	//Set the initial gains
-	double RightGain = 0.000025, LeftGain = 0.000025;
-	double InitialSpeed = 0.8 * SpeedLimit;
-	
-	//Set the target distance and find remaining distance
-	RightTarget = DistanceInTicks, LeftTarget = DistanceInTicks;
-	RightTravel = AutoMotorRight->GetSensorCollection().GetQuadraturePosition();
-	LeftTravel = AutoMotorLeft->GetSensorCollection().GetQuadraturePosition();
+	/*Determine which speed needs to be increased*/
+	if (Yaw < -TurnTolerance) //Tilting to the left
+	{
+		if (RightSpeed == SpeedMin) //Left speed needs to be increased
+		{
+			LeftSpeed = LeftSpeed * 1.05;
+		}
+		else if (LeftSpeed == SpeedMax) //Right speed needs to be decreased
+		{
+			RightSpeed = RightSpeed * 0.95;
+		}
+		else //Neither speed is significantly larger
+		{
+			LeftSpeed = LeftSpeed * 1.05;
+			RightSpeed = RightSpeed * 0.95;
+		}
+	}
+	else if (Yaw > TurnTolerance) //Tilting to the right
+	{
+		if (LeftSpeed == SpeedMax) //Left speed needs to be decreased
+		{
+			LeftSpeed = LeftSpeed * 0.95;
+		}
+		else if (RightSpeed == SpeedMin) //Right speed needs to be increased
+		{
+			RightSpeed = RightSpeed * 1.05;
+		}
+		else //Neither speed is significantly larger
+		{
+			LeftSpeed = LeftSpeed * 0.95;
+			RightSpeed = RightSpeed * 1.05;
+		}
+	}
 
-
-	return false;
-}
-
-bool AutonomousCenter::Drive(double DistanceInInches, double SpeedLimit, double ToleranceInInches)
-{
-	// Convert Distance and Tolerance to Ticks
-	double DistanceInTicks = InchesToTicks(DistanceInInches);
-	double ToleranceInTicks = InchesToTicks(ToleranceInInches);
-
-	// Set the constant gains.
-	const double RightGain = 0.0001, LeftGain = 0.0001;
-
-	// Set the Targets and Errors (Error is Target Minus Present Position)
-	RightTarget = DistanceInTicks, LeftTarget = DistanceInTicks;
-	RightError = RightTarget - fabs(AutoMotorRight->GetSensorCollection().GetQuadraturePosition());
-	LeftError = LeftTarget - fabs(AutoMotorLeft->GetSensorCollection().GetQuadraturePosition());
-
-	// Set the powers to 0 if we're within tolerance. If not, set to Error * Gain.
-	double RightPower = fabs(RightError) < ToleranceInTicks ? 0 : RightError * RightGain;
-	double LeftPower = fabs(LeftError) < ToleranceInTicks ? 0 : LeftError * LeftGain;
-
-	// Apply a cap power for the max and minimum speed limits.
-	RightPower = fmin(RightPower, -SpeedLimit);
-	RightPower = fmax(RightPower, SpeedLimit);
-	LeftPower = fmin(LeftPower, -SpeedLimit);
-	LeftPower = fmax(LeftPower, SpeedLimit);
-
-	// Set the active power.
-	control.SpeedRight = RightPower;
-	control.SpeedLeft = -LeftPower;
-
-	// Testing prints.
-	//std::cout << "Target: " << LeftTarget << " | " << RightTarget << std::endl;
-	std::cout << "Target - Distance Traveled: " << LeftError << " | " << RightError << std::endl;
-	std::cout << "Power: " << LeftPower << " | " << RightPower << std::endl;
-	//std::cout << "Tolerance in Ticks: " << ToleranceInTicks << std::endl;
-
-	// Skip to the next stage if we're within our tolerance.
-	if (fabs(AutoMotorRight->GetSensorCollection().GetQuadraturePosition()) > RightTarget && 
-		fabs(AutoMotorLeft->GetSensorCollection().GetQuadraturePosition()) > LeftTarget)
-		return true;
-	else
-		return false;
+	/*Set speed*/
+	LeftSpeed = fmax(fmin(LeftSpeed, SpeedMax), SpeedMin);
+	RightSpeed = fmax(fmin(RightSpeed, SpeedMax), SpeedMin);
+	control.SpeedLeft = LeftSpeed;
+	control.SpeedRight = RightSpeed;
 }
 
 bool AutonomousCenter::Turn(double Degrees, double SpeedLimit, double Tolerance)
@@ -164,14 +149,12 @@ bool AutonomousCenter::Turn(double Degrees, double SpeedLimit, double Tolerance)
 
 bool AutonomousCenter::Lift(double Height, double SpeedLimit, double Tolerance)
 {
-	double Gain = 0.00005;
-	LiftTarget = Height;
-	LiftError = LiftTarget - AutoMotorLift->GetSensorCollection().GetQuadraturePosition();
-	double Power = fabs(LiftError) > Tolerance ? 0 : LiftError * Gain;
-	Power = fmin(Power, -SpeedLimit);
-	Power = fmax(Power, SpeedLimit);
-	control.SpeedLift = Power;
-	if (fabs(LiftError) > Tolerance)
+
+}
+
+bool AutonomousCenter::TimePassed(double Time)
+{
+	if (CurrentTime - StartTime > Time)
 		return true;
 	else
 		return false;
@@ -181,23 +164,13 @@ void AutonomousCenter::Brake()
 {
 	control.SpeedRight = 0;
 	control.SpeedLeft = 0;
-	RightTarget = 0;
-	LeftTarget = 0;
-	RightError = 0;
-	LeftError = 0;
+	LeftSpeed = 0;
+	RightSpeed = 0;
 }
 
 void AutonomousCenter::ResetSensor()
 {
-	AutoMotorLeft->SetSelectedSensorPosition(0, 0, 0);
-	AutoMotorLeft->GetSensorCollection().SetQuadraturePosition(0, 0);
-	AutoMotorRight->SetSelectedSensorPosition(0, 0, 0);
-	AutoMotorRight->GetSensorCollection().SetQuadraturePosition(0, 0);
-}
 
-double AutonomousCenter::InchesToTicks(double Inches)
-{
-	return Inches * 1666.667;
 }
 
 std::string AutonomousCenter::GetName()
