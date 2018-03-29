@@ -10,8 +10,8 @@ void DrivingTask::Always()
 void DrivingTask::Run()
 {
 	/*Set motor speed using data from joystick*/
-	MasterMotorLeft->Set(ControlMode::PercentOutput, -ControlInput->SpeedLeft);
-	MasterMotorRight->Set(ControlMode::PercentOutput, -ControlInput->SpeedRight);
+	MasterMotorLeft->Set(ControlMode::PercentOutput, ControlInput->SpeedLeft);
+	MasterMotorRight->Set(ControlMode::PercentOutput, ControlInput->SpeedRight);
 
 	/*Print data to dashboard*/
 	runs++;

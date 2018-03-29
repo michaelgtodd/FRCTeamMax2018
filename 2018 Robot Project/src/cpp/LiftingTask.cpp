@@ -135,8 +135,8 @@ void LiftingTask::Init()
 	/*Configure current limits*/
 	CurrentLimit(GrabArmL, 4);														
 	CurrentLimit(GrabArmR, 4);
-	CurrentLimit(MasterMotorLift, 10);
-	CurrentLimit(SlaveMotorLift, 10);
+	CurrentLimit(MasterMotorLift, 20);
+	CurrentLimit(SlaveMotorLift, 20);
 	CurrentLimit(GrabWheelL, 10);
 	CurrentLimit(GrabWheelR, 10);
 
