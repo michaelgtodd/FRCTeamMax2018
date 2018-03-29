@@ -26,8 +26,9 @@ private:
 	double RunTime = 0;
 	int LastMessage = 0;
 	double LeftSpeed = 0, RightSpeed = 0;
-	double Yaw = 0, YPR[3];
-	const double TurnTolerance = 5;
+	double Yaw = 0, YPR[3], InitialYaw;
+	const double TurnTolerance = 2;
+	const bool PigeonEnable = true;
 	AutonomousControl control;
 	SwitchPriority SwitchPriorityInput;
 	FieldPos SwitchPosition;

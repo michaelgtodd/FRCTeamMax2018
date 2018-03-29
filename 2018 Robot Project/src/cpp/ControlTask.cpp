@@ -65,7 +65,8 @@ void ControlTask::Run()
 	}
 
 	/*Set lift speed*/
-	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
+	Controls->SpeedLift = (fabs(LiftAxis) > 0.15) ? LiftAxis : 0;
+	Controls->SpeedLift = fmax(fmin(Controls->SpeedLift, 0.75), -0.2);
 
 	/*Set arm position*/
 	if (Neutral)

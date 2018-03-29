@@ -74,6 +74,7 @@ void LiftingTask::Run()
 		MaxLog::TransmitDouble("/lift/left/actual", DegreeLeftArmPosition);
 		MaxLog::TransmitDouble("/lift/right/actual", DegreeRightArmPosition);
 
+		std::cout << "Lift position: " << MasterMotorLift->GetSensorCollection().GetQuadraturePosition() << std::endl;
 		if (ControlInput->DebugPrints == true)
 		{
 			/*Print data to dashboard*/
@@ -103,7 +104,7 @@ void LiftingTask::Disable()
 	{
 		if (ControlInput->DebugPrints == true)
 		{
-			std::cout << "Encoder values: " << modulo(PulseWidthPosL, 4096) << " | " << modulo(PulseWidthPosR, 4096) << std::endl;
+			//std::cout << "Encoder values: " << modulo(PulseWidthPosL, 4096) << " | " << modulo(PulseWidthPosR, 4096) << std::endl;
 		}
 		runs = 0;
 	}
@@ -135,8 +136,8 @@ void LiftingTask::Init()
 	/*Configure current limits*/
 	CurrentLimit(GrabArmL, 4);														
 	CurrentLimit(GrabArmR, 4);
-	CurrentLimit(MasterMotorLift, 20);
-	CurrentLimit(SlaveMotorLift, 20);
+	CurrentLimit(MasterMotorLift, 15);
+	CurrentLimit(SlaveMotorLift, 15);
 	CurrentLimit(GrabWheelL, 10);
 	CurrentLimit(GrabWheelR, 10);
 

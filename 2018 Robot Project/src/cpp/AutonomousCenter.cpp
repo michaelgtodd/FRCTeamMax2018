@@ -26,7 +26,7 @@ void AutonomousCenter::Init()
 
 	/*Define Talons for sensor input*/
 	AutoMotorLift = new TalonSRX(12);
-	DummyTalon = new TalonSRX(1);
+	DummyTalon = new TalonSRX(14);
 	PigeonInput = new PigeonIMU(DummyTalon);
 
 	/*Reset*/
@@ -45,40 +45,65 @@ void AutonomousCenter::Autonomous()
 	/*Update variables*/
 	CurrentTime = Timer::GetFPGATimestamp();
 	PigeonInput->GetYawPitchRoll(YPR);
-	Yaw = YPR[1];
+	Yaw = InitialYaw - YPR[0];
 
 	/*Print data to dashboard*/
 	runs++;
-	if (runs >= 50)
+	if (runs >= 20)
 	{
-		std::cout << "Yaw: " << Yaw << std::endl;
+		std::cout << "Yaw:   " << Yaw << std::endl;
+		//std::cout << "Speed: " << LeftSpeed << " | " << RightSpeed << std::endl;
 		runs = 0;
 	}
 
-	/*Cross auto line*/
-	switch (stage)
+	if (SwitchPriorityInput == SwitchPriority::No)
 	{
-	case 0:
-		/*Clamp cube*/
-		control.ArmPositionLeft = 280;
-		control.ArmPositionRight = 80;
-		Brake();
-		std::cout << "Stage 0 completed." << std::endl;
-		stage++;
-		break;
-	case 1:
-		/*Drive forward*/
-		Drive(0.75, 0.5);
-		if (TimePassed(7.5)) //If 7.5 seconds passed
+		/*Cross auto line*/
+		switch (stage)
 		{
+		case 0:
+			/*Clamp cube*/
+			control.ArmPositionLeft = 40;
+			control.ArmPositionRight = 320;
 			Brake();
 			ResetSensor();
-			std::cout << " Stage 1 completed." << std::endl;
+			std::cout << "Stage 0 completed." << std::endl;
 			stage++;
+			break;
+		case 1:
+			/*Drive forward*/
+			Drive(0.75, 1);
+			if (TimePassed(7.5)) //If 7.5 seconds passed
+			{
+				Brake();
+				ResetSensor();
+				std::cout << " Stage 1 completed." << std::endl;
+				stage++;
+			}
+			break;
+		default:
+			break;
 		}
-		break;
-	default:
-		break;
+	}
+	else if (SwitchPriorityInput == SwitchPriority::Yes)
+	{
+		/*Cross auto line*/
+		switch (stage)
+		{
+		case 0:
+			/*Clamp cube*/
+			control.ArmPositionLeft = 40;
+			control.ArmPositionRight = 320;
+			Brake();
+			ResetSensor();
+			std::cout << "Stage 0 completed." << std::endl;
+			stage++;
+			break;
+		case 1:
+			/*Drive forward*/
+		default:
+			break;
+		}
 	}
 
 	/*Send data to Driving and Lifting Task*/
@@ -138,8 +163,8 @@ void AutonomousCenter::Drive(double SpeedMax, double SpeedMin)
 	/*Set speed*/
 	LeftSpeed = fmax(fmin(LeftSpeed, SpeedMax), SpeedMin);
 	RightSpeed = fmax(fmin(RightSpeed, SpeedMax), SpeedMin);
-	control.SpeedLeft = LeftSpeed;
-	control.SpeedRight = RightSpeed;
+	control.SpeedLeft = PigeonEnable == false ? SpeedMax : LeftSpeed;
+	control.SpeedRight = PigeonEnable == false ? SpeedMax : -RightSpeed;
 }
 
 bool AutonomousCenter::Turn(double Degrees, double SpeedLimit, double Tolerance)
@@ -170,7 +195,9 @@ void AutonomousCenter::Brake()
 
 void AutonomousCenter::ResetSensor()
 {
-
+	//PigeonInput->SetYaw(0, 5);
+	PigeonInput->GetYawPitchRoll(YPR);
+	InitialYaw = YPR[0];
 }
 
 std::string AutonomousCenter::GetName()

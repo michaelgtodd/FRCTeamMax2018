@@ -19,8 +19,8 @@ void DrivingTask::Run()
 	{
 		if (ControlInput->DebugPrints == true)
 		{
-			std::cout << "Speed Left:  " << ControlInput->SpeedLeft << std::endl;
-			std::cout << "Speed Right: " << ControlInput->SpeedRight << std::endl;
+			//std::cout << "Speed Left:  " << ControlInput->SpeedLeft << std::endl;
+			//std::cout << "Speed Right: " << ControlInput->SpeedRight << std::endl;
 		}
 		runs = 0;
 	}
@@ -74,7 +74,7 @@ void DrivingTask::ConfigureCurrentLimit(TalonSRX * talon)
 	talon->ConfigPeakCurrentDuration(0, 0);
 	talon->EnableCurrentLimit(true);
 	talon->ConfigClosedloopRamp(0.3, 10);
-	talon->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Coast);
+	talon->SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
 	talon->ConfigVoltageCompSaturation(12.0, 10);
 	talon->EnableVoltageCompensation(true);
 	talon->ConfigVoltageMeasurementFilter(32, 10);
