@@ -66,12 +66,11 @@ void ControlTask::Run()
 
 	/*Set lift speed*/
 	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
-	Controls->SpeedLift = fmin(Controls->SpeedLift, 0.2);
 
 	/*Set arm position*/
 	if (Neutral)
 	{
-		Controls->LeftArmPosition = 125;
+		Controls->LeftArmPosition = 110;
 	}
 	else if (Retract)
 	{

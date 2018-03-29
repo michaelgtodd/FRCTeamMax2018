@@ -252,6 +252,8 @@ namespace _2018_Main_Dashboard
         {
             while (true)
             {
+                try
+                {
                     Application.Current.Dispatcher.BeginInvoke(
                   DispatcherPriority.Background,
                   new Action(() => DriverWidget.UpdateJoystickWidget(ControllerData0, ControllerData1)));
@@ -259,6 +261,8 @@ namespace _2018_Main_Dashboard
                   DispatcherPriority.Background,
                   new Action(() => SwitchesWidget.UpdateJoystickWidget(ControllerData2, ControllerData3)));
                     Thread.Sleep(1);
+                }
+                catch (NullReferenceException) { }
             }
         }
 
@@ -298,6 +302,16 @@ namespace _2018_Main_Dashboard
             System.Threading.Thread UpdateAlerts =
                 new System.Threading.Thread(new System.Threading.ThreadStart(TaskRunner));
             UpdateAlerts.Start();
+        }
+
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            Application.Current.Shutdown();
+
+            Environment.Exit(0);
         }
     }
 }
