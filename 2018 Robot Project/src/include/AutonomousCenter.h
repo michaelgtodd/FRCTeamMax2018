@@ -12,6 +12,7 @@ public:
 	void Autonomous();
 	void End();
 	void Drive(double SpeedMin, double SpeedMax);
+	void Drive2(double IdealSpeed);
 	bool Lift(double Ticks, double SpeedLimit, double Tolerance);
 	bool Turn(double Degrees, double SpeedLimit, double Tolerance);
 	bool TimePassed(double Time);

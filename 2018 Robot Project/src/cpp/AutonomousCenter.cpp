@@ -118,6 +118,24 @@ void AutonomousCenter::End()
 	MaxLog::LogInfo("Ending Auto after " + std::to_string(LastMessage) + " seconds");
 }
 
+void AutonomousCenter::Drive2(double IdealSpeed)
+{
+	const double YawGain = 0.01;
+	const double MaxYawContribution = 0.3;
+
+	double YawCorrection = YawGain * Yaw;
+
+	YawCorrection = fmax(fmin(MaxYawContribution, YawGain), -MaxYawContribution);
+
+	control.SpeedRight = PigeonEnable == false ? IdealSpeed : IdealSpeed + YawCorrection;
+	control.SpeedLeft = PigeonEnable == false ? IdealSpeed : IdealSpeed - YawCorrection;
+
+	if (runs == 0)
+	{
+		std::cout << "YawCorrection: " << YawCorrection << std::endl;
+	}
+}
+
 void AutonomousCenter::Drive(double SpeedMax, double SpeedMin)
 {
 	/*Ensure all values are non-zero*/
