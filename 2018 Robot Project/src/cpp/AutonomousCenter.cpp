@@ -51,8 +51,8 @@ void AutonomousCenter::Autonomous()
 	runs++;
 	if (runs >= 20)
 	{
-		std::cout << "Yaw:   " << Yaw << std::endl;
-		//std::cout << "Speed: " << LeftSpeed << " | " << RightSpeed << std::endl;
+		std::cout << "Yaw: " << Yaw << std::endl;
+		std::cout << "Speed: " << LeftSpeed << " | " << RightSpeed << std::endl;
 		runs = 0;
 	}
 
@@ -131,32 +131,32 @@ void AutonomousCenter::Drive(double SpeedMax, double SpeedMin)
 	{
 		if (RightSpeed == SpeedMin) //Left speed needs to be increased
 		{
-			LeftSpeed = LeftSpeed * 1.05;
+			LeftSpeed = LeftSpeed * (1 + TurnAdjustment);
 		}
 		else if (LeftSpeed == SpeedMax) //Right speed needs to be decreased
 		{
-			RightSpeed = RightSpeed * 0.95;
+			RightSpeed = RightSpeed * (1 - TurnAdjustment);
 		}
 		else //Neither speed is significantly larger
 		{
-			LeftSpeed = LeftSpeed * 1.05;
-			RightSpeed = RightSpeed * 0.95;
+			LeftSpeed = LeftSpeed * (1 + TurnAdjustment);
+			RightSpeed = RightSpeed * (1 - TurnAdjustment);
 		}
 	}
 	else if (Yaw > TurnTolerance) //Tilting to the right
 	{
 		if (LeftSpeed == SpeedMax) //Left speed needs to be decreased
 		{
-			LeftSpeed = LeftSpeed * 0.95;
+			LeftSpeed = LeftSpeed * (1 - TurnAdjustment);
 		}
 		else if (RightSpeed == SpeedMin) //Right speed needs to be increased
 		{
-			RightSpeed = RightSpeed * 1.05;
+			RightSpeed = RightSpeed * (1 + TurnAdjustment);
 		}
 		else //Neither speed is significantly larger
 		{
-			LeftSpeed = LeftSpeed * 0.95;
-			RightSpeed = RightSpeed * 1.05;
+			LeftSpeed = LeftSpeed * (1 - TurnAdjustment);
+			RightSpeed = RightSpeed * (1 + TurnAdjustment);
 		}
 	}
 
