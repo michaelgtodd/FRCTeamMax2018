@@ -11,20 +11,17 @@ ControlTask ControlTaskInstance(&taskschedule);
 
 RobotControl::RobotControl()
 {
-	DriverPreference = 0;
-	SwitchesPreference = 0;
+	DriverType = ControlType::JoystickType;
+	SwitchesType = ControlType::JoystickType;
+	DriverMode = ControlLayout::Arcade;
+	SwitchesMode = ControlLayout::Arcade;
+	DebugPrints = true;
+	Override = true;
 	SpeedLeft = 0;
 	SpeedRight = 0;
 	SpeedLift = 0;
 	LeftArmPosition = 180;
 	RightArmPosition = 180;
-	LiftHeight = 0;
-#if COMP_BOT
-	SolenoidPos = -1;
-#endif
-	ResetPos = false;
-	Override = false;
-	LiftLimitEnable = true;
 	StartingPos = FieldPos::Right;
 	SwitchPrioritySelection = SwitchPriority::Kyle;
 }
@@ -40,148 +37,115 @@ ControlTask::ControlTask(MaxTaskSchedule * taskschedule)
 
 void ControlTask::Run()
 {
-
 	//======================================================================================
 	// Switches Controllers
 	//======================================================================================	
 
+	/*Get inputs from joystick based on controller type*/
 	double LiftAxis;
-	bool Clamp, Eject;
-	bool Spin11Inch, Spin13Inch, NoSpin11Inch, NoSpin13Inch;
+	bool Clamp, Neutral, StartingPos, Retract;
 	bool SpinIn, SpinOut;
-	bool Neutral, Retract;
-	bool AutoReset;
+	bool OverrideLimit;
 	Joystick * SwitchesJoystick = new Joystick(2);
 
 	if (Controls->SwitchesType == XboxType)
 	{
 
 	}
-	else
+	else //Joystick arcade
 	{
 		Clamp = SwitchesJoystick->GetRawButton(1);
-		Eject = SwitchesJoystick->GetRawButton(2);
-		Spin11Inch = SwitchesJoystick->GetRawButton(3);
-		Spin13Inch = SwitchesJoystick->GetRawButton(4);
-		NoSpin11Inch = SwitchesJoystick->GetRawButton(5);
-		NoSpin13Inch = SwitchesJoystick->GetRawButton(6);
-		SpinIn = SwitchesJoystick->GetRawButton(7);
-		SpinOut = SwitchesJoystick->GetRawButton(8);
-		Neutral = SwitchesJoystick->GetRawButton(9) || SwitchesJoystick->GetPOV(180);
-		Retract = SwitchesJoystick->GetRawButton(10);
-		AutoReset = SwitchesJoystick->GetRawAxis(4) >= 0.5 ? true : false;
+		Neutral = SwitchesJoystick->GetRawButton(2);
+		StartingPos = SwitchesJoystick->GetRawButton(7);
+		Retract = SwitchesJoystick->GetRawButton(8);
+		SpinIn = SwitchesJoystick->GetPOV() == 180 ? true : false;
+		SpinOut = SwitchesJoystick->GetPOV() == 0 ? true : false;
 		LiftAxis = SwitchesJoystick->GetRawAxis(1);
-
-		//ResetPosButton = SwitchesJoystick->GetRawButton(8);
-		//OverrideButton = SwitchesJoystick->GetRawButton(10);
-		//EnableLimit = SwitchesJoystick->GetRawAxis(3) > 0.0 ? true : false;
+		OverrideLimit = SwitchesJoystick->GetRawAxis(3) < 0 ? true : false;
 	}
-	Controls->SpeedLift = (fabs(LiftAxis) > 0.25) ? LiftAxis : 0;
 
-	Controls->WheelSpeed = 0;
+	/*Set lift speed*/
+	Controls->SpeedLift = (fabs(LiftAxis) > 0.15) ? LiftAxis : 0;
+	Controls->SpeedLift = fmax(fmin(Controls->SpeedLift, 0.75), -0.2);
 
-	if (Neutral && AutoReset == false)
+	/*Set arm position*/
+	if (Neutral)
 	{
-		Controls->LeftArmPosition = 180;
-		Controls->RightArmPosition = 180;
+		Controls->LeftArmPosition = 110;
 	}
 	else if (Retract)
 	{
-		Controls->LeftArmPosition = 300;
-		Controls->RightArmPosition = 60;
+		Controls->LeftArmPosition = 340;
 	}
-	else if (Spin13Inch || NoSpin13Inch)
+	else if (StartingPos)
 	{
-		Controls->LeftArmPosition = 120;
-		Controls->RightArmPosition = 240;
-		if (Spin13Inch)
-			Controls->WheelSpeed = -1;
-	}
-	else if (Spin11Inch || NoSpin11Inch)
-	{
-		Controls->LeftArmPosition = 110;
-		Controls->RightArmPosition = 250;
-		if (Spin11Inch)
-			Controls->WheelSpeed = 1;
+		Controls->LeftArmPosition = 146;
 	}
 	else if (Clamp)
 	{
-		Controls->LeftArmPosition = 85;
-		Controls->RightArmPosition = 275;
-	}
-	else if (AutoReset)
-	{
-		Controls->LeftArmPosition = 180;
-		Controls->RightArmPosition = 180;
+		Controls->LeftArmPosition = 80;
 	}
 
+	/*Set speed of grab wheels*/
 	if (SpinIn)
 		Controls->WheelSpeed = 1;
 	else if (SpinOut)
 		Controls->WheelSpeed = -1;
+	else
+		Controls->WheelSpeed = 0;
 
+	/*Finish up*/
 	delete (SwitchesJoystick);
+	Controls->RightArmPosition = 360 - Controls->LeftArmPosition;
+	Controls->Override = OverrideLimit;
 
 	//======================================================================================
 	// Drive Controllers
 	//======================================================================================
 
-	/* Determine the axis and buttons that should be used. */
+	/*Get inputs from joystick based on controller type*/
 	double ForwardAxis, TwistAxis;
-	bool ShiftButton;
-
+	bool EnableDebug;
 	Joystick * DriveJoystick = new Joystick(0);
 
 	if (Controls->DriverType == XboxType)
 	{
-		ForwardAxis = DriveJoystick->GetRawAxis(1);
-		TwistAxis = DriveJoystick->GetRawAxis(4);
-		ShiftButton = DriveJoystick->GetRawButton(6);
+		ForwardAxis = -DriveJoystick->GetRawAxis(1);
+		TwistAxis = -DriveJoystick->GetRawAxis(4);
 	}
-	else // Controls->DriverType == JoystickType
+	else //Joystick arcade
 	{
-		ForwardAxis = DriveJoystick->GetRawAxis(1);
-		TwistAxis = DriveJoystick->GetRawAxis(2);
-		ShiftButton = DriveJoystick->GetRawButton(1);
+		ForwardAxis = -DriveJoystick->GetRawAxis(1);
+		TwistAxis = -DriveJoystick->GetRawAxis(2);
+		EnableDebug = DriveJoystick->GetRawAxis(3) > 0 ? true : false;
 	}
-#if COMP_BOT
-	Controls->SolenoidPos = (ShiftButton == true) ? -1 : 1;
-#endif
 	Controls->SpeedLeft = 0;
 	Controls->SpeedRight = 0;
 	double twist;
 	double twistmin = 0;
-	if (fabs(TwistAxis) > 0.3)
+	if (fabs(TwistAxis) > 0.5)
 	{
 #if COMP_BOT
-		twist = fabs(TwistAxis) -0.3;
-		twist /= 0.7;
-		twist *= 0.3;
-		twistmin = fabs(ForwardAxis) * 0.7;
-		twistmin += 0.5;
-		twistmin *= 3.5;
-		twist = fmin(twistmin, twist);
-#else
 		twist = fabs(TwistAxis);
 #endif
 		twist *= -1.0;
 		twist *= (fabs(TwistAxis) / TwistAxis);
-		run++;
+		runs++;
 	}
 	else
 	{
 		twist = 0.0;
 	}
-	if (run % 10 == 0)
+	if (runs % 10 == 0)
 	{
 		MaxLog::TransmitDouble("/twist", twist);
 		MaxLog::TransmitDouble("/twistmin", twistmin);
-		run = 0;
+		runs = 0;
 	}
 
 	Controls->SpeedLeft = (twist)+(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
 	Controls->SpeedRight = (twist)-(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
-
+	Controls->DebugPrints = EnableDebug;
 	delete (DriveJoystick);
 	//std::cout << "About to send" << std::endl;
 }
@@ -191,22 +155,26 @@ void ControlTask::Always()
 	//======================================================================================
 	// Autonomous Selection
 	//======================================================================================
+	
 	switch (Controls->StartingPos)
 	{
 	case FieldPos::Left:
 		MaxAutonomousManagerInstance.SelectAutonomous("AutonomousLeft");
+		//std::cout << "Left auto" << std::endl;
 		break;
 	case FieldPos::Center:
 		MaxAutonomousManagerInstance.SelectAutonomous("AutonomousCenter");
+		//std::cout << "Center auto" << std::endl;
 		break;
 	case FieldPos::Right:
 		MaxAutonomousManagerInstance.SelectAutonomous("AutonomousRight");
+		//std::cout << "Right auto" << std::endl;
 		break;
 	default:
 		break;
 	}
-	// This must remain in Always()
-	taskschedule_->DispatchControl(Controls);
+
+	taskschedule_->DispatchControl(Controls); // This must remain in Always()
 }
 
 void ControlTask::Disable()
@@ -216,13 +184,6 @@ void ControlTask::Disable()
 	Controls->SpeedLift = 0;
 	Controls->LeftArmPosition = 180;
 	Controls->RightArmPosition = 180;
-	Controls->LiftHeight = 0;
-#if COMP_BOT
-	Controls->SolenoidPos = -1;
-#endif
-	Controls->ResetPos = false;
-	Controls->Override = false;
-	Controls->LiftLimitEnable = true;
 }
 
 void ControlTask::ControllerUpdate(MaxControl * controls)
@@ -232,80 +193,7 @@ void ControlTask::ControllerUpdate(MaxControl * controls)
 
 void ControlTask::Autonomous()
 {
-	//switch (Auto->StartingPos) {
-	//case Right:
-	//	if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
-	//	{
 
-	//	}
-	//	else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
-	//	{
-
-	//	}
-	//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
-	//	{
-
-//	}
-//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
-//	{
-
-//	}
-//	else
-//	{
-
-//	}
-
-//	break;
-//case Center:
-//	if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
-//	{
-
-//	}
-//	else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
-//	{
-
-//	}
-//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
-//	{
-
-//	}
-//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
-//	{
-
-//	}
-//	else
-//	{
-
-//	}
-
-//	break;
-//case Left:
-//	if (Auto->ScalePos == Left && Auto->SwitchPos == Left)
-//	{
-
-//	}
-//	else if (Auto->ScalePos == Left && Auto->SwitchPos == Right)
-//	{
-
-//	}
-//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Left)
-//	{
-
-//	}
-//	else if (Auto->ScalePos == Right && Auto->SwitchPos == Right)
-//	{
-
-//	}
-//	else
-//	{
-
-//	}
-
-//	break;
-//default:
-
-//	break;
-//}
 }
 
 void ControlTask::UpdateAutonomousData(AutonomousControl AutoControlInput)
@@ -320,6 +208,11 @@ void ControlTask::UpdateAutonomousData(AutonomousControl AutoControlInput)
 
 void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 {
+	//======================================================================================
+	// Get data from the dashboard
+	//======================================================================================
+
+	/*Get starting position*/
 	if (strcmp(messages.AddressPattern(), "/Dashboard/AutoPositionMessage/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -339,6 +232,7 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		}
 	}
 
+	/*Get switch priority*/
 	if (strcmp(messages.AddressPattern(), "/Dashboard/AutoSwitchPriority/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -356,9 +250,9 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		{
 			Controls->SwitchPrioritySelection = SwitchPriority::Kyle;
 		}
-		//std::cout << "Switch Priority: " << Controls->SwitchPrioritySelection << std::endl;
 	}
 
+	/*Get driver controller type*/
 	if (strcmp(messages.AddressPattern(), "/Dashboard/DriverController/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -378,6 +272,7 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		}
 	}
 
+	/*Get driver controller mode*/
 	if (strcmp(messages.AddressPattern(), "/Dashboard/DriveMode/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -397,6 +292,7 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		}
 	}
 
+	/*Get switches controller type*/
 	if (strcmp(messages.AddressPattern(), "/Dashboard/SwitchesController/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -416,6 +312,7 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 		}
 	}
 
+	/*Get switches controller mode*/
 	if (strcmp(messages.AddressPattern(), "/Dashboard/SwitchesMode/") == 0)
 	{
 		osc::ReceivedMessageArgumentStream args = messages.ArgumentStream();
@@ -434,13 +331,11 @@ void ControlTask::ProcessOscData(osc::ReceivedMessage messages)
 			Controls->SwitchesMode = ControlLayout::Tank;
 		}
 	}
-
 }
 
 void ControlTask::Init()
 {
 	Controls = new RobotControl();
-	run = 0;
-
+	runs = 0;
 	debugCounter = 0;
 }

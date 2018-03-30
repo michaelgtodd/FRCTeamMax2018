@@ -1,5 +1,5 @@
 #pragma once
-#define COMP_BOT false
+#define COMP_BOT true
 #include "maxutils/MaxTask.h"
 #include "osc/OscReceivedElements.h"
 #include "osc/OscPacketListener.h"
@@ -7,6 +7,8 @@
 #include "WPILib.h"
 #include <string.h>
 #include "maxutils\MaxAutonomous.h"
+
+using namespace std;
 
 enum ControlType
 {
@@ -42,21 +44,14 @@ public:
 	ControlType SwitchesType;
 	ControlLayout DriverMode;
 	ControlLayout SwitchesMode;
-	int DriverPreference;
-	int SwitchesPreference;
+	bool DebugPrints;
+	bool Override;
 	double SpeedLeft;
 	double SpeedRight;
 	double SpeedLift;
 	double LeftArmPosition;
 	double RightArmPosition;
-	int LiftHeight;
 	double WheelSpeed;
-#if COMP_BOT
-	int SolenoidPos;
-#endif
-	bool ResetPos;
-	bool Override;
-	bool LiftLimitEnable;
 	FieldPos StartingPos;
 	SwitchPriority SwitchPrioritySelection;
 };
@@ -85,7 +80,7 @@ public:
 	void UpdateAutonomousData(AutonomousControl AutoControlInput);
 private:
 	void Init();
-	int run;
+	int runs;
 	MaxTaskSchedule * taskschedule_;
 	RobotControl * Controls;
 	AutonomousControl * Auto;
