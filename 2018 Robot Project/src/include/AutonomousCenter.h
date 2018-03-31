@@ -13,8 +13,8 @@ public:
 	void End();
 	void Drive(double SpeedMin, double SpeedMax);
 	void Drive2(double IdealSpeed);
-	bool Lift(double Ticks, double SpeedLimit, double Tolerance);
-	bool Turn(double Degrees, double SpeedLimit, double Tolerance);
+	void Lift(int MaxHeight, double Speed);
+	void Turn(double Degrees, double SpeedLimit, double Tolerance);
 	bool TimePassed(double Time);
 	void Brake();
 	void ResetSensor();

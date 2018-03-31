@@ -63,7 +63,7 @@ void DrivingTask::Init()
 	/*Set control mode*/
 	ConfigureDriveTalon(MasterMotorLeft);
 	ConfigureDriveTalon(MasterMotorRight);
-	SlaveMotorLeft->Set(ControlMode::Follower, 1);
+	SlaveMotorLeft->Set(ControlMode::Follower, 0);
 	SlaveMotorRight->Set(ControlMode::Follower, 15);
 }
 

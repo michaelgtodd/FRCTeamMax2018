@@ -56,24 +56,54 @@ void AutonomousCenter::Autonomous()
 		runs = 0;
 	}
 
-	if (SwitchPriorityInput == SwitchPriority::No)
+	if (SwitchPriorityInput == SwitchPriority::No) //Cross auto line
 	{
-		/*Cross auto line*/
 		switch (stage)
 		{
 		case 0:
-			/*Clamp cube*/
-			control.ArmPositionLeft = 40;
-			control.ArmPositionRight = 320;
-			Brake();
-			ResetSensor();
-			std::cout << "Stage 0 completed." << std::endl;
-			stage++;
+			/*Drive forward*/
+			Drive(0.75, 0.5);
+
+			if (TimePassed(7)) //If 7 seconds passed
+			{
+				Brake();
+				ResetSensor();
+				std::cout << " Stage 0 completed." << std::endl;
+				stage++;
+			}
+		default:
+			break;
+		}
+	}
+	else if (SwitchPriorityInput == SwitchPriority::Kyle)
+	{
+		/*Do nothing*/
+	}
+	else //Switch priority is set to yes
+	{
+		/*Cross auto line and drop a cube*/
+		switch (stage)
+		{
+		case 0:
+			/*Drop cube*/
+			control.ArmPositionLeft = 180;
+			control.ArmPositionRight = 180;
+			Lift(5000, 0.25);
+			Drive(0.25, 0.1);
+
+			if (TimePassed(1.5)) //If 1.5 seconds passed
+			{
+				Brake();
+				ResetSensor();
+				std::cout << " Stage 0 completed." << std::endl;
+				stage++;
+			}
 			break;
 		case 1:
-			/*Drive forward*/
-			Drive(0.75, 1);
-			if (TimePassed(7.5)) //If 7.5 seconds passed
+			/*Move the lift down*/
+			Lift(-14000, -0.1);
+			
+			if (TimePassed(3)) //If 3 second passed
 			{
 				Brake();
 				ResetSensor();
@@ -81,26 +111,26 @@ void AutonomousCenter::Autonomous()
 				stage++;
 			}
 			break;
-		default:
-			break;
-		}
-	}
-	else if (SwitchPriorityInput == SwitchPriority::Yes)
-	{
-		/*Cross auto line*/
-		switch (stage)
-		{
-		case 0:
-			/*Clamp cube*/
+		case 2:
+			/*Drive forward and lift arm*/
 			control.ArmPositionLeft = 40;
 			control.ArmPositionRight = 320;
-			Brake();
-			ResetSensor();
-			std::cout << "Stage 0 completed." << std::endl;
-			stage++;
+			Drive(0.75, 0.5);
+			Lift(70000, 0.5);
+
+			if (TimePassed(10)) //If 7 seconds passed
+			{
+				Brake();
+				ResetSensor();
+				std::cout << " Stage 1 completed." << std::endl;
+				stage++;
+			}
 			break;
-		case 1:
-			/*Drive forward*/
+		case 3:
+			/*Release the cube*/
+			control.ArmPositionLeft = 180;
+			control.ArmPositionRight = 180;
+			break;
 		default:
 			break;
 		}
@@ -185,14 +215,32 @@ void AutonomousCenter::Drive(double SpeedMax, double SpeedMin)
 	control.SpeedRight = PigeonEnable == false ? SpeedMax : -RightSpeed;
 }
 
-bool AutonomousCenter::Turn(double Degrees, double SpeedLimit, double Tolerance)
+void AutonomousCenter::Turn(double Degrees, double SpeedLimit, double Tolerance)
 {
-
+	if (Degrees - Yaw > Tolerance) //If robot needs to turn to the right
+	{
+		control.SpeedLeft = SpeedLimit;
+		control.SpeedRight = -SpeedLimit;
+	}
+	else if (Degrees - Yaw < -Tolerance) //If robot needs to turn to the right
+	{
+		control.SpeedLeft = -SpeedLimit;
+		control.SpeedRight = SpeedLimit;
+	}
+	else //Robot turn complete
+	{
+		control.SpeedLeft = 0;
+		control.SpeedRight = 0;
+	}
 }
 
-bool AutonomousCenter::Lift(double Height, double SpeedLimit, double Tolerance)
+void AutonomousCenter::Lift(int MaxHeight, double Speed)
 {
+	/*Determine lift height*/
+	int LiftHeight = AutoMotorLift->GetSensorCollection().GetQuadraturePosition();
 
+	/*Set speed*/
+	control.SpeedLift = LiftHeight - MaxHeight > 250 ? 0 : Speed;
 }
 
 bool AutonomousCenter::TimePassed(double Time)
@@ -207,6 +255,7 @@ void AutonomousCenter::Brake()
 {
 	control.SpeedRight = 0;
 	control.SpeedLeft = 0;
+	control.SpeedLift = 0;
 	LeftSpeed = 0;
 	RightSpeed = 0;
 }

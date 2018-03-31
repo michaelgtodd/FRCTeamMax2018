@@ -156,7 +156,7 @@ void ControlTask::Always()
 	// Autonomous Selection
 	//======================================================================================
 	
-	switch (Controls->StartingPos)
+	/*switch (Controls->StartingPos)
 	{
 	case FieldPos::Left:
 		MaxAutonomousManagerInstance.SelectAutonomous("AutonomousLeft");
@@ -172,8 +172,8 @@ void ControlTask::Always()
 		break;
 	default:
 		break;
-	}
-
+	}*/
+	MaxAutonomousManagerInstance.SelectAutonomous("SampleAutonomous");
 	taskschedule_->DispatchControl(Controls); // This must remain in Always()
 }
 

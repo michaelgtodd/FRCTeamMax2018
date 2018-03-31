@@ -9,7 +9,7 @@ int modulo(int x, int N)
 
 void LiftingTask::Always()
 {
-
+	//std::cout << "Lift position: " << MasterMotorLift->GetSensorCollection().GetQuadraturePosition() << std::endl;
 }
 
 void LiftingTask::Run()
@@ -74,12 +74,11 @@ void LiftingTask::Run()
 		MaxLog::TransmitDouble("/lift/left/actual", DegreeLeftArmPosition);
 		MaxLog::TransmitDouble("/lift/right/actual", DegreeRightArmPosition);
 
-		std::cout << "Lift position: " << MasterMotorLift->GetSensorCollection().GetQuadraturePosition() << std::endl;
 		if (ControlInput->DebugPrints == true)
 		{
 			/*Print data to dashboard*/
-			std::cout << "Left angle:  " << DegreeLeftArmPosition << std::endl;
-			std::cout << "Right angle: " << DegreeRightArmPosition << std::endl;
+			//std::cout << "Left angle:  " << DegreeLeftArmPosition << std::endl;
+			//std::cout << "Right angle: " << DegreeRightArmPosition << std::endl;
 		}
 	}
 }

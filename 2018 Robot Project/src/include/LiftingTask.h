@@ -18,8 +18,8 @@ private:
 	const int RIGHT_ENCODER_OFFSET = 1193 - 380;
 
 	/* Encoder Limits for Lift */
-	const int LIFT_LOWER_LIMIT = -14500;
-	const int LIFT_UPPER_LIMIT = 195000;
+	const int LIFT_LOWER_LIMIT = -15460;
+	const int LIFT_UPPER_LIMIT = 74750;
 
 
 	const double GAIN_LEFT = 0.008; // 0.016;
