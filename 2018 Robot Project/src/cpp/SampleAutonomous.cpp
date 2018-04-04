@@ -1,3 +1,5 @@
+#define CENTER
+
 #include "SampleAutonomous.h"
 #include "maxutils\MaxDataStream.h"
 #include "ControlTask.h"
@@ -19,7 +21,12 @@ void SampleAutonomous::Init()
 	}
 
 	/*Print field data to dashboard*/
+#ifdef CENTER
 	std::cout << "Center auto starting." << std::endl;
+#endif
+#ifdef SIDE
+	std::cout << "Side auto starting." << std::endl;
+#endif
 	std::cout << "Game String: " << gameData << std::endl;
 	std::cout << "Switch: " << SwitchPosition << " Scale: " << ScalePosition << " Far Switch: " << FarSwitchPosition << std::endl;
 
@@ -45,6 +52,7 @@ void SampleAutonomous::Autonomous()
 		//std::cout << "Stage number: " << Stage << std::endl;
 	}
 
+#ifdef CENTER
 	switch (Stage)
 	{
 	case 0:
@@ -67,25 +75,25 @@ void SampleAutonomous::Autonomous()
 		TimeAdvance(0.25);
 		break;
 	case 4:
-		LeftSpeed = SwitchPosition == FieldPos::Left ? -0.5 : 0.5;
-		RightSpeed = SwitchPosition == FieldPos::Left ? 0.5 : -0.5;
+		LeftSpeed = SwitchPosition == FieldPos::Left ? -0.6 : 0.5;
+		RightSpeed = SwitchPosition == FieldPos::Left ? 0.6 : -0.5;
 		TimeAdvance(0.25);
 		break;
 	case 5:
 		LeftSpeed = 0.5;
 		RightSpeed = 0.5;
-		LiftSpeed = 0.4;
-		TimeAdvance(1.25);
+		LiftSpeed = 0.6;
+		TimeAdvance(SwitchPosition == FieldPos::Left ? 2.5 : 0.85);
 		break;
 	case 6:
 		LeftSpeed = SwitchPosition == FieldPos::Left ? 0.5 : -0.5;
 		RightSpeed = SwitchPosition == FieldPos::Left ? -0.5 : 0.5;
-		TimeAdvance(0.25);
+		TimeAdvance(SwitchPosition == FieldPos::Left ? 0.2 : 0.3);
 		break;
 	case 7:
 		LeftSpeed = 0.5;
 		RightSpeed = 0.5;
-		LiftSpeed = 0.4;
+		LiftSpeed = 0.6;
 		TimeAdvance(0.75);
 		break;
 	default:
@@ -94,6 +102,35 @@ void SampleAutonomous::Autonomous()
 		Brake();
 		break;
 	}
+#endif
+#ifdef SIDE
+	switch (Stage)
+	{
+	case 0:
+		LiftSpeed = 0.3;
+		ArmDegree = 180;
+		TimeAdvance(1);
+		Brake();
+		break;
+	case 1:
+		LiftSpeed = -0.3;
+		TimeAdvance(1);
+		break;
+	case 2:
+		ArmDegree = 40;
+		LiftSpeed = 0;
+		TimeAdvance(1);
+		break;
+	case 3:
+		LeftSpeed = 0.5;
+		RightSpeed = 0.5;
+		TimeAdvance(2.25);
+		break;
+	default:
+		Brake();
+		break;
+	}
+#endif
 
 	/*Update data*/
 	UpdateMotors();
