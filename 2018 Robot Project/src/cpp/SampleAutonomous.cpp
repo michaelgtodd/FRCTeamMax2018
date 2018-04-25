@@ -1,5 +1,3 @@
-#define CENTER
-
 #include "SampleAutonomous.h"
 #include "maxutils\MaxDataStream.h"
 #include "ControlTask.h"
@@ -20,13 +18,35 @@ void SampleAutonomous::Init()
 		FarSwitchPosition = gameData[2] == 'L' ? FieldPos::Left : FieldPos::Right;
 	}
 
+	/*Determine starting position*/
+	Joystick * PosInput1 = new Joystick(0);
+	Joystick * PosInput2 = new Joystick(2);
+	if (PosInput2->GetRawAxis(3) <= 0.5)
+	{
+		StartingPosition = FieldPos::Center;
+	}
+	else
+	{
+		StartingPosition = PosInput1->GetRawAxis(3) <= 0.5 ? FieldPos::Left : FieldPos::Right;
+	}
+	delete PosInput1, PosInput2;
+
 	/*Print field data to dashboard*/
-#ifdef CENTER
-	std::cout << "Center auto starting." << std::endl;
-#endif
-#ifdef SIDE
-	std::cout << "Side auto starting." << std::endl;
-#endif
+	switch (StartingPosition)
+	{
+	case FieldPos::Left:
+		std::cout << "Left auto starting." << std::endl;
+		break;
+	case FieldPos::Center:
+		std::cout << "Center auto starting." << std::endl;
+		break;
+	case FieldPos::Right:
+		std::cout << "Right auto starting." << std::endl;
+		break;
+	default:
+		break;
+	}
+
 	std::cout << "Game String: " << gameData << std::endl;
 	std::cout << "Switch: " << SwitchPosition << " Scale: " << ScalePosition << " Far Switch: " << FarSwitchPosition << std::endl;
 
@@ -35,6 +55,7 @@ void SampleAutonomous::Init()
 	Stage = 0;
 	CycleNumber = 0;
 	SensorReset();
+	WheelSpeed = 0;
 	ArmDegree = 180;
 	Brake();
 }
@@ -42,7 +63,6 @@ void SampleAutonomous::Init()
 void SampleAutonomous::ControllerUpdate(MaxControl * controls)
 {
 	SwitchPriorityInput = ((RobotControl *)controls)->SwitchPrioritySelection;
-	StartingPosition = ((RobotControl *)controls)->StartingPos;
 }
 
 void SampleAutonomous::Autonomous()
@@ -52,85 +72,241 @@ void SampleAutonomous::Autonomous()
 		//std::cout << "Stage number: " << Stage << std::endl;
 	}
 
-#ifdef CENTER
-	switch (Stage)
+	if (StartingPosition == FieldPos::Center)
 	{
-	case 0:
-		LiftSpeed = 0.3;
-		ArmDegree = 180;
-		TimeAdvance(1);
-		Brake();
-		break;
-	case 1:
-		LiftSpeed = -0.3;
-		TimeAdvance(1);
-		break;
-	case 2:
-		ArmDegree = 40;
-		TimeAdvance(1);
-		break;
-	case 3:
-		LeftSpeed = 0.5;
-		RightSpeed = 0.5;
-		TimeAdvance(0.25);
-		break;
-	case 4:
-		LeftSpeed = SwitchPosition == FieldPos::Left ? -0.6 : 0.5;
-		RightSpeed = SwitchPosition == FieldPos::Left ? 0.6 : -0.5;
-		TimeAdvance(0.25);
-		break;
-	case 5:
-		LeftSpeed = 0.5;
-		RightSpeed = 0.5;
-		LiftSpeed = 0.6;
-		TimeAdvance(SwitchPosition == FieldPos::Left ? 2.5 : 0.85);
-		break;
-	case 6:
-		LeftSpeed = SwitchPosition == FieldPos::Left ? 0.5 : -0.5;
-		RightSpeed = SwitchPosition == FieldPos::Left ? -0.5 : 0.5;
-		TimeAdvance(SwitchPosition == FieldPos::Left ? 0.2 : 0.3);
-		break;
-	case 7:
-		LeftSpeed = 0.5;
-		RightSpeed = 0.5;
-		LiftSpeed = 0.6;
-		TimeAdvance(0.75);
-		break;
-	default:
-		LiftSpeed = 0;
-		ArmDegree = 180;
-		Brake();
-		break;
+		switch (Stage)
+		{
+		case 0:
+			LiftSpeed = 0.3;
+			ArmDegree = 180;
+			TimeAdvance(1);
+			Brake();
+			break;
+		case 1:
+			LiftSpeed = -0.3;
+			TimeAdvance(1);
+			break;
+		case 2:
+			ArmDegree = 40;
+			TimeAdvance(1);
+			break;
+		case 3:
+			LeftSpeed = 0.5;
+			RightSpeed = 0.5;
+			TimeAdvance(0.25);
+			break;
+		case 4:
+			LeftSpeed = SwitchPosition == FieldPos::Left ? -0.6 : 0.5;
+			RightSpeed = SwitchPosition == FieldPos::Left ? 0.6 : -0.5;
+			TimeAdvance(0.25);
+			break;
+		case 5:
+			LeftSpeed = 0.5;
+			RightSpeed = 0.5;
+			LiftSpeed = 0.6;
+			TimeAdvance(SwitchPosition == FieldPos::Left ? 2.5 : 0.85);
+			break;
+		case 6:
+			LeftSpeed = SwitchPosition == FieldPos::Left ? 0.5 : -0.5;
+			RightSpeed = SwitchPosition == FieldPos::Left ? -0.5 : 0.5;
+			TimeAdvance(SwitchPosition == FieldPos::Left ? 0.2 : 0.4);
+			break;
+		case 7:
+			LeftSpeed = 0.5;
+			RightSpeed = 0.5;
+			LiftSpeed = 0.6;
+			TimeAdvance(0.75);
+			break;
+		case 8:
+			WheelSpeed = -1;
+			Brake();
+			TimeAdvance(0.75);
+			break;
+		case 9:
+			LiftSpeed = 0;
+			WheelSpeed = 0;
+			ArmDegree = 110;
+			LeftSpeed = -0.4;
+			RightSpeed = -0.4;
+			TimeAdvance(0.5);
+			break;
+		case 10:
+			LeftSpeed = SwitchPosition == FieldPos::Left ? 0.5 : -0.5;
+			RightSpeed = SwitchPosition == FieldPos::Left ? -0.5 : 0.5;
+			LiftSpeed = -0.4;
+			TimeAdvance(0.4);
+			break;
+		case 11:
+			LeftSpeed = 0.3;
+			RightSpeed = 0.3;
+			WheelSpeed = 1;
+			TimeAdvance(3);
+			break;
+		case 12:
+			ArmDegree = 40;
+			LiftSpeed = 0;
+			Brake();
+			TimeAdvance(0.5);
+			break;
+		case 13:
+			LeftSpeed = -0.6;
+			RightSpeed = -0.6;
+			WheelSpeed = 0;
+			LiftSpeed = 0.7;
+			TimeAdvance(0.5);
+			break;
+		case 14:
+			LeftSpeed = SwitchPosition == FieldPos::Left ? -0.5 : 0.5;
+			RightSpeed = SwitchPosition == FieldPos::Left ? 0.5 : -0.5;
+			TimeAdvance(0.3);
+			break;
+		case 15:
+			LeftSpeed = 0.5;
+			RightSpeed = 0.5;
+			TimeAdvance(1);
+			break;
+		case 16:
+			WheelSpeed = -1;
+			Brake();
+			TimeAdvance(0.5);
+			break;
+		case 17:
+			ArmDegree = 180;
+			LiftSpeed = 0;
+			LeftSpeed = -0.5;
+			RightSpeed = -0.5;
+			TimeAdvance(0.5);
+			break;
+		default:
+			Brake();
+			break;
+		}
 	}
-#endif
-#ifdef SIDE
-	switch (Stage)
+	else //If switch is on same side
 	{
-	case 0:
-		LiftSpeed = 0.3;
-		ArmDegree = 180;
-		TimeAdvance(1);
-		Brake();
-		break;
-	case 1:
-		LiftSpeed = -0.3;
-		TimeAdvance(1);
-		break;
-	case 2:
-		ArmDegree = 40;
-		LiftSpeed = 0;
-		TimeAdvance(1);
-		break;
-	case 3:
-		LeftSpeed = 0.5;
-		RightSpeed = 0.5;
-		TimeAdvance(2.25);
-		break;
-	default:
-		Brake();
-		break;
+		switch (Stage)
+		{
+		case 0:
+			LiftSpeed = 0.3;
+			ArmDegree = 180;
+			TimeAdvance(1);
+			Brake();
+			break;
+		case 1:
+			LiftSpeed = -0.3;
+			TimeAdvance(1);
+			break;
+		case 2:
+			ArmDegree = 40;
+			LiftSpeed = 0;
+			TimeAdvance(1);
+			break;
+		case 3:
+			LeftSpeed = 0.5;
+			RightSpeed = 0.5;
+			LiftSpeed = StartingPosition == SwitchPosition ? 0.7 : 0.0;
+			TimeAdvance(1.75);
+			break;
+		case 4:
+			Stage += StartingPosition == SwitchPosition ? 1 : 420;
+			break;
+		case 5:
+			LeftSpeed = StartingPosition == FieldPos::Left ? 0.5 : -0.5;
+			RightSpeed = StartingPosition == FieldPos::Left ? -0.5 : 0.5;
+			TimeAdvance(0.5);
+			break;
+		case 6:
+			LeftSpeed = 0.5;
+			RightSpeed = 0.5;
+			TimeAdvance(1);
+			break;
+		case 7:
+			LiftSpeed = 0;
+			WheelSpeed = -1;
+			Brake();
+			TimeAdvance(0.5);
+			break;
+		case 8:
+			WheelSpeed = 0;
+			ArmDegree = 180;
+			LeftSpeed = -0.5;
+			RightSpeed = -0.5;
+			TimeAdvance(0.5);
+			break;
+		case 9:
+			Stage = 69;
+			LeftSpeed = StartingPosition == FieldPos::Left ? -0.5 : 0.5;
+			RightSpeed = StartingPosition == FieldPos::Left ? 0.5 : -0.5;
+			//LiftSpeed = -0.3;
+			TimeAdvance(0.5);
+			break;
+		case 10:
+			ArmDegree = 110;
+			LeftSpeed = 0.5;
+			RightSpeed = 0.5;
+			TimeAdvance(0.5);
+			break;
+		case 11:
+			LiftSpeed = 0;
+			LeftSpeed = StartingPosition == FieldPos::Left ? 0.5 : -0.5;
+			RightSpeed = StartingPosition == FieldPos::Left ? -0.5 : 0.5;
+			TimeAdvance(0.5);
+			break;
+		case 12:
+			LeftSpeed = 0.3;
+			RightSpeed = 0.3;
+			TimeAdvance(0.75);
+			break;
+		case 13:
+			ArmDegree = 220;
+			LeftSpeed = StartingPosition == FieldPos::Left ? 0.5 : -0.5;
+			RightSpeed = StartingPosition == FieldPos::Left ? -0.5 : 0.5;
+			TimeAdvance(0.5);
+			break;
+		case 14:
+			WheelSpeed = 1;
+			LeftSpeed = 0.3;
+			RightSpeed = 0.3;
+			TimeAdvance(1);
+			break;
+		case 15:
+			ArmDegree = 110;
+			Brake();
+			TimeAdvance(0.5);
+			break;
+		case 16:
+			ArmDegree = 40;
+			TimeAdvance(0.5);
+			break;
+		case 17:
+			WheelSpeed = 0;
+			LiftSpeed = 0.9;
+			LeftSpeed = -0.3;
+			RightSpeed = -0.3;
+			TimeAdvance(0.8);
+			break;
+		case 18:
+			LeftSpeed = 0.5;
+			RightSpeed = 0.5;
+			TimeAdvance(.75);
+			break;
+		case 19:
+			WheelSpeed = -1;
+			TimeAdvance(0.5);
+			break;
+		case 20:
+			ArmDegree = 180;
+			LeftSpeed = -0.5;
+			RightSpeed = -0.5;
+			LiftSpeed = 0;
+			WheelSpeed = 0;
+			TimeAdvance(0.5);
+			break;
+		default:
+			Brake();
+			break;
+		}
 	}
-#endif
 
 	/*Update data*/
 	UpdateMotors();
@@ -180,6 +356,7 @@ void SampleAutonomous::UpdateMotors()
 	control.SpeedLift = LiftSpeed;
 	control.ArmPositionLeft = ArmDegree;
 	control.ArmPositionRight = 360 - ArmDegree;
+	control.SpeedWheel = WheelSpeed;
 }
 
 void SampleAutonomous::SensorReset()

@@ -65,6 +65,7 @@ public:
 	double ArmPositionLeft = 0;
 	double ArmPositionRight = 0;
 	double Yaw = 0;
+	double SpeedWheel;
 };
 
 class ControlTask : public MaxTask

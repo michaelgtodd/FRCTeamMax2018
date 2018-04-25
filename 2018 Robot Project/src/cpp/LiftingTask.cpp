@@ -17,6 +17,7 @@ void LiftingTask::Run()
 	/*Set wheel speed*/
 	GrabWheelL->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, ControlInput->WheelSpeed);
 	GrabWheelR->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, -ControlInput->WheelSpeed);
+	//std::cout << "Wheel speed: " << ControlInput->WheelSpeed << std::endl;
 
 	/*Determine if lift limit should be enabled*/
 	if (ControlInput->Override == false) //Limit enabled

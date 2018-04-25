@@ -204,6 +204,7 @@ void ControlTask::UpdateAutonomousData(AutonomousControl AutoControlInput)
 	Controls->SpeedRight = AutoControlInput.SpeedRight;
 	//std::cout << "In to controls: " << AutoControlInput.ArmPositionRight << " Out of control: " << Controls->RightArmPosition << std::endl;
 	Controls->SpeedLift = AutoControlInput.SpeedLift;
+	Controls->WheelSpeed = AutoControlInput.SpeedWheel;
 }
 
 void ControlTask::ProcessOscData(osc::ReceivedMessage messages)

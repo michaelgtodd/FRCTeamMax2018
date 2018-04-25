@@ -30,7 +30,7 @@ private:
 	TalonSRX * AutoPosArmRight;
 	TalonSRX * DummyTalon;
 	PigeonIMU * PigeonInput;
-	double LeftSpeed, RightSpeed, LiftSpeed, ArmDegree;
+	double LeftSpeed, RightSpeed, LiftSpeed, ArmDegree, WheelSpeed;
 	double StartTime = 0;
 	double Stopwatch = 0;
 	double RunTime = 0;
