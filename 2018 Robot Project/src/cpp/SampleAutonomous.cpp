@@ -104,7 +104,7 @@ void SampleAutonomous::Autonomous()
 			LeftSpeed = 0.5;
 			RightSpeed = 0.5;
 			LiftSpeed = 0.6;
-			TimeAdvance(SwitchPosition == FieldPos::Left ? 2.5 : 1.05);
+			TimeAdvance(SwitchPosition == FieldPos::Left ? 0.9 : 0.6);
 			break;
 		case 6:
 			LeftSpeed = SwitchPosition == FieldPos::Left ? 0.5 : -0.5;
@@ -131,22 +131,22 @@ void SampleAutonomous::Autonomous()
 			TimeAdvance(0.5);
 			break;
 		case 10:
-			LeftSpeed = SwitchPosition == FieldPos::Left ? 0.5 : -0.5;
-			RightSpeed = SwitchPosition == FieldPos::Left ? -0.5 : 0.5;
-			LiftSpeed = -0.4;
+			LeftSpeed = SwitchPosition == FieldPos::Left ? 0.5 : -0.4;
+			RightSpeed = SwitchPosition == FieldPos::Left ? -0.5 : 0.4;
+			LiftSpeed = SwitchPosition == FieldPos::Left ? -0.4 : -0.6;
 			TimeAdvance(0.4);
 			break;
 		case 11:
 			LeftSpeed = 0.3;
 			RightSpeed = 0.3;
 			WheelSpeed = 1;
-			TimeAdvance(1.25);
+			TimeAdvance(SwitchPosition == FieldPos::Left ? 1.25 : 1.5);
 			break;
 		case 12:
 			ArmDegree = 40;
 			LiftSpeed = 0;
 			Brake();
-			TimeAdvance(0.5);
+			TimeAdvance(SwitchPosition == FieldPos::Left ? 0.5 : 0.75);
 			break;
 		case 13:
 			LeftSpeed = -0.6;

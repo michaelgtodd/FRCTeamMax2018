@@ -138,8 +138,8 @@ void LiftingTask::Init()
 	CurrentLimit(GrabArmR, 4);
 	CurrentLimit(MasterMotorLift, 15);
 	CurrentLimit(SlaveMotorLift, 15);
-	CurrentLimit(GrabWheelL, 10);
-	CurrentLimit(GrabWheelR, 10);
+	CurrentLimit(GrabWheelL, 20);
+	CurrentLimit(GrabWheelR, 20);
 
 	/*Set control mode*/
 	MasterMotorLift->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
