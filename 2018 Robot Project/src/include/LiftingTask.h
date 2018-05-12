@@ -14,8 +14,8 @@ public:
 private:
 	
 	/* Encoder Offsets for Arms */
-	const int LEFT_ENCODER_OFFSET = 3388 + 380;
-	const int RIGHT_ENCODER_OFFSET = 3955 - 380;
+	const int LEFT_ENCODER_OFFSET = 514 + 380;
+	const int RIGHT_ENCODER_OFFSET = 112 - 380;
 
 	/* Encoder Limits for Lift */
 	const int LIFT_LOWER_LIMIT = -15460;
@@ -28,7 +28,7 @@ private:
 	double left_error_integrate = 0.0;
 	double right_error_integrate = 0.0;
 
-	const double MAX_INTEGRATOR_ERROR = 30.0;
+	const double MAX_INTEGRATOR_ERROR = 15.0;
 	const double INTEGRATOR_DIVISOR = 30.0;
 	const double GAIN_LEFT_INTEGRATE = 0.005;
 	const double GAIN_RIGHT_INTEGRATE = 0.005;

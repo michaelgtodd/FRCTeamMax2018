@@ -104,7 +104,7 @@ void SampleAutonomous::Autonomous()
 			LeftSpeed = 0.5;
 			RightSpeed = 0.5;
 			LiftSpeed = 0.6;
-			TimeAdvance(SwitchPosition == FieldPos::Left ? 0.9 : 0.6);
+			TimeAdvance(SwitchPosition == FieldPos::Left ? 1.34 : 0.9);
 			break;
 		case 6:
 			LeftSpeed = SwitchPosition == FieldPos::Left ? 0.5 : -0.5;
@@ -112,10 +112,10 @@ void SampleAutonomous::Autonomous()
 			TimeAdvance(SwitchPosition == FieldPos::Left ? 0.2 : 0.4);
 			break;
 		case 7:
-			LeftSpeed = 0.5;
-			RightSpeed = 0.5;
+			LeftSpeed = 0.2;
+			RightSpeed = 0.2;
 			LiftSpeed = 0.6;
-			TimeAdvance(0.75);
+			TimeAdvance(1.75);
 			break;
 		case 8:
 			WheelSpeed = -1;
@@ -126,13 +126,13 @@ void SampleAutonomous::Autonomous()
 			LiftSpeed = 0;
 			WheelSpeed = 0;
 			ArmDegree = 110;
-			LeftSpeed = -0.4;
-			RightSpeed = -0.4;
+			LeftSpeed = -0.5;
+			RightSpeed = -0.5;
 			TimeAdvance(0.5);
 			break;
 		case 10:
-			LeftSpeed = SwitchPosition == FieldPos::Left ? 0.5 : -0.4;
-			RightSpeed = SwitchPosition == FieldPos::Left ? -0.5 : 0.4;
+			LeftSpeed = SwitchPosition == FieldPos::Left ? 0.5 : -0.45;
+			RightSpeed = SwitchPosition == FieldPos::Left ? -0.5 : 0.45;
 			LiftSpeed = SwitchPosition == FieldPos::Left ? -0.4 : -0.6;
 			TimeAdvance(0.4);
 			break;
@@ -158,12 +158,12 @@ void SampleAutonomous::Autonomous()
 		case 14:
 			LeftSpeed = SwitchPosition == FieldPos::Left ? -0.5 : 0.5;
 			RightSpeed = SwitchPosition == FieldPos::Left ? 0.5 : -0.5;
-			TimeAdvance(0.3);
+			TimeAdvance(SwitchPosition == FieldPos::Left ? 0.35 : 0.25);
 			break;
 		case 15:
-			LeftSpeed = 0.5;
-			RightSpeed = 0.5;
-			TimeAdvance(1);
+			LeftSpeed = 0.3;
+			RightSpeed = 0.3;
+			TimeAdvance(1.5);
 			break;
 		case 16:
 			WheelSpeed = -1;
@@ -208,7 +208,8 @@ void SampleAutonomous::Autonomous()
 			TimeAdvance(1.75);
 			break;
 		case 4:
-			Stage += StartingPosition == SwitchPosition ? 1 : 420;
+			Stage = 69;
+			//Stage += StartingPosition == SwitchPosition ? 1 : 420;
 			break;
 		case 5:
 			LeftSpeed = StartingPosition == FieldPos::Left ? 0.5 : -0.5;

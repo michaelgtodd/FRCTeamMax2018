@@ -104,7 +104,7 @@ void LiftingTask::Disable()
 	{
 		if (ControlInput->DebugPrints == true)
 		{
-			//std::cout << "Encoder values: " << modulo(PulseWidthPosL, 4096) << " | " << modulo(PulseWidthPosR, 4096) << std::endl;
+			std::cout << "Encoder values: " << modulo(PulseWidthPosL, 4096) << " | " << modulo(PulseWidthPosR, 4096) << std::endl;
 		}
 		runs = 0;
 	}
