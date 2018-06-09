@@ -105,7 +105,7 @@ void ControlTask::Run()
 
 	/*Get inputs from joystick based on controller type*/
 	double ForwardAxis, TwistAxis;
-	bool EnableDebug;
+	double SpeedMult;
 	Joystick * DriveJoystick = new Joystick(0);
 
 	if (Controls->DriverType == XboxType)
@@ -115,9 +115,9 @@ void ControlTask::Run()
 	}
 	else //Joystick arcade
 	{
-		ForwardAxis = -DriveJoystick->GetRawAxis(1);
-		TwistAxis = -DriveJoystick->GetRawAxis(2);
-		EnableDebug = DriveJoystick->GetRawAxis(3) > 0 ? true : false;
+		SpeedMult = .5 * (1 - DriveJoystick->GetRawAxis(3));
+		ForwardAxis = -DriveJoystick->GetRawAxis(1) * SpeedMult;
+		TwistAxis = -DriveJoystick->GetRawAxis(2) * SpeedMult * 1.1;
 	}
 	Controls->SpeedLeft = 0;
 	Controls->SpeedRight = 0;
@@ -145,7 +145,6 @@ void ControlTask::Run()
 
 	Controls->SpeedLeft = (twist)+(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
 	Controls->SpeedRight = (twist)-(fabs(ForwardAxis) > 0.025 ? ForwardAxis : 0);
-	Controls->DebugPrints = EnableDebug;
 	delete (DriveJoystick);
 	//std::cout << "About to send" << std::endl;
 }
